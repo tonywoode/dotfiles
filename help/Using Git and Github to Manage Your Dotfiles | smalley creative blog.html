@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<!-- BEGIN html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><!-- An Orman Clark design (http://www.ormanclark.com) - Proudly powered by WordPress (http://wordpress.org) --><!-- BEGIN head --><head>
+
+	<!-- Meta Tags -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<!-- Title -->
+	<title>Using Git and Github to Manage Your Dotfiles | smalley creative blog</title>
+	
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/style.css" type="text/css" media="screen">
+
+	<!-- RSS & Pingbacks -->
+	<link rel="alternate" type="application/rss+xml" title="smalley creative blog RSS Feed" href="http://blog.smalleycreative.com/feed/">
+	<link rel="pingback" href="http://blog.smalleycreative.com/xmlrpc.php">
+    
+    <!-- Theme Hook -->
+	<link rel="alternate" type="application/rss+xml" title="smalley creative blog » Using Git and Github to Manage Your Dotfiles Comments Feed" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/feed/">
+<link rel="stylesheet" id="genericons-css" href="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/genericons.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/jetpack.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpcirrus-cloudStyle-css" href="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/cirrusCloud.css" type="text/css" media="all">
+<!-- This site uses the Google Analytics by Yoast plugin v5.3.1 - Universal disabled - https://yoast.com/wordpress/plugins/google-analytics/ -->
+<script src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript">
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19311572-1']);
+	_gaq.push(['_gat._forceSSL']);
+	_gaq.push(['_trackPageview']);
+
+	(function () {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+
+</script>
+<!-- / Google Analytics by Yoast -->
+<script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/wp_cirrus_gwt.js"></script><script defer="defer">wp_cirrus_gwt.onInjectionDone('wp_cirrus_gwt')</script>
+<script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/jquery_003.js"></script>
+<script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/jquery_002.js"></script>
+<script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/superfish.js"></script>
+<script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/jquery.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.smalleycreative.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.smalleycreative.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Spotlight – namebench" href="http://blog.smalleycreative.com/spotlight/spotlight-namebench/">
+<link rel="next" title="Tip: Easily Find Files In The Current Directory" href="http://blog.smalleycreative.com/linux/tip-easily-find-files-within-the-current-directory/">
+<meta name="generator" content="WordPress 4.1.1">
+<link rel="canonical" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/">
+<link rel="shortlink" href="http://wp.me/p19QqK-1w">
+<style type="text/css">img#wpstats{display:none}</style><!-- Custom Styling -->
+<style type="text/css">
+pre {
+background-color: black;
+font: 10px Monaco, "Courier 10 Pitch", Courier, monospace;
+line-height: 1.5;
+margin-bottom: 1.625em;
+overflow: auto;
+padding: 0.75em 1.625em;
+color: white;
+}
+
+code {
+font: 13px Courier, "Courier New", monospace;
+font-weight: normal;
+background-color: #f4f4f4;
+border: 1px solid;
+border-color: #e0e0e0;
+-moz-border-radius: 3px;
+border-radius: 3px;
+padding-left: 4px;
+padding-right: 4px;
+padding-top: 0px;
+padding-bottom: 0px;
+}
+
+body {
+font: 15px "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-weight: 300;
+color: 111111;
+line-height: 1.625;
+}
+</style>
+<link rel="shortcut icon" href="http://blog.smalleycreative.com/wp-content/uploads/2011/05/favicon1.ico">
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using Git and Github to Manage Your Dotfiles">
+<meta property="og:url" content="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/">
+<meta property="og:description" content="If you find this post useful, please consider donating in the form of a &nbsp; If you use OS X or Linux on your desktop/servers, you may be at a point where you have configured a lot of your own setting...">
+<meta property="article:published_time" content="2012-01-13T01:55:37+00:00">
+<meta property="article:modified_time" content="2013-07-17T00:35:50+00:00">
+<meta property="article:author" content="http://blog.smalleycreative.com/author/michaeljsmalley/">
+<meta property="og:site_name" content="smalley creative blog">
+<meta property="og:image" content="http://blog.smalleycreative.com/wp-content/uploads/2012/01/octocat1.png">
+<meta name="twitter:site" content="@michaeljsmalley">
+<meta name="twitter:image" content="http://blog.smalleycreative.com/wp-content/uploads/2012/01/octocat1.png?w=240">
+<meta name="twitter:card" content="summary">
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+<style type="text/css">
+.paypal-donations { text-align: center !important }
+</style>
+
+<!-- END head -->
+<link rel="stylesheet" type="text/css" id="gravatar-card-css" href="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/services.css"><script>try {  for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){    var lastpass_f = document.forms[lastpass_iter];    if(typeof(lastpass_f.lpsubmitorig)=="undefined"){      if (typeof(lastpass_f.submit) == "function") {        lastpass_f.lpsubmitorig = lastpass_f.submit;        lastpass_f.submit = function(){          var form = this;          try {            if (document.documentElement && 'createEvent' in document)            {              var forms = document.getElementsByTagName('form');              for (var i=0 ; i<forms.length ; ++i)                if (forms[i]==form)                {                  var element = document.createElement('lpformsubmitdataelement');                  element.setAttribute('formnum',i);                  element.setAttribute('from','submithook');                  document.documentElement.appendChild(element);                  var evt = document.createEvent('Events');                  evt.initEvent('lpformsubmit',true,false);                  element.dispatchEvent(evt);                  break;                }            }          } catch (e) {}          try {            form.lpsubmitorig();          } catch (e) {}        }      }    }  }} catch (e) {}</script></head>
+
+<!-- BEGIN body -->
+<body data-twttr-rendered="true" class="single single-post postid-94 single-format-standard chrome layout-2cr">
+
+	<!-- BEGIN #container -->
+	<div id="container">
+	
+		<!-- BEGIN #header -->
+		<div id="header">	
+			
+			<!-- BEGIN .inner -->
+			<div class="inner">
+			
+				<p class="welcome-message">Fun with ones and zeros!</p>
+                
+                <div id="top-nav">
+                
+					                    <div class="menu-menu-container"><ul id="menu-menu" class="menu sf-js-enabled"><li id="menu-item-73" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-73"><a href="http://blog.smalleycreative.com/category/administration/">Administration</a></li>
+<li id="menu-item-77" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-77"><a href="http://blog.smalleycreative.com/category/introspection/">Introspection</a></li>
+<li id="menu-item-74" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-74"><a href="http://blog.smalleycreative.com/category/linux/">Linux</a></li>
+<li id="menu-item-76" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-76"><a href="http://blog.smalleycreative.com/category/programming/">Programming</a></li>
+<li id="menu-item-78" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-78"><a href="http://blog.smalleycreative.com/category/spotlight/">Spotlight</a></li>
+<li id="menu-item-75" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-75"><a href="http://blog.smalleycreative.com/category/tutorials/">Tutorials</a></li>
+<li id="menu-item-81" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-81"><a href="http://blog.smalleycreative.com/go-to-smalleycreative-com/about/">About</a></li>
+<li id="menu-item-93" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-93"><a href="http://wiki.smalleycreative.com/">The Smalley Creative Wiki &gt;&gt;</a></li>
+</ul></div>                                    
+				</div>
+                
+			<!-- END .inner -->
+			</div>
+
+		<!--END #header-->
+		</div>
+
+		<!--BEGIN #content -->
+		<div id="content" class="clearfix">
+		
+			<!-- BEGIN #content-wrap -->
+			<div id="content-wrap" class="clearfix">
+			
+				<div id="content-top">&nbsp;</div>
+			
+				<!--BEGIN #primary .hfeed-->
+				<div id="primary" class="hfeed">
+									
+					<!--BEGIN .hentry -->
+					<div class="post-94 post type-post status-publish format-standard hentry category-tutorials tag-configuration tag-dotfile tag-dotfiles tag-git tag-github tag-management" id="post-94">
+						<h1 class="entry-title">Using Git and Github to Manage Your Dotfiles</h1>
+						
+						<!--BEGIN .entry-meta .entry-header-->
+						<div class="entry-meta entry-header">
+							<span>by</span> Michael Smalley <span>on</span> January 12, 2012 <span>in</span> <a href="http://blog.smalleycreative.com/category/tutorials/" rel="category tag">Tutorials</a> <span>with</span> <a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comments" title="Comment on Using Git and Github to Manage Your Dotfiles">47 Comments</a> <iframe style="width: 107px; height: 20px;" data-twttr-rendered="true" title="Twitter Tweet Button" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/tweet_button.html" allowtransparency="true" scrolling="no" id="twitter-widget-0" frameborder="0"></iframe><script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/widgets.js"></script>
+						<!--END .entry-meta entry-header -->
+						</div>
+						
+												
+						<!--BEGIN .entry-content -->
+						<div class="entry-content">
+							<p><a href="http://blog.smalleycreative.com/wp-content/uploads/2012/01/octocat1.png"><img class="alignright  wp-image-97" title="octocat" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/octocat1.png" alt="" height="256" width="256"></a></p>
+<p><strong>If you find this post useful, please consider donating in the form of a &nbsp;</strong><iframe style="border: 0; margin: 0; padding: 0;" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/widget.html" height="22" width="48"></iframe></p>
+<p>If you use OS X or Linux on your desktop/servers, you may be at a 
+point where you have configured a lot of your own settings, 
+configurations, or themes within dotfiles. For the uninformed, dotfiles 
+are files in your home directory that begin with a dot, or full-stop 
+character. This indicates to the operating system that they are hidden 
+files, used to set configuration settings for tools like <code>vim</code>, or shells such as <code>bash</code> and <code>zsh</code> to name a few.</p>
+<p>This tutorial does not go into the specifics of configuring your 
+dotfiles. Instead, my goal is to provide you with a light introduction 
+to Git version control, allowing you to maintain your dotfiles in a 
+centralized repository on <a href="http://www.github.com/">github.com</a></p>
+<p><span id="more-94"></span></p>
+<h2>What’s The Point?</h2>
+<p>If you aren’t convinced it’s worth your time to put your dotfiles into Git version control, consider this:</p>
+<p><strong>By storing your dotfiles in a Git repository, you’ll be able to use them on any OS X or Linux machine with Internet access.</strong></p>
+<p>This means that in addition to gaining the ability to revert back to a
+ known-working setup should you misconfigure your files, you will also 
+be able to work in an environment you’ve customized yourself. &nbsp;On 
+almost any workstation or server, you’re a simple <code>git clone</code> away from the familiarity of your customizations. &nbsp;More on <code>git clone</code> later… &nbsp;For now, we’ll begin with an example.</p>
+<h2>A Basic .vimrc</h2>
+<p>The following is an example of the type of file we would manage with <code>git</code>. This is actually an abridged version of my own <code>.vimrc</code>. The full version is available for view on my <a href="https://github.com/michaeljsmalley/dotfiles/blob/master/vimrc">public Github</a>:</p>
+<pre>set nocompatible          " get rid of Vi compatibility mode. SET FIRST!
+filetype plugin indent on " filetype detection[ON] plugin[ON] indent[ON]
+set t_Co=256              " enable 256-color mode.
+syntax enable             " enable syntax highlighting (previously syntax on).
+colorscheme desert        " set colorscheme
+set number                " show line numbers
+set laststatus=2          " last window always has a statusline
+filetype indent on        " activates indenting for files
+set nohlsearch            " Don't continue to highlight searched phrases.
+set incsearch             " But do highlight as you type your search.
+set ignorecase            " Make searches case-insensitive.
+set ruler                 " Always show info along bottom.
+set autoindent            " auto-indent
+set tabstop=4             " tab spacing
+set softtabstop=4         " unify
+set shiftwidth=4          " indent/outdent by 4 columns
+set shiftround            " always indent/outdent to the nearest tabstop
+set expandtab             " use spaces instead of tabs
+set smarttab              " use tabs at the start of a line, spaces elsewhere
+set nowrap                " don't wrap text</pre>
+<p>If you don’t have your own <code>.vimrc</code> in your home 
+directory, you’re welcome to use mine. It is intentionally minimal, as 
+it works standalone (you don’t need to do anything other than drop it 
+into your home directory for it to work). That said, we’re going to do 
+things a little differently from here on, so pay attention (if you 
+aren’t already).</p>
+<h2>Organization, Organization, Organization</h2>
+<p>The typical location for dotfiles on an OS X or Linux machine would be in a users home directory, e.g. <code>/home/smalleycreative/.vimrc</code>. We aren’t typical though, are we? We are trying to be crafty.</p>
+<p>For starters, we’ll be putting all of our dotfiles into a folder called <code>dotfiles</code>, like so: <code>/home/smalleycreative/dotfiles/vimrc</code>. Then, we’ll simply symlink to them from our home directory. To programs like <code>vim</code> and <code>bash</code>
+ these symlinks are transparent. As far as these programs are concerned,
+ our dotfiles will still appear to exist at the top-level of our home 
+directory, even though they’ll be tucked away in the <code>dotfiles</code> directory.</p>
+<p>If you’re on your OS X or Linux workstation now, you can get started by creating the <code>dotfiles</code> directory in your home directory by running the following command:</p>
+<pre>mkdir ~/dotfiles</pre>
+<p>Place your <code>.vimrc</code> within <code>~/dotfiles</code> (and/or any other dotfiles you want to manage with Git). For simplicity, I drop the dot from the filename (<code>.vimrc</code> becomes <code>vimrc</code>). I only prepend the dot when I create my symlink to <code>vimrc</code>
+ in my home directory. What is important to keep in mind is we still 
+haven’t used Git at all yet. We’re just preparing by organizing our 
+dotfiles into one folder. For example, to copy an existing <code>.vimrc</code>, run the following command:</p>
+<pre>mv ~/.vimrc ~/dotfiles/vimrc</pre>
+<p>Once we have a bunch of dotfiles in this directory, a directory listing will likely look a lot like this:</p>
+<pre>ls ~/dotfiles
+vimrc
+zshrc
+bashrc</pre>
+<h2>The Install Script</h2>
+<p>Since we want portability (the ability to use our files on any 
+machine with Internet access), we’re going to need an install script. 
+This script goes in our <code>~/dotfiles</code> directory. Here’s mine (The full version is available for view on my <a href="https://github.com/michaeljsmalley/dotfiles/blob/master/makesymlinks.sh">public Github</a>):</p>
+<pre>#!/bin/bash
+############################
+# .make.sh
+# This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
+############################
+
+########## Variables
+
+dir=~/dotfiles                    # dotfiles directory
+olddir=~/dotfiles_old             # old dotfiles backup directory
+files="bashrc vimrc vim zshrc oh-my-zsh"    # list of files/folders to symlink in homedir
+
+##########
+
+# create dotfiles_old in homedir
+echo "Creating $olddir for backup of any existing dotfiles in ~"
+mkdir -p $olddir
+echo "...done"
+
+# change to the dotfiles directory
+echo "Changing to the $dir directory"
+cd $dir
+echo "...done"
+
+# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
+for file in $files; do
+    echo "Moving any existing dotfiles from ~ to $olddir"
+    mv ~/.$file ~/dotfiles_old/
+    echo "Creating symlink to $file in home directory."
+    ln -s $dir/$file ~/.$file
+done</pre>
+<p>The commented sections in the above script explain it. First, the 
+script cleans up any old symlinks that may exist in our home directory 
+and puts them into a folder called <code>dotfiles_old</code>. It then iterates through any files in our <code>~/dotfiles</code>
+ directory and it creates symlinks from our home directory to these 
+files. It handles naming these symlinks and prepending a dot to their 
+filename.</p>
+<p>If we’ve got this script in our dotfiles directory, and we’ve got our
+ dotfiles in there too, we’re ready to start using Git to manage these 
+files.</p>
+<h2>Gitting Started with GitHub (Git it?)</h2>
+<p>Before continuing, we’re going to want to create a <a href="http://www.github.com/">GitHub</a>
+ account. GitHub allows us to set up a free public Git repository, 
+accessible from any machine with Internet access. They also have a very 
+well-written <a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/help.github.com">help section</a>. You would be well advised to read through and follow the instructions pertaining to your particular operating system:</p>
+<ul>
+<li><a href="http://help.github.com/mac-set-up-git/">GitHub Beginner’s Guide for OS X</a></li>
+<li><a href="http://help.github.com/linux-set-up-git/">GitHub Beginner’s Guide for Linux</a></li>
+</ul>
+<p>Seriously — Read or at least skim over this documentation. Once 
+you’ve set up your account, and you’re comfortable with the basics, come
+ back here, and we’ll continue with the steps required to get your 
+dotfiles stored in your public Git repository at GitHub.com.</p>
+<h2>Creating Our Local Git Repo</h2>
+<p>On our workstation we are going to initialize a new Git repo. To make our <code>~/dotfiles</code> directory a Git repo, we simply change to it, and run the <code>git init</code> command:</p>
+<pre>cd ~/dotfiles
+git init</pre>
+<p>We then start to track any files that we want to be a part of our repo by using the <code>git add</code> command on them:</p>
+<pre>git add makesymlinks.sh
+git add vimrc</pre>
+<p>Finally, once we’re happy with the state of our files, we can commit them.</p>
+<blockquote><p>Think of a commit as a snapshot of your project —code, 
+files, everything — at a particular point in time. More accurately, 
+after your first commit, each subsequent commit is only a snapshot of 
+your changes. For code files, this means it only takes a snapshot of the
+ lines of code that have changed. For everything else like music or 
+image files, it saves a new copy of the file.</p></blockquote>
+<pre>git commit -m 'My first Git commit of my dotfiles'</pre>
+<p>What’s important to realize is that this commit is local — We still haven’t uploaded <em>anything</em> to GitHub. In fact, we cannot do this until we tell our local repository <em>where</em> our public GitHub repository actually resides. To do this, we use <code>git remote add origin</code>, like so:</p>
+<pre>git remote add origin git@github.com:<em>mygithubusername</em>/dotfiles.git</pre>
+<p>Finally, we can <strong>push</strong> our changes to GitHub:</p>
+<pre>git push origin master</pre>
+<h2>Tracking Updates to Our Git Repo</h2>
+<p>If we decide to update our <code>vimrc</code>, we’re going to want to make sure these changes get tracked on GitHub.com, so what is the process? First, add the file:</p>
+<pre>git add vimrc</pre>
+<p>Then, commit locally, and write a commit message:</p>
+<pre>git commit -m 'Changed vim colorscheme!'</pre>
+<p>Then, push to GitHub:</p>
+<pre>git push origin master</pre>
+<h2>Cloning Our Dotfiles to Another Machine</h2>
+<p>Ultimately, we’re going to come to a point where we want to use our 
+customized dotfiles on another server or workstation. That is, after 
+all, one of the primary benefits of using Git to manage our dotfiles. To
+ do this, it’s as simple as running the following command from our home 
+directory:</p>
+<pre>git clone git://github.com/&lt;<em>mygithubusername&gt;</em>/dotfiles.git</pre>
+<p>Once the repository has been cloned to our home directory, simply change to the <code>dotfiles</code> directory, make the <code>makesymlinks.sh</code> script executable, and run the script, like so:</p>
+<pre>cd ~/dotfiles
+chmod +x makesymlinks.sh
+./makesymlinks.sh</pre>
+<p><em>Warning: If you’re running Debian Linux, this will most likely install <code>zsh</code>
+ on your&nbsp;system if it isn’t already installed. This is a feature I 
+added to my script to automate things as much as possible. If for some 
+reason you don’t want <code>zsh</code> to be installed on your computer (e.g. you’re on somebody else’s server), remove the <code>install_zsh</code> line from <code>makesymlinks.sh</code>. This will cause it to set up all of your dotfiles without attempting to install <code>zsh</code>.</em></p>
+<p>That’s it! If the settings don’t take effect right away, we can just log out and log back in (this will re-source our dotfiles).</p>
+<h2>Updating a Local Git Repo</h2>
+<p>The best way to explain this is with a scenario. Say we’ve created a 
+repository on our workstation (Machine A) and we’ve pushed our changes 
+to GitHub, then we’ve cloned these changes down to our server (Machine 
+B). We then go back onto our workstation (Machine A), make more changes,
+ and push them to GitHub. How do we get these changes onto our server 
+(Machine B)? To do this, we use the <code>git pull</code> command:</p>
+<pre>git pull origin master</pre>
+<p>After running this command, Machine B will be current with any 
+changes that were pushed to GitHub from Machine A. It quite literally <strong>pulls</strong> any updates to the repo from GitHub.</p>
+<h2>Colophon</h2>
+<p>Whether you’re trying to wrangle a large collection of custom 
+dotfiles or you’re just getting started and you weren’t sure where to 
+begin, I hope this was an informative introduction to managing your 
+configuration settings via the power of Git.</p>
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-email"><a rel="nofollow" data-shared="" class="share-email sd-button share-icon" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?share=email" target="_blank" title="Click to email this to a friend"><span>Email</span></a></li><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-94" class="share-twitter sd-button share-icon" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?share=twitter" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-94" class="share-facebook sd-button share-icon" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?share=facebook" target="_blank" title="Share on Facebook"><span>Facebook</span></a></li><li class="share-pinterest"><a rel="nofollow" data-shared="sharing-pinterest-94" class="share-pinterest sd-button share-icon" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?share=pinterest" target="_blank" title="Click to share on Pinterest"><span>Pinterest</span></a></li><li class="share-reddit"><a rel="nofollow" data-shared="" class="share-reddit sd-button share-icon" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?share=reddit" target="_blank" title="Click to share on Reddit"><span>Reddit</span></a></li><li class="share-tumblr"><a rel="nofollow" data-shared="" class="share-tumblr sd-button share-icon" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?share=tumblr" target="_blank" title="Click to share on Tumblr"><span>Tumblr</span></a></li><li class="share-google-plus-1"><a rel="nofollow" data-shared="sharing-google-94" class="share-google-plus-1 sd-button share-icon" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?share=google-plus-1" target="_blank" title="Click to share on Google+"><span>Google</span></a></li><li class="share-linkedin"><a rel="nofollow" data-shared="sharing-linkedin-94" class="share-linkedin sd-button share-icon" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span>LinkedIn</span></a></li><li class="share-stumbleupon"><a rel="nofollow" data-shared="" class="share-stumbleupon sd-button share-icon" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?share=stumbleupon" target="_blank" title="Click to share on StumbleUpon"><span>StumbleUpon</span></a></li><li class="share-pocket"><a rel="nofollow" data-shared="" class="share-pocket sd-button share-icon" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?share=pocket" target="_blank" title="Click to share on Pocket"><span>Pocket</span></a></li><li class="share-end"></li></ul></div></div></div>													<!--END .entry-content -->
+						</div>
+						
+                                                
+						<!--BEGIN .author-bio-->
+						<div class="author-bio">
+							
+							<!-- BEGIN .author-inner -->
+							<div class="author-inner clearfix">
+
+								<!-- BEGIN .author-wrap -->
+								<div class="author-wrap clearfix">
+								
+									<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c_002.png" class="avatar avatar-70 photo grav-hashed grav-hijack" height="70" width="70">									
+									<div class="author-info">
+										<div class="author-title"><a href="http://www.smalleycreative.com/" title="Visit Michael Smalley’s website" rel="author external">Michael Smalley</a></div>
+										<div class="author-description">Michael is the creator and 
+main author of the Smalley Creative Blog.  He is a guy who loves 
+technology (particularly open source), educating people about 
+technology, and working with people who love technology as much as he 
+does.  Follow him on Twitter <a href="https://twitter.com/#%21/michaeljsmalley">@michaeljsmalley</a>.</div>
+									</div>
+								
+								<!-- END .author-wrap -->
+								</div>
+							
+							<!-- END .author-inner -->
+							</div>
+							
+						<!--END .author-bio-->
+						</div>
+						
+                        	
+						<!--BEGIN .entry-meta .entry-footer-->
+						<div id="single-tags" class="entry-meta entry-footer">
+	                        <span>Tagged:</span> <a href="http://blog.smalleycreative.com/tag/configuration/" rel="tag">configuration</a>, <a href="http://blog.smalleycreative.com/tag/dotfile/" rel="tag">dotfile</a>, <a href="http://blog.smalleycreative.com/tag/dotfiles/" rel="tag">dotfiles</a>, <a href="http://blog.smalleycreative.com/tag/git/" rel="tag">git</a>, <a href="http://blog.smalleycreative.com/tag/github/" rel="tag">github</a>, <a href="http://blog.smalleycreative.com/tag/management/" rel="tag">management</a>						<!--END .entry-meta .entry-footer-->
+						</div>
+	                
+	                <!--END .hentry-->  
+					</div>
+	
+					
+<!-- You can start editing here. -->
+
+	        
+        		
+		<h3 id="comments" class="league">47 Comments on "Using Git and Github to Manage Your Dotfiles"</h3>
+		
+		<ol class="commentlist">
+        		<li class="comment even thread-even depth-1 parent" id="comment-492">
+				<div id="div-comment-492" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-9c61548764c3a6127e6163177954e4c7-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/9c61548764c3a6127e6163177954e4c7.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn">amar</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-492">
+			February 24, 2012 at 6:14 AM</a>		</div>
+
+		<p>Totally awesome article.</p>
+<p>Thanks <img src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/icon_smile.gif" alt=":)" class="wp-smiley"><br>
+ Keep the good work.</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=492#respond" onclick='return addComment.moveForm( "div-comment-492", "492", "respond", "94" )' aria-label="Reply to amar">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor odd alt depth-2" id="comment-505">
+				<div id="div-comment-505" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-1" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-505">
+			February 26, 2012 at 1:42 PM</a>		</div>
+
+		<p>I’m glad you enjoyed it.  Thank you for the kind words!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=505#respond" onclick='return addComment.moveForm( "div-comment-505", "505", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent" id="comment-650">
+				<div id="div-comment-650" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-0c2f834ff5bc3ab11530bd65b8845e34-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/0c2f834ff5bc3ab11530bd65b8845e34.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://saiy2k.blogspot.com/" rel="external nofollow" class="url">Saiyasodharan</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-650">
+			March 26, 2012 at 7:28 AM</a>		</div>
+
+		<p>I have been saving all my config files in gmail drafts since now 
+and its been a mess. Thanks to you for this article. I now moved all 
+those files to github.</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=650#respond" onclick='return addComment.moveForm( "div-comment-650", "650", "respond", "94" )' aria-label="Reply to Saiyasodharan">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor odd alt depth-2" id="comment-651">
+				<div id="div-comment-651" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-2" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-651">
+			March 26, 2012 at 7:34 AM</a>		</div>
+
+		<p>I’m glad you found it useful.  You should now find managing your 
+configurations across multiple machines a lot more convenient and quick!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=651#respond" onclick='return addComment.moveForm( "div-comment-651", "651", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent" id="comment-855">
+				<div id="div-comment-855" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-ffb8999011c15dabb8954adb253f07d1-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/ffb8999011c15dabb8954adb253f07d1.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://n/A" rel="external nofollow" class="url">lwm</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-855">
+			April 23, 2012 at 1:57 PM</a>		</div>
+
+		<p>Amazing stuff!<br>
+Thanks for getting me off the ground on this one!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=855#respond" onclick='return addComment.moveForm( "div-comment-855", "855", "respond", "94" )' aria-label="Reply to lwm">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor odd alt depth-2" id="comment-902">
+				<div id="div-comment-902" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-3" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-902">
+			April 27, 2012 at 6:21 PM</a>		</div>
+
+		<p>I’m glad you found this informative and useful. Thanks for reading!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=902#respond" onclick='return addComment.moveForm( "div-comment-902", "902", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent" id="comment-864">
+				<div id="div-comment-864" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-f9eca6cd6bb418d506f44892b9f09248-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/f9eca6cd6bb418d506f44892b9f09248.jpg" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn">nathaniel</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-864">
+			April 24, 2012 at 1:52 PM</a>		</div>
+
+		<p>Good article &amp; well written. Shame you neglected to mention 
+anywhere in the article that if someone used your install script it 
+would install zsh at the same time. I guess it’s a good thing I read the
+ code.</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=864#respond" onclick='return addComment.moveForm( "div-comment-864", "864", "respond", "94" )' aria-label="Reply to nathaniel">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor odd alt depth-2" id="comment-901">
+				<div id="div-comment-901" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-4" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-901">
+			April 27, 2012 at 6:20 PM</a>		</div>
+
+		<p>I’m glad you enjoyed the article. You’ll be pleased to know that 
+I’ve added a warning for anyone who would dare run any script from the 
+Internet without reading the actual code contained within. To anyone 
+reading this, running scripts without taking a glance at them to see 
+what they do does you a disservice on two fronts. Firstly, you’re 
+skipping an opportunity to learn from somebody else’s code. Secondly, 
+you’re putting your system/network in jeopardy by running something on 
+it that you don’t fully understand. The point is, take a note from 
+Nathaniel.  If you download a script from the Internet, read it before 
+you run it!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=901#respond" onclick='return addComment.moveForm( "div-comment-901", "901", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent" id="comment-1210">
+				<div id="div-comment-1210" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-80f26e1935b0884b8ea58d6b7744a36f-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/80f26e1935b0884b8ea58d6b7744a36f.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://linuxtidbits.wordpress.com/" rel="external nofollow" class="url">Todd Partridge (Gen2ly)</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-1210">
+			May 26, 2012 at 8:32 AM</a>		</div>
+
+		<p>Want to add too that this is a great article.  Git’s always been 
+one of those 100 pound gorillas to me, so very much appreciate it.</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=1210#respond" onclick='return addComment.moveForm( "div-comment-1210", "1210", "respond", "94" )' aria-label="Reply to Todd Partridge (Gen2ly)">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor odd alt depth-2" id="comment-1376">
+				<div id="div-comment-1376" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-5" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-1376">
+			June 3, 2012 at 5:13 PM</a>		</div>
+
+		<p>Git is challenging for everyone who wants to do more than simple clone operations. I’m glad this helped!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=1376#respond" onclick='return addComment.moveForm( "div-comment-1376", "1376", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1 parent" id="comment-2575">
+				<div id="div-comment-2575" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-9495c0e879b5f06503a17e60c68bc4f8-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/9495c0e879b5f06503a17e60c68bc4f8.jpg" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://granze.net/" rel="external nofollow" class="url">Granze</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-2575">
+			September 19, 2012 at 8:36 AM</a>		</div>
+
+		<p>Thanks for sharing. Really interesting stuff!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=2575#respond" onclick='return addComment.moveForm( "div-comment-2575", "2575", "respond", "94" )' aria-label="Reply to Granze">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor odd alt depth-2" id="comment-2913">
+				<div id="div-comment-2913" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-6" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-2913">
+			October 11, 2012 at 10:13 AM</a>		</div>
+
+		<p>I’m glad you found it useful.</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=2913#respond" onclick='return addComment.moveForm( "div-comment-2913", "2913", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent" id="comment-4025">
+				<div id="div-comment-4025" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-8a353b3757d9cb90497cb1465db8840b-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/8a353b3757d9cb90497cb1465db8840b.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://pedramnavid.com/" rel="external nofollow" class="url">Pedram</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-4025">
+			November 3, 2012 at 8:41 AM</a>		</div>
+
+		<p>Thanks so much for publishing this! I’ve been telling myself I will get my dotfiles onto git forever and now I finally have.</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=4025#respond" onclick='return addComment.moveForm( "div-comment-4025", "4025", "respond", "94" )' aria-label="Reply to Pedram">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor odd alt depth-2" id="comment-4285">
+				<div id="div-comment-4285" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-7" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-4285">
+			November 4, 2012 at 6:13 PM</a>		</div>
+
+		<p>I’m glad to hear I’ve helped you make the jump!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=4285#respond" onclick='return addComment.moveForm( "div-comment-4285", "4285", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1" id="comment-5936">
+				<div id="div-comment-5936" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e5d9d56625c8c0f5d5ffd4908395de08-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e5d9d56625c8c0f5d5ffd4908395de08.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn">jm</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-5936">
+			November 28, 2012 at 8:03 PM</a>		</div>
+
+		<p>Solid.  For a while I’d been thinking of doing the same thing, and you’ve gone and done it!</p>
+<p>Currently my home directory itself is a git repo where everything is 
+ignored and files have to be force-added to track them.  Having the root
+ of one’s home tree be a git repository is problematic, however.</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=5936#respond" onclick='return addComment.moveForm( "div-comment-5936", "5936", "respond", "94" )' aria-label="Reply to jm">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent" id="comment-8431">
+				<div id="div-comment-8431" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-007d865b471d8b57089002456d1b46d8-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/007d865b471d8b57089002456d1b46d8.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://wowlookart.com/" rel="external nofollow" class="url">Patrick</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-8431">
+			January 2, 2013 at 1:02 PM</a>		</div>
+
+		<p>Thank you so much. This post was phenomenal, I sat down today 
+thinking “Man, how am I going to get my .vimrc into gitHub.. maybe 
+symlinks?”.<br>
+Then on my first goole your post comes up and blows me away. Thank you 
+so much for taking the time to make this script and to share it with 
+such a well laid out post.</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=8431#respond" onclick='return addComment.moveForm( "div-comment-8431", "8431", "respond", "94" )' aria-label="Reply to Patrick">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor even depth-2" id="comment-8436">
+				<div id="div-comment-8436" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-8" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-8436">
+			January 2, 2013 at 2:06 PM</a>		</div>
+
+		<p>Comments like yours are the reason I do what I do here. Thank you!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=8436#respond" onclick='return addComment.moveForm( "div-comment-8436", "8436", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-11589">
+				<div id="div-comment-11589" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-16d2871f924a3789ebfd62f8508b6606-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/16d2871f924a3789ebfd62f8508b6606.jpg" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://ara-abcarians.com/" rel="external nofollow" class="url">Ara</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-11589">
+			March 4, 2013 at 3:19 AM</a>		</div>
+
+		<p>Great article! Exactly what I was looking for, thanks!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=11589#respond" onclick='return addComment.moveForm( "div-comment-11589", "11589", "respond", "94" )' aria-label="Reply to Ara">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor even depth-2" id="comment-11642">
+				<div id="div-comment-11642" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-9" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-11642">
+			March 5, 2013 at 10:45 AM</a>		</div>
+
+		<p>I’m glad it came in handy for you!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=11642#respond" onclick='return addComment.moveForm( "div-comment-11642", "11642", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent" id="comment-12482">
+				<div id="div-comment-12482" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-f52808f65dca29b9027093a3419c76ff-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/f52808f65dca29b9027093a3419c76ff.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn">Marcus</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-12482">
+			March 18, 2013 at 12:16 PM</a>		</div>
+
+		<p>Thanks for this great and short introduction!!<br>
+This was exactly what I’ve been looking for.</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=12482#respond" onclick='return addComment.moveForm( "div-comment-12482", "12482", "respond", "94" )' aria-label="Reply to Marcus">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor even depth-2" id="comment-12871">
+				<div id="div-comment-12871" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-10" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-12871">
+			March 20, 2013 at 9:43 PM</a>		</div>
+
+		<p>You’re quite welcome. I’m glad I was able to help!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=12871#respond" onclick='return addComment.moveForm( "div-comment-12871", "12871", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-12856">
+				<div id="div-comment-12856" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-164e39191f2a6f27f453a489bb142aa3-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/164e39191f2a6f27f453a489bb142aa3.jpg" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.hanshelgebuerger.de/" rel="external nofollow" class="url">Hans</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-12856">
+			March 20, 2013 at 8:02 PM</a>		</div>
+
+		<p>Thx for this great article. I saw a lot people sharing their 
+dotfiles at github and I always was thinking how they do it. Because 
+they won’t use a large .gitignore file to exclude all their stuff in ~/</p>
+<p>Your article really helps and later I will have a look at your files <img src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/icon_wink.gif" alt=";)" class="wp-smiley"></p>
+<p>But one question: I use the bash an my mac und like it. Why do you prefer zsh?</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=12856#respond" onclick='return addComment.moveForm( "div-comment-12856", "12856", "respond", "94" )' aria-label="Reply to Hans">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor even depth-2 parent" id="comment-12870">
+				<div id="div-comment-12870" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-11" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-12870">
+			March 20, 2013 at 9:42 PM</a>		</div>
+
+		<p>I prefer zsh because I use <code>oh-my-zsh</code>, a framework that adds a lot of functionality to the standard <code>bash</code> you may be used to. Give it a look here, I’m sure you’ll be convinced after reading the feature-set:<br>
+<a href="https://github.com/robbyrussell/oh-my-zsh" title="https://github.com/robbyrussell/oh-my-zsh" rel="nofollow">https://github.com/robbyrussell/oh-my-zsh</a></p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=12870#respond" onclick='return addComment.moveForm( "div-comment-12870", "12870", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment odd alt depth-3" id="comment-12885">
+				<div id="div-comment-12885" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-164e39191f2a6f27f453a489bb142aa3-1" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/164e39191f2a6f27f453a489bb142aa3.jpg" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.hanshelgebuerger.de/" rel="external nofollow" class="url">Hans</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-12885">
+			March 20, 2013 at 11:37 PM</a>		</div>
+
+		<p>Oh-my-zsh has some nice features. I’ll give it a try but I’m not 
+fully convinced. Maybe I’m not this hardcore user and I don’t see the 
+real advantages <img src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/icon_wink.gif" alt=";)" class="wp-smiley"></p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=12885#respond" onclick='return addComment.moveForm( "div-comment-12885", "12885", "respond", "94" )' aria-label="Reply to Hans">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-20097">
+				<div id="div-comment-20097" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-1aea114639fb9a8bd5e7d197378170fb-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/1aea114639fb9a8bd5e7d197378170fb.jpg" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://moonstruck.me/" rel="external nofollow" class="url">Abdullah Al Mamun</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-20097">
+			May 24, 2013 at 6:32 AM</a>		</div>
+
+		<p>Thanks a lot for sharing. Just pushed my dotfiles to github repo. <img src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/icon_smile.gif" alt=":)" class="wp-smiley"></p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=20097#respond" onclick='return addComment.moveForm( "div-comment-20097", "20097", "respond", "94" )' aria-label="Reply to Abdullah Al Mamun">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-23316">
+				<div id="div-comment-23316" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-9c0638740f30456f7224f18f33ba034b-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/9c0638740f30456f7224f18f33ba034b.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.papayasoft.com/" rel="external nofollow" class="url">David Weinraub</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-23316">
+			July 9, 2013 at 3:45 AM</a>		</div>
+
+		<p>Another “Me, too” post thanking you for this excellent tutorial. </p>
+<p>For a long while now, I’ve been wanting to push my dotfiles down into
+ a single folder and get them under source control, but somehow just 
+mentally missed that symlinking them up into the home directory would 
+keep everything working fine. Your automated symlink script is the 
+cherry on top.</p>
+<p>Thanks again! <img src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/icon_wink.gif" alt=";-)" class="wp-smiley"></p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=23316#respond" onclick='return addComment.moveForm( "div-comment-23316", "23316", "respond", "94" )' aria-label="Reply to David Weinraub">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor even depth-2" id="comment-23826">
+				<div id="div-comment-23826" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-12" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-23826">
+			July 16, 2013 at 8:32 PM</a>		</div>
+
+		<p>Thank you for the kind words! I’m glad I was able to help!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=23826#respond" onclick='return addComment.moveForm( "div-comment-23826", "23826", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent" id="comment-23876">
+				<div id="div-comment-23876" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-d6aecd93d70e5c1b8d3d63e5d3abb137-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/d6aecd93d70e5c1b8d3d63e5d3abb137.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn">Vidit</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-23876">
+			July 17, 2013 at 2:09 PM</a>		</div>
+
+		<p>I’m setting up my own dotfile git repo, and this post was a great help. </p>
+<p>I have a small question though, does it matter whether the file and 
+directory names in the repo have ‘.’ in them? I have seen many github 
+dotfiles repo which have them, but all the blogs suggest otherwise. </p>
+<p>I understand the ‘make_symlinks’ scripts will need modification, but I’m not worried about that. I’m confused about the naming.</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=23876#respond" onclick='return addComment.moveForm( "div-comment-23876", "23876", "respond", "94" )' aria-label="Reply to Vidit">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor even depth-2" id="comment-24442">
+				<div id="div-comment-24442" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-13" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-24442">
+			July 25, 2013 at 10:32 AM</a>		</div>
+
+		<p>It does matter. As long as the symlinks begin with a dot, the files
+ they point to can be called anything. You’ll notice this is how my 
+implementation works. For example, I have the <code>~/.bashrc</code> symlink pointing to a file called <code>~/dotfiles/bashrc</code>. Technically, <code>~/dotfiles/bashrc</code>
+ could be called anything — as long as when the symlink gets created (in
+ the setup script) it points to the correct file within the <code>~/dotfiles</code> directory.</p>
+<p>Thank you for your question!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=24442#respond" onclick='return addComment.moveForm( "div-comment-24442", "24442", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-24435">
+				<div id="div-comment-24435" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-ab26413af9389bf2dde35adedb55aed5-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/ab26413af9389bf2dde35adedb55aed5.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://richardhartmann.de/" rel="external nofollow" class="url">Richard "RichiH" Hartmann</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-24435">
+			July 25, 2013 at 8:27 AM</a>		</div>
+
+		<p>Hi Michael,</p>
+<p>this post has been referenced in a discussion about managing dotfiles
+ with Git in freenode’s #git channel just now. I have to say it’s quite a
+ concise and to the point howto; kudos for that.</p>
+<p>I was wondering if you ever tried vcsh[1]? This would allow you to 
+ditch the dotfiles directory and maintain your dotfiles directly in 
+$HOME. No need for symlinks or other hacks; just clean Git repositories 
+happily sharing $HOME and not interfering with each other.</p>
+<p>Even if you don’t get around to try it or if you don’t like it I’d 
+like to thank you for pushing the use of Git for non-code purposes. It’s
+ a bit of a passion of mine and it’s nice to see that others Care as 
+well.</p>
+<p>Richard</p>
+<p>[1] <a href="https://github.com/RichiH/vcsh" rel="nofollow">https://github.com/RichiH/vcsh</a></p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=24435#respond" onclick='return addComment.moveForm( "div-comment-24435", "24435", "respond", "94" )' aria-label="Reply to Richard &quot;RichiH&quot; Hartmann">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor even depth-2" id="comment-24443">
+				<div id="div-comment-24443" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-14" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-24443">
+			July 25, 2013 at 10:43 AM</a>		</div>
+
+		<p>Richard,</p>
+<p>Thank you for the compliment. This is the first I’ve ever heard of 
+vcsh. I’ll definitely give it a fair shot at some point this week. It 
+seems quite interesting!</p>
+<p>If you have a thing for using Git for non-code purposes, you’ll probably enjoy this book (which I reviewed): <a href="http://www.amazon.com/Git-Version-everyone-Ravishankar-Somasundaram/dp/1849517525" rel="nofollow">http://www.amazon.com/Git-Version-everyone-Ravishankar-Somasundaram/dp/1849517525</a></p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=24443#respond" onclick='return addComment.moveForm( "div-comment-24443", "24443", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent" id="comment-33100">
+				<div id="div-comment-33100" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-eeaad3261cff8bf210daeb08440e25c2-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/eeaad3261cff8bf210daeb08440e25c2.jpg" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://brett.batie.com/" rel="external nofollow" class="url">Brett Batie</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-33100">
+			October 17, 2013 at 3:28 PM</a>		</div>
+
+		<p>Michael,</p>
+<p>Thanks for this post! It inspired me to organize my dot files and 
+look over the other dot files shared on git hub, there are a ton.</p>
+<p>I started with the script you provided and then made a few 
+customizations and a few more and a few more. Well, now I have an 
+application that I’m calling dotm that has quite a long list of 
+features. You or others might find it useful as well. It is on github at
+ <a href="https://github.com/brettbatie/dotfiles" rel="nofollow">https://github.com/brettbatie/dotfiles</a></p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=33100#respond" onclick='return addComment.moveForm( "div-comment-33100", "33100", "respond", "94" )' aria-label="Reply to Brett Batie">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor even depth-2" id="comment-34592">
+				<div id="div-comment-34592" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-15" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-34592">
+			November 4, 2013 at 8:32 PM</a>		</div>
+
+		<p>Brett,</p>
+<p>I’m honored! Now you’ve got my gears turning and I’m thinking I’d 
+love to see something like this developed in Python as a more 
+full-featured application. I might have to get on that. <img src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/icon_smile.gif" alt=":)" class="wp-smiley"></p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=34592#respond" onclick='return addComment.moveForm( "div-comment-34592", "34592", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-34366">
+				<div id="div-comment-34366" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-3bfcb917dcf1623340c1312ca7baaf75-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/3bfcb917dcf1623340c1312ca7baaf75.jpg" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn">Steve</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-34366">
+			November 1, 2013 at 3:57 AM</a>		</div>
+
+		<p>Very clever! Thanks for some inspiration. I’ve been keeping my 
+dotfiles in Dropbox and copying them manually but I love the advantages 
+of your method. I’ve been looking for an excuse to learn git; I think 
+this is it!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=34366#respond" onclick='return addComment.moveForm( "div-comment-34366", "34366", "respond", "94" )' aria-label="Reply to Steve">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor even depth-2" id="comment-34589">
+				<div id="div-comment-34589" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-16" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-34589">
+			November 4, 2013 at 8:29 PM</a>		</div>
+
+		<p>I’m glad you’ve found this helpful in iterating toward a better way of wrangling those dotfiles. Thank you for your kind words.</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=34589#respond" onclick='return addComment.moveForm( "div-comment-34589", "34589", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1 parent" id="comment-46148">
+				<div id="div-comment-46148" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-c0c40f096c24acf41c4866fca0698bb6-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/c0c40f096c24acf41c4866fca0698bb6.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn">Adam</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-46148">
+			February 20, 2014 at 1:06 PM</a>		</div>
+
+		<p>I have wanted to get my dotfiles on github for a while, but I’m a 
+noob to the whole github thing, but this guide just taught me how to use
+ github and how to get my dotfiles up there. Bravo!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=46148#respond" onclick='return addComment.moveForm( "div-comment-46148", "46148", "respond", "94" )' aria-label="Reply to Adam">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor even depth-2" id="comment-46151">
+				<div id="div-comment-46151" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-17" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-46151">
+			February 20, 2014 at 2:10 PM</a>		</div>
+
+		<p>Adam, I’m happy to have helped you gain a better understanding of git and GitHub.</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=46151#respond" onclick='return addComment.moveForm( "div-comment-46151", "46151", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-63014">
+				<div id="div-comment-63014" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-fbeb6fb699a200b97cebe7e27fdca003-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/fbeb6fb699a200b97cebe7e27fdca003.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn">Melch</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-63014">
+			July 6, 2014 at 8:34 PM</a>		</div>
+
+		<p>I was going to just shove my dotfiles into a github repo for backup
+ and sharing, but had a sneaky suspicion there was a better way. One 
+lucky google hit later, those suspicions were confirmed. The setup 
+script idea is a fantastic way of recovering, copying to other machines,
+ and supporting a single directory for dotfiles to make git usage 
+simpler. Thanks for sharing!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=63014#respond" onclick='return addComment.moveForm( "div-comment-63014", "63014", "respond", "94" )' aria-label="Reply to Melch">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1 parent" id="comment-64664">
+				<div id="div-comment-64664" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-f5d9f246be3768babaf80b7065ac92ad-0" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/f5d9f246be3768babaf80b7065ac92ad.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn">Chris</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-64664">
+			July 30, 2014 at 10:05 PM</a>		</div>
+
+		<p>I wasn’t able to get vim to follow the symlinks set up by your script to my vimrc. Please help.</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=64664#respond" onclick='return addComment.moveForm( "div-comment-64664", "64664", "respond", "94" )' aria-label="Reply to Chris">Reply</a></div>
+				</div>
+		<ul class="children">
+		<li class="comment odd alt depth-2" id="comment-64788">
+				<div id="div-comment-64788" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-f5d9f246be3768babaf80b7065ac92ad-1" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/f5d9f246be3768babaf80b7065ac92ad.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn">Chris</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-64788">
+			August 1, 2014 at 8:46 PM</a>		</div>
+
+		<p>Got it fixed! Your script dumped my .vim files into ‘dotfiles_old’.
+ This file housed my bundle file where bundle controlled my plugins. The
+ symlink pointed to ‘~/user/me/dotfiles/vim’. I moved the ‘vim’ folder 
+from dotfiles_old to dotfiles and it worked great. Thanks again for the 
+article!</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=64788#respond" onclick='return addComment.moveForm( "div-comment-64788", "64788", "respond", "94" )' aria-label="Reply to Chris">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-michaeljsmalley bypostauthor even thread-odd thread-alt depth-1" id="comment-1378">
+				<div id="div-comment-1378" class="comment-body">
+				<div class="comment-author vcard">
+			<img id="grav-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c-18" alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e3e48b0bf4c88b1b6bd4df6ecfd0cc8c.png" class="avatar avatar-52 photo grav-hashed grav-hijack" height="52" width="52">			<cite class="fn"><a href="http://www.smalleycreative.com/" rel="external nofollow" class="url">Michael Smalley</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#comment-1378">
+			June 3, 2012 at 5:18 PM</a>		</div>
+
+		<p>One of the biggest rewards I get from effective knowledge-sharing 
+is seeing people build on what they’ve learned. For anyone interested, 
+this is a great extension of my tutorial.</p>
+
+		<div class="reply"><a class="comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/?replytocom=1378#respond" onclick='return addComment.moveForm( "div-comment-1378", "1378", "respond", "94" )' aria-label="Reply to Michael Smalley">Reply</a></div>
+				</div>
+		</li><!-- #comment-## -->
+        </ol>
+
+        
+        		
+		<h3 id="pings" class="league">Trackbacks for this post</h3>
+		
+		<ol class="pinglist">
+        <li id="comment-647"><a href="http://blog.smalleycreative.com/tutorials/setup-a-django-vm-with-vagrant-virtualbox-and-chef/" rel="external nofollow" class="url">Setup a Django VM with Vagrant, VirtualBox, and Chef | smalley creative blog</a></li><!-- #comment-## -->
+<li id="comment-1277"><a href="http://linuxtidbits.wordpress.com/2012/05/30/managing-scripts-and-configurations-on-github-with-a-script/" rel="external nofollow" class="url">Managing Scripts and Configurations on Github with a script « Linux Tidbits</a></li><!-- #comment-## -->
+<li id="comment-5942"><a href="http://www.pedramnavid.com/blog/linux/sync-your-dotfiles-across-multiple-computers-using-git-and-github/" rel="external nofollow" class="url">Sync dotfiles across multiple computers using Git &amp; Github Pedram Navid</a></li><!-- #comment-## -->
+<li id="comment-20980"><a href="http://sebastianrakel.de/?p=148" rel="external nofollow" class="url">One git repo to rule them all! | Sebastians Blog</a></li><!-- #comment-## -->
+<li id="comment-46227"><a href="http://demaya.de/wp/2014/02/dotfiles-mit-github-synchronisieren-und-aktuell-halten/" rel="external nofollow" class="url">Dotfiles (bashrc, vimrc,...) mit GitHub synchronisieren und aktuell halten | demaya.de</a></li><!-- #comment-## -->
+<li id="comment-59707"><a href="http://orangenarwhals.nfshost.com/?p=101" rel="external nofollow" class="url">braindump, playing around with flask / python / vim / bootstrap | orange narwhals</a></li><!-- #comment-## -->
+        </ol>
+
+        		
+		<div class="navigation">
+			<div class="alignleft"></div>
+			<div class="alignright"></div>
+		</div>
+
+ 		
+
+	
+	<div id="respond">
+
+		<h3 class="league">Got something to say? Go for it!</h3>
+	
+		<div class="cancel-comment-reply">
+			<a rel="nofollow" id="cancel-comment-reply-link" href="http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/#respond" style="display:none;">Click here to cancel reply.</a>		</div>
+	
+			
+		<form action="http://blog.smalleycreative.com/wp-comments-post.php" method="post" id="commentform">
+	
+					
+			<p><input name="author" id="author" size="22" tabindex="1" type="text">
+			<label for="author"><small>Name (required)</small></label></p>
+		
+			<p><input name="email" id="email" size="22" tabindex="2" type="text">
+			<label for="email"><small>Mail (will not be published) (required)</small></label></p>
+		
+			<p><input name="url" id="url" size="22" tabindex="3" type="text">
+			<label for="url"><small>Website</small></label></p>
+		
+					
+			<p><textarea name="comment" id="comment" cols="58" rows="10" tabindex="4"></textarea></p>
+			
+			<!--<p class="allowed-tags"><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+		
+			<p><input name="submit" id="submit" tabindex="5" value="Submit Comment" type="submit">
+			<input name="comment_post_ID" value="94" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+			</p>
+			<p style="display: none;"><input id="akismet_comment_nonce" name="akismet_comment_nonce" value="7f270c31c8" type="hidden"></p><p class="comment-subscription-form"><input name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" type="checkbox"> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" type="checkbox"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><p style="display: none;"></p>	
+		<input id="ak_js" name="ak_js" value="1424694186801" type="hidden"></form>
+
+		</div>
+
+						
+					<!--BEGIN .navigation .single-page-navigation -->
+					<div class="navigation single-page-navigation clearfix">
+						<div class="nav-previous">← <a href="http://blog.smalleycreative.com/spotlight/spotlight-namebench/" rel="prev">Spotlight – namebench</a></div>
+						<div class="nav-next"><a href="http://blog.smalleycreative.com/linux/tip-easily-find-files-within-the-current-directory/" rel="next">Tip: Easily Find Files In The Current Directory</a> →</div>
+					<!--END .navigation .single-page-navigation -->
+					</div>
+	
+									<!--END #primary .hfeed-->
+				</div>
+			
+			<div id="content-btm">&nbsp;</div>
+			
+			<!-- END #content-wrap -->
+			</div>
+
+		<!--BEGIN #sidebar .aside-->
+		<div id="sidebar" class="aside">
+		
+			<!-- BEGIN #logo -->
+			<div id="logo">
+								<a class="logo-link" href="http://blog.smalleycreative.com/"><img src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/logocropped2.png" alt="smalley creative blog"></a>
+							<!-- END #logo -->
+			</div>
+			
+            
+            			<div id="search-3" class="widget widget_search clearfix"><!--BEGIN #searchform-->
+<form method="get" id="searchform" action="http://blog.smalleycreative.com/">
+	<label class="hidden" for="s">Search for:</label>
+	<input value="To search type and hit enter" onfocus="if(this.value=='To search type and hit enter')this.value='';" onblur="if(this.value=='')this.value='To search type and hit enter';" name="s" id="s" type="text">
+	<input class="hidden" id="searchsubmit" value="Search" type="submit">
+<!--END #searchform-->
+</form></div><div id="text-4" class="widget widget_text clearfix">			<div class="textwidget"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-8525735575410335";
+/* Square */
+google_ad_slot = "6631894715";
+google_ad_width = 250;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/show_ads.js">
+</script></div>
+		</div><div id="paypal_donations-2" class="widget widget_paypal_donations clearfix"><h3 class="widget-title">Help Out!</h3><p>If
+ you've found The Smalley Creative Blog useful, please give whatever you
+ think would be fair to help pay for my time and hosting fees. Thank 
+you!</p>
+<!-- Begin PayPal Donations by https://www.tipsandtricks-hq.com/paypal-donations-widgets-plugin -->
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+    <div class="paypal-donations">
+        <input name="cmd" value="_donations" type="hidden">
+        <input name="bn" value="TipsandTricks_SP" type="hidden">
+        <input name="business" value="PHHKWVL66XMDU" type="hidden">
+        <input name="return" value="blog.smalleycreative.com" type="hidden">
+        <input name="currency_code" value="USD" type="hidden">
+        <input src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online." type="image">
+        <img alt="" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/pixel.gif" height="1" width="1">
+    </div>
+</form>
+<!-- End PayPal Donations -->
+</div><style type="text/css">
+#am_thumbnail a {
+text-decoration: none;
+border: none;
+}
+#am_thumbnail img {
+text-decoration: none;
+border: 1px solid #999;
+max-width: 99%;
+}
+#am_name {
+margin-top: 5px;
+margin-bottom: 3px;
+}
+#am_headline {
+margin-bottom: 5px;
+}
+#am_bio {
+margin-bottom: 15px;
+}
+#am_bio p {
+margin-bottom: 5px;
+}
+#am_bio p:last-child {
+margin-bottom: 0px;
+}
+#am_services {
+margin-right: -5px;
+}
+#am_services a.am_service_icon {
+margin-right: 4px;
+text-decoration: none;
+border: none;
+}
+#am_services a.am_service_icon:hover {
+text-decoration: none;
+border: none;
+}
+#am_services a.am_service_icon img {
+border: none;
+margin-bottom: 4px;
+}
+/*
+#am_links a.am_link_icon img {
+border: none;
+text-decoration: none;
+vertical-align: middle;
+}
+#am_links a.am_link_icon img:hover {
+text-decoration: none;
+border: none;
+}
+*/
+</style>
+<div id="aboutme_widget-2" class="widget aboutme_widget clearfix"><div id="am_bio"><p>Michael is the creator and sole maintainer of the popular <strong><a href="http://blog.smalleycreative.com/">Smalley Creative Blog</a></strong>, a regularly updated source of tutorials, news, and solutions of a technical nature.</p><p>He is interested in (in an ever-changing order):</p><p></p><p>entrepreneurship</p><p>devops, systems administration, monitoring</p><p>private cloud computing infrastructure</p><p>vintage computing, gaming, and pixel art (yes, pixel art)</p><p>road bicycling</p><p>teaching</p><p>traveling</p><p>musicianship</p><p>functional design</p><p></p></div><div id="am_services"><a href="http://blog.smalleycreative.com/" target="_blank" class="am_service_icon" rel="me"><img src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/32x32_004.png"></a><a href="http://www.twitter.com/michaeljsmalley" target="_blank" class="am_service_icon" rel="me"><img src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/32x32_003.png"></a><a href="https://github.com/michaeljsmalley" target="_blank" class="am_service_icon" rel="me"><img src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/32x32.png"></a><a href="http://plus.google.com/104007760254833939450/" target="_blank" class="am_service_icon" rel="me"><img src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/32x32_002.png"></a><a href="http://www.linkedin.com/pub/michael-smalley/5/589/195" target="_blank" class="am_service_icon" rel="me"><img src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/32x32_005.png"></a></div></div>		<div id="recent-posts-4" class="widget widget_recent_entries clearfix">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="http://blog.smalleycreative.com/administration/updating-the-bios-firmware-on-the-supermicro-x9drw-if/">Updating the BIOS firmware on the Supermicro X9DRW-iF</a>
+						</li>
+					<li>
+				<a href="http://blog.smalleycreative.com/linux/flashing-the-ipmi-firmware-on-a-supermicro-x9drw-if/">Flashing the IPMI firmware on a Supermicro X9DRW-iF</a>
+						</li>
+					<li>
+				<a href="http://blog.smalleycreative.com/administration/automating-osx-part-one/">Automating Your OS X Deploy – Part I</a>
+						</li>
+					<li>
+				<a href="http://blog.smalleycreative.com/administration/how-to-disable-java-on-os-x-lion-to-protect-from-zero-day-bug/">How To Disable Java on OS X Lion to Protect from Zero-Day Bug</a>
+						</li>
+					<li>
+				<a href="http://blog.smalleycreative.com/introspection/amiga-emulation-an-e-uae-binary-for-os-x-10-7/">Amiga Emulation – An E-UAE Binary for OS X 10.7</a>
+						</li>
+				</ul>
+		</div>					
+		<!--END #sidebar .aside-->
+		</div>
+
+		<!-- END #content -->
+		</div>
+			
+		<!-- BEGIN #footer -->
+		<div id="footer">
+		
+			<!-- BEGIN #footer-texture -->
+			<div id="footer-texture">
+			
+				<!-- BEGIN #footer-inner -->
+				<div id="footer-inner">
+					
+                    <!-- BEGIN #footer-columns -->
+					<div id="footer-columns" class="clearfix">
+                    
+                        <!-- BEGIN .column -->
+                        <div class="column">
+                            
+                            <div id="archives-4" class="widget widget_archive clearfix"><h3 class="widget-title">Archives</h3>		<ul>
+	<li><a href="http://blog.smalleycreative.com/2015/02/">February 2015</a></li>
+	<li><a href="http://blog.smalleycreative.com/2013/01/">January 2013</a></li>
+	<li><a href="http://blog.smalleycreative.com/2012/07/">July 2012</a></li>
+	<li><a href="http://blog.smalleycreative.com/2012/04/">April 2012</a></li>
+	<li><a href="http://blog.smalleycreative.com/2012/03/">March 2012</a></li>
+	<li><a href="http://blog.smalleycreative.com/2012/01/">January 2012</a></li>
+	<li><a href="http://blog.smalleycreative.com/2011/05/">May 2011</a></li>
+	<li><a href="http://blog.smalleycreative.com/2011/04/">April 2011</a></li>
+	<li><a href="http://blog.smalleycreative.com/2011/02/">February 2011</a></li>
+	<li><a href="http://blog.smalleycreative.com/2011/01/">January 2011</a></li>
+	<li><a href="http://blog.smalleycreative.com/2010/12/">December 2010</a></li>
+	<li><a href="http://blog.smalleycreative.com/2010/10/">October 2010</a></li>
+		</ul>
+</div>                        
+                        <!-- END .column -->
+                        </div>
+                        
+                        <!-- BEGIN .column -->
+                        <div class="column">
+                            
+                            <div id="linkcat-2" class="widget widget_links clearfix"><h3 class="widget-title">Blogroll</h3>
+	<ul class="xoxo blogroll">
+<li><a href="http://blog.claudeschrader.com/" rel="friend met co-worker colleague" title="Claude’s Internet Finds" target="_blank">Claude's Internet Finds</a></li>
+<li><a href="https://jve.linuxwall.info/blog/" rel="friend met co-worker" title="Julien Vehent’s Blog" target="_blank">Julien Vehent's Blog</a></li>
+<li><a href="http://www.standalone-sysadmin.com/blog/" title="Standalone Sysadmin" target="_blank">Standalone Sysadmin</a></li>
+<li><a href="http://www.superk.org/" rel="met co-worker colleague" target="_blank">SuperK.org</a></li>
+
+	</ul>
+</div>
+<div id="linkcat-19" class="widget widget_links clearfix"><h3 class="widget-title">Links</h3>
+	<ul class="xoxo blogroll">
+<li><a href="http://www.linkedin.com/profile?viewProfile=&amp;key=16355777" rel="me" title="Visit My LinkedIn Profile" target="_blank">Visit My LinkedIn Profile</a></li>
+<li><a href="http://www.smalleycreative.com/" rel="me">Visit the Smalley Creative Website</a></li>
+
+	</ul>
+</div>
+                        
+                        <!-- END .column -->
+                        </div>
+                        
+                        <!-- BEGIN .column -->
+                        <div class="column">
+                            
+                                                    
+                        <!-- END .column -->
+                        </div>
+                        
+                        <!-- BEGIN .column -->
+                        <div class="column">
+                            
+                                                    
+                        <!-- END .column -->
+                        </div>
+                        
+                    </div>
+					<!-- END #footer-columns -->
+                    
+					<p class="copyright clear">© 2015 <a href="http://blog.smalleycreative.com/">smalley creative blog</a>. Powered by <a href="http://wordpress.org/">WordPress</a>.<br><a href="http://www.premiumpixels.com/vintage">Premium Pixels Theme</a> by <a href="http://www.premiumpixels.com/">Orman Clark</a></p>
+				
+				<!-- END #footer-inner -->
+				</div>
+			
+			<!-- END #footer-texture -->
+			</div>
+		
+		<!-- END #footer -->
+		</div>
+		
+	<!-- END #container -->
+	</div> 
+		
+	<!-- Theme Hook -->
+		<div style="display:none">
+	<div class="grofile-hash-map-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c">
+	</div>
+	<div class="grofile-hash-map-9c61548764c3a6127e6163177954e4c7">
+	</div>
+	<div class="grofile-hash-map-e3e48b0bf4c88b1b6bd4df6ecfd0cc8c">
+	</div>
+	<div class="grofile-hash-map-0c2f834ff5bc3ab11530bd65b8845e34">
+	</div>
+	<div class="grofile-hash-map-ffb8999011c15dabb8954adb253f07d1">
+	</div>
+	<div class="grofile-hash-map-f9eca6cd6bb418d506f44892b9f09248">
+	</div>
+	<div class="grofile-hash-map-80f26e1935b0884b8ea58d6b7744a36f">
+	</div>
+	<div class="grofile-hash-map-9495c0e879b5f06503a17e60c68bc4f8">
+	</div>
+	<div class="grofile-hash-map-8a353b3757d9cb90497cb1465db8840b">
+	</div>
+	<div class="grofile-hash-map-e5d9d56625c8c0f5d5ffd4908395de08">
+	</div>
+	<div class="grofile-hash-map-007d865b471d8b57089002456d1b46d8">
+	</div>
+	<div class="grofile-hash-map-16d2871f924a3789ebfd62f8508b6606">
+	</div>
+	<div class="grofile-hash-map-f52808f65dca29b9027093a3419c76ff">
+	</div>
+	<div class="grofile-hash-map-164e39191f2a6f27f453a489bb142aa3">
+	</div>
+	<div class="grofile-hash-map-1aea114639fb9a8bd5e7d197378170fb">
+	</div>
+	<div class="grofile-hash-map-9c0638740f30456f7224f18f33ba034b">
+	</div>
+	<div class="grofile-hash-map-d6aecd93d70e5c1b8d3d63e5d3abb137">
+	</div>
+	<div class="grofile-hash-map-ab26413af9389bf2dde35adedb55aed5">
+	</div>
+	<div class="grofile-hash-map-eeaad3261cff8bf210daeb08440e25c2">
+	</div>
+	<div class="grofile-hash-map-3bfcb917dcf1623340c1312ca7baaf75">
+	</div>
+	<div class="grofile-hash-map-c0c40f096c24acf41c4866fca0698bb6">
+	</div>
+	<div class="grofile-hash-map-fbeb6fb699a200b97cebe7e27fdca003">
+	</div>
+	<div class="grofile-hash-map-f5d9f246be3768babaf80b7065ac92ad">
+	</div>
+	</div>
+
+	<script type="text/javascript">
+		WPCOM_sharing_counts = {"http:\/\/blog.smalleycreative.com\/tutorials\/using-git-and-github-to-manage-your-dotfiles\/":94}	</script>
+	<div id="sharing_email" style="display: none;">
+		<form action="/tutorials/using-git-and-github-to-manage-your-dotfiles/" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input name="target_email" id="target_email" type="email">
+
+			
+				<label for="source_name">Your Name</label>
+				<input name="source_name" id="source_name" type="text">
+
+				<label for="source_email">Your Email Address</label>
+				<input name="source_email" id="source_email" type="email">
+
+			
+			
+			<img style="float: right; display: none" class="loading" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/loading.gif" alt="loading" height="16" width="16">
+			<input value="Send Email" class="sharing_send" type="submit">
+			<a href="#cancel" class="sharing_cancel">Cancel</a>
+
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div>
+		<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-twitter' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-facebook' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+		});
+		</script>
+							<script type="text/javascript">
+			jQuery(document).on('ready', function(){
+				jQuery('body').on('click', 'a.share-pinterest', function(e){
+					e.preventDefault();
+
+					// Load Pinterest Bookmarklet code
+					var s = document.createElement("script");
+					s.type = "text/javascript";
+					s.src = window.location.protocol + "//assets.pinterest.com/js/pinmarklet.js?r=" + ( Math.random() * 99999999 );
+					var x = document.getElementsByTagName("script")[0];
+					x.parentNode.insertBefore(s, x);
+
+					// Trigger Stats
+					var s = document.createElement("script");
+					s.type = "text/javascript";
+					s.src = this + ( this.toString().indexOf( '?' ) ? '&' : '?' ) + 'js_only=1';
+					var x = document.getElementsByTagName("script")[0];
+					x.parentNode.insertBefore(s, x);
+				});
+			});
+			</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-tumblr' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomtumblr', 'menubar=1,resizable=1,width=450,height=450' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-google-plus-1' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-linkedin' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-pocket' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcompocket', 'menubar=1,resizable=1,width=450,height=450' );
+				return false;
+			});
+		});
+		</script>
+		<script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/form.js"></script>
+<script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/core.js"></script>
+<script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/widget.js"></script>
+<script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/tabs.js"></script>
+<script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/devicepx-jetpack.js"></script>
+<script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/wpgroho.js"></script>
+<script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/comment-reply.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/sharing.js"></script>
+
+	<script src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/e-201509.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:3.3.1',blog:'17122834',post:'94',tz:'-4'});
+	var load_cmc = function(){linktracker_init(17122834,94,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script><img id="wpstats" src="Using%20Git%20and%20Github%20to%20Manage%20Your%20Dotfiles%20%7C%20smalley%20creative%20blog_files/g.gif">			
+<!--END body-->
+
+
+
+
+
+
+<iframe tabindex="-1" style="position: absolute; width: 0px; height: 0px; border: medium none;" id="wp_cirrus_gwt" src="javascript:''"></iframe></body><!--END html--></html>
+<!-- Dynamic page generated in 1.793 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2015-02-23 08:16:33 -->
+<!-- super cache -->
