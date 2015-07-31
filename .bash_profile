@@ -1,7 +1,14 @@
+# bash completion
 export PATH="/usr/local/bin:$PATH"
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
  fi
+
+# tmux starts by default 
+if command -v tmux>/dev/null; then
+  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+fi
+
 # alias to nw
 alias nw=/Users/twoode/Code/myNodeWebkitApps/nw/node-webkit.app/Contents/MacOS/node-webkit
 alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
