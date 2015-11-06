@@ -1,4 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/Volumes/Untitled/Users/Tony/CODE/REPO/OpenShare/openshare/ldap/slapd'
-let g:netrw_dirhist_2='/Volumes/Untitled/Users/Tony/CODE/REPO/Atlas/AtlasMIO/integration-test-ui/src/content'

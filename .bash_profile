@@ -7,8 +7,9 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
  # VI key bindings
  set -o vi
 
-# tmux starts by default 
-if command -v tmux>/dev/null; then
+# tmux starts by default
+# the $- == *i* says 'if current shell isn't interactive
+if [[ $- == *i* ]] && command -v tmux>/dev/null; then
   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
 fi
 
