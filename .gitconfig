@@ -1,0 +1,13 @@
+[user]
+	email = tonywoodecode@gmail.com
+	name = tony woode
+[core]
+	excludesfile = /Users/twoode/.gitignore_global
+	editor = /usr/bin/vim
+	autocrlf = input
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.9.6/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
