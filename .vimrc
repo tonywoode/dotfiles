@@ -10,7 +10,6 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-
 Plugin 'rizzatti/dash.vim'
 
 " The following are examples of different formats supported.
@@ -44,14 +43,12 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-colors jellybeans
-let g:jellybeans_use_lowcolor_black = 0
-syntax on
+syntax enable
+set background=dark
+colorscheme solarized
 set number
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set hidden
-colors jellybeans
-let g:jellybeans_use_lowcolor_black = 0
 hi link htmlLink NONE
