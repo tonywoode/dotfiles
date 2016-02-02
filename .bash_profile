@@ -1,5 +1,4 @@
 # bash completion
-export PATH="/usr/local/bin:$PATH"
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
  fi
@@ -23,7 +22,7 @@ alias cunt='fuck'
 alias CUNT='fuck'
 
 # include sbin in path
-export PATH=/usr/local/sbin:$PATH
+export PATH="/usr/local/sbin:$PATH"
 
 # SQL sandboxe
 export SANDBOX_HOME=/Volumes/Untitled/Users/Tony/CODE/DBs/SQL/sandboxes
