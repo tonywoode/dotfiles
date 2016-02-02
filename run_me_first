@@ -1,0 +1,49 @@
+## Run this before making this directory 'live'
+## It will copy out any existing ~ config files and make symlinks
+# note it doesn't change anything in THIS folder, so you can add to it
+
+########## Variables
+ 
+dir=~/dotfiles # dotfiles directory
+olddir=~/dotfiles_old # old dotfiles backup directory
+
+# list of files to symlink in homedir
+files=(
+	.gitconfig #be aware this makes this repos git config file the system git config file!
+	.gitignore_global
+	.bash_profile
+	.tmux.conf
+	.vimrc
+)
+
+
+# list of folders to symlink in homedir
+folders=(
+	.vim
+)
+##########
+ 
+# create dotfiles_old in homedir
+echo "Creating $olddir for backup of any existing dotfiles in ~"
+mkdir -p $olddir
+echo "...done"
+ 
+# change to the dotfiles directory
+echo "Changing to the $dir directory"
+cd $dir
+echo "...done"
+ 
+# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
+for file in "${files[@]}"; do
+	echo "Moving any existing dotfiles from ~ to $olddir"
+	mv ~/$file ~/dotfiles_old/
+	echo "Creating symlink to $file in home directory."
+	ln -s $dir/$file ~/$file
+	source ~/$file
+done
+
+# do the same to folders, but don't source them
+for folder in "${folders[@]}"; do
+	mv ~/$folder ~/dotfiles_old/
+	ln -s $dir/$folder ~/$folder # todo: if you run this twice you get a .vim inside your .vim folder?!?! - folder linking is different
+done
