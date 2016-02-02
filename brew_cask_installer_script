@@ -1,0 +1,59 @@
+#! /bin/bash
+
+echo "Checking for Homebrew and installing if we don't have it"
+if test ! $(which brew); then
+  echo "Installing homebrew..."
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+echo "updating homebrew" && brew update
+
+echo "upgrading already-installed formula - hold on to your seats!" && brew upgrade
+
+echo "calling the doctor to fix issues" && brew doctor
+
+echo "Tapped taps:"
+taps=(
+caskroom/cask
+)
+tap_list=$(brew tap)
+echo $tap_list && echo "let's tap any untapped taps..."
+for tap in "${taps[@]}"; do { [[ $tap_list != *"$tap"* ]] && brew tap "$tap"; } done
+
+echo "running brew cleanup" && brew cleanup
+
+# as of Jan 2016 it seems that everyoneincluding homebrew is deprecating ~/Applications in favour of /Applications, but cask is not. So we do....
+# for instance see half way down here: https://github.com/caskroom/homebrew-cask/issues/2534
+# DO WE NEED TO SET THIS IN BASHRC? 
+echo "let's remember casks go in /Applications" && export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+cask="brew cask"
+install="$cask install"
+
+echo "Installed casks:"
+cask_list=$(brew cask list)
+echo $cask_list
+
+echo "Installing any non-installed Cask Apps"
+
+apps=(
+sublime-text
+firefox
+google-drive
+google-chrome
+dropbox
+aerial # beautiful screensaver
+skype
+slack
+diffmerge
+)
+
+for app in "${apps[@]}"; do { [[ $cask_list != *"$app"* ]] && $install "$app"; } done
+
+echo "running cask cleanup" && brew cask cleanup
+
+# the file browser that opens code in vim
+# brew install ranger
+
+echo "I'm outta yer loop, cya"
+ 
