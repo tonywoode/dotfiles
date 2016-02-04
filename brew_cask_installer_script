@@ -14,7 +14,7 @@ echo "calling the doctor to fix issues" && brew doctor
 
 echo "Tapped taps:"
 taps=(
-caskroom/cask
+	caskroom/cask
 )
 tap_list=$(brew tap)
 echo $tap_list && echo "let's tap any untapped taps..."
@@ -22,10 +22,22 @@ for tap in "${taps[@]}"; do { [[ $tap_list != *"$tap"* ]] && brew tap "$tap"; } 
 
 echo "running brew cleanup" && brew cleanup
 
+echo "Brewed binaries:"
+bins=(
+		 bash-completion
+		 tmux
+		 reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
+)
+
+brew_list=$(brew list)
+echo $brew_list && echo "let's brew any unbrewed bins..." 
+for bin in "${bins[@]}"; do { [[ $brew_list != *"$bin"* ]] && brew install "$bin"; } done
+
 # as of Jan 2016 it seems that everyoneincluding homebrew is deprecating ~/Applications in favour of /Applications, but cask is not. So we do....
 # for instance see half way down here: https://github.com/caskroom/homebrew-cask/issues/2534
 # DO WE NEED TO SET THIS IN BASHRC? 
 echo "let's remember casks go in /Applications" && export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+# todo - that will overwrite any other options set elsewhere for cask....
 
 cask="brew cask"
 install="$cask install"
@@ -37,15 +49,25 @@ echo $cask_list
 echo "Installing any non-installed Cask Apps"
 
 apps=(
-sublime-text
-firefox
-google-drive
-google-chrome
-dropbox
-aerial # beautiful screensaver
-skype
-slack
-diffmerge
+	aerial # beautiful screensaver
+	alfred
+	balsamiq-mockups
+	blueharvest
+	caffeine
+	dash
+	diffmerge
+	dropbox
+	firefox
+	google-chrome
+	google-drive
+	iterm2
+	jumpcut
+	moom
+	parallels-desktop
+	skype
+	slack
+	snapz-pro-x
+	sublime-text
 )
 
 for app in "${apps[@]}"; do { [[ $cask_list != *"$app"* ]] && $install "$app"; } done
