@@ -13,9 +13,10 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 #inspiration from http://tmux.svn.sourceforge.net/viewvc/tmux/trunk/FAQ 
 # which says "A workaround is to let tmux know about the current path through an environment variable.
 # Which sets TMUXPWD_i (where i is the number of the current window) to the path of the current directory.
-if [[ $- == *i* ]] && command -v tmux>/dev/null; then
-	[[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux  
-fi
+#if [[ $- == *i* ]] && command -v tmux>/dev/null; then
+#	[[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+#	[[ ! $TERM =~ screen ]] && [ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I") $PWD && exec tmux   
+#fi
 
 # alias to nw
 alias nw=/Users/twoode/Code/myNodeWebkitApps/nw/node-webkit.app/Contents/MacOS/node-webkit

@@ -25,6 +25,7 @@ echo "running brew cleanup" && brew cleanup
 echo "Brewed binaries:"
 bins=(
 		 bash-completion
+		 node
 		 tmux
 		 reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
 )
@@ -35,7 +36,7 @@ for bin in "${bins[@]}"; do { [[ $brew_list != *"$bin"* ]] && brew install "$bin
 
 # as of Jan 2016 it seems that everyoneincluding homebrew is deprecating ~/Applications in favour of /Applications, but cask is not. So we do....
 # for instance see half way down here: https://github.com/caskroom/homebrew-cask/issues/2534
-# DO WE NEED TO SET THIS IN BASHRC? 
+# I hope this is in your bash.config
 echo "let's remember casks go in /Applications" && export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # todo - that will overwrite any other options set elsewhere for cask....
 
@@ -54,10 +55,12 @@ apps=(
 	balsamiq-mockups
 	blueharvest
 	caffeine
+	cord
 	dash
 	diffmerge
 	dropbox
 	firefox
+	freefilesync
 	google-chrome
 	google-drive
 	iterm2
@@ -68,6 +71,8 @@ apps=(
 	slack
 	snapz-pro-x
 	sublime-text
+	virtualbox
+	virtualbox-extension-pack
 )
 
 for app in "${apps[@]}"; do { [[ $cask_list != *"$app"* ]] && $install "$app"; } done
