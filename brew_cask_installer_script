@@ -28,6 +28,7 @@ bins=(
 		 node
 		 tmux
 		 reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
+		 zsh
 )
 
 brew_list=$(brew list)
@@ -64,6 +65,7 @@ apps=(
 	google-chrome
 	google-drive
 	iterm2
+	java
 	jumpcut
 	moom
 	parallels-desktop
