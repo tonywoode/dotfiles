@@ -48,3 +48,8 @@ for folder in "${folders[@]}"; do
 	mv ~/$folder ~/dotfiles_old/
 	ln -s $dir/$folder ~/$folder # todo: if you run this twice you get a .vim inside your .vim folder?!?! - folder linking is different
 done
+
+# make symlinks to the automator scripts here in ~/Library/Services
+find "$PWD/automator scripts" -name "*.workflow" | while read file; do ln -s "$file" "$PWD/automator scripts/ServicesLink"; done
+echo "NOW PLEASE INSTALL EACH SCRIPT BY DOUBLE CLICKING IT"
+open "$PWD/automator scripts"

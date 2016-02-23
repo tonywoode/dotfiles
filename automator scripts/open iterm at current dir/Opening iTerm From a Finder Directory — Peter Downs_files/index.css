@@ -1,0 +1,111 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic);
+
+html {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+body {
+    font-family: 'PT Sans', serif;
+    background: #FEFEFE;
+    color: #252525;
+    font-size: 1.1rem;
+    text-align: center;
+    margin: 0;
+    min-width: 300px;
+}
+
+#page-wrap {
+    width: auto;
+    max-width: 800px;
+    margin: 0;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #AAAAAA;
+    width: 100%;
+}
+#header #logo {
+    width: 120px;
+}
+
+#title {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: 200px;
+    line-height: 200px;
+    color: white;
+    background-image: url(/static/img/header.jpg);
+}
+
+#tagline {
+    font-weight: normal;
+    font-style: italic;
+}
+#nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+#nav li {
+    display: inline-block;
+    vertical-align: top;
+    width: 32%;
+}
+#nav li.current-page::before {
+    content: ">";
+    color: #AAA;
+}
+#nav li.current-page::after {
+    content: "<";
+    color: #AAA;
+}
+#nav a {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+#content {
+    padding: 0 20px;
+    margin-bottom: 80px;
+}
+.post, .about, .archives {
+    text-align: left;
+}
+.post p {
+    margin-bottom: 1.5em;
+}
+.post blockquote p {
+    margin: 0;
+}
+
+img {
+	max-width: 100%;
+}
+hr {
+	background-color: #999;
+}
+*:not(ul, ol) > ul, *:not(ul, ol) > ol {
+	list-style-position: outside;
+	border: 1px solid rgba(0,0,0,.2);
+	padding-bottom: 2px;
+	padding-top: 2px;
+	border-radius: 3px;
+}
+
+.inline-block {
+  display: inline-block;
+  vertical-align: top;
+}
+#headshot {
+  padding-right: 20px;
+  padding-bottom: 20px;
+  width: 320px;
+}

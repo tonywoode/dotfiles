@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title> Opening iTerm From a Finder Directory — Peter Downs </title>
+
+  <link href="Opening%20iTerm%20From%20a%20Finder%20Directory%20%E2%80%94%20Peter%20Downs_files/css.css" rel="stylesheet" type="text/css">
+  <link href="Opening%20iTerm%20From%20a%20Finder%20Directory%20%E2%80%94%20Peter%20Downs_files/css_002.css" rel="stylesheet" type="text/css">
+  <link href="Opening%20iTerm%20From%20a%20Finder%20Directory%20%E2%80%94%20Peter%20Downs_files/clearness.css" rel="stylesheet" type="text/css">
+  <link href="Opening%20iTerm%20From%20a%20Finder%20Directory%20%E2%80%94%20Peter%20Downs_files/index.css" rel="stylesheet" type="text/css">
+  <link href="Opening%20iTerm%20From%20a%20Finder%20Directory%20%E2%80%94%20Peter%20Downs_files/highlightjs.css" rel="stylesheet" type="text/css">
+
+  <script src="Opening%20iTerm%20From%20a%20Finder%20Directory%20%E2%80%94%20Peter%20Downs_files/analytics.js" async=""></script><script type="text/javascript" src="Opening%20iTerm%20From%20a%20Finder%20Directory%20%E2%80%94%20Peter%20Downs_files/tracking.js"></script>
+  <script type="text/javascript" src="Opening%20iTerm%20From%20a%20Finder%20Directory%20%E2%80%94%20Peter%20Downs_files/highlight.js"></script>
+</head>
+
+<body>
+  <div id="page-wrap">
+    <div id="header">
+        <h1 id="title"> Peter Downs </h1>
+        <ul id="nav">
+          <li>
+            <a href="http://peterdowns.com/">Home</a>
+          </li>
+          <li>
+            <a href="http://peterdowns.com/about.html">About</a>
+          </li>
+          <li><a href="https://github.com/peterldowns" target="_blank">Github →</a></li>
+        </ul>
+    </div>
+    <div id="content">
+      <div class="post">
+        <h1>Opening iTerm From a Finder Directory</h1>
+<p>If, like me, you work mostly from OS X, you've probably already discovered
+<a href="http://www.iterm2.com/#/section/home">iTerm2</a>. If you haven't: it's an incredibly good replacement for the
+default Terminal application. Combined with the <a href="http://ethanschoonover.com/solarized">solarized</a> color scheme, it
+does what all software should: it fades away and lets me get my work done
+without an issue.</p>
+<p>If you're like me in another way, you will occasionally use the Finder to
+browse through your files. The problem is that it's difficult to open an iTerm
+window set to the current Finder directory.</p>
+<p>A couple of different people have come up with solutions. <a href="http://snippets.dzone.com/user/SimonDorfman">Simon Dorfman</a>
+came up with <a href="http://snippets.dzone.com/posts/show/961">an Applescript</a> to keep in the Finder sidebar or your dock; it
+opens iTerm tabs in any directory dropped on it. <a href="http://benalman.com/">Ben Alman</a> wrote <a href="https://gist.github.com/905546">a
+similar script</a> that does the same thing. But both of these require you to
+drag and drop an item onto a script that takes up space in your sidebar or
+dock.</p>
+<p>I didn't want to clutter up my dock or Finder sidebar with a droppable script,
+so I adapted <a href="https://github.com/lsloan">Lance E Sloan</a>'s <a href="https://gist.github.com/1265327">script</a> and turned it into a Finder
+service that you can access by right-clicking on a folder.  Here's the script:</p>
+<pre class="sql"><code>on run {input, parameters}
+    tell application "Finder"
+        <span class="operator"><span class="keyword">set</span> dir_path <span class="keyword">to</span> <span class="string">"\""</span> &amp; (POSIX path <span class="keyword">of</span> (<span class="keyword">input</span> <span class="keyword">as</span> string)) &amp; <span class="string">"\""</span>
+            -- display dialog dir_path
+    <span class="keyword">end</span> tell
+    CD_to(dir_path)
+<span class="keyword">end</span> run
+
+<span class="keyword">on</span> CD_to(theDir)
+    tell application <span class="string">"iTerm"</span>
+        activate
+        try
+            <span class="keyword">set</span> t <span class="keyword">to</span> the <span class="keyword">last</span> terminal
+        <span class="keyword">on</span> error
+            <span class="keyword">set</span> t <span class="keyword">to</span> (make new terminal)
+        <span class="keyword">end</span> try
+        tell t
+            launch <span class="keyword">session</span> <span class="string">"Default Session"</span>
+            tell the <span class="keyword">last</span> <span class="keyword">session</span>
+                <span class="keyword">write</span> text <span class="string">"cd "</span> &amp; theDir &amp; <span class="string">";clear;"</span>
+            <span class="keyword">end</span> tell
+        <span class="keyword">end</span> tell
+    <span class="keyword">end</span> tell
+<span class="keyword">end</span> CD_to
+</span></code></pre>
+<p>Using Automator, create a new "Service" that accepts folders in Finder.</p>
+<p><img alt="setting up the service" src="Opening%20iTerm%20From%20a%20Finder%20Directory%20%E2%80%94%20Peter%20Downs_files/applescript_service.jpg" title="Setting up the service"></p>
+<p>Add a "Run Applescript" action and paste in the above code.  Save it as
+whatever you'd like - I saved mine as <code>open_iterm</code>. Now, you can just
+right-click any folder from within Finder to open an iTerm tab there. Cool.</p>
+<p><img alt="the service in action" src="Opening%20iTerm%20From%20a%20Finder%20Directory%20%E2%80%94%20Peter%20Downs_files/applescript_service_in_action.jpg" title="Using the new service"></p>
+<h3>Update – June 24, 2013</h3>
+<p>I just got a great email from <a href="https://github.com/eric-hu">Eric Hu</a> describing
+a modified version of this script that can be run on files, not just folders.
+<a href="https://gist.github.com/eric-hu/5846890">Check it out here</a> — thanks,
+Eric!</p>
+<h3>Update – May 15, 2014</h3>
+<p><a href="http://sudoplz.eu/">John Kokkinidis</a> was kind enough to write in with a
+solution I like even more than the Finder service presented above. His version
+is designed to be run with a single click from the Finder, once you've
+navigated to the folder that you'd like to open. If you take his script:</p>
+<pre class="sql"><code>on run {input, parameters}
+  tell application "Finder"
+    <span class="operator"><span class="keyword">set</span> dir_path <span class="keyword">to</span> quoted form <span class="keyword">of</span> (POSIX path <span class="keyword">of</span> (folder <span class="keyword">of</span> the front window <span class="keyword">as</span> alias))
+  <span class="keyword">end</span> tell
+  CD_to(dir_path)
+<span class="keyword">end</span> run
+
+<span class="keyword">on</span> CD_to(theDir)
+  tell application <span class="string">"iTerm"</span>
+    activate
+
+    try
+      <span class="keyword">set</span> _<span class="keyword">session</span> <span class="keyword">to</span> <span class="keyword">current</span> <span class="keyword">session</span> <span class="keyword">of</span> <span class="keyword">current</span> terminal
+    <span class="keyword">on</span> error
+      <span class="keyword">set</span> _term <span class="keyword">to</span> (make new terminal)
+      tell _term
+        launch <span class="keyword">session</span> <span class="string">"Default"</span>
+        <span class="keyword">set</span> _<span class="keyword">session</span> <span class="keyword">to</span> <span class="keyword">current</span> <span class="keyword">session</span>
+      <span class="keyword">end</span> tell
+    <span class="keyword">end</span> try
+
+    tell _<span class="keyword">session</span>
+      <span class="keyword">write</span> text <span class="string">"cd "</span> &amp; theDir &amp; <span class="string">";clear;"</span>
+    <span class="keyword">end</span> tell
+  <span class="keyword">end</span> tell
+<span class="keyword">end</span> CD_to
+</span></code></pre>
+<p>create an "Application" in Automator:</p>
+<p><img alt="setting up the application" src="Opening%20iTerm%20From%20a%20Finder%20Directory%20%E2%80%94%20Peter%20Downs_files/applescript_kokkinidis_application.jpg" title="Setting up the application"></p>
+<p>and drag it onto the Finder window while holding the command key:</p>
+<p><img alt="installing the application" src="Opening%20iTerm%20From%20a%20Finder%20Directory%20%E2%80%94%20Peter%20Downs_files/applescript_kokkinidis_install.gif" title="Installing the application"></p>
+<p>You can then click that icon any time you're in the Finder to get a new iTerm
+shell at that location. Thanks, John! Also, thanks to <a href="http://eryancobham.com/">Eryan
+Cobham</a> and <a href="https://twitter.com/adammclain">Adam
+Mclain</a> for both writing in with the same
+suggestion: to use <code>quoted form of (POSIX path of ...)</code> instead of <code>POSIX path
+of ...</code>, allowing the script to work with directories including spaces. And a
+big thanks to Peter Scott for writing in to suggest a fix for a problem where
+two windows were being created. He points to <a href="http://www.alfredforum.com/topic/721-executing-iterm2-terminal-commands-in-current-shell/?hl=iterm">CtWise's efforts
+here</a>
+as his inspiration.</p>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+  var codeBlocks = document.getElementsByTagName('pre');
+  for (var i = 0; i < codeBlocks.length; i++) {
+    var block = codeBlocks[i];
+    hljs.highlightBlock(block);
+  };
+</script>
+
+
+</body></html>
