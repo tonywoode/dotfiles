@@ -53,3 +53,7 @@ done
 find "$PWD/automator scripts" -name "*.workflow" | while read file; do ln -s "$file" "$PWD/automator scripts/ServicesLink"; done
 echo "NOW PLEASE INSTALL EACH SCRIPT BY DOUBLE CLICKING IT"
 open "$PWD/automator scripts"
+echi "NOW YOU NEED TO DOUBLE CLICK THE VIMINI APP TO INSTALL IT"
+cp "$PWD/automator scripts/open with vim in iterm at folder/vimini-master/vimini.app" "/Applications/"
+open /Applications
+
