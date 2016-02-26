@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ## Run this before making this directory 'live'
 ## It will copy out any existing ~ config files and make symlinks
 # note it doesn't change anything in THIS folder, so you can add to it
@@ -45,15 +47,15 @@ done
 
 # do the same to folders, but don't source them
 for folder in "${folders[@]}"; do
-	mv ~/"$folder" "$olddir" # todo: if you run this twice you'll get a recursive .vim inside your .vim folder
+	mv ~/"$folder" "$olddir" # todo: getting a recursive .vim inside the source or destination .vim folder
 	ln -s "$dir/$folder" ~/"$folder"
 done
 
 # make symlinks to the automator scripts here in ~/Library/Services
 find "$dir/automator scripts" -name "*.workflow" | while read file; do ln -s "$file" "$dir/automator scripts/ServicesLink"; done
-echo "NOW PLEASE INSTALL EACH SCRIPT BY DOUBLE CLICKING IT"
+read -p "NOW PLEASE INSTALL EACH SCRIPT BY DOUBLE CLICKING IT"
 open "$dir/automator scripts/ServicesLink"
-echo "NOW YOU NEED TO DOUBLE CLICK THE VIMINI APP TO INSTALL IT"
+read -p  "NOW YOU NEED TO DOUBLE CLICK THE VIMINI APP TO INSTALL IT"
 cp "$dir/automator scripts/open with vim in iterm at folder/vimini-master/vimini.app/*" "/Applications/"
 open /Applications
-
+echo "done"
