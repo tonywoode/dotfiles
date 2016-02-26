@@ -4,56 +4,56 @@
 
 ########## Variables
  
-dir=~/dotfiles # dotfiles directory
-olddir=~/dotfiles_old # old dotfiles backup directory
+dir=~/CODE/Scripts/Dotfiles/dotfiles # dotfiles directory
+olddir=~/CODE/Scripts/Dotfiles/dotfiles_old # old dotfiles backup directory
 
 # list of files to symlink in homedir
 files=(
-	.gitconfig #be aware this makes this repos git config file the system git config file!
-	.gitignore_global
-	.bash_profile
-	.tmux.conf
-	.vimrc
-  .zshrc
+				.bash_profile
+				.gitconfig #be aware this makes this repos git config file the system git config file!
+				.gitignore_global
+				.tmux.conf
+				.vimrc
+				.zshrc
 )
 
 
 # list of folders to symlink in homedir
 folders=(
-	.vim
+					.vim #this gives us my colors files, but annoyingly includes vundledir
 )
 ##########
  
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
-mkdir -p $olddir
+mkdir -p "$olddir"
 echo "...done"
  
 # change to the dotfiles directory
 echo "Changing to the $dir directory"
-cd $dir
+cd "$dir"
 echo "...done"
  
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in "${files[@]}"; do
 	echo "Moving any existing dotfiles from ~ to $olddir"
-	mv ~/$file ~/dotfiles_old/
+	mv ~/"$file" "$olddir/"
 	echo "Creating symlink to $file in home directory."
-	ln -s $dir/$file ~/$file
-	source ~/$file
+	ln -s $dir/$file ~/"$file"
+	#source ~/"$file"
 done
 
 # do the same to folders, but don't source them
 for folder in "${folders[@]}"; do
-	mv ~/$folder ~/dotfiles_old/
-	ln -s $dir/$folder ~/$folder # todo: if you run this twice you get a .vim inside your .vim folder?!?! - folder linking is different
+	mv ~/"$folder" "$olddir" # todo: if you run this twice you'll get a recursive .vim inside your .vim folder
+	ln -s "$dir/$folder" ~/"$folder"
 done
 
 # make symlinks to the automator scripts here in ~/Library/Services
-find "$PWD/automator scripts" -name "*.workflow" | while read file; do ln -s "$file" "$PWD/automator scripts/ServicesLink"; done
+find "$dir/automator scripts" -name "*.workflow" | while read file; do ln -s "$file" "$dir/automator scripts/ServicesLink"; done
 echo "NOW PLEASE INSTALL EACH SCRIPT BY DOUBLE CLICKING IT"
-open "$PWD/automator scripts"
-echi "NOW YOU NEED TO DOUBLE CLICK THE VIMINI APP TO INSTALL IT"
-cp "$PWD/automator scripts/open with vim in iterm at folder/vimini-master/vimini.app" "/Applications/"
+open "$dir/automator scripts/ServicesLink"
+echo "NOW YOU NEED TO DOUBLE CLICK THE VIMINI APP TO INSTALL IT"
+cp "$dir/automator scripts/open with vim in iterm at folder/vimini-master/vimini.app/*" "/Applications/"
 open /Applications
 
