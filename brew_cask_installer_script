@@ -1,5 +1,11 @@
 #! /bin/bash
 
+# Functions as a Homebrew and Homebrew/Cask setup script, as a running binary or app install script
+# and as a running upgdate/upgrade scrupt for all of those
+
+# I took the decision to always upgrade all my apps as I go along i.e.: when i run this script
+# i.e.: I decided for this user's machine, i'd rather fear constant small problems than infrequent larger ones
+
 echo "Checking for Homebrew and installing if we don't have it"
 if test ! $(which brew); then
   echo "Installing homebrew..."
@@ -10,12 +16,21 @@ echo "updating homebrew" && brew update
 
 echo "upgrading already-installed formula - hold on to your seats!" && brew upgrade
 
+# originally was see here "see https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/El_Capitan_and_Homebrew.md"
+# but that page has been pulled, and see https://github.com/Homebrew/homebrew/issues/45862
+# doesn't seem significant, but lets wait till the problem crops up again to investigate - what does the canned advice in the ruby script say?
+
+#echo "mmaking sure that those directories haven't lost write access YET again"
+#sudo chown $(whoami):admin /usr/local && sudo chown -R $(whoami):admin /usr/local
+
 echo "calling the doctor to fix issues" && brew doctor
 
 echo "Tapped taps:"
 taps=(
-	caskroom/cask
+		caskroom/cask
+		# caskroom/games - retro emulators - but not investigated yet
 )
+
 tap_list=$(brew tap)
 echo $tap_list && echo "let's tap any untapped taps..."
 for tap in "${taps[@]}"; do { [[ $tap_list != *"$tap"* ]] && brew tap "$tap"; } done
@@ -24,15 +39,15 @@ echo "running brew cleanup" && brew cleanup
 
 echo "Brewed binaries:"
 bins=(
-		 bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
-	   #boot2docker - docker-machine now likes to download this for you and put it /Users/twoode/.docker/machine/cache/boot2docker.iso 
-		 docker
-	   docker-compose
-		 docker-machine
-		 node
-		 tmux
-		 reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
-		 zsh
+		bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
+	 	#boot2docker - docker-machine now likes to download this for you and puts it /Users/twoode/.docker/machine/cache/boot2docker.iso 
+		docker
+	 	docker-compose
+		docker-machine
+		node
+		tmux
+		reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
+		zsh
 )
 
 brew_list=$(brew list)
@@ -41,7 +56,7 @@ for bin in "${bins[@]}"; do { [[ $brew_list != *"$bin"* ]] && brew install "$bin
 
 # as of Jan 2016 it seems that everyoneincluding homebrew is deprecating ~/Applications in favour of /Applications, but cask is not. So we do....
 # for instance see half way down here: https://github.com/caskroom/homebrew-cask/issues/2534
-# I hope this is in your bash.config
+# I hope this is also in your bash.config
 echo "let's remember casks go in /Applications" && export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # todo - that will overwrite any other options set elsewhere for cask....
 
@@ -53,41 +68,38 @@ cask_list=$(brew cask list)
 echo $cask_list
 
 echo "Installing any non-installed Cask Apps"
-
 apps=(
-	aerial # beautiful screensaver
-	alfred
-	balsamiq-mockups
-	blueharvest
-	caffeine
-	cord
-	dash
-	diffmerge
-	dropbox
-	firefox
-	freefilesync
-	google-chrome
-	google-drive
-	iterm2
-	java
-	jumpcut
-	moom
-	parallels-desktop
-	platypus
-	skype
-	slack
-	snapz-pro-x
-	sublime-text
-	virtualbox
-	virtualbox-extension-pack
+		aerial # beautiful screensaver
+		alfred
+		balsamiq-mockups
+		blueharvest
+		caffeine
+		cord
+		dash
+		diffmerge
+		dropbox
+		firefox
+		freefilesync
+		google-chrome
+		google-drive
+		iterm2
+		java
+		jumpcut
+		moom
+		parallels-desktop
+		platypus
+		#ranger # the file browser that opens code in vim - not invesstigated yet
+		skype
+		slack
+		snapz-pro-x
+		sublime-text
+		virtualbox
+		virtualbox-extension-pack
 )
 
 for app in "${apps[@]}"; do { [[ $cask_list != *"$app"* ]] && $install "$app"; } done
 
 echo "running cask cleanup" && brew cask cleanup
-
-# the file browser that opens code in vim
-# brew install ranger
 
 echo "I'm outta yer loop, cya"
  
