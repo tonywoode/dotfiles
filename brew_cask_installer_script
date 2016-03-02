@@ -44,6 +44,7 @@ bins=(
 		docker
 	 	docker-compose
 		docker-machine
+		groovy
 		#mysql - do i need this twice if i have mamp?
 		node
 		tmux
@@ -86,6 +87,7 @@ apps=(
 		google-drive
 		iterm2
 		java
+		jd-gui #inspect java class files
 		jumpcut
 		mamp
 		moom
