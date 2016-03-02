@@ -44,6 +44,7 @@ bins=(
 		docker
 	 	docker-compose
 		docker-machine
+		#mysql - do i need this twice if i have mamp?
 		node
 		tmux
 		reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
@@ -77,6 +78,7 @@ apps=(
 		cord
 		dash
 		diffmerge
+		disk-inventory-x
 		dropbox
 		firefox
 		freefilesync
@@ -85,6 +87,7 @@ apps=(
 		iterm2
 		java
 		jumpcut
+		mamp
 		moom
 		parallels-desktop
 		platypus
@@ -92,6 +95,7 @@ apps=(
 		skype
 		slack
 		snapz-pro-x
+		sourcetree
 		sublime-text
 		virtualbox
 		virtualbox-extension-pack
