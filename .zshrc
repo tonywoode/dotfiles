@@ -130,6 +130,8 @@ dots=$scripts/Dotfiles/dotfiles
 alias dots="cd $dots"
 repo=$code/Repo
 alias repo="cd $repo"
+smoke=$repo/Smoke/smoke_github
+alias smoke="cd $smoke"
 
 
 

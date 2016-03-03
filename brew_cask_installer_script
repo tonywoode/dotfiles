@@ -45,6 +45,7 @@ bins=(
 	 	docker-compose
 		docker-machine
 		groovy
+		httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
 		#mysql - do i need this twice if i have mamp?
 		node
 		tmux
