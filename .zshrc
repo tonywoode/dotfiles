@@ -120,3 +120,18 @@ if [[ $- == *i* ]] && command -v tmux>/dev/null && [[ ! $TERM =~ screen ]] ; the
 ##	[ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I") $PWD   #but the variable doesn't get set. Instead manually set your terminals preferences in UI to reuse previous dir
 fi
 export PATH="/usr/local/sbin:$PATH"
+
+# some shortcuts. I like to type cd sometimes.
+code=~/CODE
+alias code="cd $code"
+scripts=$code/Scripts
+alias scripts="cd $scripts"
+dots=$scripts/Dotfiles/dotfiles
+alias dots="cd $dots"
+repo=$code/Repo
+alias repo="cd $repo"
+
+
+
+
+
