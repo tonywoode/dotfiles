@@ -94,7 +94,8 @@ apps=(
 		moom
 		parallels-desktop
 		platypus
-		#ranger # the file browser that opens code in vim - not invesstigated yet
+		regexhibit # regex tester using perl
+		reggy # osx regex tester built in objective c
 		skype
 		slack
 		snapz-pro-x
