@@ -27,3 +27,5 @@ export PATH="/usr/local/sbin:$PATH"
 # we want homebrew cask to install things to /Applications like everything else does now, not ~/Applications
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
+#smoke docker specific vars
+. ~/.smoke-mirrors/.profile
