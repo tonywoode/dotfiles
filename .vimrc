@@ -46,7 +46,18 @@ filetype plugin indent on    " required
 syntax enable
 set background=dark
 colorscheme solarized
+
 set number
+" see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste
+" The first line sets a mapping so that pressing F2 in normal mode will invert
+" the 'paste' option, and will then show the value of that option. The second
+" line allows you to press F2 when in insert mode, to toggle 'paste' on and
+" off. The third line enables displaying whether 'paste' is turned on in
+" insert mode. 
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
+
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
