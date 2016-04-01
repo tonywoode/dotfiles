@@ -9,8 +9,10 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-
+" plugins
 Plugin 'rizzatti/dash.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'Valloric/YouCompleteMe'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -42,10 +44,20 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-
 syntax enable
 set background=dark
 colorscheme solarized
+
+
+" syntastic options
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 set number
 " see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste

@@ -41,12 +41,15 @@ echo "Brewed binaries:"
 bins=(
 		bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
 	 	#boot2docker - docker-machine now likes to download this for you and puts it /Users/twoode/.docker/machine/cache/boot2docker.iso 
+		cmake #installed to setup YouCompleteMe vim plugin
 		groovy
 		httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
 		#mysql - do i need this twice if i have mamp?
+		macvim
 		node
 		tmux
 		reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
+		vim
 		zsh
 )
 
@@ -99,6 +102,7 @@ apps=(
 		snapz-pro-x
 		sourcetree
 		sublime-text
+		tiddlywiki
 		virtualbox
 		virtualbox-extension-pack
 )

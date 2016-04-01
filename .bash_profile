@@ -18,8 +18,8 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 #	[[ ! $TERM =~ screen ]] && [ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I") $PWD && exec tmux   
 #fi
 
-# alias to nw
-alias nw=/Users/twoode/Code/myNodeWebkitApps/nw/node-webkit.app/Contents/MacOS/node-webkit
+# alisas to vim
+alias vim=/usr/local/Cellar/vim/7.4.1655/bin/vim
 
 # include sbin in path
 export PATH="/usr/local/sbin:$PATH"
