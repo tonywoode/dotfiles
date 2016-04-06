@@ -13,7 +13,8 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
-
+Plugin 'elzr/vim-json'
+Plugin 'bling/vim-airline'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -58,6 +59,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+" end of syntastic options
 
 set number
 " see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste
@@ -69,7 +71,7 @@ set number
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
-
+set backspace=2
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
