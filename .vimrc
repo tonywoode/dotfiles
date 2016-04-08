@@ -71,7 +71,13 @@ set number
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
-set backspace=2
+
+set backspace=2 "to stop terminal vim + plugins disabling backspace. See http://vim.wikia.com/wiki/Backspace_and_delete_problems
+" to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font
+if has('gui_running')
+	set guifont=Menlo\ Regular:h15
+endif
+
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
