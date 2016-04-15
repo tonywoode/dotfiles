@@ -3,7 +3,7 @@
 	name = tony woode
 [core]
 	excludesfile = /Users/twoode/.gitignore_global
-	editor = /usr/bin/vim
+	editor = /usr/local/bin/vim
 	autocrlf = input
 	filemode = false
 [difftool "sourcetree"]
