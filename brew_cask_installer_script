@@ -37,6 +37,12 @@ for tap in "${taps[@]}"; do { [[ $tap_list != *"$tap"* ]] && brew tap "$tap"; } 
 
 echo "running brew cleanup" && brew cleanup
 
+echo "before we brew bins, we may need some pins, to stop things being updated"
+pins=(
+		node
+)
+for pin in "${pins[@]}"; do { echo "don't update $pin" && brew pin "$pin"; } done
+
 echo "Brewed binaries:"
 bins=(
 		bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion

@@ -103,7 +103,6 @@ unalias run-help
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 
-
 # we want homebrew cask to install things to /Applications like everything else does now, not ~/Applications
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
@@ -132,3 +131,5 @@ alias repo="cd $repo"
 smoke=$repo/Smoke/smoke_github
 alias smoke="cd $smoke"
 
+#smoke docker specific vars
+. ~/.smoke-mirrors/.profile
