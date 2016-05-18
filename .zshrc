@@ -130,6 +130,8 @@ repo=$code/Repo
 alias repo="cd $repo"
 smoke=$repo/Smoke/smoke_github
 alias smoke="cd $smoke"
+desktop=~/Desktop
+alias desktop="cd $desktop"
 
 #smoke docker specific vars
 . ~/.smoke-mirrors/.profile
