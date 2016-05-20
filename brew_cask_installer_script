@@ -14,6 +14,13 @@ fi
 
 echo "updating homebrew" && brew update
 
+echo "before we update any packages, we may need some pins, to stop things being updated"
+pins=(
+		node
+)
+for pin in "${pins[@]}"; do { echo "don't update $pin" && brew pin "$pin"; } done
+
+
 echo "upgrading already-installed formula - hold on to your seats!" && brew upgrade
 
 # originally was see here "see https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/El_Capitan_and_Homebrew.md"
@@ -36,12 +43,6 @@ echo $tap_list && echo "let's tap any untapped taps..."
 for tap in "${taps[@]}"; do { [[ $tap_list != *"$tap"* ]] && brew tap "$tap"; } done
 
 echo "running brew cleanup" && brew cleanup
-
-echo "before we brew bins, we may need some pins, to stop things being updated"
-pins=(
-		node
-)
-for pin in "${pins[@]}"; do { echo "don't update $pin" && brew pin "$pin"; } done
 
 echo "Brewed binaries:"
 bins=(
