@@ -55,6 +55,7 @@ bins=(
 		#mysql - do i need this twice if i have mamp?
 		macvim
 		node
+		postgresql
 		tmux
 		reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
 		vim
@@ -102,6 +103,7 @@ apps=(
 		mamp
 		moom
 		parallels-desktop
+		pgadmin3
 		platypus
 		regexhibit # regex tester using perl
 		reggy # osx regex tester built in objective c
