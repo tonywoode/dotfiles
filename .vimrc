@@ -31,23 +31,23 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'rizzatti/dash.vim' "enables :Dash lookups
 Plugin 'bling/vim-airline'
 
-" language tools
-" Plugin 'scrooloose/syntastic'
+"LANGUAGE TOOLS
+Plugin 'scrooloose/syntastic'
 Plugin 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanuages(pangloss/vim-javascript, [vim-jsx] for js
-
-" js specific -  see https://davidosomething.com/blog/vim-for-javascript/
-Plugin 'ternjs/tern_for_vim', { 'do': 'npm install' } 
+Plugin 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. View the manual with :help surround
 Plugin 'Valloric/YouCompleteMe' "{ 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --tern-completer' }
 
-"Plugin 'elzr/vim-json' "You're advised to look at its options
-"Plugin 'othree/yajs.vim', { 'for': 'javascript' } "a fork of jelera/vim-javascript-syntax, neither have custom indent settings, updated very often. The {} makes sure the syntax plugin is loaded in a Vim autocommand based on filetype detection (as opposed to relying on Vim's runtimepath based sourcing mechanism. This way the main Vim syntax plugin will have already run, and the plugin's syntax will override it.
-"Plugin 'bigfish/vim-js-context-coloring' "syntax highlighting: picks out function scopes. Requires in-depth parsing of your code: may not color your code when incomplete (i.e., syntax not yet valid). can be used in combination with any of the above, and you can toggle it on and off, but it may not deal with es6 or jsdoc
-"Plugin 'mxw/vim-jsx' "for React's (optional) JSX syntax, syntax highlighting for those inline XML-nodes: requires a JavaScript syntax plugin (mentions pangloss but supports any)
-"Plugin 'heavenshell/vim-jsdoc' "inserts JSDoc comments for you if cursor is on a function definition. It'll check for the function name, arguments, and add the doc-block comment
-"Plugin 'othree/javascript-libraries-syntax.vim' "highlighting of functions+keywords for various libs such as jQuery, lodash, React, Handlebars, Chai, etc. see README at homepage
-"Plugin '995eaton/vim-better-javascript-completion' "somewhat up-to-date JavaScript (HTML5 methods e.g. localStorage and canvas methods). creates new omni-completion function: js#CompleteJS and replaces your current JS omnifunc with it, so you have to use a completion plugin or write some VimL, to use it in conjunction with another omnifunc like TernJS
-"Plugin 'othree/jspc.vim' "JavaScript Parameter Complete detects when you're inside a function argument and provides autocomplete suggestions (TernJS only adds existing symbols) So if you're writing an event listener, it'll suggest click and mouseover. You can see all the suggestions it provides in its GitHub source. On load, the jspc.vim plugin automatically detects whatever omnifunc you already have set as your default. It wraps it with the parameter completion, and falls back to your default if you are not in a parameter completion. Because of this you should specify jspc#omni instead of whatever your default completion is (typically javascriptcomplete#CompleteJS)
-"Plugin 'moll/vim-node' "adds keybindings like for jumping to files in your CommonJS require statements
+"JS SPECIFIC -  see https://davidosomething.com/blog/vim-for-javascript/
+Plugin 'ternjs/tern_for_vim', { 'do': 'npm install' } 
+Plugin 'elzr/vim-json' "You're advised to look at its options
+Plugin 'othree/yajs.vim', { 'for': 'javascript' } "a fork of jelera/vim-javascript-syntax, neither have custom indent settings, updated very often. The {} makes sure the syntax plugin is loaded in a Vim autocommand based on filetype detection (as opposed to relying on Vim's runtimepath based sourcing mechanism. Then the main Vim syntax plugin will have already run, and this syntax will override it.
+Plugin 'bigfish/vim-js-context-coloring' "syntax highlighting: picks out function scopes. Requires in-depth parsing of your code: may not color your code when incomplete (i.e., syntax not yet valid). can be used in combination with any of the above, and you can toggle it on and off, but it may not deal with es6 or jsdoc
+Plugin 'mxw/vim-jsx' "for React's (optional) JSX syntax, syntax highlighting for those inline XML-nodes: requires a JavaScript syntax plugin (mentions pangloss but supports any)
+Plugin 'heavenshell/vim-jsdoc' "inserts JSDoc comments for you if cursor is on a function definition. It'll check for the function name, arguments, and add the doc-block comment
+Plugin 'othree/javascript-libraries-syntax.vim' "highlighting of functions+keywords for various libs such as jQuery, lodash, React, Handlebars, Chai, etc. see README at homepage
+Plugin '1995eaton/vim-better-javascript-completion' "somewhat up-to-date JavaScript (HTML5 methods e.g. localStorage and canvas methods). creates new omni-completion function: js#CompleteJS and replaces your current JS omnifunc with it, so you have to use a completion plugin or write some VimL, to use it in conjunction with another omnifunc like TernJS
+Plugin 'othree/jspc.vim' "JavaScript Parameter Complete detects when you're inside a function argument and provides autocomplete suggestions (TernJS only adds existing symbols) So if you're writing an event listener, it'll suggest click and mouseover. You can see all the suggestions it provides in its GitHub source. On load, the jspc.vim plugin automatically detects whatever omnifunc you already have set as your default. It wraps it with the parameter completion, and falls back to your default if you are not in a parameter completion. Because of this you should specify jspc#omni instead of whatever your default completion is (typically javascriptcomplete#CompleteJS)
+Plugin 'moll/vim-node' "adds keybindings like for jumping to files in your CommonJS require statements
 
 
 " All of your Plugins must be added before the following line
@@ -69,10 +69,9 @@ colorscheme solarized
 "js omnifunc
 "set omnifunc=syntaxcomplete#Complete
 "filetype plugin on 
-"ominifunc=jspc#omni "see above othree/jspc.vim, its a decorator for javascriptcomplete
-"set omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType javascript setlocal omnifunc=tern#Complete
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS "standard
+"autocmd FileType javascript setlocal omnifunc=tern#Complete "tern seems to override any other omnifunc anyway, so no point explicitly setting this
+"autocmd FileType javascript setlocal omnifunc=jspc#omni "see above othree/jspc.vim, its a decorator for javascriptcomplete
 
 " Tern options - see http://usevim.com/2013/05/24/tern/
 let g:tern_map_keys=1 "for Keys see .vim/bundle/tern_for_vim/doc/tern.txt
@@ -83,7 +82,7 @@ let g:tern_show_signature_in_pum = '1' "1=display function signatures in the com
 
 " pangloss/vim-javascript options - see https://github.com/pangloss/vim-javascript
 let g:javascript_enable_domhtmlcss = 1 "Enables HTML/CSS syntax highlighting in your JavaScript file.
-set foldmethod=syntax "Enables code folding based on our syntax file - dramatic effect on performance and global vim option. we do not set it ourselves
+"set foldmethod=syntax "Enables code folding based on our syntax file - dramatic effect on performance and global vim option. we do not set it ourselves
 
 " syntastic options
 set statusline+=%#warningmsg#
@@ -100,7 +99,6 @@ nnoremap <F2> :set invpaste paste?<CR>
 "First line sets a mapping so that pressing F2 in normal mode will invert.The 'paste' option, and will then show the value of that option.
 set pastetoggle=<F2> "allows you to press F2 when in insert mode, to toggle 'paste' on and off. 
 set showmode "enables displaying whether 'paste' is turned on in " insert mode. 
-
 
 
 set backspace=2 "to stop terminal vim + plugins disabling backspace. See http://vim.wikia.com/wiki/Backspace_and_delete_problems
