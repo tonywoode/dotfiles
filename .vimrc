@@ -1,6 +1,19 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+"tabs
+set backspace=2 "to stop terminal vim + plugins disabling backspace. See http://vim.wikia.com/wiki/Backspace_and_delete_problems
+set number
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set hidden
+
+"colour settings
+syntax enable
+set background=dark
+colorscheme solarized
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -26,10 +39,11 @@ Plugin 'gmarik/Vundle.vim'
 "Plugin 'user/L9', {'name': 'newL9'}
 
 
-
 " plugins
 Plugin 'rizzatti/dash.vim' "enables :Dash lookups
 Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+"Plugin 'altercation/vim-colors-solarized' "not doing it for me!
 
 "LANGUAGE TOOLS
 Plugin 'scrooloose/syntastic'
@@ -62,9 +76,6 @@ filetype plugin indent on    " required - To ignore plugin indent changes, inste
 " see :h vundle for more details or wiki for FAQ
 " END OF VUNDLE
 
-syntax enable
-set background=dark
-colorscheme solarized
 
 "js omnifunc setting - I actually can't see a point in setting :set omnifunc shows that either ycm or tern seem to take it over, and even when they dont (jspc is a decorator), they are still controlling
 "set omnifunc=syntaxcomplete#Complete "this was the default
@@ -72,6 +83,11 @@ colorscheme solarized
 "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS "standard
 autocmd FileType javascript setlocal omnifunc=jspc#omni "see above othree/jspc.vim, its a decorator for javascriptcomplete
 
+" ctrl-p settings
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'a'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " Tern options - see http://usevim.com/2013/05/24/tern/
 let g:tern_map_keys=1 "for Keys see .vim/bundle/tern_for_vim/doc/tern.txt
@@ -103,15 +119,6 @@ nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2> "allows you to press F2 when in insert mode, to toggle 'paste' on and off. 
 set showmode "enables displaying whether 'paste' is turned on in " insert mode. 
 
-
-set backspace=2 "to stop terminal vim + plugins disabling backspace. See http://vim.wikia.com/wiki/Backspace_and_delete_problems
-set number
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set hidden
-"remove underline from links in html pages
-" hi link htmlLink NONE 
 
 " to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font
 if has('gui_running')
