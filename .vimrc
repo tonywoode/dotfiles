@@ -66,23 +66,24 @@ syntax enable
 set background=dark
 colorscheme solarized
 
-"js omnifunc
-"set omnifunc=syntaxcomplete#Complete
-"filetype plugin on 
+"js omnifunc setting - I actually can't see a point in setting :set omnifunc shows that either ycm or tern seem to take it over, and even when they dont (jspc is a decorator), they are still controlling
+"set omnifunc=syntaxcomplete#Complete "this was the default
+"filetype plugin on "don't think necessary if youve already said filetype plugin indent * 
 "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS "standard
-"autocmd FileType javascript setlocal omnifunc=tern#Complete "tern seems to override any other omnifunc anyway, so no point explicitly setting this
-"autocmd FileType javascript setlocal omnifunc=jspc#omni "see above othree/jspc.vim, its a decorator for javascriptcomplete
+autocmd FileType javascript setlocal omnifunc=jspc#omni "see above othree/jspc.vim, its a decorator for javascriptcomplete
+
 
 " Tern options - see http://usevim.com/2013/05/24/tern/
 let g:tern_map_keys=1 "for Keys see .vim/bundle/tern_for_vim/doc/tern.txt
 let g:tern_map_prefix = '<leader>' "make sure leader is not localleader
 let g:tern_show_argument_hints = 'on_move'  "on_move=update the argument hints at status line on functions whenever the cursor moves, on_hold=whenever the cursor is held still for 'updatetime' setting. on_move can reduce responsiveness, on_hold probably requires you to set 'updatetime' to something smaller than default 4 secs.  If you don't see hints while in insert mode you might have to set noshowmode (but see below its set for something else)
-
 let g:tern_show_signature_in_pum = '1' "1=display function signatures in the completion menu. Function signatures include parameter names, their type, and whether the parameter is optional.
+
 
 " pangloss/vim-javascript options - see https://github.com/pangloss/vim-javascript
 let g:javascript_enable_domhtmlcss = 1 "Enables HTML/CSS syntax highlighting in your JavaScript file.
 "set foldmethod=syntax "Enables code folding based on our syntax file - dramatic effect on performance and global vim option. we do not set it ourselves
+
 
 " syntastic options
 set statusline+=%#warningmsg#
@@ -92,9 +93,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_eslint_exec = "/usr/local/bin/eslint"
-let g:syntastic_javascript_checkers = [ 'eslint', 'jslint', 'jshint' ] "not sure if eslint is activiating correctly even after this, just remove the line if not...
+let g:syntastic_javascript_checkers = [ 'eslint' ] ", 'jslint', 'jshint' ] 
 " end of syntastic options
+
 
 " fix paste indenting - see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste  . 
 nnoremap <F2> :set invpaste paste?<CR>  
