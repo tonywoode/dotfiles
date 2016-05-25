@@ -92,6 +92,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_eslint_exec = "/usr/local/bin/eslint"
+let g:syntastic_javascript_checkers = [ 'eslint', 'jslint', 'jshint' ] "not sure if eslint is activiating correctly even after this, just remove the line if not...
 " end of syntastic options
 
 " fix paste indenting - see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste  . 
