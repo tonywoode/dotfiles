@@ -84,10 +84,10 @@ filetype plugin indent on    " required - To ignore plugin indent changes, inste
 autocmd FileType javascript setlocal omnifunc=jspc#omni "see above othree/jspc.vim, its a decorator for javascriptcomplete
 
 " ctrl-p settings
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'a'
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+"let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_cmd = 'CtrlP'
+"let g:ctrlp_working_path_mode = 'a'
+"let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " Tern options - see http://usevim.com/2013/05/24/tern/
 let g:tern_map_keys=1 "for Keys see .vim/bundle/tern_for_vim/doc/tern.txt

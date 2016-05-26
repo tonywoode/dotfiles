@@ -1,61 +1,89 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true,
-        "node": true,
-        "shared-node-browser": true,
-        "mocha": true,
-        "jquery": true
+  "env": {
+    "browser": true,
+    "node": true,
+    "commonjs": true,
+    "shared-node-browser": true,
+    "es6": true,
+    "worker": true,
+    "amd": true,
+    "mocha": true,
+    "jasmine": true,
+    "jest": true,
+    "phantomjs": true,
+    "protractor": true,
+    "qunit": true,
+    "jquery": true,
+    "prototypejs": true,
+    "shelljs": true,
+    "meteor": true,
+    "mongo": true,
+    "applescript": true,
+    "nashorn": true,
+    "serviceworker": true,
+    "atomtest": true,
+    "embertest": true,
+    "webextensions": true,
+    "greasemonkey": true
+  },
+  "extends": [ 
+    "eslint:recommended", 
+    "plugin:react/recommended",
+    //"plugin:html/recommended",
+    //"plugin:filenames/recommended",
+    //"plugin:mocha/recommended",
+    "plugin:jsx-a11y/recommended",
+    //"plugin:babel/recommended",
+    //"plugin:promise/recommended",
+    //"plugin:smells/recommended",
+    //"plugin:require-path-exists/recommended",
+    //"plugin:node/recommended",
+    "plugin:lodash/recommended",
+    //"plugin:react-native/recommended",
+    //"plugin:jsdoc/recommended",
+    //"plugin:json/recommended",
+    "plugin:lodash-fp/recommended",
+    //"plugin:requirejs/recommended",
+    "plugin:jsx-control-statements/recommended"
+    //"plugin:should-promised/recommended",
+    //"plugin:jquery/recommended",
+    //"plugin:dependencies/recommended"	
+  ],
+  "installedESLint": true,
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
     },
-    "extends": "eslint:recommended",
-    "installedESLint": true,
-    "parserOptions": {
-			  "ecmaVersion": 6,
-        "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
-            "jsx": true
-        },
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-				"html",
-				"filenames",
-				"mocha",
-				"jsx-a11y",
-				"babel",
-				"promise",
-				"smells",
-				"require-path-exists",
-				"node",
-				"lodash",
-				"react-native",
-				"jsdoc",
-				"json",
-				"lodash-fp",
-				"requirejs",
-				"jsx-control-statements",
-			  "should-promised",
-			  "jquery",
-			  "dependencies"	
-    ],
-    "rules": {
-        "indent": [
-            "error",
-            4
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
-    }
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "html",
+    "filenames",
+    "mocha",
+    "jsx-a11y",
+    "babel",
+    "promise",
+    "smells",
+    "require-path-exists",
+    "node",
+    "lodash",
+    "react-native",
+    "jsdoc",
+    "json",
+    "lodash-fp",
+    "requirejs",
+    "jsx-control-statements",
+    "should-promised",
+    "jquery",
+    "dependencies"	
+  ],
+  "rules": {
+    "indent": [ "error", 2 ],
+    "linebreak-style": [ "error", "unix" ],
+    "quotes": [ "error", "double" ],
+    "semi": [ "error", "always" ]
+  }
 };
