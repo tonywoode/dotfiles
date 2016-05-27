@@ -4,9 +4,11 @@ filetype off                  " required
 "tabs
 set backspace=2 "to stop terminal vim + plugins disabling backspace. See http://vim.wikia.com/wiki/Backspace_and_delete_problems
 set number
-set tabstop=2
+
+set tabstop=4
 set shiftwidth=2
 set softtabstop=2
+set expandtab
 set hidden
 
 "colour settings
