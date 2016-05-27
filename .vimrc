@@ -1,15 +1,16 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set mouse=a
-"tabs
-set backspace=2 "to stop terminal vim + plugins disabling backspace. See http://vim.wikia.com/wiki/Backspace_and_delete_problems
 set number
 
+"tabs
+set backspace=2 "to stop terminal vim + plugins disabling backspace. See http://vim.wikia.com/wiki/Backspace_and_delete_problems
 set tabstop=4
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-set hidden
+
+set hidden "don't unload buffers that just aren't visible atm
 
 "colour settings
 syntax enable

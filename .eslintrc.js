@@ -26,8 +26,8 @@ module.exports = {
     "webextensions": true,
     "greasemonkey": true
   },
-  "extends": [ 
-    "eslint:recommended", 
+  "extends": [
+    "eslint:recommended",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:lodash-fp/recommended",
@@ -61,10 +61,10 @@ module.exports = {
     "jsx-control-statements",
     "should-promised",
     "jquery",
-    "dependencies"	
+    "dependencies"
   ],
   "rules": {
-    "strict": 0, //babel-eslint says to do this
+    "strict": 0, // babel-eslint says to do this
     "accessor-pairs": "error",
     "array-callback-return": "error",
     "block-scoped-var": "error",
@@ -95,7 +95,7 @@ module.exports = {
     "no-labels": "error",
     "no-lone-blocks": "error",
     "no-loop-func": "error",
-    "no-magic-numbers": "error",
+    "no-magic-numbers": "warn",
     "no-multi-spaces": "error",
     "no-multi-str": "error",
     "no-native-reassign": "error",
@@ -153,13 +153,13 @@ module.exports = {
     "func-names": "error",
     "func-style": "error",
     "id-blacklist": "error",
-    "id-length": "error",
+    "id-length": "warn",
     "id-match": "error",
-    "indent": [ "error", 2 ],
+    "indent": ["error", 2],
     "jsx-quotes": "error",
     "key-spacing": "error",
     "keyword-spacing": "error",
-    "linebreak-style": [ "error", "unix" ],
+    "linebreak-style": ["error", "unix"],
     "lines-around-comment": "error",
     "new-cap": "error",
     "new-parens": "error",
@@ -169,7 +169,7 @@ module.exports = {
     "no-array-constructor": "error",
     "no-bitwise": "error",
     "no-continue": "error",
-    "no-inline-comments": "error",
+    "no-inline-comments": "warn",
     "no-lonely-if": "error",
     "no-multiple-empty-lines": "error",
     "no-negated-condition": "error",
@@ -191,9 +191,9 @@ module.exports = {
     "operator-linebreak": "error",
     "padded-blocks": "error",
     "quote-props": "error",
-    "quotes": [ "error", "double" ],
+    "quotes": ["error", "double"],
     "require-jsdoc": "error",
-    "semi": [ "error", "always" ],
+    "semi": ["error", "always"],
     "semi-spacing": "error",
     "sort-vars": "error",
     "space-before-blocks": "error",
@@ -318,6 +318,6 @@ module.exports = {
     "dependencies/case-sensitive": "error",
     "dependencies/no-cycles": "error",
     "dependencies/no-unresolved": "error",
-    "dependencies/require-json-ext":"error"
+    "dependencies/require-json-ext": "error"
   }
 };
