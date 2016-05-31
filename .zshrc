@@ -49,10 +49,9 @@ ZSH_THEME="bullet-train"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew brew-cask docker-compose docker git npm nvm vi-mode)
+plugins=(brew brew-cask colored-man-pages common-aliases dircycle dirhistory docker docker-compose git httpie history history-substring-search npm nvm vi-mode )
 
 # User configuration
-
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/MAMP/Library/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
