@@ -1,24 +1,24 @@
 {
-	"libs": [
-		"browser",
-		"chai",
-		"ecma5",
-		"jquery",
-		"underscore"
-	],
+  "libs": [
+	"browser",
+	"chai",
+	"ecma5",
+	"jquery",
+	"underscore"
+  ],
   "plugins": {
     "node": {},
-		"angular": {},
-		"connonjs": {},
-		"complete_strings": {},
-		"doc_comment": {},
-		"es_modules": {},
-		"modules": {},
-		"node_resolve": {},
-		"webpack": {},
-	  "requirejs": {
+	"angular": {},
+	"commonjs": {},
+	"complete_strings": {},
+	"doc_comment": {},
+	"es_modules": {},
+	"modules": {},
+	"node_resolve": {},
+	"webpack": {},
+    "requirejs": {
       "baseURL": "./",
       "paths": {}
-		}
+	}
   }
 }
