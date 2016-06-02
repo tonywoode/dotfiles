@@ -81,7 +81,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -131,6 +130,8 @@ smoke=$repo/Smoke/smoke_github
 alias smoke="cd $smoke"
 desktop=~/Desktop
 alias desktop="cd $desktop"
+alias bim="python $dots/omnivim/tmux-omnivim/omnivim.py"
+#OMNIVIM_EDITOR=gvim
 
 #smoke docker specific vars
 . ~/.smoke-mirrors/.profile
