@@ -55,8 +55,10 @@ bins=(
 		#mysql - do i need this twice if i have mamp?
 		macvim
 		node
+        p7zip
 		postgresql
-		tmux
+		tmate
+        tmux
 		reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
 		vim
 		zsh
@@ -66,11 +68,8 @@ brew_list=$(brew list)
 echo $brew_list && echo "let's brew any unbrewed bins..." 
 for bin in "${bins[@]}"; do { [[ $brew_list != *"$bin"* ]] && brew install "$bin"; } done
 
-# as of Jan 2016 it seems that everyoneincluding homebrew is deprecating ~/Applications in favour of /Applications, but cask is not. So we do....
-# for instance see half way down here: https://github.com/caskroom/homebrew-cask/issues/2534
-# I hope this is also in your bash.config
-echo "let's remember casks go in /Applications" && export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-# todo - that will overwrite any other options set elsewhere for cask....
+# Applications is now cask's default folder to move apps to, no longer ~/Applications
+# echo "let's remember casks go in /Applications" && export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 cask="brew cask"
 install="$cask install"
@@ -113,6 +112,7 @@ apps=(
 		sourcetree
 		sublime-text
 		teamviewer
+        the-unarchiver
 		tiddlywiki
 		virtualbox
 		virtualbox-extension-pack

@@ -128,10 +128,15 @@ repo=$code/Repo
 alias repo="cd $repo"
 smoke=$repo/Smoke/smoke_github
 alias smoke="cd $smoke"
+atlas=$smoke/atlas
+alias atlas="cd $atlas"
 desktop=~/Desktop
 alias desktop="cd $desktop"
+
+# can't alias to 'vim', recrusive loop!
 alias bim="python $dots/omnivim/tmux-omnivim/omnivim.py"
 #OMNIVIM_EDITOR=gvim
 
-#smoke docker specific vars
+# smoke docker specific vars
 . ~/.smoke-mirrors/.profile
+eval $(docker-machine env)
