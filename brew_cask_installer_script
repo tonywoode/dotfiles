@@ -50,9 +50,10 @@ bins=(
 	 	#boot2docker - docker-machine now likes to download this for you and puts it /Users/twoode/.docker/machine/cache/boot2docker.iso 
 		cmake #installed to setup YouCompleteMe vim plugin
 		ctags-exuberant
+        fswatch #for smoke's nodemon problem
 		groovy
 		httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
-		#mysql - do i need this twice if i have mamp?
+		#mysql - using mamp's copy as my primary fot the meanwhile
 		macvim
 		node
         p7zip
