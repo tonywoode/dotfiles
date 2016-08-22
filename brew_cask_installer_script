@@ -91,7 +91,7 @@ apps=(
 		dash
 		diffmerge
 		disk-inventory-x
-		dockertoolbox
+		docker-toolbox
 		dropbox
 		firefox
 		freefilesync
@@ -121,6 +121,9 @@ apps=(
 )
 
 for app in "${apps[@]}"; do { [[ $cask_list != *"$app"* ]] && $install "$app"; } done
+
+echo "running the cask upgrade script (cask cannot upgrade progs automatically"
+./cask_upgrade_script
 
 echo "running cask cleanup" && brew cask cleanup
 
