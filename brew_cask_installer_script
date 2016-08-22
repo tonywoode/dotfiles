@@ -46,6 +46,7 @@ echo "running brew cleanup" && brew cleanup
 
 echo "Brewed binaries:"
 bins=(
+        ack
 		bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
 	 	#boot2docker - docker-machine now likes to download this for you and puts it /Users/twoode/.docker/machine/cache/boot2docker.iso 
 		cmake #installed to setup YouCompleteMe vim plugin

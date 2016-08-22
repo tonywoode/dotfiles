@@ -70,7 +70,7 @@ Plugin 'othree/javascript-libraries-syntax.vim' "highlighting of functions+keywo
 Plugin '1995eaton/vim-better-javascript-completion' "somewhat up-to-date JavaScript (HTML5 methods e.g. localStorage and canvas methods). creates new omni-completion function: js#CompleteJS and replaces your current JS omnifunc with it, so you have to use a completion plugin or write some VimL, to use it in conjunction with another omnifunc like TernJS
 Plugin 'othree/jspc.vim' "JavaScript Parameter Complete detects when you're inside a function argument and provides autocomplete suggestions (TernJS only adds existing symbols) So if you're writing an event listener, it'll suggest click and mouseover. You can see all the suggestions it provides in its GitHub source. On load, the jspc.vim plugin automatically detects whatever omnifunc you already have set as your default. It wraps it with the parameter completion, and falls back to your default if you are not in a parameter completion. Because of this you should specify jspc#omni instead of whatever your default completion is (typically javascriptcomplete#CompleteJS)
 Plugin 'moll/vim-node' "adds keybindings like for jumping to files in your CommonJS require statements
-
+Plugin 'tpope/vim-obsession' "make Session.vim files, tmux resurrect can try and restore them
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -84,6 +84,11 @@ filetype plugin indent on    " required - To ignore plugin indent changes, inste
 " see :h vundle for more details or wiki for FAQ
 " END OF VUNDLE
 
+" Vim's own plugins see: help plugin-install
+
+" matchit allows % to jumpt to matching xml tags etc, not backwards
+" compaatible so not enabled by default see: help %
+packadd! matchit
 
 "js omnifunc setting - I actually can't see a point in setting :set omnifunc shows that either ycm or tern seem to take it over, and even when they dont (jspc is a decorator), they are still controlling
 "set omnifunc=syntaxcomplete#Complete "this was the default
