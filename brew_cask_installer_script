@@ -14,6 +14,7 @@ fi
 
 echo "updating homebrew" && brew update
 
+# node was version 5.10.1
 echo "before we update any packages, we may need some pins, to stop things being updated"
 pins=(
 		node
@@ -104,7 +105,7 @@ apps=(
 		mamp
 		moom
 		parallels-desktop
-		pgadmin3
+		pgadmin4
 		platypus
 		regexhibit # regex tester using perl
 		reggy # osx regex tester built in objective c

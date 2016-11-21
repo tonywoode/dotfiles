@@ -104,7 +104,6 @@ HELPDIR=/usr/local/share/zsh/help
 # we want homebrew cask to install things to /Applications like everything else does now, not ~/Applications
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-
 # tmux starts by default
 # the $- == *i* says 'if current shell isn't interactive
 # the last command (starting -n is the actor that sets the current dir to prev dir in 
@@ -112,9 +111,10 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 #inspiration from http://tmux.svn.sourceforge.net/viewvc/tmux/trunk/FAQ 
 # which says "A workaround is to let tmux know about the current path through an environment variable.
 # Which sets TMUXPWD_i (where i is the number of the current window) to the path of the current directory.
+
 if [[ $- == *i* ]] && command -v tmux>/dev/null && [[ ! $TERM =~ screen ]] ; then
-	[ -z $TMUX ] && exec tmux
-##	[ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I") $PWD   #but the variable doesn't get set. Instead manually set your terminals preferences in UI to reuse previous dir
+	[ -z $TMUX ] && exec tmux 
+           ##	[ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I") $PWD   #but the variable doesn't get set. Instead manually set your terminals preferences in UI to reuse previous dir
 fi
 
 # some shortcuts. I like to type cd sometimes.
@@ -130,10 +130,16 @@ smoke=$repo/Smoke/smoke_github
 alias smoke="cd $smoke"
 atlas=$smoke/atlas
 alias atlas="cd $atlas"
+atlasui=$atlas/atlas-ui
+alias atlasui="cd $atlasui"
 desktop=~/Desktop
 alias desktop="cd $desktop"
+quickplay=~/CODE/REPO/Quickplay
+alias quickplay="cd $quickplay"
+messtool="$quickplay/QuickPlayFrontend/qp/tools/MESS\ Tool/"
+alias messtool="cd $messtool"
 
-# can't alias to 'vim', recrusive loop!
+# can't alias to 'vim', recursive loop!
 alias bim="python $dots/omnivim/tmux-omnivim/omnivim.py"
 #OMNIVIM_EDITOR=gvim
 
