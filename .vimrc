@@ -7,7 +7,7 @@ set shortmess+=l
 set ruler
 set showcmd
 set showmode
-
+set incsearch                 "highlight searchedfor/regexed text
 "tabs
 set backspace=2 "to stop terminal vim + plugins disabling backspace. See http://vim.wikia.com/wiki/Backspace_and_delete_problems
 set tabstop=4

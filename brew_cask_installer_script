@@ -14,10 +14,10 @@ fi
 
 echo "updating homebrew" && brew update
 
-# node was version 5.10.1
 echo "before we update any packages, we may need some pins, to stop things being updated"
+# YOU HAVE TO `brew unpin x` once you've pinned....
 pins=(
-		node
+#		node
 )
 for pin in "${pins[@]}"; do { echo "don't update $pin" && brew pin "$pin"; } done
 
@@ -53,6 +53,7 @@ bins=(
 		cmake #installed to setup YouCompleteMe vim plugin
 		ctags-exuberant
         fswatch #for smoke's nodemon problem
+        git
 		groovy
 		httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
 		#mysql - using mamp's copy as my primary fot the meanwhile
@@ -62,6 +63,7 @@ bins=(
 		postgresql
 		tmate
         tmux
+        tree
 		reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
 		vim
 		zsh
@@ -95,6 +97,7 @@ apps=(
 		docker-toolbox
 		dropbox
 		firefox
+        flux
 		freefilesync
 		google-chrome
 		google-drive
@@ -106,9 +109,11 @@ apps=(
 		moom
 		parallels-desktop
 		pgadmin4
+        paintbrush
 		platypus
 		regexhibit # regex tester using perl
 		reggy # osx regex tester built in objective c
+        spotify
 		skype
 		slack
 		snapz-pro-x

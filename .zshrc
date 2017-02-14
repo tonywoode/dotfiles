@@ -1,6 +1,11 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/twoode/.oh-my-zsh
 
+
+# I installed antigen when looking for a way to make the node version manager NVM work well
+# https://github.com/zsh-users/antigen
+source /usr/local/share/antigen/antigen.zsh
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -108,7 +113,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # the $- == *i* says 'if current shell isn't interactive
 # the last command (starting -n is the actor that sets the current dir to prev dir in 
 # most circumstances (eg: a start-iterm-at-this-folder script) 
-#inspiration from http://tmux.svn.sourceforge.net/viewvc/tmux/trunk/FAQ 
+# inspiration from http://tmux.svn.sourceforge.net/viewvc/tmux/trunk/FAQ 
 # which says "A workaround is to let tmux know about the current path through an environment variable.
 # Which sets TMUXPWD_i (where i is the number of the current window) to the path of the current directory.
 
@@ -146,3 +151,5 @@ alias bim="python $dots/omnivim/tmux-omnivim/omnivim.py"
 # smoke docker specific vars
 . ~/.smoke-mirrors/.profile
 eval $(docker-machine env)
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
