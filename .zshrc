@@ -4,6 +4,7 @@ export ZSH=/Users/twoode/.oh-my-zsh
 
 # I installed antigen when looking for a way to make the node version manager NVM work well
 # https://github.com/zsh-users/antigen
+# https://github.com/lukechilds/zsh-nvm
 source /usr/local/share/antigen/antigen.zsh
 
 # Set name of the theme to load.
