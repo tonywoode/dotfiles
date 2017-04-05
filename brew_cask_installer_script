@@ -58,6 +58,7 @@ bins=(
 		groovy
 		httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
 		#mysql - using mamp's copy as my primary fot the meanwhile
+        jq
 		macvim
 		node
         p7zip
@@ -112,6 +113,7 @@ apps=(
 		pgadmin4
         paintbrush
 		platypus
+        postal
 		regexhibit # regex tester using perl
 		reggy # osx regex tester built in objective c
         spotify
