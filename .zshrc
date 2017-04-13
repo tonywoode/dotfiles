@@ -1,11 +1,11 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/twoode/.oh-my-zsh
 
-
 # I installed antigen when looking for a way to make the node version manager NVM work well
 # https://github.com/zsh-users/antigen
 # https://github.com/lukechilds/zsh-nvm
 source /usr/local/share/antigen/antigen.zsh
+
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -118,10 +118,10 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # which says "A workaround is to let tmux know about the current path through an environment variable.
 # Which sets TMUXPWD_i (where i is the number of the current window) to the path of the current directory.
 
-if [[ $- == *i* ]] && command -v tmux>/dev/null && [[ ! $TERM =~ screen ]] ; then
-	[ -z $TMUX ] && exec tmux 
+#if [[ $- == *i* ]] && command -v tmux>/dev/null && [[ ! $TERM =~ screen ]] ; then
+#	[ -z $TMUX ] && exec tmux 
            ##	[ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I") $PWD   #but the variable doesn't get set. Instead manually set your terminals preferences in UI to reuse previous dir
-fi
+#fi
 
 # some shortcuts. I like to type cd sometimes.
 code=~/CODE
@@ -142,7 +142,7 @@ desktop=~/Desktop
 alias desktop="cd $desktop"
 quickplay=~/CODE/REPO/Quickplay
 alias quickplay="cd $quickplay"
-messtool="$quickplay/QuickPlayFrontend/qp/tools/MESS\ Tool/"
+messtool="$scripts/messTool"
 alias messtool="cd $messtool"
 
 # can't alias to 'vim', recursive loop!
@@ -154,3 +154,6 @@ alias bim="python $dots/omnivim/tmux-omnivim/omnivim.py"
 eval $(docker-machine env)
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export NVM_DIR="/Users/twoode/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
