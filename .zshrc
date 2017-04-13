@@ -144,6 +144,8 @@ quickplay=~/CODE/REPO/Quickplay
 alias quickplay="cd $quickplay"
 messtool="$scripts/messTool"
 alias messtool="cd $messtool"
+dbdump="$HOME/Google Drive/MySMStuff/WorkingFiles/Production Atlas databases"
+alias dbdump="cd \"$dbdump\""
 
 # can't alias to 'vim', recursive loop!
 alias bim="python $dots/omnivim/tmux-omnivim/omnivim.py"
