@@ -117,6 +117,7 @@ apps=(
         postman
 		regexhibit # regex tester using perl
 		reggy # osx regex tester built in objective c
+        rocket-chat #doesn't work needs to be updated from v1.3 to 2.7
         spotify
 		skype
 		slack
