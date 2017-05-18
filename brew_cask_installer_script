@@ -63,6 +63,7 @@ bins=(
 		node
         p7zip
 		postgresql
+        rmtrash
 		tmate
         tmux
         tree
