@@ -118,10 +118,10 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # which says "A workaround is to let tmux know about the current path through an environment variable.
 # Which sets TMUXPWD_i (where i is the number of the current window) to the path of the current directory.
 
-#if [[ $- == *i* ]] && command -v tmux>/dev/null && [[ ! $TERM =~ screen ]] ; then
-#	[ -z $TMUX ] && exec tmux 
+if [[ $- == *i* ]] && command -v tmux>/dev/null && [[ ! $TERM =~ screen ]] ; then
+	[ -z $TMUX ] && exec tmux 
            ##	[ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I") $PWD   #but the variable doesn't get set. Instead manually set your terminals preferences in UI to reuse previous dir
-#fi
+fi
 
 # some shortcuts. I like to type cd sometimes.
 code=~/CODE

@@ -113,6 +113,9 @@ let g:tern_show_signature_in_pum = '1' "1=display function signatures in the com
 let g:javascript_enable_domhtmlcss = 1 "Enables HTML/CSS syntax highlighting in your JavaScript file.
 "set foldmethod=syntax "Enables code folding based on our syntax file - dramatic effect on performance and global vim option. we do not set it ourselves
 
+"vim obesssion
+set statusline+=%{ObsessionStatus()}
+
 
 " syntastic options
 set statusline+=%#warningmsg#
@@ -124,7 +127,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = [ 'eslint' ] ", 'jslint', 'jshint' ] 
 " end of syntastic options
-
 
 " fix paste indenting - see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste  . 
 nnoremap <F2> :set invpaste paste?<CR>  
