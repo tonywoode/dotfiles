@@ -59,7 +59,7 @@ bins=(
 		httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
 		#mysql - using mamp's copy as my primary fot the meanwhile
         jq
-		macvim
+		macvim --with-override-system-vim #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion?
 		node
         p7zip
 		postgresql
@@ -68,7 +68,7 @@ bins=(
         tmux
         tree
 		reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
-		vim
+		#vim - see https://stackoverflow.com/a/25979565/3536094
 		zsh
 )
 
