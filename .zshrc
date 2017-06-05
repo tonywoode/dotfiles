@@ -148,8 +148,9 @@ dbdump="$HOME/Google Drive/MySMStuff/WorkingFiles/Production Atlas databases"
 alias dbdump="cd \"$dbdump\""
 
 # can't alias to 'vim', recursive loop!
-alias bim="python $dots/omnivim/tmux-omnivim/omnivim.py"
-#OMNIVIM_EDITOR=gvim
+#can't laucnh givm in terminal mode and expect it to work with omnivim, mvim doesn't do that
+#export OMNIVIM_EDITOR="/usr/local/bin/gvim -v"
+alias tim="python /Users/twoode/CODE/Scripts/Dotfiles/dotfiles/tmux-omnivim/omnivim.py"
 
 # smoke docker specific vars
 . ~/.smoke-mirrors/.profile
