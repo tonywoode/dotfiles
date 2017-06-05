@@ -25,29 +25,7 @@ colorscheme solarized
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
-
-
-" plugins
+Plugin 'gmarik/Vundle.vim' "required
 Plugin 'rizzatti/dash.vim' "enables :Dash lookups
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
@@ -72,22 +50,12 @@ Plugin 'othree/jspc.vim' "JavaScript Parameter Complete detects when you're insi
 Plugin 'moll/vim-node' "adds keybindings like for jumping to files in your CommonJS require statements
 Plugin 'tpope/vim-obsession' "make Session.vim files, tmux resurrect can try and restore them
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+call vundle#end() " All of your Plugins must be added before the following line
+
 filetype plugin indent on    " required - To ignore plugin indent changes, instead use: filetype plugin on
-
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-" see :h vundle for more details or wiki for FAQ
-" END OF VUNDLE
-
 " Vim's own plugins see: help plugin-install
 
-" matchit allows % to jumpt to matching xml tags etc, not backwards
-" compaatible so not enabled by default see: help %
+" matchit allows % to jump to matching xml tags etc, not backwards compatible so not enabled by default see: help %
 packadd! matchit
 
 "js omnifunc setting - I actually can't see a point in setting :set omnifunc shows that either ycm or tern seem to take it over, and even when they dont (jspc is a decorator), they are still controlling
@@ -108,14 +76,12 @@ let g:tern_map_prefix = '<leader>' "make sure leader is not localleader
 let g:tern_show_argument_hints = 'on_move'  "on_move=update the argument hints at status line on functions whenever the cursor moves, on_hold=whenever the cursor is held still for 'updatetime' setting. on_move can reduce responsiveness, on_hold probably requires you to set 'updatetime' to something smaller than default 4 secs.  If you don't see hints while in insert mode you might have to set noshowmode (but see below its set for something else)
 let g:tern_show_signature_in_pum = '1' "1=display function signatures in the completion menu. Function signatures include parameter names, their type, and whether the parameter is optional.
 
-
 " pangloss/vim-javascript options - see https://github.com/pangloss/vim-javascript
 let g:javascript_enable_domhtmlcss = 1 "Enables HTML/CSS syntax highlighting in your JavaScript file.
 "set foldmethod=syntax "Enables code folding based on our syntax file - dramatic effect on performance and global vim option. we do not set it ourselves
 
 "vim obesssion
 set statusline+=%{ObsessionStatus()}
-
 
 " syntastic options
 set statusline+=%#warningmsg#
@@ -133,7 +99,6 @@ nnoremap <F2> :set invpaste paste?<CR>
 "First line sets a mapping so that pressing F2 in normal mode will invert.The 'paste' option, and will then show the value of that option.
 set pastetoggle=<F2> "allows you to press F2 when in insert mode, to toggle 'paste' on and off. 
 set showmode "enables displaying whether 'paste' is turned on in " insert mode. 
-
 
 " to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font
 if has('gui_running')
