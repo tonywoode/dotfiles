@@ -70,10 +70,16 @@ autocmd FileType javascript setlocal omnifunc=jspc#omni "see above othree/jspc.v
 "let g:ctrlp_working_path_mode = 'a'
 "let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
+" YouCompleteMe options
+"let g:loaded_youcompleteme = 1 "this will diable ycm
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
 " Tern options - see http://usevim.com/2013/05/24/tern/
+autocmd CompleteDone * pclose "see https://github.com/ternjs/tern_for_vim/issues/21 - will close the preview window on edit (otherwise :pc does the job)
 let g:tern_map_keys=1 "for Keys see .vim/bundle/tern_for_vim/doc/tern.txt
 let g:tern_map_prefix = '<leader>' "make sure leader is not localleader
-let g:tern_show_argument_hints = 'on_move'  "on_move=update the argument hints at status line on functions whenever the cursor moves, on_hold=whenever the cursor is held still for 'updatetime' setting. on_move can reduce responsiveness, on_hold probably requires you to set 'updatetime' to something smaller than default 4 secs.  If you don't see hints while in insert mode you might have to set noshowmode (but see below its set for something else)
+let g:tern_show_argument_hints = 'on_move'  "on_move=update the argument hints at status line on functions whenever the cursor moves, on_hold=whenever the cursor is held still for 'updatetime' setting. on_move can reduce responsiveness, on_hold probably requires you to set 'updatetime' to something smaller than default 4 secs.  If you don't see hints while in insert mode you might have to set noshowmode (but see below - its used already and not wise to change)
 let g:tern_show_signature_in_pum = '1' "1=display function signatures in the completion menu. Function signatures include parameter names, their type, and whether the parameter is optional.
 
 " pangloss/vim-javascript options - see https://github.com/pangloss/vim-javascript
@@ -98,7 +104,7 @@ let g:syntastic_javascript_checkers = [ 'eslint' ] ", 'jslint', 'jshint' ]
 nnoremap <F2> :set invpaste paste?<CR>  
 "First line sets a mapping so that pressing F2 in normal mode will invert.The 'paste' option, and will then show the value of that option.
 set pastetoggle=<F2> "allows you to press F2 when in insert mode, to toggle 'paste' on and off. 
-set showmode "enables displaying whether 'paste' is turned on in " insert mode. 
+set showmode "enables displaying whether to show insert mode in status line. needed if for instance you want to know if paste is on or off
 
 " to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font
 if has('gui_running')

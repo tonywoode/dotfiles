@@ -3,11 +3,13 @@
 	"browser",
 	"chai",
 	"ecma5",
+	"ecma6",
 	"jquery",
 	"underscore"
   ],
   "plugins": {
     "node": {},
+    "node_resolve": {},
 	"angular": {},
 	"commonjs": {},
 	"complete_strings": {},
@@ -20,5 +22,6 @@
       "baseURL": "./",
       "paths": {}
 	}
-  }
+  },
+  "ecmaVersion": 6
 }
