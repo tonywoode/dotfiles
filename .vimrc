@@ -72,6 +72,7 @@ autocmd FileType javascript setlocal omnifunc=jspc#omni "see above othree/jspc.v
 
 " YouCompleteMe options
 "let g:loaded_youcompleteme = 1 "this will diable ycm
+let g:ycm_auto_trigger = 0 "its just too slow otherwise, invoke with ctrl + space
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
