@@ -33,7 +33,7 @@ Plugin 'rizzatti/dash.vim' "enables :Dash lookups
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 "Plugin 'altercation/vim-colors-solarized' "not doing it for me!
-
+Plugin 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bindings, navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
 "LANGUAGE TOOLS
 Plugin 'scrooloose/syntastic'
 Plugin 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanuages(pangloss/vim-javascript, [vim-jsx] for js
