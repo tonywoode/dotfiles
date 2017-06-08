@@ -22,6 +22,9 @@ syntax enable
 set background=dark
 colorscheme solarized
 
+" this is needed for mouse to control panes in tmux - see https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
+set ttymouse=xterm2
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
