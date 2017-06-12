@@ -131,7 +131,7 @@ module.exports = {
     "no-shadow": "off",
     "no-shadow-restricted-names": "error",
     "no-undef-init": "error",
-    "no-undefined": "error",
+    "no-undefined": "off",
     "no-use-before-define": ["error", "nofunc"],
     "callback-return": "error",
     "global-require": "error",
