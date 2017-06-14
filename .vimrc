@@ -31,6 +31,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim' "required
 Plugin 'rizzatti/dash.vim' "enables :Dash lookups
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kien/ctrlp.vim'
 "Plugin 'altercation/vim-colors-solarized' "not doing it for me!
 Plugin 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bindings, navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
@@ -72,6 +73,13 @@ autocmd FileType javascript setlocal omnifunc=jspc#omni "see above othree/jspc.v
 "let g:ctrlp_cmd = 'CtrlP'
 "let g:ctrlp_working_path_mode = 'a'
 "let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
+" airline options https://github.com/vim-airline/vim-airline
+" by default with 'laststatus' the statusline won't appear until a split is created. Make it appear always
+set laststatus=2
+let g:airline_theme='solarized'
+" for DARK solarized, this extra step is needed
+let g:airline_solarized_bg='dark'
 
 " YouCompleteMe options
 "let g:loaded_youcompleteme = 1 "this will diable ycm
