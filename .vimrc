@@ -32,27 +32,27 @@ Plugin 'gmarik/Vundle.vim' "required
 Plugin 'rizzatti/dash.vim' "enables :Dash lookups
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'kien/ctrlp.vim'
-"Plugin 'altercation/vim-colors-solarized' "not doing it for me!
+Plugin 'altercation/vim-colors-solarized' "not doing it for me!
 Plugin 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bindings, navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
 "LANGUAGE TOOLS
 Plugin 'scrooloose/syntastic'
 Plugin 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanuages(pangloss/vim-javascript, [vim-jsx] for js
 Plugin 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. View the manual with :help surround
-Plugin 'Valloric/YouCompleteMe' "{ 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --tern-completer' }
+Plugin 'tpope/vim-repeat' "enables '.' to repeat for vim-sourround and others
+Plugin 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --tern-completer' }
 
 "JS SPECIFIC -  see https://davidosomething.com/blog/vim-for-javascript/
 Plugin 'ternjs/tern_for_vim', { 'do': 'npm install' } 
 Plugin 'elzr/vim-json' "You're advised to look at its options
 Plugin 'othree/yajs.vim', { 'for': 'javascript' } "a fork of jelera/vim-javascript-syntax, neither have custom indent settings, updated very often. The {} makes sure the syntax plugin is loaded in a Vim autocommand based on filetype detection (as opposed to relying on Vim's runtimepath based sourcing mechanism. Then the main Vim syntax plugin will have already run, and this syntax will override it.
-Plugin 'bigfish/vim-js-context-coloring' "syntax highlighting: picks out function scopes. Requires in-depth parsing of your code: may not color your code when incomplete (i.e., syntax not yet valid). can be used in combination with any of the above, and you can toggle it on and off, but it may not deal with es6 or jsdoc
-Plugin 'mxw/vim-jsx' "for React's (optional) JSX syntax, syntax highlighting for those inline XML-nodes: requires a JavaScript syntax plugin (mentions pangloss but supports any)
-Plugin 'heavenshell/vim-jsdoc' "inserts JSDoc comments for you if cursor is on a function definition. It'll check for the function name, arguments, and add the doc-block comment
-Plugin 'othree/javascript-libraries-syntax.vim' "highlighting of functions+keywords for various libs such as jQuery, lodash, React, Handlebars, Chai, etc. see README at homepage
+Plugin 'bigfish/vim-js-context-coloring', { 'do': 'npm install' } "syntax highlighting: picks out function scopes.  may not color your code when incomplete (i.e., syntax not yet valid). can be used in combination with any of the above
+Plugin 'othree/javascript-libraries-syntax.vim' "highlighting of functions+keywords for various libs such as jQuery, lodash, React, Handlebars, Chai, etc.
 Plugin '1995eaton/vim-better-javascript-completion' "somewhat up-to-date JavaScript (HTML5 methods e.g. localStorage and canvas methods). creates new omni-completion function: js#CompleteJS and replaces your current JS omnifunc with it, so you have to use a completion plugin or write some VimL, to use it in conjunction with another omnifunc like TernJS
 Plugin 'othree/jspc.vim' "JavaScript Parameter Complete detects when you're inside a function argument and provides autocomplete suggestions (TernJS only adds existing symbols) So if you're writing an event listener, it'll suggest click and mouseover. You can see all the suggestions it provides in its GitHub source. On load, the jspc.vim plugin automatically detects whatever omnifunc you already have set as your default. It wraps it with the parameter completion, and falls back to your default if you are not in a parameter completion. Because of this you should specify jspc#omni instead of whatever your default completion is (typically javascriptcomplete#CompleteJS)
 Plugin 'moll/vim-node' "adds keybindings like for jumping to files in your CommonJS require statements
 Plugin 'tpope/vim-obsession' "make Session.vim files, tmux resurrect can try and restore them
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 call vundle#end() " All of your Plugins must be added before the following line
 
@@ -61,6 +61,9 @@ filetype plugin indent on    " required - To ignore plugin indent changes, inste
 
 " matchit allows % to jump to matching xml tags etc, not backwards compatible so not enabled by default see: help %
 packadd! matchit
+
+"turn on javascript-libraries-syntax for these modules
+let g:used_javascript_libs = 'chai, ramda, react, RequireJS, jasmine'
 
 "js omnifunc setting - I actually can't see a point in setting :set omnifunc shows that either ycm or tern seem to take it over, and even when they dont (jspc is a decorator), they are still controlling
 "set omnifunc=syntaxcomplete#Complete "this was the default
@@ -86,6 +89,8 @@ let g:airline_solarized_bg='dark'
 let g:ycm_auto_trigger = 0 "its just too slow otherwise, invoke with ctrl + space
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+" YcmCompleter GoTo is very handy....map it to leader+gt
+nnoremap <leader>g :YcmCompleter GoTo<CR>
 
 " Tern options - see http://usevim.com/2013/05/24/tern/
 autocmd CompleteDone * pclose "see https://github.com/ternjs/tern_for_vim/issues/21 - will close the preview window on edit (otherwise :pc does the job)
@@ -112,6 +117,29 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_quiet_messages = { "level": "warnings" }
 let g:syntastic_javascript_checkers = [ 'eslint' ] ", 'jslint', 'jshint' ] 
 " end of syntastic options
+
+"JSContextColor options
+let g:js_context_colors_enabled = 0
+let g:js_context_colors_insertmode = 1
+let g:js_context_colors_highlight_function_names = 1
+let g:js_context_colors_block_scope = 1
+let g:js_context_colors_jsx = 1
+let g:js_context_colors_allow_jsx_syntavx = 1
+let g:js_context_colors_usemaps = 0 "don't use <leader>t please, i want that
+nnoremap <leader>c :JSContextColorToggle<CR>
+"what is was anyway:
+nnoremap <leader>h :JSContextColor<CR>
+"let g:js_context_colors_block_scope_with_let = 1
+"let g:js_context_colors_es5 = 1
+
+"NERDTreeOptions
+autocmd vimenter * NERDTree "start when vim starts
+"start when vim starts even if you didn't say a file
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"close vim if the only window left open is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+nnoremap <leader>t :NERDTreeToggle<CR>
 
 " fix paste indenting - see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste  . 
 nnoremap <F2> :set invpaste paste?<CR>  
