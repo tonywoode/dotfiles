@@ -140,6 +140,9 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "close vim if the only window left open is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 nnoremap <leader>t :NERDTreeToggle<CR>
+"we want ctrl+j/k to navigate tmux on every window, so remap these to option+j/k
+let NERDTreeMapJumpNextSibling='∆'
+let NERDTreeMapJumpPrevSibling='˚'
 
 " fix paste indenting - see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste  . 
 nnoremap <F2> :set invpaste paste?<CR>  
