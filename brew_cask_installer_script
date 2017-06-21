@@ -17,7 +17,7 @@ echo "updating homebrew" && brew update
 echo "before we update any packages, we may need some pins, to stop things being updated"
 # YOU HAVE TO `brew unpin x` once you've pinned....
 pins=(
-		node
+#	node - i use nvm now, not from brew (sigh)
 )
 for pin in "${pins[@]}"; do { echo "don't update $pin" && brew pin "$pin"; } done
 
@@ -60,7 +60,7 @@ bins=(
 		#mysql - using mamp's copy as my primary fot the meanwhile
         jq
 		macvim --with-override-system-vim #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion?
-		node
+		node #tern requires a globally installed node, so better to give it a later one than none at all
         p7zip
 		postgresql
         rmtrash

@@ -5,8 +5,8 @@ export ZSH=/Users/twoode/.oh-my-zsh
 # https://github.com/zsh-users/antigen
 # https://github.com/lukechilds/zsh-nvm
 source /usr/local/share/antigen/antigen.zsh
-
-
+antigen bundle lukechilds/zsh-nvm
+antigen apply
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -103,7 +103,7 @@ compinit
 #
 #
 #Add the following to your zshrc to access the online help:
-unalias run-help
+unalias run-help &>/dev/null #https://bugs.launchpad.net/ubuntu/+source/zsh/+bug/305346
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 
