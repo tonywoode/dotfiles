@@ -133,12 +133,14 @@ nnoremap <leader>h :JSContextColor<CR>
 "let g:js_context_colors_es5 = 1
 
 "NERDTreeOptions
-autocmd vimenter * NERDTree "start when vim starts
+autocmd VimEnter * NERDTree "start when vim starts
+autocmd VimEnter * wincmd p " Jump to the main window
 "start when vim starts even if you didn't say a file
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "close vim if the only window left open is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeShowHidden=1 "show hidden files by default
 nnoremap <leader>t :NERDTreeToggle<CR>
 "we want ctrl+j/k to navigate tmux on every window, so remap these to option+j/k
 let NERDTreeMapJumpNextSibling='∆'
