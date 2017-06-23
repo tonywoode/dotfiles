@@ -17,6 +17,10 @@ set expandtab
 
 set hidden "don't unload buffers that just aren't visible atm
 
+"https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
+set wildmenu
+set wildmode=longest:full,full
+
 "colour settings
 syntax enable
 set background=dark
@@ -91,6 +95,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 " YcmCompleter GoTo is very handy....map it to leader+gt
 nnoremap <leader>g :YcmCompleter GoTo<CR>
+nnoremap <leader>r :YcmCompleter GoToReferences<CR>
 
 " Tern options - see http://usevim.com/2013/05/24/tern/
 autocmd CompleteDone * pclose "see https://github.com/ternjs/tern_for_vim/issues/21 - will close the preview window on edit (otherwise :pc does the job)
