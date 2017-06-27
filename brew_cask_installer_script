@@ -50,7 +50,6 @@ bins=(
         ack
         antigen
 		bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
-	 	#boot2docker - docker-machine now likes to download this for you and puts it /Users/twoode/.docker/machine/cache/boot2docker.iso 
 		cmake #installed to setup YouCompleteMe vim plugin
 		ctags-exuberant
         fswatch #for smoke's nodemon problem
@@ -97,7 +96,6 @@ apps=(
 		dash
 		diffmerge
 		disk-inventory-x
-		docker-toolbox
 		dropbox
 		firefox
         flux
