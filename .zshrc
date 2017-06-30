@@ -156,7 +156,6 @@ alias tim="python /Users/twoode/CODE/Scripts/Dotfiles/dotfiles/tmux-omnivim/omni
 
 # smoke docker specific vars
 . ~/.smoke-mirrors/.profile
-eval $(docker-machine env)
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
