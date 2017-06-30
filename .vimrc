@@ -69,6 +69,12 @@ packadd! matchit
 "turn on javascript-libraries-syntax for these modules
 let g:used_javascript_libs = 'chai, ramda, react, RequireJS, jasmine'
 
+"for Dash, associate the custom Ramda docset
+
+let g:dash_map = { 'javascript' : 'ramda' }
+
+
+
 "js omnifunc setting - I actually can't see a point in setting :set omnifunc shows that either ycm or tern seem to take it over, and even when they dont (jspc is a decorator), they are still controlling
 "set omnifunc=syntaxcomplete#Complete "this was the default
 "filetype plugin on "don't think necessary if youve already said filetype plugin indent * 
@@ -96,6 +102,9 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " YcmCompleter GoTo is very handy....map it to leader+gt
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>r :YcmCompleter GoToReferences<CR>
+" only GoToReferences isn't working with external files, even with ctags of
+" any flavour, so lets use the simplest alternative https://vi.stackexchange.com/a/4976
+nnoremap <leader>u :grep! "\<<cword>\>" . -r<CR>:copen<CR>
 
 " Tern options - see http://usevim.com/2013/05/24/tern/
 autocmd CompleteDone * pclose "see https://github.com/ternjs/tern_for_vim/issues/21 - will close the preview window on edit (otherwise :pc does the job)
