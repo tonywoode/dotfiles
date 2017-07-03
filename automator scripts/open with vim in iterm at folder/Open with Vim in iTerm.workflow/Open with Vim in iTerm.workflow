@@ -1,0 +1,1 @@
+./ServicesLink/./open with vim in iterm at folder/vimini-master/Open with Vim in iTerm.workflow

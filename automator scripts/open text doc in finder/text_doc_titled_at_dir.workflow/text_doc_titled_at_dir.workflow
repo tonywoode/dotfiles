@@ -1,0 +1,1 @@
+./ServicesLink/./open text doc in finder/text_doc_titled_at_dir.workflow

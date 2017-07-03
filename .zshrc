@@ -120,7 +120,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 if [[ $- == *i* ]] && command -v tmux>/dev/null && [[ ! $TERM =~ screen ]] ; then
 	[ -z $TMUX ] && exec tmux 
-           ##	[ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I") $PWD   #but the variable doesn't get set. Instead manually set your terminals preferences in UI to reuse previous dir
+           	[ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I") $PWD   #sometimes, the variable doesn't get set, make sure you also manually set your terminals preferences in UI to reuse previous dir
 fi
 
 # some shortcuts. I like to type cd sometimes.
