@@ -1,1 +1,0 @@
-ServicesLink/open iterm at current dir/open_iterm_at_current_dir_or_file.workflow
