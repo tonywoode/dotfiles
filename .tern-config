@@ -2,8 +2,7 @@
   "libs": [
 	"browser",
 	"chai",
-	"ecma5",
-	"ecma6",
+	"ecmascript",
 	"jquery",
 	"underscore"
   ],
@@ -16,7 +15,6 @@
 	"doc_comment": {},
 	"es_modules": {},
 	"modules": {},
-	"node_resolve": {},
 	"webpack": {},
     "requirejs": {
       "baseURL": "./",

@@ -62,7 +62,7 @@ call vundle#end() " All of your Plugins must be added before the following line
 
 " to disable individual plugins try "set runtimepath?" to show you path then
 " paste it as here:
-set runtimepath-=~/.vim/bundle/tern_for_vim
+"set runtimepath-=~/.vim/bundle/tern_for_vim
 
 filetype plugin indent on    " required - To ignore plugin indent changes, instead use: filetype plugin on
 " Vim's own plugins see: help plugin-install
