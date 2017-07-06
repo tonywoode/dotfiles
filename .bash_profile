@@ -3,8 +3,8 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
  fi
 
- # VI key bindings
- set -o vi
+# VI key bindings
+set -o vi
 
 # tmux starts by default
 # the $- == *i* says 'if current shell isn't interactive

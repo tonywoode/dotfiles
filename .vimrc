@@ -30,7 +30,7 @@ colorscheme solarized
 set ttymouse=xterm2
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim' "required
 Plugin 'rizzatti/dash.vim' "enables :Dash lookups
@@ -60,6 +60,10 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 call vundle#end() " All of your Plugins must be added before the following line
 
+" to disable individual plugins try "set runtimepath?" to show you path then
+" paste it as here:
+set runtimepath-=~/.vim/bundle/tern_for_vim
+
 filetype plugin indent on    " required - To ignore plugin indent changes, instead use: filetype plugin on
 " Vim's own plugins see: help plugin-install
 
@@ -73,19 +77,11 @@ let g:used_javascript_libs = 'chai, ramda, react, RequireJS, jasmine'
 
 let g:dash_map = { 'javascript' : 'ramda' }
 
-
-
 "js omnifunc setting - I actually can't see a point in setting :set omnifunc shows that either ycm or tern seem to take it over, and even when they dont (jspc is a decorator), they are still controlling
 "set omnifunc=syntaxcomplete#Complete "this was the default
 "filetype plugin on "don't think necessary if youve already said filetype plugin indent * 
 "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS "standard
 autocmd FileType javascript setlocal omnifunc=jspc#omni "see above othree/jspc.vim, its a decorator for javascriptcomplete
-
-" ctrl-p settings
-"let g:ctrlp_map = '<c-p>'
-"let g:ctrlp_cmd = 'CtrlP'
-"let g:ctrlp_working_path_mode = 'a'
-"let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " airline options https://github.com/vim-airline/vim-airline
 " by default with 'laststatus' the statusline won't appear until a split is created. Make it appear always
