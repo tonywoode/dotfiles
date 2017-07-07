@@ -20,6 +20,5 @@
       "baseURL": "./",
       "paths": {}
 	}
-  },
-  "ecmaVersion": 6
+  }
 }
