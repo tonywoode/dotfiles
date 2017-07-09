@@ -1,3 +1,27 @@
+# tmux starts by default
+# the $- == *i* says 'if current shell isn't interactive
+# the last command (starting -n is the actor that sets the current dir to prev dir in 
+# most circumstances (eg: a start-iterm-at-this-folder script) 
+# inspiration from http://tmux.svn.sourceforge.net/viewvc/tmux/trunk/FAQ 
+# which says "A workaround is to let tmux know about the current path through an environment variable.
+# Which sets TMUXPWD_i (where i is the number of the current window) to the path of the current directory.
+#
+#
+# i replaced that all with this beacuase it seemed them most thorough:  https://stackoverflow.com/a/42351698/3536094
+case $- in
+    *i*)
+    if command -v tmux>/dev/null; then
+        if [[ ! $TERM =~ screen ]] && [[ -z $TMUX ]]; then
+          if tmux ls 2> /dev/null | grep -q -v attached; then
+            exec tmux attach -t $(tmux ls 2> /dev/null | grep -v attached | head -1 | cut -d : -f 1)
+          else
+            exec tmux
+          fi
+        fi
+    fi
+    ;;
+esac
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/twoode/.oh-my-zsh
 
@@ -110,21 +134,11 @@ HELPDIR=/usr/local/share/zsh/help
 # we want homebrew cask to install things to /Applications like everything else does now, not ~/Applications
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-# tmux starts by default
-# the $- == *i* says 'if current shell isn't interactive
-# the last command (starting -n is the actor that sets the current dir to prev dir in 
-# most circumstances (eg: a start-iterm-at-this-folder script) 
-# inspiration from http://tmux.svn.sourceforge.net/viewvc/tmux/trunk/FAQ 
-# which says "A workaround is to let tmux know about the current path through an environment variable.
-# Which sets TMUXPWD_i (where i is the number of the current window) to the path of the current directory.
-
-if [[ $- == *i* ]] && command -v tmux>/dev/null && [[ ! $TERM =~ screen ]] ; then
-	[ -z $TMUX ] && exec tmux 
-           	[ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I") $PWD   #sometimes, the variable doesn't get set, make sure you also manually set your terminals preferences in UI to reuse previous dir
-fi
-
 # extend git with hub https://hub.github.com/
 alias git=hub
+
+#I hate how 'help' is now 'run-help' in zsh, i use it all the time
+alias help=run-help
 
 # some shortcuts. I like to type cd sometimes.
 code=~/CODE
