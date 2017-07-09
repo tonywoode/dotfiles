@@ -123,6 +123,9 @@ if [[ $- == *i* ]] && command -v tmux>/dev/null && [[ ! $TERM =~ screen ]] ; the
            	[ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I") $PWD   #sometimes, the variable doesn't get set, make sure you also manually set your terminals preferences in UI to reuse previous dir
 fi
 
+# extend git with hub https://hub.github.com/
+alias git=hub
+
 # some shortcuts. I like to type cd sometimes.
 code=~/CODE
 alias code="cd $code"

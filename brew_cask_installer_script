@@ -56,6 +56,7 @@ bins=(
         git
 		groovy
 		httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
+        hub
 		#mysql - using mamp's copy as my primary fot the meanwhile
         jq
 		macvim --with-override-system-vim #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion?
