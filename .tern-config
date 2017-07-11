@@ -13,9 +13,7 @@
 	"commonjs": {},
 	"complete_strings": {},
 	"doc_comment": {},
-	"es_modules": {},
 	"modules": {},
-	"webpack": {},
     "requirejs": {
       "baseURL": "./",
       "paths": {}
