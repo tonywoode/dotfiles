@@ -13,10 +13,14 @@
 	"commonjs": {},
 	"complete_strings": {},
 	"doc_comment": {},
+	"es_modules": {},
 	"modules": {},
+	"webpack": {},
     "requirejs": {
       "baseURL": "./",
       "paths": {}
 	}
-  }
+  },
+  "loadEagerly": [ "./src/**/*.js" ],
+  "dontLoad": [ "node_modules/ramda/dist/ramda.js" ]
 }
