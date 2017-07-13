@@ -4,22 +4,23 @@
 	"chai",
 	"ecmascript",
 	"jquery",
+    "react",
 	"underscore"
   ],
   "plugins": {
-    "node": {},
-    "node_resolve": {},
 	"angular": {},
 	"commonjs": {},
 	"complete_strings": {},
 	"doc_comment": {},
 	"es_modules": {},
 	"modules": {},
-	"webpack": {},
+    "node": {},
+    "node_resolve": {},
     "requirejs": {
       "baseURL": "./",
-      "paths": {}
+      "paths": {},
 	}
+	"webpack": {}
   },
   "loadEagerly": [ "./src/**/*.js" ],
   "dontLoad": [ "node_modules/ramda/dist/ramda.js" ]

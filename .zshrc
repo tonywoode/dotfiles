@@ -8,6 +8,7 @@
 #
 #
 # i replaced that all with this beacuase it seemed them most thorough:  https://stackoverflow.com/a/42351698/3536094
+# you might also want to check out the zsh plugin for tmux - which i've already installed https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#tmux
 case $- in
     *i*)
     if command -v tmux>/dev/null; then
