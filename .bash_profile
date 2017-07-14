@@ -18,9 +18,6 @@ set -o vi
 #	[[ ! $TERM =~ screen ]] && [ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I") $PWD && exec tmux   
 #fi
 
-# alisas to vim
-alias vim=/usr/local/Cellar/vim/7.4.1655/bin/vim
-
 # include sbin in path
 export PATH="/usr/local/sbin:$PATH"
 
