@@ -14,9 +14,9 @@ case $- in
     if command -v tmux>/dev/null; then
         if [[ ! $TERM =~ screen ]] && [[ -z $TMUX ]]; then
           if tmux ls 2> /dev/null | grep -q -v attached; then
-            exec tmux attach -t $(tmux ls 2> /dev/null | grep -v attached | head -1 | cut -d : -f 1)
+            exec tmux attach -t $(tmux ls 2> /dev/null | grep -v attached | head -1 | cut -d : -f 1) 
           else
-            exec tmux
+            exec tmux 
           fi
         fi
     fi
@@ -146,6 +146,8 @@ code=~/CODE
 alias code="cd $code"
 scripts=$code/Scripts
 alias scripts="cd $scripts"
+scratch=$code/Scratch
+alias scratch="cd $scratch"
 dots=$scripts/Dotfiles/dotfiles
 alias dots="cd $dots"
 repo=$code/Repo
