@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>AMApplicationBuild</key>
-	<string>409.2</string>
+	<string>428</string>
 	<key>AMApplicationVersion</key>
-	<string>2.5</string>
+	<string>2.7</string>
 	<key>AMDocumentVersion</key>
 	<string>2</string>
 	<key>actions</key>
@@ -51,7 +51,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {the_files, parameters}	tell application "iTerm"		activate		set seds to " | sed -E -e 's/(.*)[[:space:]][(].*$/\\1/'"		repeat with fileitem in the_files			set hasn to ""			set filepath to (get POSIX path of fileitem)			set qfilepath to quoted form of filepath			set basename to (do shell script "basename " &amp; qfilepath)			set baseparent to (do shell script "dirname " &amp; qfilepath)			set qbaseparent to quoted form of baseparent			set parentname to (do shell script "basename " &amp; qbaseparent)			set seslabel to parentname &amp; "/" &amp; basename			repeat with win in windows				tell win					repeat with xtab in tabs of win						tell xtab							repeat with ses in sessions of xtab								tell ses									set title_s to (name of ses)									set qtitle_s to quoted form of title_s									set sesname to (do shell script "echo " &amp; qtitle_s &amp; seds)									if sesname is equal to seslabel then										set hasn to sesname										select win										select xtab										select ses									end if								end tell							end repeat						end tell					end repeat				end tell			end repeat			if hasn is equal to "" then				set nwin to (create window with default profile)				select nwin				tell nwin					set ntab to item 1 of (tabs of nwin)					select ntab					tell ntab						set nses to item 1 of (sessions of ntab)						select nses						tell nses							set name to seslabel							write text "cd " &amp; qbaseparent &amp; "; vim " &amp; qfilepath						end tell					end tell				end tell			end if		end repeat	end tellend run</string>
+					<string>-- I modded this script to run in a situtaion where tmux was started in my zshrc. I manually start my shell with "commadn zsh" (a tmux feature), i then replace my envioronment with a tmux session that starts vim with the file. Inspiration from https://unix.stackexchange.com/a/335216. I didn't name my tmux session as he did because that will then fail if you repeat the operation to open a file in vim from osx finder-- The downside of this strategy is that tmux is the first and only pane in the session, so make a new pane to get a shell before you exit vim if you intend to carry on the session (otherwise it functions as a nice one-offon run {the_files, parameters}	tell application "iTerm"		activate		set seds to " | sed -E -e 's/(.*)[[:space:]][(].*$/\\1/'"		repeat with fileitem in the_files			set hasn to ""			set filepath to (get POSIX path of fileitem)			set qfilepath to quoted form of filepath			set basename to (do shell script "basename " &amp; qfilepath)			set baseparent to (do shell script "dirname " &amp; qfilepath)			set qbaseparent to quoted form of baseparent			set parentname to (do shell script "basename " &amp; qbaseparent)			set seslabel to parentname &amp; "/" &amp; basename			repeat with win in windows				tell win					repeat with xtab in tabs of win						tell xtab							repeat with ses in sessions of xtab								tell ses									set title_s to (name of ses)									set qtitle_s to quoted form of title_s									set sesname to (do shell script "echo " &amp; qtitle_s &amp; seds)									if sesname is equal to seslabel then										set hasn to sesname										select win										select xtab										select ses									end if								end tell							end repeat						end tell					end repeat				end tell			end repeat			if hasn is equal to "" then				set nwin to (create window with default profile command "zsh")				select nwin				tell nwin					set ntab to item 1 of (tabs of nwin)					select ntab					tell ntab						set nses to item 1 of (sessions of ntab)						select nses						tell nses							set name to seslabel							write text "cd " &amp; qbaseparent &amp; ";clear;"						    write text "exec tmux new-session \"vim " &amp; qfilepath &amp; "\"" &amp; ";clear;"						end tell					end tell				end tell			end if		end repeat	end tellend run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -102,12 +102,10 @@ end run</string>
 						<string>0</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>492.000000:316.000000</string>
+				<string>449.000000:316.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>

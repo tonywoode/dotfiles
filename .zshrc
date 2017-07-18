@@ -1,13 +1,5 @@
-# tmux starts by default
-# the $- == *i* says 'if current shell isn't interactive
-# the last command (starting -n is the actor that sets the current dir to prev dir in 
-# most circumstances (eg: a start-iterm-at-this-folder script) 
-# inspiration from http://tmux.svn.sourceforge.net/viewvc/tmux/trunk/FAQ 
-# which says "A workaround is to let tmux know about the current path through an environment variable.
-# Which sets TMUXPWD_i (where i is the number of the current window) to the path of the current directory.
-#
-#
-# i replaced that all with this beacuase it seemed them most thorough:  https://stackoverflow.com/a/42351698/3536094
+# tmux starts by default, $- == *i* says 'if current shell isn't interactive
+# I replaced my own implementation of this with the follwoing as it seemed them most thorough:  https://stackoverflow.com/a/42351698/3536094
 # you might also want to check out the zsh plugin for tmux - which i've already installed https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#tmux
 case $- in
     *i*)
