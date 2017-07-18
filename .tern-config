@@ -18,12 +18,13 @@
     "node_resolve": {},
     "requirejs": {
       "baseURL": "./",
-      "paths": {},
-	}
+      "paths": {}
+	},
 	"webpack": {}
   },
   "loadEagerly": [ "./src/**/*.js" ],
   "dontLoad": [ 
-      "node_modules/**", 
+    "xxx_node_modules/**",
+    "xxx_node_modules/ramda/dist/ramda.js"
   ]
 }
