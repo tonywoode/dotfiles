@@ -69,6 +69,7 @@ bins=(
         tree
 		reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
         #vim --with-client-server # see https://stackoverflow.com/a/25979565/3536094 would also require adding xquartz to cask (yes cask!)
+        wget
 		zsh
 )
 
