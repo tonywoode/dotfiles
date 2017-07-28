@@ -1,0 +1,11 @@
+# general
+--ignore-dir=node_modules 
+--ignore-dir=build 
+--ignore-file=ext:sql 
+--ignore-file=is:app.js 
+--ignore-file=ext:ttl 
+
+# situation specific
+--ignore-dir=asset_logger_export 
+--ignore-dir=database_updates 
+--ignore-dir=reports

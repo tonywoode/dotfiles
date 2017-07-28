@@ -113,8 +113,6 @@ quickplay=~/CODE/REPO/Quickplay
 alias quickplay="cd $quickplay"
 messtool="$scripts/messTool"
 alias messtool="cd $messtool"
-dbdump="$HOME/Google Drive/MySMStuff/WorkingFiles/Production Atlas databases"
-alias dbdump="cd \"$dbdump\""
 
 # smoke docker specific vars
 . ~/.smoke-mirrors/.profile
