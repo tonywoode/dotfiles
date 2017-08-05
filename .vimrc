@@ -92,7 +92,7 @@ let g:airline_solarized_bg='dark'
 
 " YouCompleteMe options
 "let g:loaded_youcompleteme = 1 "this will diable ycm
-let g:ycm_auto_trigger = 0 "its just too slow otherwise, invoke with ctrl + space
+"let g:ycm_auto_trigger = 0 "if off, invoke with ctrl + space
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 " YcmCompleter GoTo is very handy....map it to leader+gt
@@ -143,7 +143,7 @@ nnoremap <leader>h :JSContextColor<CR>
 "let g:js_context_colors_es5 = 1
 
 "NERDTreeOptions
-autocmd VimEnter * NERDTree "start when vim starts
+"autocmd VimEnter * NERDTree "start when vim starts
 autocmd VimEnter * wincmd p " Jump to the main window
 "start when vim starts even if you didn't say a file
 autocmd StdinReadPre * let s:std_in=1

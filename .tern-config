@@ -25,6 +25,6 @@
   "loadEagerly": [ "./src/**/*.js" ],
   "dontLoad": [ 
     "xxx_node_modules/**",
-    "xxx_node_modules/ramda/dist/ramda.js"
+    "node_modules/ramda/dist/ramda.js"
   ]
 }
