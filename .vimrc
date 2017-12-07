@@ -29,6 +29,17 @@ colorscheme solarized
 " this is needed for mouse to control panes in tmux - see https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
 set ttymouse=xterm2
 
+" fix paste indenting - see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste  . 
+nnoremap <F2> :set invpaste paste?<CR>  
+"First line sets a mapping so that pressing F2 in normal mode will invert.The 'paste' option, and will then show the value of that option.
+set pastetoggle=<F2> "allows you to press F2 when in insert mode, to toggle 'paste' on and off. 
+set showmode "enables displaying whether to show insert mode in status line. needed if for instance you want to know if paste is on or off
+
+" to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font
+if has('gui_running')
+	set guifont=Menlo\ Regular:h15
+endif
+
 " set the runtime path to include Vundle and initialize
 set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -57,6 +68,7 @@ Plugin 'moll/vim-node' "adds keybindings like for jumping to files in your Commo
 Plugin 'tpope/vim-obsession' "make Session.vim files, tmux resurrect can try and restore them
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
 
 call vundle#end() " All of your Plugins must be added before the following line
 
@@ -74,7 +86,6 @@ packadd! matchit
 let g:used_javascript_libs = 'chai, ramda, react, RequireJS, jasmine'
 
 "for Dash, associate the custom Ramda docset
-
 let g:dash_map = { 'javascript' : 'ramda' }
 
 "js omnifunc setting - I actually can't see a point in setting :set omnifunc shows that either ycm or tern seem to take it over, and even when they dont (jspc is a decorator), they are still controlling
@@ -98,6 +109,9 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " YcmCompleter GoTo is very handy....map it to leader+gt
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>r :YcmCompleter GoToReferences<CR>
+nnoremap <leader>d :YcmCompleter GoToDefinition<CR>
+"no cr because you need to type a replacement
+nnoremap <leader>f :YcmCompleter RefactorRename  
 " only GoToReferences isn't working with external files, even with ctags of
 " any flavour, so lets use the simplest alternative https://vi.stackexchange.com/a/4976
 nnoremap <leader>u :grep! "\<<cword>\>" . -r<CR>:copen<CR>
@@ -156,13 +170,3 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 let NERDTreeMapJumpNextSibling='∆'
 let NERDTreeMapJumpPrevSibling='˚'
 
-" fix paste indenting - see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste  . 
-nnoremap <F2> :set invpaste paste?<CR>  
-"First line sets a mapping so that pressing F2 in normal mode will invert.The 'paste' option, and will then show the value of that option.
-set pastetoggle=<F2> "allows you to press F2 when in insert mode, to toggle 'paste' on and off. 
-set showmode "enables displaying whether to show insert mode in status line. needed if for instance you want to know if paste is on or off
-
-" to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font
-if has('gui_running')
-	set guifont=Menlo\ Regular:h15
-endif
