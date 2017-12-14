@@ -100,6 +100,7 @@ apps=(
 		disk-inventory-x
 		dropbox
 		firefox
+        filezilla
         flux
 		freefilesync
 		google-chrome
@@ -142,5 +143,5 @@ echo "running cask cleanup" && brew cask cleanup
 echo "lastly hijack this script to record what npm modules were installed when it was run
 if test $(command -v nvm); then { nvm exec lts/* npm list -g --depth=0 > npm_lts_installed_modules.txt && date >> npm_lts_installed_modules.txt }; fi
 
-echo "I'm outta yer loop, cya"
+echo "Im outta yer loop, cya"
  
