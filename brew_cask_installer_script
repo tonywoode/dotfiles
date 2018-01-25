@@ -64,6 +64,7 @@ bins=(
         p7zip
 		postgresql
         rmtrash
+        tidy-html5
 		tmate
         tmux
         tree

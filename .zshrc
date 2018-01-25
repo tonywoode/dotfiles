@@ -111,8 +111,8 @@ desktop=~/Desktop
 alias desktop="cd $desktop"
 quickplay=~/CODE/REPO/Quickplay
 alias quickplay="cd $quickplay"
-messtool="$scripts/messTool"
-alias messtool="cd $messtool"
+mametool="$scripts/mameTool"
+alias mametool="cd $mametool"
 
 # smoke docker specific vars
 . ~/.smoke-mirrors/.profile
