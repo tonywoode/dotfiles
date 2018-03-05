@@ -9,3 +9,4 @@
 --ignore-dir=asset_logger_export 
 --ignore-dir=database_updates 
 --ignore-dir=reports
+-i
