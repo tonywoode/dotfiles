@@ -65,6 +65,7 @@ Plugin 'sheerun/vim-polyglot' "bundles other language syntax plugins for many la
 Plugin 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. View the manual with :help surround
 Plugin 'tpope/vim-repeat' "enables '.' to repeat for vim-sourround and others
 Plugin 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --tern-completer' }
+Plugin 'szw/vim-maximizer' "F3 will toggle fullscreen of the current window, useful as otherwise there's only ctrl+w_, ctrl+w| and ctrl+w=, all imperfect 
 
 "JS SPECIFIC -  see https://davidosomething.com/blog/vim-for-javascript/
 Plugin 'ternjs/tern_for_vim', { 'do': 'npm install' } 
