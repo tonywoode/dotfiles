@@ -14,11 +14,10 @@ set tabstop=4
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-
+set hlsearch "http://vim.wikia.com/wiki/Highlight_all_search_pattern_matches - now you have a regular expression tester!
 set hidden "don't unload buffers that just aren't visible atm
 
-"https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
-set wildmenu
+set wildmenu "https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
 set wildmode=longest:full,full
 
 "colour settings
@@ -66,7 +65,7 @@ Plugin 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets
 Plugin 'tpope/vim-repeat' "enables '.' to repeat for vim-sourround and others
 Plugin 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --tern-completer' }
 Plugin 'szw/vim-maximizer' "F3 will toggle fullscreen of the current window, useful as otherwise there's only ctrl+w_, ctrl+w| and ctrl+w=, all imperfect 
-
+Plugin 'ruanyl/vim-gh-line' "<leader>gh to open the line of this file it github
 "JS SPECIFIC -  see https://davidosomething.com/blog/vim-for-javascript/
 Plugin 'ternjs/tern_for_vim', { 'do': 'npm install' } 
 Plugin 'elzr/vim-json' "You're advised to look at its options
