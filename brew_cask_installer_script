@@ -59,6 +59,7 @@ bins=(
         hub
 		#mysql - using mamp's copy as my primary fot the meanwhile
         jq
+        mas #app-store downloader - see https://github.com/mas-cli/mas
 		macvim --with-override-system-vim #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion?
 		node #tern requires a globally installed node, so better to give it a later one than none at all
         p7zip
@@ -141,8 +142,28 @@ echo "running the cask upgrade script (cask cannot upgrade progs automatically"
 
 echo "running cask cleanup" && brew cask cleanup
 
-echo "lastly hijack this script to record what npm modules were installed when it was run
-if test $(command -v nvm); then { nvm exec lts/* npm list -g --depth=0 > npm_lts_installed_modules.txt && date >> npm_lts_installed_modules.txt }; fi
+echo "Installed Mac App Store apps"
+echo "note: must be logged into app store, and must have downloaded these via the app store ui before"
+mas list
+app_store_apps=(
+  1295203466 #Microsoft Remote Desktop (10.1.8)
+  597419160  #Sleep Pillow (1.0)
+  881415018  #myTuner Radio (2.0.1)
+  568494494  #Pocket (1.7.9)
+  497799835  #Xcode (9.2)
+  409183694  #Keynote (8.1)
+  409203825  #Numbers (5.1)
+)
+
+echo "reinstalling any uninstalled mas (mac app store) apps"
+for app_store_app in "${app_store_apps[@]}"; do { [[ $cask_list != *"$app_store_app"* ]] && mas install "$app_store_app"; } done
+
+
+echo "lastly hijack this script to record what npm modules were installed when it was run"
+
+if [ "$(command -v nvm)" == "nvm" ]; then 
+  nvm exec lts/* npm list -g --depth=0 > npm_lts_installed_modules.txt && date >> npm_lts_installed_modules.txt
+fi
 
 echo "Im outta yer loop, cya"
  
