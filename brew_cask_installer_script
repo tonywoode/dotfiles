@@ -57,10 +57,10 @@ bins=(
 		groovy
 		httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
         hub
-		#mysql - using mamp's copy as my primary fot the meanwhile
         jq
         mas #app-store downloader - see https://github.com/mas-cli/mas
-		macvim --with-override-system-vim #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion?
+		"macvim --with-override-system-vim" #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion? quoting this doesn't help it install https://github.com/Homebrew/homebrew-core/issues/26583
+        #mysql - using mamp's copy as my primary for the meanwhile
 		node #tern requires a globally installed node, so better to give it a later one than none at all
         p7zip
 		postgresql
@@ -77,7 +77,7 @@ bins=(
 
 brew_list=$(brew list)
 echo $brew_list && echo "let's brew any unbrewed bins..." 
-for bin in "${bins[@]}"; do { [[ $brew_list != *"$bin"* ]] && brew install "$bin"; } done
+for bin in "${bins[@]}"; do { [[ $brew_list != *"$bin"* ]] && echo "installing $bin" && brew install "$bin"; } done
 
 # Applications is now cask's default folder to move apps to, no longer ~/Applications
 # echo "let's remember casks go in /Applications" && export HOMEBREW_CASK_OPTS="--appdir=/Applications"
@@ -94,6 +94,7 @@ apps=(
 		aerial # beautiful screensaver
 		alfred
 		balsamiq-mockups
+        betterzip #for the betterzip quick look plugin that shows zip contents in finder
 		blueharvest
 		caffeine
 		cord
