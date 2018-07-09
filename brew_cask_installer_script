@@ -151,8 +151,7 @@ app_store_apps=(
   597419160  #Sleep Pillow (1.0)
   881415018  #myTuner Radio (2.0.1)
   568494494  #Pocket (1.7.9)
-  497799835  #Xcode (9.2)
-  409183694  #Keynote (8.1)
+  #497799835  #Xcode (9.2)
   409203825  #Numbers (5.1)
 )
 
