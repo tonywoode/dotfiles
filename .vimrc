@@ -1,3 +1,6 @@
+" short term fix for deprecation warnings in ycm
+silent! py3 pass
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set mouse=a
