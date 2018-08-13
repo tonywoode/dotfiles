@@ -1,3 +1,6 @@
+" short term fix for vim-polyglot's graphql_js_tags plugin
+let g:graphql_javascript_tags = []
+
 " short term fix for deprecation warnings in ycm
 silent! py3 pass
 
