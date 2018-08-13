@@ -150,12 +150,13 @@ set statusline+=%{ObsessionStatus()}
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_always_populate_loc_list = 1 "now causes a blank startup
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_quiet_messages = { "level": "warnings" }
 let g:syntastic_javascript_checkers = [ 'eslint' ] ", 'jslint', 'jshint' ] 
+let g:syntastic_json_checkers = [ 'jsonlint' ]
 " end of syntastic options
 
 "JSContextColor options
@@ -164,7 +165,7 @@ let g:js_context_colors_insertmode = 1
 let g:js_context_colors_highlight_function_names = 1
 let g:js_context_colors_block_scope = 1
 let g:js_context_colors_jsx = 1
-let g:js_context_colors_allow_jsx_syntavx = 1
+let g:js_context_colors_allow_jsx_syntax = 1
 let g:js_context_colors_usemaps = 0 "don't use <leader>t please, i want that
 nnoremap <leader>c :JSContextColorToggle<CR>
 "what is was anyway:
