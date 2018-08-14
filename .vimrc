@@ -151,7 +151,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 "let g:syntastic_always_populate_loc_list = 1 "now causes a blank startup
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 2  "0=no auto 1=auto 2=close auto only 3=open auto only
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_quiet_messages = { "level": "warnings" }
