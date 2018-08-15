@@ -34,6 +34,9 @@ colorscheme solarized
 " this is needed for mouse to control panes in tmux - see https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
 set ttymouse=xterm2
 
+" get a buffer menu with f5, http://vim.wikia.com/wiki/Easier_buffer_switching
+nnoremap <F5> :buffers<CR>:buffer<Space>
+
 " fix paste indenting - see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste  . 
 nnoremap <F2> :set invpaste paste?<CR>  
 "First line sets a mapping so that pressing F2 in normal mode will invert.The 'paste' option, and will then show the value of that option.
