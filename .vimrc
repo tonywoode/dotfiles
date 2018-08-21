@@ -34,13 +34,19 @@ colorscheme solarized
 " this is needed for mouse to control panes in tmux - see https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
 set ttymouse=xterm2
 
-" get a buffer menu with f5, http://vim.wikia.com/wiki/Easier_buffer_switching
-nnoremap <F5> :buffers<CR>:buffer<Space>
-
 " fix paste indenting - see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste  . 
 nnoremap <F2> :set invpaste paste?<CR>  
 "First line sets a mapping so that pressing F2 in normal mode will invert.The 'paste' option, and will then show the value of that option.
 set pastetoggle=<F2> "allows you to press F2 when in insert mode, to toggle 'paste' on and off. 
+
+" F3 is used by the maximiser plugin
+
+" turn highlighting off for this search (search term stays selected though)
+nnoremap <F4> :noh<CR>
+
+" get a buffer menu with f5, http://vim.wikia.com/wiki/Easier_buffer_switching
+nnoremap <F5> :buffers<CR>:buffer<Space>
+
 set showmode "enables displaying whether to show insert mode in status line. needed if for instance you want to know if paste is on or off
 
 " to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font
@@ -74,7 +80,7 @@ Plugin 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets
 Plugin 'tpope/vim-repeat' "enables '.' to repeat for vim-sourround and others
 Plugin 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --tern-completer' }
 Plugin 'szw/vim-maximizer' "F3 will toggle fullscreen of the current window, useful as otherwise there's only ctrl+w_, ctrl+w| and ctrl+w=, all imperfect 
-Plugin 'ruanyl/vim-gh-line' "<leader>gh to open the line of this file it github
+Plugin 'ruanyl/vim-gh-line' "<leader>gh to open the line of this file in github
 "JS SPECIFIC -  see https://davidosomething.com/blog/vim-for-javascript/
 Plugin 'ternjs/tern_for_vim', { 'do': 'npm install' } 
 Plugin 'elzr/vim-json' "You're advised to look at its options
