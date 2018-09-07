@@ -58,7 +58,7 @@ endif
 " Triger `autoread` when files changes on disk
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
 " https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
-autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * redraw! | if mode() != 'c' | checktime | endif
 " Notification after file change
 " https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
 autocmd FileChangedShellPost *
@@ -159,13 +159,14 @@ set statusline+=%{ObsessionStatus()}
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-"let g:syntastic_always_populate_loc_list = 1 "now causes a blank startup
+let g:syntastic_always_populate_loc_list = 1 "now causes a blank startup
 let g:syntastic_auto_loc_list = 2  "0=no auto 1=auto 2=close auto only 3=open auto only
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_quiet_messages = { "level": "warnings" }
 let g:syntastic_javascript_checkers = [ 'eslint' ] ", 'jslint', 'jshint' ] 
 let g:syntastic_json_checkers = [ 'jsonlint' ]
+let g:syntastic_loc_list_height= 3
 " end of syntastic options
 
 "JSContextColor options
