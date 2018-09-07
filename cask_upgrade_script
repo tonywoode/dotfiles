@@ -1,5 +1,7 @@
 #!/bin/sh
 # https://github.com/caskroom/homebrew-cask/issues/4678
+# TODO: automatic updating was merged into brew cask in nov 2017 - https://github.com/Homebrew/brew/pull/3396
+
 brew update; 
 
 for app in $(brew cask list); do 
