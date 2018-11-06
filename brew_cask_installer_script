@@ -1,10 +1,7 @@
 #! /bin/bash
 
 # Functions as a Homebrew and Homebrew/Cask setup script, as a running binary or app install script
-# and as a running upgdate/upgrade scrupt for all of those
-
-# I took the decision to always upgrade all my apps as I go along i.e.: when i run this script
-# i.e.: I decided for this user's machine, i'd rather fear constant small problems than infrequent larger ones
+# and as a running update/upgrade script for all of those
 
 echo "Checking for Homebrew and installing if we don't have it"
 if test ! $(which brew); then
@@ -17,10 +14,9 @@ echo "updating homebrew" && brew update
 echo "before we update any packages, we may need some pins, to stop things being updated"
 # YOU HAVE TO `brew unpin x` once you've pinned....
 pins=(
-#	node - i use nvm now, not from brew (sigh)
+#	node - i use nvm now, not from brew, and that's a long story (nvm authors do not recommend brew)
 )
 for pin in "${pins[@]}"; do { echo "don't update $pin" && brew pin "$pin"; } done
-
 
 echo "upgrading already-installed formula - hold on to your seats!" && brew upgrade
 
@@ -36,7 +32,7 @@ echo "calling the doctor to fix issues" && brew doctor
 echo "Tapped taps:"
 taps=(
 		caskroom/cask
-		# caskroom/games - retro emulators - but not investigated yet
+		# there once existed caskroom/games - retro emulators - i was always to busy to investigate it
 )
 
 tap_list=$(brew tap)
@@ -141,7 +137,7 @@ for app in "${apps[@]}"; do { [[ $cask_list != *"$app"* ]] && $install "$app"; }
 
 echo "running the cask upgrade script (cask cannot upgrade progs automatically"
 # TODO: automatic updating of casks was merged into brew nov 17 https://github.com/Homebrew/brew/pull/3396
-# but bear in min there will never be a cask pin (you could mod your cask updater to do that) - https://github.com/Homebrew/homebrew-cask/issues/44914
+# but bear in mind there will never be a cask pin (you could mod your cask updater to do that) - https://github.com/Homebrew/homebrew-cask/issues/44914
 ./cask_upgrade_script
 
 echo "running cask cleanup" && brew cask cleanup
@@ -160,7 +156,6 @@ app_store_apps=(
 
 echo "reinstalling any uninstalled mas (mac app store) apps"
 for app_store_app in "${app_store_apps[@]}"; do { [[ $cask_list != *"$app_store_app"* ]] && mas install "$app_store_app"; } done
-
 
 echo "lastly hijack this script to record what npm modules were installed when it was run"
 

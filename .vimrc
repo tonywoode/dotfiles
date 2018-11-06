@@ -178,8 +178,8 @@ let g:js_context_colors_jsx = 1
 let g:js_context_colors_allow_jsx_syntax = 1
 let g:js_context_colors_usemaps = 0 "don't use <leader>t please, i want that
 nnoremap <leader>c :JSContextColorToggle<CR>
-"what is was anyway:
-nnoremap <leader>h :JSContextColor<CR>
+"what it was anyway:
+" conflicting with txtfmt, but didn't do anything leader c didn't do anyway nnoremap <leader>h :JSContextColor<CR>
 "let g:js_context_colors_block_scope_with_let = 1
 "let g:js_context_colors_es5 = 1
 
