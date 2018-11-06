@@ -140,7 +140,8 @@ echo "running the cask upgrade script (cask cannot upgrade progs automatically"
 # but bear in mind there will never be a cask pin (you could mod your cask updater to do that) - https://github.com/Homebrew/homebrew-cask/issues/44914
 ./cask_upgrade_script
 
-echo "running cask cleanup" && brew cask cleanup
+# aren't we running this twice? problem is it used to read 'brew cask cleanup' but that no longer exists
+echo "running cask cleanup" && brew cleanup
 
 echo "Installed Mac App Store apps"
 echo "note: must be logged into app store, and must have downloaded these via the app store ui before"
