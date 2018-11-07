@@ -46,6 +46,7 @@ bins=(
         ack
         antigen
 		bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
+        caskroom/versions #e.g.: https://stackoverflow.com/a/46468073/3536094
 		cmake #installed to setup YouCompleteMe vim plugin
 		ctags-exuberant
         fswatch #for smoke's nodemon problem
@@ -106,7 +107,7 @@ apps=(
 		google-chrome
 		google-drive
 		iterm2
-		java
+		java8 #note NOT java, for Flex.
 		jd-gui #inspect java class files
         jetbrains-toolbox
 		jumpcut
