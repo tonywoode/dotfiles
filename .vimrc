@@ -184,6 +184,9 @@ nnoremap <leader>c :JSContextColorToggle<CR>
 "let g:js_context_colors_es5 = 1
 
 "NERDTreeOptions
+"see http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
+" although i can't see any visible effect
+let NERDTreeHijackNetrw=1
 "autocmd VimEnter * NERDTree "start when vim starts
 autocmd VimEnter * wincmd p " Jump to the main window
 "start when vim starts even if you didn't say a file
