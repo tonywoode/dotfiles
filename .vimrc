@@ -39,7 +39,7 @@ nnoremap <F2> :set invpaste paste?<CR>
 "First line sets a mapping so that pressing F2 in normal mode will invert.The 'paste' option, and will then show the value of that option.
 set pastetoggle=<F2> "allows you to press F2 when in insert mode, to toggle 'paste' on and off. 
 
-" F3 is used by the maximiser plugin
+" F3 was used by the maximiser plugin
 
 " turn highlighting off for this search (search term stays selected though)
 nnoremap <F4> :noh<CR>
@@ -79,7 +79,7 @@ Plugin 'sheerun/vim-polyglot' "bundles other language syntax plugins for many la
 Plugin 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. View the manual with :help surround
 Plugin 'tpope/vim-repeat' "enables '.' to repeat for vim-sourround and others
 Plugin 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --tern-completer' }
-Plugin 'szw/vim-maximizer' "F3 will toggle fullscreen of the current window, useful as otherwise there's only ctrl+w_, ctrl+w| and ctrl+w=, all imperfect 
+"Plugin 'szw/vim-maximizer' "F3 will toggle fullscreen of the current window, useful as otherwise there's only ctrl+w_, ctrl+w| and ctrl+w=, all imperfect. (now Superceeded for me by zoomwintab below)
 Plugin 'ruanyl/vim-gh-line' "<leader>gh to open the line of this file in github
 "JS SPECIFIC -  see https://davidosomething.com/blog/vim-for-javascript/
 Plugin 'ternjs/tern_for_vim', { 'do': 'npm install' } 
@@ -94,7 +94,7 @@ Plugin 'tpope/vim-obsession' "make Session.vim files, tmux resurrect can try and
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
-
+Plugin 'troydm/zoomwintab.vim' "Zoom in/out of windows by making new tab, use this NOT zoomwin! see https://github.com/neovim/neovim/issues/997, note this changes <c-w>o keymap from 'only', if you care see https://stackoverflow.com/a/15583640/3536094
 call vundle#end() " All of your Plugins must be added before the following line
 
 " to disable individual plugins try "set runtimepath?" to show you path then
