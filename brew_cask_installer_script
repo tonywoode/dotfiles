@@ -102,7 +102,6 @@ apps=(
 		dropbox
 		firefox
         filezilla
-        flux
 		freefilesync
 		google-chrome
 		google-drive
