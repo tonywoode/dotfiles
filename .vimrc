@@ -102,13 +102,38 @@ call vundle#end() " All of your Plugins must be added before the following line
 "set runtimepath-=~/.vim/bundle/tern_for_vim
 
 filetype plugin indent on    " required - To ignore plugin indent changes, instead use: filetype plugin on
+
+
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid, when inside an event handler
+" (happens when dropping a file on gvim) and for a commit message (it's
+" likely a different one than last time).
+autocmd BufReadPost *
+  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  \ |   exe "normal! g`\""
+  \ | endif
+
+" see https://vi.stackexchange.com/questions/16037/vim-swap-file-best-practices
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+" Revert with: ":delcommand DiffOrig".
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
+
 " Vim's own plugins see: help plugin-install
 
 " matchit allows % to jump to matching xml tags etc, not backwards compatible so not enabled by default see: help %
 packadd! matchit
 
-"turn on javascript-libraries-syntax for these modules
-let g:used_javascript_libs = 'chai, ramda, react, RequireJS, jasmine'
+
+" External Plugins
+
+"turn on javascript-libraries-syntax.vim for these modules: https://github.com/othree/javascript-libraries-syntax.vim
+let g:used_javascript_libs = 'jQuery, chai, ramda, react, RequireJS, jasmine'
 
 "for Dash, associate the custom Ramda docset
 let g:dash_map = { 'javascript' : 'ramda' }
