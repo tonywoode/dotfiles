@@ -5,7 +5,6 @@ let g:graphql_javascript_tags = []
 silent! py3 pass
 
 set nocompatible              " be iMproved, required
-filetype off                  " required - though this might mean for vundle in which case it can be deleted now we use vimplug
 set mouse=a
 set number
 set clipboard=unnamed         " Yank always yanks to osx clipboard https://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
@@ -27,7 +26,6 @@ set wildmenu "https://stackoverflow.com/questions/9511253/how-to-effectively-use
 set wildmode=longest:full,full
 
 "colour settings
-syntax enable "why is this here, and if its just for vundle it can go
 set background=dark
 colorscheme solarized
 
@@ -106,9 +104,6 @@ call plug#end() " All of your Plugs must be added before the following line
 " to disable individual plugins try "set runtimepath?" to show you path then
 " paste it as here:
 "set runtimepath-=~/.vim/bundle/tern_for_vim
-
-filetype plugin indent on    " required - To ignore plugin indent changes, instead use: filetype plugin on, though this might be just for vundle in which case it can go
-
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid, when inside an event handler
