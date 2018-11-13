@@ -5,7 +5,7 @@ let g:graphql_javascript_tags = []
 silent! py3 pass
 
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype off                  " required - though this might mean for vundle in which case it can be deleted now we use vimplug
 set mouse=a
 set number
 set clipboard=unnamed         " Yank always yanks to osx clipboard https://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
@@ -27,7 +27,7 @@ set wildmenu "https://stackoverflow.com/questions/9511253/how-to-effectively-use
 set wildmode=longest:full,full
 
 "colour settings
-syntax enable
+syntax enable "why is this here, and if its just for vundle it can go
 set background=dark
 colorscheme solarized
 
@@ -64,44 +64,50 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * redraw! | if mode() != 'c'
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
-" set the runtime path to include Vundle and initialize
-set runtimepath+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim' "required
-Plugin 'rizzatti/dash.vim' "enables :Dash lookups
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'altercation/vim-colors-solarized' "not doing it for me!
-Plugin 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bindings, navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
+" autoload vimPlug if it isn't loaded
+" if this were neoVim the second line would read `curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs`
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/bundle') "plug wanted '~/vim/plugged' but suggested this dir if i didn't want to reinstall vundle plugins
+Plug 'gmarik/Vundle.vim' "required
+Plug 'rizzatti/dash.vim' "enables :Dash lookups
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized' "not doing it for me!
+Plug 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bindings, navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
 "LANGUAGE TOOLS
-Plugin 'scrooloose/syntastic'
-Plugin 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanuages(pangloss/vim-javascript, [vim-jsx] for js
-Plugin 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. View the manual with :help surround
-Plugin 'tpope/vim-repeat' "enables '.' to repeat for vim-sourround and others
-Plugin 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --tern-completer' }
-"Plugin 'szw/vim-maximizer' "F3 will toggle fullscreen of the current window, useful as otherwise there's only ctrl+w_, ctrl+w| and ctrl+w=, all imperfect. (now Superceeded for me by zoomwintab below)
-Plugin 'ruanyl/vim-gh-line' "<leader>gh to open the line of this file in github
+Plug 'scrooloose/syntastic'
+Plug 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanuages(pangloss/vim-javascript, [vim-jsx] for js
+Plug 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. View the manual with :help surround
+Plug 'tpope/vim-repeat' "enables '.' to repeat for vim-sourround and others
+Plug 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --tern-completer' }
+"Plug 'szw/vim-maximizer' "F3 will toggle fullscreen of the current window, useful as otherwise there's only ctrl+w_, ctrl+w| and ctrl+w=, all imperfect. (now Superceeded for me by zoomwintab below)
+Plug 'ruanyl/vim-gh-line' "<leader>gh to open the line of this file in github
 "JS SPECIFIC -  see https://davidosomething.com/blog/vim-for-javascript/
-Plugin 'ternjs/tern_for_vim', { 'do': 'npm install' } 
-Plugin 'elzr/vim-json' "You're advised to look at its options
-Plugin 'othree/yajs.vim', { 'for': 'javascript' } "a fork of jelera/vim-javascript-syntax, neither have custom indent settings, updated very often. The {} makes sure the syntax plugin is loaded in a Vim autocommand based on filetype detection (as opposed to relying on Vim's runtimepath based sourcing mechanism. Then the main Vim syntax plugin will have already run, and this syntax will override it.
-Plugin 'bigfish/vim-js-context-coloring', { 'do': 'npm install' } "syntax highlighting: picks out function scopes.  may not color your code when incomplete (i.e., syntax not yet valid). can be used in combination with any of the above
-Plugin 'othree/javascript-libraries-syntax.vim' "highlighting of functions+keywords for various libs such as jQuery, lodash, React, Handlebars, Chai, etc.
-Plugin '1995eaton/vim-better-javascript-completion' "somewhat up-to-date JavaScript (HTML5 methods e.g. localStorage and canvas methods). creates new omni-completion function: js#CompleteJS and replaces your current JS omnifunc with it, so you have to use a completion plugin or write some VimL, to use it in conjunction with another omnifunc like TernJS
-Plugin 'othree/jspc.vim' "JavaScript Parameter Complete detects when you're inside a function argument and provides autocomplete suggestions (TernJS only adds existing symbols) So if you're writing an event listener, it'll suggest click and mouseover. You can see all the suggestions it provides in its GitHub source. On load, the jspc.vim plugin automatically detects whatever omnifunc you already have set as your default. It wraps it with the parameter completion, and falls back to your default if you are not in a parameter completion. Because of this you should specify jspc#omni instead of whatever your default completion is (typically javascriptcomplete#CompleteJS)
-Plugin 'moll/vim-node' "adds keybindings like for jumping to files in your CommonJS require statements
-Plugin 'tpope/vim-obsession' "make Session.vim files, tmux resurrect can try and restore them
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
-Plugin 'troydm/zoomwintab.vim' "Zoom in/out of windows by making new tab, use this NOT zoomwin! see https://github.com/neovim/neovim/issues/997, note this changes <c-w>o keymap from 'only', if you care see https://stackoverflow.com/a/15583640/3536094
-call vundle#end() " All of your Plugins must be added before the following line
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } 
+Plug 'elzr/vim-json' "You're advised to look at its options
+Plug 'othree/yajs.vim', { 'for': 'javascript' } "a fork of jelera/vim-javascript-syntax, neither have custom indent settings, updated very often. The {} makes sure the syntax plugin is loaded in a Vim autocommand based on filetype detection (as opposed to relying on Vim's runtimepath based sourcing mechanism. Then the main Vim syntax plugin will have already run, and this syntax will override it.
+Plug 'bigfish/vim-js-context-coloring', { 'do': 'npm install' } "syntax highlighting: picks out function scopes.  may not color your code when incomplete (i.e., syntax not yet valid). can be used in combination with any of the above
+Plug 'othree/javascript-libraries-syntax.vim' "highlighting of functions+keywords for various libs such as jQuery, lodash, React, Handlebars, Chai, etc.
+Plug '1995eaton/vim-better-javascript-completion' "somewhat up-to-date JavaScript (HTML5 methods e.g. localStorage and canvas methods). creates new omni-completion function: js#CompleteJS and replaces your current JS omnifunc with it, so you have to use a completion plugin or write some VimL, to use it in conjunction with another omnifunc like TernJS
+Plug 'othree/jspc.vim' "JavaScript Parameter Complete detects when you're inside a function argument and provides autocomplete suggestions (TernJS only adds existing symbols) So if you're writing an event listener, it'll suggest click and mouseover. You can see all the suggestions it provides in its GitHub source. On load, the jspc.vim plugin automatically detects whatever omnifunc you already have set as your default. It wraps it with the parameter completion, and falls back to your default if you are not in a parameter completion. Because of this you should specify jspc#omni instead of whatever your default completion is (typically javascriptcomplete#CompleteJS)
+Plug 'moll/vim-node' "adds keybindings like for jumping to files in your CommonJS require statements
+Plug 'tpope/vim-obsession' "make Session.vim files, tmux resurrect can try and restore them
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
+Plug 'troydm/zoomwintab.vim' "Zoom in/out of windows by making new tab, use this NOT zoomwin! see https://github.com/neovim/neovim/issues/997, note this changes <c-w>o keymap from 'only', if you care see https://stackoverflow.com/a/15583640/3536094
+call plug#end() " All of your Plugs must be added before the following line
 
 " to disable individual plugins try "set runtimepath?" to show you path then
 " paste it as here:
 "set runtimepath-=~/.vim/bundle/tern_for_vim
 
-filetype plugin indent on    " required - To ignore plugin indent changes, instead use: filetype plugin on
+filetype plugin indent on    " required - To ignore plugin indent changes, instead use: filetype plugin on, though this might be just for vundle in which case it can go
 
 
 " When editing a file, always jump to the last known cursor position.
