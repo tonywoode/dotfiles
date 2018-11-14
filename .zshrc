@@ -42,6 +42,8 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Appli
 
 source $ZSH/oh-my-zsh.sh
 
+# update oh-my-zsh without prompting (why did the update prompts stop?)
+DISABLE_UPDATE_PROMPT=true
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
