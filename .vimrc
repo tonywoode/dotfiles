@@ -71,6 +71,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/bundle') "plug wanted '~/vim/plugged' but suggested this dir if i didn't want to reinstall vundle plugins
+Plug 'w0rp/ale' "async linting engine
 Plug 'junegunn/vim-plug' "If you need Vim help for vim-plug itself (e.g. :help plug-options), register vim-plug as a plugin.
 Plug 'rizzatti/dash.vim' "enables :Dash lookups
 Plug 'bling/vim-airline'
@@ -78,7 +79,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized' "not doing it for me!
 Plug 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bindings, navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
 "LANGUAGE TOOLS
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanuages(pangloss/vim-javascript, [vim-jsx] for js
 Plug 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. View the manual with :help surround
 Plug 'tpope/vim-repeat' "enables '.' to repeat for vim-sourround and others
@@ -181,18 +182,22 @@ let g:javascript_enable_domhtmlcss = 1 "Enables HTML/CSS syntax highlighting in 
 "vim obesssion
 set statusline+=%{ObsessionStatus()}
 
+" ALE options
+let b:ale_fixers = {'javascript': ['prettier_standard', 'eslint']}
+let g:ale_set_balloons = 1 "For Vim 8.1+ terminals, mouse hovering is disabled by default. Enabling |balloonexpr| commands in terminals can cause scrolling issues in terminals
+
 " syntastic options
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1 "now causes a blank startup
-let g:syntastic_auto_loc_list = 2  "0=no auto 1=auto 2=close auto only 3=open auto only
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_quiet_messages = { "level": "warnings" }
-let g:syntastic_javascript_checkers = [ 'eslint' ] ", 'jslint', 'jshint' ] 
-let g:syntastic_json_checkers = [ 'jsonlint' ]
-let g:syntastic_loc_list_height= 3
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1 "now causes a blank startup
+"let g:syntastic_auto_loc_list = 2  "0=no auto 1=auto 2=close auto only 3=open auto only
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_quiet_messages = { "level": "warnings" }
+"let g:syntastic_javascript_checkers = [ 'eslint' ] ", 'jslint', 'jshint' ] 
+"let g:syntastic_json_checkers = [ 'jsonlint' ]
+"let g:syntastic_loc_list_height= 3
 " end of syntastic options
 
 "JSContextColor options
