@@ -83,7 +83,7 @@ Plug 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bind
 Plug 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanuages(pangloss/vim-javascript, [vim-jsx] for js
 Plug 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. View the manual with :help surround
 Plug 'tpope/vim-repeat' "enables '.' to repeat for vim-sourround and others
-Plug 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --tern-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --js-completer' }
 "Plug 'szw/vim-maximizer' "F3 will toggle fullscreen of the current window, useful as otherwise there's only ctrl+w_, ctrl+w| and ctrl+w=, all imperfect. (now Superceeded for me by zoomwintab below)
 Plug 'ruanyl/vim-gh-line' "<leader>gh to open the line of this file in github
 "JS SPECIFIC -  see https://davidosomething.com/blog/vim-for-javascript/
@@ -155,7 +155,7 @@ let g:airline_solarized_bg='dark'
 
 " YouCompleteMe options
 "let g:loaded_youcompleteme = 1 "this will diable ycm
-"let g:ycm_auto_trigger = 0 "if off, invoke with ctrl + space
+let g:ycm_auto_trigger = 1 "if off, invoke with ctrl + space
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 " YcmCompleter GoTo is very handy....map it to leader+gt
@@ -172,7 +172,8 @@ nnoremap <leader>u :grep! "\<<cword>\>" . -r<CR>:copen<CR>
 autocmd CompleteDone * pclose "see https://github.com/ternjs/tern_for_vim/issues/21 - will close the preview window on edit (otherwise :pc does the job)
 let g:tern_map_keys=1 "for Keys see .vim/bundle/tern_for_vim/doc/tern.txt
 let g:tern_map_prefix = '<leader>' "make sure leader is not localleader
-let g:tern_show_argument_hints = 'on_move'  "on_move=update the argument hints at status line on functions whenever the cursor moves, on_hold=whenever the cursor is held still for 'updatetime' setting. on_move can reduce responsiveness, on_hold probably requires you to set 'updatetime' to something smaller than default 4 secs.  If you don't see hints while in insert mode you might have to set noshowmode (but see below - its used already and not wise to change)
+let g:tern_show_argument_hints = 'on_hold'  "on_move=update the argument hints at status line on functions whenever the cursor moves, on_hold=whenever the cursor is held still for 'updatetime' setting. on_move can reduce responsiveness, on_hold probably requires you to set 'updatetime' to something smaller than default 4 secs.  If you don't see hints while in insert mode you might have to set noshowmode (but see below - its used already and not wise to change) it was this that was causing the severe slowdown
+set updatetime=2000 "see above
 let g:tern_show_signature_in_pum = '1' "1=display function signatures in the completion menu. Function signatures include parameter names, their type, and whether the parameter is optional.
 
 " pangloss/vim-javascript options - see https://github.com/pangloss/vim-javascript
