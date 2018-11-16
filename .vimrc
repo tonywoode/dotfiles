@@ -83,6 +83,8 @@ Plug 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bind
 Plug 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanuages(pangloss/vim-javascript, [vim-jsx] for js
 Plug 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. View the manual with :help surround
 Plug 'tpope/vim-repeat' "enables '.' to repeat for vim-sourround and others
+Plug 'tpope/vim-fugitive' "A GIT PLUGIN - very powerful, but only installed because gv.vim needed it
+Plug 'junegunn/gv.vim' "https://github.com/junegunn/gv.vim
 Plug 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --js-completer' }
 "Plug 'szw/vim-maximizer' "F3 will toggle fullscreen of the current window, useful as otherwise there's only ctrl+w_, ctrl+w| and ctrl+w=, all imperfect. (now Superceeded for me by zoomwintab below)
 Plug 'ruanyl/vim-gh-line' "<leader>gh to open the line of this file in github
