@@ -37,7 +37,25 @@ ZSH_THEME="bullet-train"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew brew-cask colored-man-pages common-aliases dircycle dirhistory docker docker-compose git httpie history history-substring-search npm nvm vi-mode )
+# see the wiki for plugin info
+# https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins
+plugins=(
+  brew 
+  brew-cask 
+  colored-man-pages 
+  common-aliases 
+  dircycle 
+  dirhistory 
+  docker 
+  docker-compose 
+  git 
+  httpie 
+  history 
+  history-substring-search 
+  npm 
+  nvm 
+  vi-mode 
+)
 
 # User configuration
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/MAMP/Library/bin"
@@ -64,6 +82,7 @@ DISABLE_UPDATE_PROMPT=true
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -74,12 +93,11 @@ bindkey -v
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/twoode/.zshrc'
-
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-#
-#
+ 
+ 
 #Add the following to your zshrc to access the online help:
 unalias run-help &>/dev/null #https://bugs.launchpad.net/ubuntu/+source/zsh/+bug/305346
 autoload run-help
@@ -133,40 +151,31 @@ export NVM_DIR="/Users/twoode/.nvm"
 #
 # Uncomment the following line to use case-sensitive completion.
 # # CASE_SENSITIVE="true"
-#
 # # Uncomment the following line to use hyphen-insensitive completion. Case
 # # sensitive completion must be off. _ and - will be interchangeable.
 # # HYPHEN_INSENSITIVE="true"
-#
 # # Uncomment the following line to disable bi-weekly auto-update checks.
 # # DISABLE_AUTO_UPDATE="true"
-#
 # # Uncomment the following line to change how often to auto-update (in days).
 # # export UPDATE_ZSH_DAYS=13
-#
 # # Uncomment the following line to disable colors in ls.
 # # DISABLE_LS_COLORS="true"
-#
 # # Uncomment the following line to disable auto-setting terminal title.
 # # DISABLE_AUTO_TITLE="true"
-#
 # # Uncomment the following line to enable command auto-correction.
 # # ENABLE_CORRECTION="true"
-#
 # # Uncomment the following line to display red dots whilst waiting for completion.
 # # COMPLETION_WAITING_DOTS="true"
-#
 # # Uncomment the following line if you want to disable marking untracked files
 # # under VCS as dirty. This makes repository status check for large repositories
 # # much, much faster.
 # # DISABLE_UNTRACKED_FILES_DIRTY="true"
-#
 # # Uncomment the following line if you want to change the command execution time
 # # stamp shown in the history command output.
 # # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # # HIST_STAMPS="mm/dd/yyyy"
-#
 # # Would you like to use another custom folder than $ZSH/custom?
 # # ZSH_CUSTOM=/path/to/new-custom-folder
 #
-#
+# zsh syntax highlighting plugin (emulates fish shell) must be the last line, must be the last plugin sourced too, who knows why...
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

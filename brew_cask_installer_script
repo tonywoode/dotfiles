@@ -71,6 +71,8 @@ bins=(
         #vim --with-client-server # see https://stackoverflow.com/a/25979565/3536094 would also require adding xquartz to cask (yes cask!)
         wget
 		zsh
+        zsh-completions
+        zsh-syntax-highlighting
 )
 
 brew_list=$(brew list)
