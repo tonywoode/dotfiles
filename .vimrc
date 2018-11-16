@@ -76,7 +76,8 @@ Plug 'junegunn/vim-plug' "If you need Vim help for vim-plug itself (e.g. :help p
 Plug 'rizzatti/dash.vim' "enables :Dash lookups
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized' "not doing it for me!
+"Plug 'altercation/vim-colors-solarized' "not doing it for me!
+Plug 'micha/vim-colors-solarized' "might work better
 Plug 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bindings, navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
 "LANGUAGE TOOLS
 "Plug 'scrooloose/syntastic'
