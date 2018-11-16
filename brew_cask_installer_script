@@ -96,14 +96,15 @@ apps=(
 		balsamiq-mockups
         betterzip #for the betterzip quick look plugin that shows zip contents in finder
 		blueharvest
+        boostnote
 		caffeine
 		cord
 		dash
 		diffmerge
 		disk-inventory-x
 		dropbox
-		firefox
         filezilla
+		firefox
         flux
 		freefilesync
 		google-chrome
@@ -115,6 +116,7 @@ apps=(
 		jumpcut
 		mamp
 		moom
+        paintbrush
 		parallels-desktop
 		pgadmin4
         paintbrush
@@ -123,15 +125,15 @@ apps=(
 		regexhibit # regex tester using perl
 		reggy # osx regex tester built in objective c
         rocket-chat #doesn't work needs to be updated from v1.3 to 2.7
-        spotify
 		skype
 		slack
-		snapz-pro-x
 		sourcetree
+        spotify
 		sublime-text
 		teamviewer
         the-unarchiver
 		tiddlywiki
+        vagrant
 		virtualbox
 		virtualbox-extension-pack
 )
@@ -154,7 +156,7 @@ app_store_apps=(
   597419160  #Sleep Pillow (1.0)
   881415018  #myTuner Radio (2.0.1)
   568494494  #Pocket (1.7.9)
-  #497799835  #Xcode (9.2)
+  497799835  #Xcode (9.2)
   409203825  #Numbers (5.1)
 )
 
