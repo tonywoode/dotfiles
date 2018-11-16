@@ -15,6 +15,9 @@ case $- in
     ;;
 esac
 
+# use additional completions from brews zsh-completions
+fpath=(/usr/local/share/zsh-completions $fpath)
+ 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/twoode/.oh-my-zsh
 
@@ -68,6 +71,7 @@ SAVEHIST=1000
 setopt appendhistory autocd beep extendedglob nomatch notify
 bindkey -v
 # End of lines configured by zsh-newuser-install
+
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/twoode/.zshrc'
 
