@@ -80,15 +80,14 @@ compinit
 unalias run-help &>/dev/null #https://bugs.launchpad.net/ubuntu/+source/zsh/+bug/305346
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
+# I hate how 'help' is now 'run-help' in zsh, i use it all the time
+alias help=run-help
 
 # we want homebrew cask to install things to /Applications like everything else does now, not ~/Applications
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # extend git with hub https://hub.github.com/
 alias git=hub
-
-# I hate how 'help' is now 'run-help' in zsh, i use it all the time
-alias help=run-help
 
 # some shortcuts. I like to type cd sometimes.
 code=~/CODE
@@ -109,6 +108,8 @@ atlasui=$atlas/atlas-ui
 alias atlasui="cd $atlasui"
 atlasdata=$smoke/atlas-data
 alias atlasdata="cd $atlasdata"
+flex=$smoke/flex-services
+alias flex="cd $flex"
 desktop=~/Desktop
 alias desktop="cd $desktop"
 quickplay=~/CODE/REPO/Quickplay
