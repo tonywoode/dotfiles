@@ -187,7 +187,8 @@ let g:javascript_enable_domhtmlcss = 1 "Enables HTML/CSS syntax highlighting in 
 set statusline+=%{ObsessionStatus()}
 
 " ALE options
-let b:ale_fixers = {'javascript': ['prettier_standard', 'eslint']}
+let b:ale_linters = { 'javascript' : ['flow', 'flow-language-server', 'jscs', 'standard', 'tsserver', 'xo']}
+let b:ale_fixers = {'javascript': ['prettier_standard']}
 let g:ale_set_balloons = 1 "For Vim 8.1+ terminals, mouse hovering is disabled by default. Enabling |balloonexpr| commands in terminals can cause scrolling issues in terminals
 
 " syntastic options

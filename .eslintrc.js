@@ -194,7 +194,7 @@ module.exports = {
     "operator-linebreak":[ "error", "before", { "overrides": { "?": "ignore", ":": "ignore" } }],
     "padded-blocks": ["off", "never"],
     "quote-props": ["error", "as-needed"],
-    "quotes": ["warn", "double"],
+    "quotes": "off",
     "require-jsdoc": "warn",
     "semi": ["error", "never"],
     "semi-spacing": "error",
