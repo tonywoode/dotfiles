@@ -36,7 +36,6 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:require-path-exists/recommended"
   ],
-  "installedESLint": true,
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 6,
