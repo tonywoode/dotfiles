@@ -187,6 +187,8 @@ let g:javascript_enable_domhtmlcss = 1 "Enables HTML/CSS syntax highlighting in 
 set statusline+=%{ObsessionStatus()}
 
 " ALE options
+" its either this or fight for an eslint.rc
+let g:ale_javascript_standard_options = '--env browser --env node --env commonjs --env shared-node-browser --env es6 --env worker --env amd --env mocha --env jasmine --env jest --env phantomjs --env protractor --env qunit --env jquery --env prototypejs --env shelljs --env meteor --env mongo --env applescript --env nashorn --env serviceworker --env atomtest --env embertest --env webextensions --env greasemonkey'
 let b:ale_linters = { 'javascript' : ['flow', 'flow-language-server', 'jscs', 'standard', 'tsserver', 'xo']}
 let b:ale_fixers = {'javascript': ['prettier_standard']}
 let g:ale_set_balloons = 1 "For Vim 8.1+ terminals, mouse hovering is disabled by default. Enabling |balloonexpr| commands in terminals can cause scrolling issues in terminals
