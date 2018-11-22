@@ -20,6 +20,7 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set hlsearch "http://vim.wikia.com/wiki/Highlight_all_search_pattern_matches - now you have a regular expression tester!
+let @/ = "" "but don't highlight search every time i source this rc file! https://stackoverflow.com/a/42547647/3536094
 set hidden "don't unload buffers that just aren't visible atm
 
 set wildmenu "https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
