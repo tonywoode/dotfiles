@@ -26,10 +26,6 @@ set hidden "don't unload buffers that just aren't visible atm
 set wildmenu "https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
 set wildmode=longest:full,full
 
-"colour settings
-set background=dark
-colorscheme solarized
-
 " this is needed for mouse to control panes in tmux - see https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
 set ttymouse=xterm2
 
@@ -79,8 +75,7 @@ Plug 'junegunn/vim-plug' "If you need Vim help for vim-plug itself (e.g. :help p
 Plug 'rizzatti/dash.vim' "enables :Dash lookups
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'altercation/vim-colors-solarized' "not doing it for me!
-Plug 'micha/vim-colors-solarized' "might work better
+Plug 'micha/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bindings, navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
 "LANGUAGE TOOLS
 "Plug 'scrooloose/syntastic'
@@ -107,6 +102,12 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
 Plug 'troydm/zoomwintab.vim' "Zoom in/out of windows by making new tab, use this NOT zoomwin! see https://github.com/neovim/neovim/issues/997, note this changes <c-w>o keymap from 'only', if you care see https://stackoverflow.com/a/15583640/3536094
 call plug#end() " All of your Plugs must be added before the following line
+
+"colour settings - from https://github.com/junegunn/vim-plug/wiki/faq: A common 
+" mistake is to put :colorscheme NAME before call plug#end(). Plugins are not 
+" activated before plug#end(), so make sure to load your color scheme after it.
+set background=dark
+colorscheme solarized
 
 " to disable individual plugins try "set runtimepath?" to show you path then
 " paste it as here:
