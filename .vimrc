@@ -195,6 +195,7 @@ let g:ale_javascript_standard_options = '--env browser --env node --env commonjs
 let g:ale_linters = { 'javascript' : ['flow', 'flow-language-server', 'jscs', 'standard', 'tsserver', 'xo']}
 let g:ale_fixers = {'javascript': ['prettier_standard']}
 let g:ale_set_balloons = 1 "For Vim 8.1+ terminals, mouse hovering is disabled by default. Enabling |balloonexpr| commands in terminals can cause scrolling issues in terminals
+let g:airline#extensions#ale#enabled = 1
 
 " syntastic options
 "set statusline+=%#warningmsg#
