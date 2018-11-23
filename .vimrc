@@ -68,7 +68,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/bundle') "plug wanted '~/vim/plugged' but suggested this dir if i didn't want to reinstall vundle plugins
-Plug 'vim-scripts/Highlight-UnMatched-Brackets'
+"Plug 'vim-scripts/Highlight-UnMatched-Brackets'
 Plug 'Raimondi/delimitMate'
 Plug 'w0rp/ale' "async linting engine
 Plug 'junegunn/vim-plug' "If you need Vim help for vim-plug itself (e.g. :help plug-options), register vim-plug as a plugin.
@@ -245,4 +245,3 @@ let NERDTreeMapJumpPrevSibling='˚'
 
 "delimitMate options
 let delimitMate_expand_cr = 1
-
