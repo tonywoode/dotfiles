@@ -69,9 +69,9 @@ endif
 
 call plug#begin('~/.vim/bundle') "plug wanted '~/vim/plugged' but suggested this dir if i didn't want to reinstall vundle plugins
 "Plug 'vim-scripts/Highlight-UnMatched-Brackets'
+Plug 'junegunn/vim-plug' "If you need Vim help for vim-plug itself (e.g. :help plug-options), register vim-plug as a plugin.
 Plug 'Raimondi/delimitMate'
 Plug 'w0rp/ale' "async linting engine
-Plug 'junegunn/vim-plug' "If you need Vim help for vim-plug itself (e.g. :help plug-options), register vim-plug as a plugin.
 Plug 'rizzatti/dash.vim' "enables :Dash lookups
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -80,14 +80,13 @@ Plug 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bind
 "LANGUAGE TOOLS
 Plug 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanuages(pangloss/vim-javascript, [vim-jsx] for js
 Plug 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. View the manual with :help surround
-Plug 'tpope/vim-repeat' "enables '.' to repeat for vim-sourround and others
+Plug 'tpope/vim-repeat' "enables '.' to repeat for vim-surround and others
 Plug 'tpope/vim-fugitive' "A GIT PLUGIN - very powerful, but only installed because gv.vim needed it
 Plug 'junegunn/gv.vim' "https://github.com/junegunn/gv.vim
 Plug 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --ts-completer' }
-"Plug 'szw/vim-maximizer' "F3 will toggle fullscreen of the current window, useful as otherwise there's only ctrl+w_, ctrl+w| and ctrl+w=, all imperfect. (now Superceeded for me by zoomwintab below)
 Plug 'ruanyl/vim-gh-line' "<leader>gh to open the line of this file in github
 "JS SPECIFIC -  see https://davidosomething.com/blog/vim-for-javascript/
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } 
+"Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } 
 Plug 'elzr/vim-json' "You're advised to look at its options
 Plug 'othree/yajs.vim', { 'for': 'javascript' } "a fork of jelera/vim-javascript-syntax, neither have custom indent settings, updated very often. The {} makes sure the syntax plugin is loaded in a Vim autocommand based on filetype detection (as opposed to relying on Vim's runtimepath based sourcing mechanism. Then the main Vim syntax plugin will have already run, and this syntax will override it.
 Plug 'bigfish/vim-js-context-coloring', { 'do': 'npm install' } "syntax highlighting: picks out function scopes.  may not color your code when incomplete (i.e., syntax not yet valid). can be used in combination with any of the above
