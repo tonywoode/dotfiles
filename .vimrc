@@ -1,27 +1,24 @@
-" short term fix for vim-polyglot's graphql_js_tags plugin
-let g:graphql_javascript_tags = []
-
-" short term fix for deprecation warnings in ycm
-silent! py3 pass
-
-set nocompatible              " be iMproved, required
+set nocompatible " be iMproved, required
 set mouse=a
 set number
-set clipboard=unnamed         " Yank always yanks to osx clipboard https://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
-set shortmess+=l
+set clipboard=unnamed " Yank always yanks to osx clipboard https://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
+"set shortmess+=l "you can stop having to press enter on messages, but the text will be obfuscated
 set ruler
 set showcmd
-set showmode
-set incsearch                 "highlight searchedfor/regexed text
+set showmode "enables displaying whether to show insert mode in status line. needed if for instance you want to know if paste is on or off
+"set hidden "don't unload buffers that just aren't visible atm
+
 "tabs
 set backspace=2 "to stop terminal vim + plugins disabling backspace. See http://vim.wikia.com/wiki/Backspace_and_delete_problems
 set tabstop=4
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+
+"highlighting
+set incsearch "highlight searchedfor/regexed text
 set hlsearch "http://vim.wikia.com/wiki/Highlight_all_search_pattern_matches - now you have a regular expression tester!
 let @/ = "" "but don't highlight search every time i source this rc file! https://stackoverflow.com/a/42547647/3536094
-set hidden "don't unload buffers that just aren't visible atm
 
 set wildmenu "https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
 set wildmode=longest:full,full
@@ -29,12 +26,13 @@ set wildmode=longest:full,full
 " this is needed for mouse to control panes in tmux - see https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
 set ttymouse=xterm2
 
+"F-key mappings
 " fix paste indenting - see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste  . 
 nnoremap <F2> :set invpaste paste?<CR>  
 "First line sets a mapping so that pressing F2 in normal mode will invert.The 'paste' option, and will then show the value of that option.
 set pastetoggle=<F2> "allows you to press F2 when in insert mode, to toggle 'paste' on and off. 
 
-" F3 was used by the maximiser plugin
+" F3 was used by the maximiser plugin, which i stopped using
 
 " turn highlighting off for this search (search term stays selected though)
 nnoremap <F4> :noh<CR>
@@ -42,7 +40,6 @@ nnoremap <F4> :noh<CR>
 " get a buffer menu with f5, http://vim.wikia.com/wiki/Easier_buffer_switching
 nnoremap <F5> :buffers<CR>:buffer<Space>
 
-set showmode "enables displaying whether to show insert mode in status line. needed if for instance you want to know if paste is on or off
 
 " to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font
 if has('gui_running')
@@ -68,25 +65,22 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/bundle') "plug wanted '~/vim/plugged' but suggested this dir if i didn't want to reinstall vundle plugins
-"Plug 'vim-scripts/Highlight-UnMatched-Brackets'
 Plug 'junegunn/vim-plug' "If you need Vim help for vim-plug itself (e.g. :help plug-options), register vim-plug as a plugin.
-Plug 'Raimondi/delimitMate'
-Plug 'w0rp/ale' "async linting engine
-Plug 'rizzatti/dash.vim' "enables :Dash lookups
+"Plug 'vim-scripts/Highlight-UnMatched-Brackets', conflicts with delimitMate
+" appearance
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'micha/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bindings, navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
-"LANGUAGE TOOLS
+" language tools
+Plug 'w0rp/ale' "async linting engine
 Plug 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanuages(pangloss/vim-javascript, [vim-jsx] for js
-Plug 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. View the manual with :help surround
+Plug 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. :h surround
 Plug 'tpope/vim-repeat' "enables '.' to repeat for vim-surround and others
-Plug 'tpope/vim-fugitive' "A GIT PLUGIN - very powerful, but only installed because gv.vim needed it
-Plug 'junegunn/gv.vim' "https://github.com/junegunn/gv.vim
 Plug 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --ts-completer' }
 Plug 'ruanyl/vim-gh-line' "<leader>gh to open the line of this file in github
-"JS SPECIFIC -  see https://davidosomething.com/blog/vim-for-javascript/
-"Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } 
+Plug 'Raimondi/delimitMate' "auto-fill closing quotes, parens
+" js specific -  see https://davidosomething.com/blog/vim-for-javascript/
 Plug 'elzr/vim-json' "You're advised to look at its options
 Plug 'othree/yajs.vim', { 'for': 'javascript' } "a fork of jelera/vim-javascript-syntax, neither have custom indent settings, updated very often. The {} makes sure the syntax plugin is loaded in a Vim autocommand based on filetype detection (as opposed to relying on Vim's runtimepath based sourcing mechanism. Then the main Vim syntax plugin will have already run, and this syntax will override it.
 Plug 'bigfish/vim-js-context-coloring', { 'do': 'npm install' } "syntax highlighting: picks out function scopes.  may not color your code when incomplete (i.e., syntax not yet valid). can be used in combination with any of the above
@@ -94,12 +88,22 @@ Plug 'othree/javascript-libraries-syntax.vim' "highlighting of functions+keyword
 Plug '1995eaton/vim-better-javascript-completion' "somewhat up-to-date JavaScript (HTML5 methods e.g. localStorage and canvas methods). creates new omni-completion function: js#CompleteJS and replaces your current JS omnifunc with it, so you have to use a completion plugin or write some VimL, to use it in conjunction with another omnifunc like TernJS
 Plug 'othree/jspc.vim' "JavaScript Parameter Complete detects when you're inside a function argument and provides autocomplete suggestions (TernJS only adds existing symbols) So if you're writing an event listener, it'll suggest click and mouseover. You can see all the suggestions it provides in its GitHub source. On load, the jspc.vim plugin automatically detects whatever omnifunc you already have set as your default. It wraps it with the parameter completion, and falls back to your default if you are not in a parameter completion. Because of this you should specify jspc#omni instead of whatever your default completion is (typically javascriptcomplete#CompleteJS)
 Plug 'moll/vim-node' "adds keybindings like for jumping to files in your CommonJS require statements
+Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
+" file/window maintainance
+Plug 'rizzatti/dash.vim' "enables :Dash lookups
+Plug 'tpope/vim-fugitive' "A GIT PLUGIN - very powerful, but only installed because gv.vim needed it
+Plug 'junegunn/gv.vim' "https://github.com/junegunn/gv.vim, visual git repo browser
 Plug 'tpope/vim-obsession' "make Session.vim files, tmux resurrect can try and restore them
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
-Plug 'troydm/zoomwintab.vim' "Zoom in/out of windows by making new tab, use this NOT zoomwin! see https://github.com/neovim/neovim/issues/997, note this changes <c-w>o keymap from 'only', if you care see https://stackoverflow.com/a/15583640/3536094
+Plug 'troydm/zoomwintab.vim' "Zoom in/out of windows by making new tab https://github.com/neovim/neovim/issues/997, note this changes <c-w>o keymap from 'only', if you care see https://stackoverflow.com/a/15583640/3536094, think they said this has to be the last line plugin specified
 call plug#end() " All of your Plugs must be added before the following line
+" to disable individual plugins, with Plug you can
+" Plug 'foo/bar', { 'on': [] }
+" (though it will still be installed)
+" else :set runtimepath? to show you path then
+" paste it as below. https://stackoverflow.com/a/6706997/3536094 - (note minus)
+"set runtimepath-=~/.vim/bundle/tern_for_vim
 
 "colour settings - from https://github.com/junegunn/vim-plug/wiki/faq: A common 
 " mistake is to put :colorscheme NAME before call plug#end(). Plugins are not 
@@ -107,10 +111,13 @@ call plug#end() " All of your Plugs must be added before the following line
 set background=dark
 colorscheme solarized
 
-" to disable individual plugins try "set runtimepath?" to show you path then
-" paste it as here:
-"set runtimepath-=~/.vim/bundle/tern_for_vim
+"js omnifunc setting - I actually can't see a point in setting :set omnifunc shows that either ycm or tern seem to take it over, and even when they dont (jspc is a decorator), they are still controlling
+"set omnifunc=syntaxcomplete#Complete "this was the default
+"filetype plugin on "don't think necessary if youve already said filetype plugin indent * 
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS "standard
+autocmd FileType javascript setlocal omnifunc=jspc#omni "see above othree/jspc.vim, its a decorator for javascriptcomplete
 
+" bram's own
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid, when inside an event handler
 " (happens when dropping a file on gvim) and for a commit message (it's
@@ -136,20 +143,13 @@ endif
 " matchit allows % to jump to matching xml tags etc, not backwards compatible so not enabled by default see: help %
 packadd! matchit
 
-
-" External Plugins
+" External Plugin config
 
 "turn on javascript-libraries-syntax.vim for these modules: https://github.com/othree/javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'jQuery, chai, ramda, react, RequireJS, jasmine'
 
 "for Dash, associate the custom Ramda docset
 let g:dash_map = { 'javascript' : 'ramda' }
-
-"js omnifunc setting - I actually can't see a point in setting :set omnifunc shows that either ycm or tern seem to take it over, and even when they dont (jspc is a decorator), they are still controlling
-"set omnifunc=syntaxcomplete#Complete "this was the default
-"filetype plugin on "don't think necessary if youve already said filetype plugin indent * 
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS "standard
-autocmd FileType javascript setlocal omnifunc=jspc#omni "see above othree/jspc.vim, its a decorator for javascriptcomplete
 
 " airline options https://github.com/vim-airline/vim-airline
 " by default with 'laststatus' the statusline won't appear until a split is created. Make it appear always
@@ -172,14 +172,6 @@ nnoremap <leader>f :YcmCompleter RefactorRename
 " only GoToReferences isn't working with external files, even with ctags of
 " any flavour, so lets use the simplest alternative https://vi.stackexchange.com/a/4976
 nnoremap <leader>u :grep! "\<<cword>\>" . -r<CR>:copen<CR>
-
-" Tern options - see http://usevim.com/2013/05/24/tern/
-autocmd CompleteDone * pclose "see https://github.com/ternjs/tern_for_vim/issues/21 - will close the preview window on edit (otherwise :pc does the job)
-let g:tern_map_keys=1 "for Keys see .vim/bundle/tern_for_vim/doc/tern.txt
-let g:tern_map_prefix = '<leader>' "make sure leader is not localleader
-let g:tern_show_argument_hints = 'on_hold'  "on_move=update the argument hints at status line on functions whenever the cursor moves, on_hold=whenever the cursor is held still for 'updatetime' setting. on_move can reduce responsiveness, on_hold probably requires you to set 'updatetime' to something smaller than default 4 secs.  If you don't see hints while in insert mode you might have to set noshowmode (but see below - its used already and not wise to change) it was this that was causing the severe slowdown
-set updatetime=2000 "see above
-let g:tern_show_signature_in_pum = '1' "1=display function signatures in the completion menu. Function signatures include parameter names, their type, and whether the parameter is optional.
 
 " pangloss/vim-javascript options - see https://github.com/pangloss/vim-javascript
 let g:javascript_enable_domhtmlcss = 1 "Enables HTML/CSS syntax highlighting in your JavaScript file.
