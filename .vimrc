@@ -176,6 +176,7 @@ nnoremap <leader>c :JSContextColorToggle<CR>
 let NERDTreeHijackNetrw=1
 "autocmd VimEnter * NERDTree "start when vim starts
 autocmd VimEnter * wincmd p " Jump to the main window
+" many of these tips from https://medium.com/@victormours/a-better-nerdtree-setup-3d3921abc0b9
 "start when vim starts even if you didn't say a file
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -183,10 +184,12 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1 "show hidden files by default
 nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>v :NERDTreeFind<CR> "open NerdTree at the CURRENT file
+let NERDTreeQuitOnOpen = 1 "now you can use 'preview' to keep nerdtree open, otherwise it'll close on opening a file
+let NERDTreeAutoDeleteBuffer = 1 "Automatically delete the buffer of the file you just deleted with NerdTree
 "we want ctrl+j/k to navigate tmux on every window, so remap these to option+j/k
 let NERDTreeMapJumpNextSibling='∆'
 let NERDTreeMapJumpPrevSibling='˚'
-
 "delimitMate options
 let delimitMate_expand_cr = 1
 
