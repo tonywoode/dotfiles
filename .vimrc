@@ -122,6 +122,7 @@ let g:airline_solarized_bg='dark'
 "let g:ycm_auto_trigger = 1 "if off, invoke with ctrl + space
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_filepath_blacklist = {} "https://github.com/Valloric/YouCompleteMe/issues/3102 - ft comes out as javascript.jsx now for all js files, but there's a bug...
 " YcmCompleter GoTo is very handy....map it to leader+gt
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>r :YcmCompleter GoToReferences<CR>
