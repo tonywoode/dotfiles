@@ -41,29 +41,6 @@ nnoremap <F4> :noh<CR>
 nnoremap <F5> :buffers<CR>:buffer<Space>
 
 
-" to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font
-if has('gui_running')
-	set guifont=Menlo\ Regular:h15
-endif
-
-" Trigger a check for files being changed under us, whenever we can
-" Triger `autoread` when files changes on disk
-" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
-" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
-autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * redraw! | if mode() != 'c' | checktime | endif
-" Notification after file change
-" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
-autocmd FileChangedShellPost *
-  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
-
-" autoload vimPlug if it isn't loaded
-" if this were neoVim the second line would read `curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs`
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 call plug#begin('~/.vim/bundle') "plug wanted '~/vim/plugged' but suggested this dir if i didn't want to reinstall vundle plugins
 Plug 'junegunn/vim-plug' "If you need Vim help for vim-plug itself (e.g. :help plug-options), register vim-plug as a plugin.
 "Plug 'vim-scripts/Highlight-UnMatched-Brackets', conflicts with delimitMate
@@ -83,6 +60,7 @@ Plug 'Raimondi/delimitMate' "auto-fill closing quotes, parens
 " js specific -  see https://davidosomething.com/blog/vim-for-javascript/
 Plug 'elzr/vim-json' "You're advised to look at its options
 Plug 'othree/yajs.vim', { 'for': 'javascript' } "a fork of jelera/vim-javascript-syntax, neither have custom indent settings, updated very often. The {} makes sure the syntax plugin is loaded in a Vim autocommand based on filetype detection (as opposed to relying on Vim's runtimepath based sourcing mechanism. Then the main Vim syntax plugin will have already run, and this syntax will override it.
+Plug 'mxw/vim-jsx'
 Plug 'bigfish/vim-js-context-coloring', { 'do': 'npm install' } "syntax highlighting: picks out function scopes.  may not color your code when incomplete (i.e., syntax not yet valid). can be used in combination with any of the above
 Plug 'othree/javascript-libraries-syntax.vim' "highlighting of functions+keywords for various libs such as jQuery, lodash, React, Handlebars, Chai, etc.
 Plug '1995eaton/vim-better-javascript-completion' "somewhat up-to-date JavaScript (HTML5 methods e.g. localStorage and canvas methods). creates new omni-completion function: js#CompleteJS and replaces your current JS omnifunc with it, so you have to use a completion plugin or write some VimL, to use it in conjunction with another omnifunc like TernJS
@@ -98,6 +76,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'troydm/zoomwintab.vim' "Zoom in/out of windows by making new tab https://github.com/neovim/neovim/issues/997, note this changes <c-w>o keymap from 'only', if you care see https://stackoverflow.com/a/15583640/3536094, think they said this has to be the last line plugin specified
 call plug#end() " All of your Plugs must be added before the following line
+"You can remove filetype off, filetype plugin indent on and syntax on from your .vimrc as they are automatically handled by plug#begin() and plug#end()
 " to disable individual plugins, with Plug you can
 " Plug 'foo/bar', { 'on': [] }
 " (though it will still be installed)
@@ -111,37 +90,17 @@ call plug#end() " All of your Plugs must be added before the following line
 set background=dark
 colorscheme solarized
 
-"js omnifunc setting - I actually can't see a point in setting :set omnifunc shows that either ycm or tern seem to take it over, and even when they dont (jspc is a decorator), they are still controlling
+"js omnifunc setting - (jspc is a decorator). It used to be that YCM took over
+"omnifunc (ctrl+x/ctrl+o - see setting with :set omnifunc), however YCM now 
+" takes over completefunc (ctrl+o/ctrl+u - check with :set completefunc). This
+" appears to have the effect of allowing omnifunc completers to work again
+" with that usual key combo
 "set omnifunc=syntaxcomplete#Complete "this was the default
-"filetype plugin on "don't think necessary if youve already said filetype plugin indent * 
 "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS "standard
 autocmd FileType javascript setlocal omnifunc=jspc#omni "see above othree/jspc.vim, its a decorator for javascriptcomplete
 
-" bram's own
-" When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid, when inside an event handler
-" (happens when dropping a file on gvim) and for a commit message (it's
-" likely a different one than last time).
-autocmd BufReadPost *
-  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-  \ |   exe "normal! g`\""
-  \ | endif
-
-" see https://vi.stackexchange.com/questions/16037/vim-swap-file-best-practices
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-" Revert with: ":delcommand DiffOrig".
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
-endif
-
-
 " Vim's own plugins see: help plugin-install
-
-" matchit allows % to jump to matching xml tags etc, not backwards compatible so not enabled by default see: help %
-packadd! matchit
+packadd! matchit " % to jump to matching xml tags etc, not backwards compatible so not enabled by default see: help %
 
 " External Plugin config
 
@@ -159,8 +118,8 @@ let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 
 " YouCompleteMe options
-"let g:loaded_youcompleteme = 1 "this will diable ycm
-let g:ycm_auto_trigger = 1 "if off, invoke with ctrl + space
+"let g:loaded_youcompleteme = 1 "this will disable ycm
+"let g:ycm_auto_trigger = 1 "if off, invoke with ctrl + space
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 " YcmCompleter GoTo is very handy....map it to leader+gt
@@ -181,12 +140,21 @@ let g:javascript_enable_domhtmlcss = 1 "Enables HTML/CSS syntax highlighting in 
 set statusline+=%{ObsessionStatus()}
 
 " ALE options
+"let g:ale_enabled = 0 "completely disables with 0
 " its either this or fight for an eslint.rc
 let g:ale_javascript_standard_options = '--env browser --env node --env commonjs --env shared-node-browser --env es6 --env worker --env amd --env mocha --env jasmine --env jest --env phantomjs --env protractor --env qunit --env jquery --env prototypejs --env shelljs --env meteor --env mongo --env applescript --env nashorn --env serviceworker --env atomtest --env embertest --env webextensions --env greasemonkey'
+"i.e.: remove eslint from linters - isn't that the point
 let g:ale_linters = { 'javascript' : ['flow', 'flow-language-server', 'jscs', 'standard', 'tsserver', 'xo']}
 let g:ale_fixers = {'javascript': ['prettier_standard']}
 let g:ale_set_balloons = 1 "For Vim 8.1+ terminals, mouse hovering is disabled by default. Enabling |balloonexpr| commands in terminals can cause scrolling issues in terminals
 let g:airline#extensions#ale#enabled = 1
+" ycm does have better support for these things
+" let g:ale_completion_enabled = 1
+"nmap <leader>r <Plug>(ale_find_references)
+"nmap <leader>d <Plug>(ale_go_to_definition)
+"nmap <leader>h <Plug>(ale_hover)
+
+
 
 "JSContextColor options
 let g:js_context_colors_enabled = 0
@@ -221,3 +189,49 @@ let NERDTreeMapJumpPrevSibling='˚'
 
 "delimitMate options
 let delimitMate_expand_cr = 1
+
+" end of plugin options
+
+" to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font
+if has('gui_running')
+	set guifont=Menlo\ Regular:h15
+endif
+
+" Trigger a check for files being changed under us, whenever we can
+" Triger `autoread` when files changes on disk
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * redraw! | if mode() != 'c' | checktime | endif
+" Notification after file change
+" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+
+" autoload vimPlug if it isn't loaded
+" if this were neoVim the second line would read `curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs`
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" bram's own
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid, when inside an event handler
+" (happens when dropping a file on gvim) and for a commit message (it's
+" likely a different one than last time).
+autocmd BufReadPost *
+  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  \ |   exe "normal! g`\""
+  \ | endif
+
+" see https://vi.stackexchange.com/questions/16037/vim-swap-file-best-practices
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+" Revert with: ":delcommand DiffOrig".
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
