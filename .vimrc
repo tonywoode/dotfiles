@@ -51,6 +51,7 @@ Plug 'micha/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bindings, navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
 " language tools
 Plug 'w0rp/ale' "async linting engine
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanuages(pangloss/vim-javascript, [vim-jsx] for js
 Plug 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. :h surround
 Plug 'tpope/vim-repeat' "enables '.' to repeat for vim-surround and others
@@ -123,6 +124,7 @@ let g:airline_solarized_bg='dark'
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_filepath_blacklist = {} "https://github.com/Valloric/YouCompleteMe/issues/3102 - ft comes out as javascript.jsx now for all js files, but there's a bug...
+let g:ycm_collect_identifiers_from_tags_files = 1 "gutentags configured below with fields+1 as ycm requires. ycm warns if working servers this can be slow
 " YcmCompleter GoTo is very handy....map it to leader+gt
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>r :YcmCompleter GoToReferences<CR>
@@ -189,8 +191,12 @@ let NERDTreeAutoDeleteBuffer = 1 "Automatically delete the buffer of the file yo
 "we want ctrl+j/k to navigate tmux on every window, so remap these to option+j/k
 let NERDTreeMapJumpNextSibling='∆'
 let NERDTreeMapJumpPrevSibling='˚'
+
 "delimitMate options
 let delimitMate_expand_cr = 1
+
+"gutentag options
+let g:gutentags_ctags_extra_args = ['--fields=+l'] "for ycm support
 
 " end of plugin options
 
