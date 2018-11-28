@@ -152,9 +152,7 @@ let g:airline#extensions#ale#enabled = 1
 " let g:ale_completion_enabled = 1
 "nmap <leader>r <Plug>(ale_find_references)
 "nmap <leader>d <Plug>(ale_go_to_definition)
-"nmap <leader>h <Plug>(ale_hover)
-
-
+nmap <leader>h <Plug>(ale_hover)
 
 "JSContextColor options
 let g:js_context_colors_enabled = 0
