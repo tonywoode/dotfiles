@@ -126,14 +126,22 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_filepath_blacklist = {} "https://github.com/Valloric/YouCompleteMe/issues/3102 - ft comes out as javascript.jsx now for all js files, but there's a bug...
 let g:ycm_collect_identifiers_from_tags_files = 1 "gutentags configured below with fields+1 as ycm requires. ycm warns if working servers this can be slow
 " YcmCompleter GoTo is very handy....map it to leader+gt
-nnoremap <leader>g :YcmCompleter GoTo<CR>
-nnoremap <leader>r :YcmCompleter GoToReferences<CR>
-nnoremap <leader>d :YcmCompleter GoToDefinition<CR>
+"nnoremap <leader>g :YcmCompleter GoTo<CR>
+"nnoremap <leader>r :YcmCompleter GoToReferences<CR>
+"nnoremap <leader>d :YcmCompleter GoToDefinition<CR>
 "no cr because you need to type a replacement
-nnoremap <leader>f :YcmCompleter RefactorRename  
-" only GoToReferences isn't working with external files, even with ctags of
-" any flavour, so lets use the simplest alternative https://vi.stackexchange.com/a/4976
-nnoremap <leader>u :grep! "\<<cword>\>" . -r<CR>:copen<CR>
+"nnoremap <leader>f :YcmCompleter RefactorRename  
+
+nnoremap <leader>fi :YcmCompleter FixIt<CR>
+nnoremap <leader>fm :YcmCompleter Format<CR>
+nnoremap <leader>gt :YcmCompleter GoTo<CR> "GoToDeclaration/ GoToDefinition exactly the same
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+nnoremap <leader>oi :YcmCompleter OrganizeImports<CR>
+nnoremap <leader>rr :YcmCompleter RefactorRename
+nnoremap <leader>rs :YcmCompleter RestartServer<CR>
+nnoremap <leader>ed :YcmCompleter GetDoc<CR>
+nnoremap <leader>et :YcmCompleter GetType<CR>
+nnoremap <leader>et :YcmCompleter GoToType<CR>
 
 " pangloss/vim-javascript options - see https://github.com/pangloss/vim-javascript
 let g:javascript_enable_domhtmlcss = 1 "Enables HTML/CSS syntax highlighting in your JavaScript file.
