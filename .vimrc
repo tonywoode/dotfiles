@@ -1,4 +1,6 @@
 set nocompatible " be iMproved, required
+"don't use escape key. alternative to this mapping:  https://github.com/zhou13/vim-easyescape/
+inoremap jj <ESC>
 set mouse=a
 set number
 set clipboard=unnamed " Yank always yanks to osx clipboard https://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
