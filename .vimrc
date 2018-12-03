@@ -128,6 +128,10 @@ set laststatus=2
 let g:airline_theme='solarized'
 " for DARK solarized, this extra step is needed
 let g:airline_solarized_bg='dark'
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+"let g:airline#extensions#tabline#fnamemod = ':t'
 
 " YouCompleteMe options
 "let g:loaded_youcompleteme = 1 "this will disable ycm
