@@ -1,6 +1,5 @@
 set nocompatible " be iMproved, required
 "don't use escape key. alternative to this mapping:  https://github.com/zhou13/vim-easyescape/
-inoremap jj <ESC>
 set mouse=a
 set number
 set clipboard=unnamed " Yank always yanks to osx clipboard https://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
@@ -25,13 +24,18 @@ let @/ = "" "but don't highlight search every time i source this rc file! https:
 set wildmenu "https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
 set wildmode=longest:full,full
 
-" this is needed for mouse to control panes in tmux - see https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
+" for mouse to control panes in tmux - see https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
 set ttymouse=xterm2
 
-"F-key mappings
+" to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font
+if has('gui_running')
+	set guifont=Menlo\ Regular:h15
+endif
+
+"F-KEY MAPPINGS
 " fix paste indenting - see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste  . 
-nnoremap <F2> :set invpaste paste?<CR>  
 "First line sets a mapping so that pressing F2 in normal mode will invert.The 'paste' option, and will then show the value of that option.
+nnoremap <F2> :set invpaste paste?<CR>  
 set pastetoggle=<F2> "allows you to press F2 when in insert mode, to toggle 'paste' on and off. 
 
 " F3 was used by the maximiser plugin, which i stopped using
@@ -42,42 +46,47 @@ nnoremap <F4> :noh<CR>
 " get a buffer menu with f5, http://vim.wikia.com/wiki/Easier_buffer_switching
 nnoremap <F5> :buffers<CR>:buffer<Space>
 
-
+"PLUGINS
 call plug#begin('~/.vim/bundle') "plug wanted '~/vim/plugged' but suggested this dir if i didn't want to reinstall vundle plugins
 Plug 'junegunn/vim-plug' "If you need Vim help for vim-plug itself (e.g. :help plug-options), register vim-plug as a plugin.
-"Plug 'vim-scripts/Highlight-UnMatched-Brackets', conflicts with delimitMate
+
 " appearance
 Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'micha/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bindings, navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
+Plug 'micha/vim-colors-solarized'
+Plug 'vim-airline/vim-airline-themes'
+ 
 " language tools
-Plug 'w0rp/ale' "async linting engine
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanuages(pangloss/vim-javascript, [vim-jsx] for js
-Plug 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. :h surround
-Plug 'tpope/vim-repeat' "enables '.' to repeat for vim-surround and others
-Plug 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --ts-completer' }
-Plug 'ruanyl/vim-gh-line' "<leader>gh to open the line of this file in github
+Plug 'ludovicchabant/vim-gutentags' "handles ctags for you, its configured below to work with ycm by providing langugage tags per line
 Plug 'Raimondi/delimitMate' "auto-fill closing quotes, parens
-" js specific -  see https://davidosomething.com/blog/vim-for-javascript/
-Plug 'elzr/vim-json' "You're advised to look at its options
-Plug 'othree/yajs.vim', { 'for': 'javascript' } "a fork of jelera/vim-javascript-syntax, neither have custom indent settings, updated very often. The {} makes sure the syntax plugin is loaded in a Vim autocommand based on filetype detection (as opposed to relying on Vim's runtimepath based sourcing mechanism. Then the main Vim syntax plugin will have already run, and this syntax will override it.
-Plug 'mxw/vim-jsx'
-Plug 'bigfish/vim-js-context-coloring', { 'do': 'npm install' } "syntax highlighting: picks out function scopes.  may not color your code when incomplete (i.e., syntax not yet valid). can be used in combination with any of the above
-Plug 'othree/javascript-libraries-syntax.vim' "highlighting of functions+keywords for various libs such as jQuery, lodash, React, Handlebars, Chai, etc.
+Plug 'ruanyl/vim-gh-line' "<leader>gh to open the line of this file in github
+Plug 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanuages(pangloss/vim-javascript, [vim-jsx] for js
+Plug 'tpope/vim-repeat' "enables '.' to repeat for vim-surround and others
+Plug 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. :h surround
+Plug 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --ts-completer' }
+Plug 'w0rp/ale' "async linting engine
+Plug 'zhou13/vim-easyescape' "better than having to remap escape to jk
+
+" js specific - many from  https://davidosomething.com/blog/vim-for-javascript/
 Plug '1995eaton/vim-better-javascript-completion' "somewhat up-to-date JavaScript (HTML5 methods e.g. localStorage and canvas methods). creates new omni-completion function: js#CompleteJS and replaces your current JS omnifunc with it, so you have to use a completion plugin or write some VimL, to use it in conjunction with another omnifunc like TernJS
-Plug 'othree/jspc.vim' "JavaScript Parameter Complete detects when you're inside a function argument and provides autocomplete suggestions (TernJS only adds existing symbols) So if you're writing an event listener, it'll suggest click and mouseover. You can see all the suggestions it provides in its GitHub source. On load, the jspc.vim plugin automatically detects whatever omnifunc you already have set as your default. It wraps it with the parameter completion, and falls back to your default if you are not in a parameter completion. Because of this you should specify jspc#omni instead of whatever your default completion is (typically javascriptcomplete#CompleteJS)
+Plug 'bigfish/vim-js-context-coloring', { 'do': 'npm install' } "syntax highlighting: picks out function scopes.  may not color your code when incomplete (i.e., syntax not yet valid). can be used in combination with any of the above
+Plug 'elzr/vim-json' "You're advised to look at its options
 Plug 'moll/vim-node' "adds keybindings like for jumping to files in your CommonJS require statements
+Plug 'mxw/vim-jsx'
+Plug 'othree/javascript-libraries-syntax.vim' "highlighting of functions+keywords for various libs such as jQuery, lodash, React, Handlebars, Chai, etc.
+Plug 'othree/jspc.vim' "JavaScript Parameter Complete detects when you're inside a function argument and provides autocomplete suggestions. On load, detects existing omnifunc and wraps it so falls back to your default if you are not in a parameter completion. Because of this you should specify jspc#omni instead of whatever your default completion is (typically javascriptcomplete#CompleteJS)
+Plug 'othree/yajs.vim', { 'for': 'javascript' } "a fork of jelera/vim-javascript-syntax, neither have custom indent settings, updated very often. The {} makes sure the syntax plugin is loaded in a Vim autocommand based on filetype detection (as opposed to relying on Vim's runtimepath based sourcing mechanism. Then the main Vim syntax plugin will have already run, and this syntax will override it.
 Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
+
 " file/window maintainance
-Plug 'rizzatti/dash.vim' "enables :Dash lookups
-Plug 'tpope/vim-fugitive' "A GIT PLUGIN - very powerful, but only installed because gv.vim needed it
 Plug 'junegunn/gv.vim' "https://github.com/junegunn/gv.vim, visual git repo browser
-Plug 'tpope/vim-obsession' "make Session.vim files, tmux resurrect can try and restore them
+Plug 'rizzatti/dash.vim' "enables :Dash lookups
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-fugitive' "A GIT PLUGIN - very powerful, but only installed because gv.vim needed it
+Plug 'tpope/vim-obsession' "make Session.vim files, tmux resurrect can try and restore them
 Plug 'troydm/zoomwintab.vim' "Zoom in/out of windows by making new tab https://github.com/neovim/neovim/issues/997, note this changes <c-w>o keymap from 'only', if you care see https://stackoverflow.com/a/15583640/3536094, think they said this has to be the last line plugin specified
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
 call plug#end() " All of your Plugs must be added before the following line
 "You can remove filetype off, filetype plugin indent on and syntax on from your .vimrc as they are automatically handled by plug#begin() and plug#end()
 " to disable individual plugins, with Plug you can
@@ -87,6 +96,7 @@ call plug#end() " All of your Plugs must be added before the following line
 " paste it as below. https://stackoverflow.com/a/6706997/3536094 - (note minus)
 "set runtimepath-=~/.vim/bundle/tern_for_vim
 
+"PLUGIN AND PLUGIN-AFFECTED SETTINGS
 "colour settings - from https://github.com/junegunn/vim-plug/wiki/faq: A common 
 " mistake is to put :colorscheme NAME before call plug#end(). Plugins are not 
 " activated before plug#end(), so make sure to load your color scheme after it.
@@ -96,8 +106,7 @@ colorscheme solarized
 "js omnifunc setting - (jspc is a decorator). It used to be that YCM took over
 "omnifunc (ctrl+x/ctrl+o - see setting with :set omnifunc), however YCM now 
 " takes over completefunc (ctrl+o/ctrl+u - check with :set completefunc). This
-" appears to have the effect of allowing omnifunc completers to work again
-" with that usual key combo
+" allows omnifunc completers to work again
 "set omnifunc=syntaxcomplete#Complete "this was the default
 "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS "standard
 autocmd FileType javascript setlocal omnifunc=jspc#omni "see above othree/jspc.vim, its a decorator for javascriptcomplete
@@ -107,7 +116,7 @@ packadd! matchit " % to jump to matching xml tags etc, not backwards compatible 
 
 " External Plugin config
 
-"turn on javascript-libraries-syntax.vim for these modules: https://github.com/othree/javascript-libraries-syntax.vim
+"javascript-libraries-syntax.vim https://github.com/othree/javascript-libraries-syntax.vim
 let g:used_javascript_libs = 'jQuery, chai, ramda, react, RequireJS, jasmine'
 
 "for Dash, associate the custom Ramda docset
@@ -139,6 +148,7 @@ nnoremap <leader>fm :YcmCompleter Format<CR>
 nnoremap <leader>gt :YcmCompleter GoTo<CR> "GoToDeclaration/ GoToDefinition exactly the same
 nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 nnoremap <leader>oi :YcmCompleter OrganizeImports<CR>
+"no cr because you need to type a replacement
 nnoremap <leader>rr :YcmCompleter RefactorRename
 nnoremap <leader>rs :YcmCompleter RestartServer<CR>
 nnoremap <leader>ed :YcmCompleter GetDoc<CR>
@@ -195,8 +205,9 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1 "show hidden files by default
 nnoremap <leader>t :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>v :NERDTreeFind<CR> "open NerdTree at the CURRENT file
-let NERDTreeQuitOnOpen = 1 "now you can use 'preview' to keep nerdtree open, otherwise it'll close on opening a file
+"open NerdTree at the CURRENT file
+nnoremap <silent> <Leader>v :NERDTreeFind<CR> 
+"let NERDTreeQuitOnOpen = 1 "use 'preview' to keep nerdtree open, otherwise it'll close on opening a file
 let NERDTreeAutoDeleteBuffer = 1 "Automatically delete the buffer of the file you just deleted with NerdTree
 "we want ctrl+j/k to navigate tmux on every window, so remap these to option+j/k
 let NERDTreeMapJumpNextSibling='∆'
@@ -208,13 +219,15 @@ let delimitMate_expand_cr = 1
 "gutentag options
 let g:gutentags_ctags_extra_args = ['--fields=+l'] "for ycm support
 
+"easy escape options
+let g:easyescape_chars = { "j": 1, "k": 1 }
+let g:easyescape_timeout = 100 "requires python3 if you want to type jk, kj, ie timeout <2000  
+cnoremap jk <ESC>
+cnoremap kj <ESC>
+
 " end of plugin options
 
-" to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font
-if has('gui_running')
-	set guifont=Menlo\ Regular:h15
-endif
-
+"FUNCTIONS
 " Trigger a check for files being changed under us, whenever we can
 " Triger `autoread` when files changes on disk
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
