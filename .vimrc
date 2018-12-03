@@ -219,7 +219,7 @@ let g:gutentags_ctags_extra_args = ['--fields=+l'] "for ycm support
 
 "easy escape options
 let g:easyescape_chars = { "j": 1, "k": 1 }
-let g:easyescape_timeout = 100 "requires python3 if you want to type jk, kj, ie timeout <2000  
+let g:easyescape_timeout = 400 "requires python3 if you want to type jk, kj, ie timeout <2000  
 cnoremap jk <ESC>
 cnoremap kj <ESC>
 
