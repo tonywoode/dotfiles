@@ -148,8 +148,8 @@ nnoremap <leader>fm :YcmCompleter Format<CR>
 nnoremap <leader>gt :YcmCompleter GoTo<CR> "GoToDeclaration/ GoToDefinition exactly the same
 nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 nnoremap <leader>oi :YcmCompleter OrganizeImports<CR>
-"no cr because you need to type a replacement
-nnoremap <leader>rr :YcmCompleter RefactorRename
+"no cr because you need to type a replacement, and space at end is intended
+nnoremap <leader>rr :YcmCompleter RefactorRename 
 nnoremap <leader>rs :YcmCompleter RestartServer<CR>
 nnoremap <leader>ed :YcmCompleter GetDoc<CR>
 nnoremap <leader>et :YcmCompleter GetType<CR>
