@@ -140,24 +140,18 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_filepath_blacklist = {} "https://github.com/Valloric/YouCompleteMe/issues/3102 - ft comes out as javascript.jsx now for all js files, but there's a bug...
 let g:ycm_collect_identifiers_from_tags_files = 1 "gutentags configured below with fields+1 as ycm requires. ycm warns if working servers this can be slow
-" YcmCompleter GoTo is very handy....map it to leader+gt
-"nnoremap <leader>g :YcmCompleter GoTo<CR>
-"nnoremap <leader>r :YcmCompleter GoToReferences<CR>
-"nnoremap <leader>d :YcmCompleter GoToDefinition<CR>
-"no cr because you need to type a replacement
-"nnoremap <leader>f :YcmCompleter RefactorRename  
-
 nnoremap <leader>fi :YcmCompleter FixIt<CR>
-nnoremap <leader>fm :YcmCompleter Format<CR>
-nnoremap <leader>gt :YcmCompleter GoTo<CR> "GoToDeclaration/ GoToDefinition exactly the same
+nnoremap <leader>f :YcmCompleter Format<CR>
+ "GoToDeclaration/ GoToDefinition exactly the same
+nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
-nnoremap <leader>oi :YcmCompleter OrganizeImports<CR>
+nnoremap <leader>o :YcmCompleter OrganizeImports<CR>
 "no cr because you need to type a replacement, and space at end is intended
-nnoremap <leader>rr :YcmCompleter RefactorRename 
+nnoremap <leader>r :YcmCompleter RefactorRename 
 nnoremap <leader>rs :YcmCompleter RestartServer<CR>
-nnoremap <leader>ed :YcmCompleter GetDoc<CR>
-nnoremap <leader>et :YcmCompleter GetType<CR>
-nnoremap <leader>et :YcmCompleter GoToType<CR>
+nnoremap <leader>gd :YcmCompleter GetDoc<CR>
+nnoremap <leader>gt :YcmCompleter GetType<CR>
+nnoremap <leader>gtt :YcmCompleter GoToType<CR>
 
 " pangloss/vim-javascript options - see https://github.com/pangloss/vim-javascript
 let g:javascript_enable_domhtmlcss = 1 "Enables HTML/CSS syntax highlighting in your JavaScript file.
