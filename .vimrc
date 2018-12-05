@@ -165,8 +165,8 @@ set statusline+=%{ObsessionStatus()}
 " its either this or fight for an eslint.rc
 let g:ale_javascript_standard_options = '--env browser --env node --env commonjs --env shared-node-browser --env es6 --env worker --env amd --env mocha --env jasmine --env jest --env phantomjs --env protractor --env qunit --env jquery --env prototypejs --env shelljs --env meteor --env mongo --env applescript --env nashorn --env serviceworker --env atomtest --env embertest --env webextensions --env greasemonkey'
 "i.e.: remove eslint from linters - isn't that the point
-let g:ale_linters = { 'javascript' : ['flow', 'flow-language-server', 'jscs', 'standard', 'tsserver', 'xo']}
-let g:ale_fixers = {'javascript': ['prettier_standard']}
+"let g:ale_linters = { 'javascript' : ['flow', 'flow-language-server', 'jscs', 'standard', 'tsserver', 'xo']}
+"let g:ale_fixers = {'javascript': ['prettier_standard']}
 let g:ale_set_balloons = 1 "For Vim 8.1+ terminals, mouse hovering is disabled by default. Enabling |balloonexpr| commands in terminals can cause scrolling issues in terminals
 let g:airline#extensions#ale#enabled = 1
 " ycm does have better support for these things
