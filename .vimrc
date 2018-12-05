@@ -216,11 +216,13 @@ let NERDTreeMapJumpPrevSibling='˚'
 let delimitMate_expand_cr = 1
 
 "gutentag options
-let g:gutentags_ctags_extra_args = ['--fields=+l'] "for ycm support
+"for ycm support
+let g:gutentags_ctags_extra_args = ['--fields=+l']
 
 "easy escape options
 let g:easyescape_chars = { "j": 1, "k": 1 }
-let g:easyescape_timeout = 400 "requires python3 if you want to type jk, kj, ie timeout <2000  
+"requires python3 if you want to type jk, kj, ie timeout <2000  
+let g:easyescape_timeout = 2000
 cnoremap jk <ESC>
 cnoremap kj <ESC>
 
