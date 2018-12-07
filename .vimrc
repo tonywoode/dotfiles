@@ -130,8 +130,8 @@ let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-" Show just the filename
-"let g:airline#extensions#tabline#fnamemod = ':t'
+" Show just the filename TODO: work out what the other constituents mean
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " YouCompleteMe options
 "let g:loaded_youcompleteme = 1 "this will disable ycm
