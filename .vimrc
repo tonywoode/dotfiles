@@ -24,6 +24,7 @@ let @/ = "" "but don't highlight search every time i source this rc file! https:
 set wildmenu "https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
 set wildmode=longest:full,full
 
+set ttyfast  "not enabled by default, may prove problems with remote terminals
 " for mouse to control panes in tmux - see https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
 set ttymouse=xterm2
 
