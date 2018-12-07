@@ -93,8 +93,8 @@ call plug#end() " All of your Plugs must be added before the following line
 " Plug 'foo/bar', { 'on': [] }
 " (though it will still be installed)
 " else :set runtimepath? to show you path then
-" paste it as below. https://stackoverflow.com/a/6706997/3536094 - (note minus)
-"set runtimepath-=~/.vim/bundle/tern_for_vim
+" paste it as below. https://stackoverflow.com/a/6706997/3536094 - (note minus, and don't leave off trailing slash)
+"set runtimepath-=~/.vim/bundle/tern_for_vim/
 
 "PLUGIN AND PLUGIN-AFFECTED SETTINGS
 "colour settings - from https://github.com/junegunn/vim-plug/wiki/faq: A common 
