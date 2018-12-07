@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "target": "es2018",
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "bower_components",
+    "jspm_packages",
+    "tmp",
+    "temp"
+  ]
+}
