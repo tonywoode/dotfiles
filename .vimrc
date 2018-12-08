@@ -59,7 +59,6 @@ Plug 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bind
 Plug 'micha/vim-colors-solarized'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jeffkreeftmeijer/vim-numbertoggle' "absolute line numbers where neccessary https://jeffkreeftmeijer.com/vim-number/
- 
 " language tools
 Plug 'ludovicchabant/vim-gutentags' "handles ctags for you, its configured below to work with ycm by providing langugage tags per line
 Plug 'Raimondi/delimitMate' "auto-fill closing quotes, parens
@@ -76,7 +75,6 @@ Plug '1995eaton/vim-better-javascript-completion' "somewhat up-to-date JavaScrip
 Plug 'bigfish/vim-js-context-coloring', { 'do': 'npm install' } "syntax highlighting: picks out function scopes.  may not color your code when incomplete (i.e., syntax not yet valid). can be used in combination with any of the above
 Plug 'elzr/vim-json' "You're advised to look at its options
 Plug 'moll/vim-node' "adds keybindings like for jumping to files in your CommonJS require statements
-Plug 'mxw/vim-jsx'
 Plug 'othree/javascript-libraries-syntax.vim' "highlighting of functions+keywords for various libs such as jQuery, lodash, React, Handlebars, Chai, etc.
 Plug 'othree/jspc.vim' "JavaScript Parameter Complete detects when you're inside a function argument and provides autocomplete suggestions. On load, detects existing omnifunc and wraps it so falls back to your default if you are not in a parameter completion. Because of this you should specify jspc#omni instead of whatever your default completion is (typically javascriptcomplete#CompleteJS)
 Plug 'othree/yajs.vim', { 'for': 'javascript' } "a fork of jelera/vim-javascript-syntax, neither have custom indent settings, updated very often. The {} makes sure the syntax plugin is loaded in a Vim autocommand based on filetype detection (as opposed to relying on Vim's runtimepath based sourcing mechanism. Then the main Vim syntax plugin will have already run, and this syntax will override it.
