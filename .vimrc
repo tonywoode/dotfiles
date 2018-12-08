@@ -1,7 +1,7 @@
 set nocompatible " be iMproved, required
 "don't use escape key. alternative to this mapping:  https://github.com/zhou13/vim-easyescape/
 set mouse=a
-set number
+set number relativenumber "relative number used with vim-numbertoggle plugin
 set clipboard=unnamed " Yank always yanks to osx clipboard https://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
 "set shortmess+=l "you can stop having to press enter on messages, but the text will be obfuscated
 set ruler
@@ -56,6 +56,7 @@ Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bindings, navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
 Plug 'micha/vim-colors-solarized'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'jeffkreeftmeijer/vim-numbertoggle' "absolute line numbers where neccessary https://jeffkreeftmeijer.com/vim-number/
  
 " language tools
 Plug 'ludovicchabant/vim-gutentags' "handles ctags for you, its configured below to work with ycm by providing langugage tags per line
