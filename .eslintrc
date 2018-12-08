@@ -7,6 +7,10 @@
       "ignoreStrings": true,
       "ignoreTemplateLiterals": true,
       "ignoreRegExpLiterals": true
+      }],
+    "brace-style": ["error",
+      "1tbs", { 
+        allowSingleLine: true
       }]
   }
 }
