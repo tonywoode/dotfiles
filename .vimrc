@@ -15,6 +15,8 @@ set tabstop=4
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+set autoindent
+set smartindent
 
 "highlighting
 set incsearch "highlight searchedfor/regexed text
