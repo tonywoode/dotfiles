@@ -148,6 +148,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_filepath_blacklist = {} "https://github.com/Valloric/YouCompleteMe/issues/3102 - ft comes out as javascript.jsx now for all js files, but there's a bug...
 let g:ycm_collect_identifiers_from_tags_files = 1 "gutentags configured below with fields+1 as ycm requires. ycm warns if working servers this can be slow
+let g:ycm_show_diagnostics_ui = 0
 nnoremap <leader>fi :YcmCompleter FixIt<CR>
 nnoremap <leader>f :YcmCompleter Format<CR>
  "GoToDeclaration/ GoToDefinition exactly the same
@@ -173,7 +174,7 @@ set statusline+=%{ObsessionStatus()}
 " its either this or fight for an eslint.rc
 let g:ale_javascript_standard_options = '--env browser --env node --env commonjs --env shared-node-browser --env es6 --env worker --env amd --env mocha --env jasmine --env jest --env phantomjs --env protractor --env qunit --env jquery --env prototypejs --env shelljs --env meteor --env mongo --env applescript --env nashorn --env serviceworker --env atomtest --env embertest --env webextensions --env greasemonkey'
 "i.e.: in particular, don't lint with eslint ('stop this madness'), or tsserver (YCM lints with tsserver, since we interact with YCM for everything else tsserver, lets deal with those issues in that plugin) 
-let g:ale_linters = { 'javascript' : ['eslint', 'standard']}
+let g:ale_linters = { 'javascript' : ['eslint', 'standard', 'tsserver']}
 let g:ale_fixers = {'javascript': ['eslint', 'prettier_standard'], '*': ['remove_trailing_lines', 'trim_whitespace']}
 let g:ale_set_balloons = 1 "For Vim 8.1+ terminals, mouse hovering is disabled by default. Enabling |balloonexpr| commands in terminals can cause scrolling issues in terminals
 let g:airline#extensions#ale#enabled = 1
