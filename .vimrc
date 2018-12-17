@@ -28,7 +28,12 @@ set wildmode=longest:full,full
 
 set ttyfast  "not enabled by default, may prove problems with remote terminals
 " for mouse to control panes in tmux - see https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
-set ttymouse=xterm2
+" was ttymouse=xterm2 see :h https://github.com/vim/vim/issues/2309
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
 
 " to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font
 if has('gui_running')
