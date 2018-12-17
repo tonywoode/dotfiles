@@ -41,7 +41,8 @@ endif
 nnoremap <F2> :set invpaste paste?<CR>  
 set pastetoggle=<F2> "allows you to press F2 when in insert mode, to toggle 'paste' on and off. 
 
-" F3 was used by the maximiser plugin, which i stopped using
+" F3 switches line numbering mode
+nnoremap <silent><F3> :call g:ToggleNuMode()<cr>
 
 " turn highlighting off for this search (search term stays selected though)
 nnoremap <F4> :noh<CR>
@@ -268,4 +269,14 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
+
+" assigned to F3 above, flip relative to absolute numbers
+function! g:ToggleNuMode()
+  if &relativenumber == 1
+     set number norelativenumber
+   else
+     set number relativenumber
+  endif
+endfunction
+
 
