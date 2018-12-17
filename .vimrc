@@ -241,8 +241,10 @@ cnoremap kj <ESC>
 " tmux navigate - we want vim 8.1's terminal to respect hjkl mapping, yes we
 " know about https://github.com/christoomey/vim-tmux-navigator/pull/172
 " and that if we use https://github.com/junegunn/fzf its going to conflict
-" cobbled from " https://github.com/christoomey/vim-tmux-navigator/commit/e13914d89e9413cfa449f0c3daff18691356f2d1
+" cobbled from https://github.com/christoomey/vim-tmux-navigator/commit/e13914d89e9413cfa449f0c3daff18691356f2d1
 " and https://github.com/christoomey/vim-tmux-navigator/issues/207#issue-332222696
+" if it comes to it there's something else to try here
+" https://blog.bugsnag.com/tmux-and-vim/
 
   if has('terminal')
      tnoremap <silent> <c-h> <c-\><c-n>:TmuxNavigateLeft<cr>
