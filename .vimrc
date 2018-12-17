@@ -148,6 +148,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_filepath_blacklist = {} "https://github.com/Valloric/YouCompleteMe/issues/3102 - ft comes out as javascript.jsx now for all js files, but there's a bug...
 let g:ycm_collect_identifiers_from_tags_files = 1 "gutentags configured below with fields+1 as ycm requires. ycm warns if working servers this can be slow
+" disable linting display (which pulls up tsserver issues). let ALE show linting
 let g:ycm_show_diagnostics_ui = 0
 nnoremap <leader>fi :YcmCompleter FixIt<CR>
 nnoremap <leader>f :YcmCompleter Format<CR>
@@ -236,6 +237,21 @@ cnoremap jk <ESC>
 cnoremap kj <ESC>
 
 " end of plugin options
+
+" tmux navigate - we want vim 8.1's terminal to respect hjkl mapping, yes we
+" know about https://github.com/christoomey/vim-tmux-navigator/pull/172
+" and that if we use https://github.com/junegunn/fzf its going to conflict
+" cobbled from " https://github.com/christoomey/vim-tmux-navigator/commit/e13914d89e9413cfa449f0c3daff18691356f2d1
+" and https://github.com/christoomey/vim-tmux-navigator/issues/207#issue-332222696
+
+  if has('terminal')
+     tnoremap <silent> <c-h> <c-\><c-n>:TmuxNavigateLeft<cr>
+     tnoremap <silent> <c-j> <c-\><c-n>:TmuxNavigateDown<cr>
+     tnoremap <silent> <c-k> <c-\><c-n>:TmuxNavigateUp<cr>
+     tnoremap <silent> <c-l> <c-\><c-n>:TmuxNavigateRight<cr>
+     " Cannot use <c-\> here.
+     " tnoremap <silent> <c-\> <c-\><c-n>:TmuxNavigatePrevious<cr>
+   endif
 
 "FUNCTIONS
 " Trigger a check for files being changed under us, whenever we can
