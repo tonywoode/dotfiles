@@ -87,12 +87,13 @@ Plug 'othree/yajs.vim', { 'for': 'javascript' } "a fork of jelera/vim-javascript
 Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
 
 " file/window maintainance
-Plug 'benmills/vimux' "run terminal commands in tmux from vim. good for tests
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } "also installs fzf for your shell
 Plug 'junegunn/gv.vim' "https://github.com/junegunn/gv.vim, visual git repo browser
 Plug 'rizzatti/dash.vim' "enables :Dash lookups
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive' "A GIT PLUGIN - very powerful, but only installed because gv.vim needed it
 Plug 'tpope/vim-obsession' "make Session.vim files, tmux resurrect can try and restore them
+Plug 'benmills/vimux' "run terminal commands in tmux from vim. good for tests
 Plug 'troydm/zoomwintab.vim' "Zoom in/out of windows by making new tab https://github.com/neovim/neovim/issues/997, note this changes <c-w>o keymap from 'only', if you care see https://stackoverflow.com/a/15583640/3536094, think they said this has to be the last line plugin specified
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
