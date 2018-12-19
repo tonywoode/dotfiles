@@ -87,6 +87,7 @@ Plug 'othree/yajs.vim', { 'for': 'javascript' } "a fork of jelera/vim-javascript
 Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
 
 " file/window maintainance
+Plug 'benmills/vimux' "run terminal commands in tmux from vim. good for tests
 Plug 'junegunn/gv.vim' "https://github.com/junegunn/gv.vim, visual git repo browser
 Plug 'rizzatti/dash.vim' "enables :Dash lookups
 Plug 'scrooloose/nerdtree'
@@ -221,6 +222,14 @@ let NERDTreeAutoDeleteBuffer = 1 "Automatically delete the buffer of the file yo
 "we want ctrl+j/k to navigate tmux on every window, so remap these to option+j/k
 let NERDTreeMapJumpNextSibling='∆'
 let NERDTreeMapJumpPrevSibling='˚'
+
+"vimux options - see https://blog.bugsnag.com/tmux-and-vim/
+map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vl :VimuxRunLastCommand<CR>
+" jump into the vimux terminal, already in vim copy mode
+map <Leader>vi :VimuxInspectRunner<CR>
+" Zoom the tmux runner pane
+map <Leader>vz :VimuxZoomRunner<CR>
 
 "delimitMate options
 let delimitMate_expand_cr = 1
