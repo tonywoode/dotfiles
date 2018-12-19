@@ -88,6 +88,7 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'type
 
 " file/window maintainance
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } "also installs fzf for your shell
+Plug 'junegunn/fzf.vim' "by default fzf only installs a minimum vim wrapper
 Plug 'junegunn/gv.vim' "https://github.com/junegunn/gv.vim, visual git repo browser
 Plug 'rizzatti/dash.vim' "enables :Dash lookups
 Plug 'scrooloose/nerdtree'
@@ -225,12 +226,15 @@ let NERDTreeMapJumpNextSibling='∆'
 let NERDTreeMapJumpPrevSibling='˚'
 
 "vimux options - see https://blog.bugsnag.com/tmux-and-vim/
-map <Leader>vp :VimuxPromptCommand<CR>
-map <Leader>vl :VimuxRunLastCommand<CR>
+nnoremap <Leader>vp :VimuxPromptCommand<CR>
+nnoremap <Leader>vl :VimuxRunLastCommand<CR>
 " jump into the vimux terminal, already in vim copy mode
-map <Leader>vi :VimuxInspectRunner<CR>
+nnoremap <Leader>vi :VimuxInspectRunner<CR>
 " Zoom the tmux runner pane
-map <Leader>vz :VimuxZoomRunner<CR>
+nnoremap <Leader>vz :VimuxZoomRunner<CR>
+
+" FZF.vim mappings - see https://github.com/junegunn/fzf.vim#commands
+nnoremap <Leader>q :Files<Cr>
 
 "delimitMate options
 let delimitMate_expand_cr = 1
