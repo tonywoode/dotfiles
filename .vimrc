@@ -7,6 +7,8 @@ set clipboard=unnamed " Yank always yanks to osx clipboard https://evertpot.com/
 set ruler
 set showcmd
 set showmode "enables displaying whether to show insert mode in status line. needed if for instance you want to know if paste is on or off
+"but, you have to look down....
+:autocmd InsertEnter,InsertLeave * set cul!
 "set hidden "don't unload buffers that just aren't visible atm
 
 "tabs
