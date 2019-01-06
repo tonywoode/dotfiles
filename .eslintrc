@@ -4,6 +4,15 @@
     "node": true,
     "mocha": true
   },
+  "extends": [
+    "eslint:recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:jsx-control-statements/recommended",
+    "plugin:node/recommended",
+    "plugin:promise/recommended",
+    "plugin:react/recommended",
+    "plugin:require-path-exists/recommended"
+  ],
   "parserOptions": {
         "ecmaVersion": 10,
         "sourceType": "module",
@@ -11,6 +20,25 @@
             "jsx": true
         }
   },
+  "plugins": [
+    "babel",
+    "dependencies",
+    "html",
+    "jquery",
+    "jsdoc",
+    "json",
+    "jsx-a11y",
+    "jsx-control-statements",
+    "mocha",
+    "node",
+    "promise",
+    "react",
+    "react-native",
+    "require-path-exists",
+    "requirejs",
+    "should-promised",
+    "smells"
+  ],
   "rules": {
     "max-len": ["error", { 
       "code" : 100,
@@ -23,6 +51,7 @@
     "brace-style": ["error",
       "1tbs", { 
         "allowSingleLine": true
-      }]
+      }],
+    "semi": ["error", "never"]
   }
 }
