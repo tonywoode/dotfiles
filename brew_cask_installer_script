@@ -107,6 +107,7 @@ apps=(
 		firefox
         flux
 		freefilesync
+        gitup
 		google-chrome
 		google-drive
 		iterm2
@@ -136,6 +137,7 @@ apps=(
         vagrant
 		virtualbox
 		virtualbox-extension-pack
+        visual-studio-code
 )
 
 for app in "${apps[@]}"; do { [[ $cask_list != *"$app"* ]] && $install "$app"; } done
