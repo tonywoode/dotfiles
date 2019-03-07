@@ -113,7 +113,6 @@ apps=(
 		iterm2
 		java8 #note NOT java, for Flex.
 		jd-gui #inspect java class files
-        jetbrains-toolbox
 		jumpcut
 		mamp
 		moom
