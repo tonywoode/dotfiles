@@ -96,6 +96,7 @@ Plug 'rizzatti/dash.vim' "enables :Dash lookups
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive' "A GIT PLUGIN - very powerful, but only installed because gv.vim needed it
 Plug 'tpope/vim-obsession' "make Session.vim files, tmux resurrect can try and restore them
+Plug 'dhruvasagar/vim-prosession' "vim obsession is great, but you have to remember to turn it on and load the session file in each project, see https://github.com/tpope/vim-obsession/issues/11
 Plug 'benmills/vimux' "run terminal commands in tmux from vim. good for tests
 Plug 'troydm/zoomwintab.vim' "Zoom in/out of windows by making new tab https://github.com/neovim/neovim/issues/997, note this changes <c-w>o keymap from 'only', if you care see https://stackoverflow.com/a/15583640/3536094, think they said this has to be the last line plugin specified
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -251,6 +252,11 @@ let g:easyescape_chars = { "j": 1, "k": 1 }
 let g:easyescape_timeout = 2000
 cnoremap jk <ESC>
 cnoremap kj <ESC>
+
+"prosession options
+" enable tmux window name updates as per current session
+let g:prosession_tmux_title = 1
+
 
 " end of plugin options
 
