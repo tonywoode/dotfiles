@@ -25,6 +25,9 @@ Session.vim
 ## tsserver
 jsconfig.json
 
+## vscode
+.vscode/
+
 ## node
 node_modules
 npm-debug.log

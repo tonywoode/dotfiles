@@ -112,15 +112,15 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 alias git=hub
 
 # some shortcuts. I like to type cd sometimes.
-code=~/CODE
-alias code="cd $code"
-scripts=$code/Scripts
+CODE=~/CODE
+alias CODE="cd $CODE"
+scripts=$CODE/Scripts
 alias scripts="cd $scripts"
-scratch=$code/Scratch
+scratch=$CODE/Scratch
 alias scratch="cd $scratch"
 dots=$scripts/Dotfiles/dotfiles
 alias dots="cd $dots"
-repo=$code/Repo
+repo=$CODE/Repo
 alias repo="cd $repo"
 smoke=$repo/Smoke/smoke_github
 alias smoke="cd $smoke"
