@@ -9,7 +9,8 @@ set showcmd
 set showmode "enables displaying whether to show insert mode in status line. needed if for instance you want to know if paste is on or off
 "but, you have to look down....
 :autocmd InsertEnter,InsertLeave * set cul!
-"set hidden "don't unload buffers that just aren't visible atm
+"set hidden "don't unload buffers that just aren't visible atm, disadvantage
+"is you can swap buffers without saving, and i like the warning
 
 "tabs
 set backspace=2 "to stop terminal vim + plugins disabling backspace. See http://vim.wikia.com/wiki/Backspace_and_delete_problems
@@ -19,6 +20,13 @@ set softtabstop=2
 set expandtab
 set autoindent
 set smartindent
+
+" Persistent undo  https://stackoverflow.com/a/26702442/3536094
+"  YOU must mkdir ~/.vim/undo
+set undofile
+set undodir=$HOME/.vim/undo
+set undolevels=1000
+set undoreload=10000
 
 "highlighting
 set incsearch "highlight searchedfor/regexed text
