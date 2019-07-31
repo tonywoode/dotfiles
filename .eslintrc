@@ -6,7 +6,6 @@
   },
   "extends": [
     "plugin:jsx-a11y/recommended",
-    "plugin:jsx-control-statements/recommended",
     "plugin:node/recommended",
     "plugin:promise/recommended",
     "plugin:react/recommended",
@@ -21,6 +20,8 @@
   },
   "plugins": [
     "babel",
+    "chai-friendly",
+    "cypress",
     "dependencies",
     "html",
     "jquery",
@@ -39,6 +40,8 @@
     "smells"
   ],
   "rules": {
+    "no-unused-expressions": 0,
+    "chai-friendly/no-unused-expressions": 2,
     "max-len": ["error", { 
       "code" : 100,
       "ignoreComments": true,
