@@ -5,7 +5,6 @@
     "mocha": true
   },
   "extends": [
-    "eslint:recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:jsx-control-statements/recommended",
     "plugin:node/recommended",
