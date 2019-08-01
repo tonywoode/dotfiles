@@ -5,6 +5,7 @@
     "mocha": true
   },
   "extends": [
+    "standard",
     "plugin:jsx-a11y/recommended",
     "plugin:node/recommended",
     "plugin:promise/recommended",
@@ -17,6 +18,9 @@
         "ecmaFeatures": {
             "jsx": true
         }
+  },
+  "globals": {
+     "expect": true
   },
   "plugins": [
     "babel",
