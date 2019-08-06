@@ -128,6 +128,12 @@ call plug#end() " All of your Plugs must be added before the following line
 set background=dark
 colorscheme solarized
 
+" vim-polyglot settings
+"  https://github.com/chrisbra/matchit/issues/11
+"  https://github.com/mxw/vim-jsx/pull/177
+" atm vim-jsx breaks matchit, and the pr to fix it isn't actioned
+let g:polyglot_disabled = ['vim-jsx']
+
 "js omnifunc setting - (jspc is a decorator). It used to be that YCM took over
 "omnifunc (ctrl+x/ctrl+o - see setting with :set omnifunc), however YCM now 
 " takes over completefunc (ctrl+o/ctrl+u - check with :set completefunc). This
