@@ -13,8 +13,9 @@ set showmode "enables displaying whether to show insert mode in status line. nee
 "is you can swap buffers without saving, and i like the warning
 
 " splits https://stackoverflow.com/a/7912621/3536094
-set splitright "To make vsplit put the new buffer on the right of the current buffer 
-set splitbelow "to make split put the new buffer below the current buffer
+" these interfere with vim-fugitive, which i'd like to get to know first
+"set splitright "To make vsplit put the new buffer on the right of the current buffer 
+"set splitbelow "to make split put the new buffer below the current buffer
 
 "tabs
 set backspace=2 "to stop terminal vim + plugins disabling backspace. See http://vim.wikia.com/wiki/Backspace_and_delete_problems
