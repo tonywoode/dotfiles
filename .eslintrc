@@ -59,6 +59,6 @@
         "allowSingleLine": true
       }],
     "semi": ["error", "never"],
-    "newline-per-chained-call: ["warn", { "ignoreChainWithDepth": 3 }]
+    "newline-per-chained-call": ["warn", { "ignoreChainWithDepth": 3 }]
   }
 }
