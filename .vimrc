@@ -200,6 +200,9 @@ set statusline+=%{ObsessionStatus()}
 " since we're using standard under eslint, the below should be irrelevant now
 "let g:ale_javascript_standard_options = '--env browser --env node --env commonjs --env shared-node-browser --env es6 --env worker --env amd --env mocha --env jasmine --env jest --env phantomjs --env protractor --env qunit --env jquery --env prototypejs --env shelljs --env meteor --env mongo --env applescript --env nashorn --env serviceworker --env atomtest --env embertest --env webextensions --env greasemonkey'
 "i.e.: in particular, don't lint with eslint ('stop this madness'), or tsserver (YCM lints with tsserver, since we interact with YCM for everything else tsserver, lets deal with those issues in that plugin) 
+" i want to maintain a global eslintrc, not per-project atm, some projects
+" have a local install but no rc
+let g:ale_javascript_eslint_use_global = 1
 let g:ale_linters = { 'javascript' : ['eslint']}
 let g:ale_fixers = {'javascript': ['eslint', 'prettier_standard'], '*': ['remove_trailing_lines', 'trim_whitespace']}
 let g:ale_set_balloons = 1 "For Vim 8.1+ terminals, mouse hovering is disabled by default. Enabling |balloonexpr| commands in terminals can cause scrolling issues in terminals

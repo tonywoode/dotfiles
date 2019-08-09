@@ -12,6 +12,7 @@
     "plugin:react/recommended",
     "plugin:require-path-exists/recommended"
   ],
+  "parser": "babel-eslint",
   "parserOptions": {
         "ecmaVersion": 10,
         "sourceType": "module",
