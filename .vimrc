@@ -133,7 +133,8 @@ colorscheme solarized
 "  https://github.com/chrisbra/matchit/issues/11
 "  https://github.com/mxw/vim-jsx/pull/177
 " atm vim-jsx breaks matchit, and the pr to fix it isn't actioned
-let g:polyglot_disabled = ['vim-jsx']
+let g:polyglot_disabled = ['jsx']
+
 
 "js omnifunc setting - (jspc is a decorator). It used to be that YCM took over
 "omnifunc (ctrl+x/ctrl+o - see setting with :set omnifunc), however YCM now 
