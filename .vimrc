@@ -112,6 +112,7 @@ Plug 'dhruvasagar/vim-prosession' "vim obsession is great, but you have to remem
 Plug 'benmills/vimux' "run terminal commands in tmux from vim. good for tests
 Plug 'troydm/zoomwintab.vim' "Zoom in/out of windows by making new tab https://github.com/neovim/neovim/issues/997, note this changes <c-w>o keymap from 'only', if you care see https://stackoverflow.com/a/15583640/3536094, think they said this has to be the last line plugin specified
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'qpkorr/vim-bufkill' "let me destroy the buffer without destroying the split window that its in
 
 call plug#end() " All of your Plugs must be added before the following line
 "You can remove filetype off, filetype plugin indent on and syntax on from your .vimrc as they are automatically handled by plug#begin() and plug#end()
