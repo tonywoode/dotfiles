@@ -86,6 +86,7 @@ Plug 'Raimondi/delimitMate' "auto-fill closing quotes, parens
 Plug 'ruanyl/vim-gh-line' "<leader>gh to open the line of this file in github
 Plug 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanuages(pangloss/vim-javascript, [vim-jsx] for js
 Plug 'tpope/vim-repeat' "enables '.' to repeat for vim-surround and others
+Plug 'tpope/vim-unimpaired'  "you need to use things like :cnext or :bprevious all the time, so have shortcut keys for these pairs
 Plug 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. :h surround
 Plug 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --ts-completer' }
 Plug 'w0rp/ale' "async linting engine
