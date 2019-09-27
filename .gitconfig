@@ -14,3 +14,10 @@
 	trustExitCode = true
 [push]
 	default = simple
+# the submodule commands here done after reading https://medium.com/@porteneuve/mastering-git-submodules-34c65e940407
+[status]
+	submoduleSummary = true
+[diff]
+	submodule = log
+[alias]
+	spush = push --recurse-submodules=on-demand
