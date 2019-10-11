@@ -207,7 +207,7 @@ set statusline+=%{ObsessionStatus()}
 " have a local install but no rc
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_linters = { 'javascript' : ['eslint']}
-let g:ale_fixers = {'javascript': ['eslint', 'prettier_standard'], '*': ['remove_trailing_lines', 'trim_whitespace']}
+let g:ale_fixers = {'javascript': ['eslint', 'prettier_standard'], 'html': ['prettier'], 'css': ['prettier'], '*': ['remove_trailing_lines', 'trim_whitespace']}
 let g:ale_set_balloons = 1 "For Vim 8.1+ terminals, mouse hovering is disabled by default. Enabling |balloonexpr| commands in terminals can cause scrolling issues in terminals
 let g:airline#extensions#ale#enabled = 1
 " ycm does have better support for these things
