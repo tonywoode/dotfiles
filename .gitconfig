@@ -21,3 +21,7 @@
 	submodule = log
 [alias]
 	spush = push --recurse-submodules=on-demand
+# https://zwischenzugs.com/2016/06/04/power-git-log-graphing/
+    graph = log --graph --oneline --all --decorate --topo-order
+# https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
+	unstage = reset HEAD --
