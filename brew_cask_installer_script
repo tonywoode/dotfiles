@@ -52,6 +52,7 @@ bins=(
         fswatch #for smoke's nodemon problem
         graphviz
         git
+        gpg
 		groovy
 		httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
         hub
