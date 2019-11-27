@@ -112,6 +112,7 @@ apps=(
         gitup
 		google-chrome
 		google-drive
+        insomnia
 		iterm2
 		java8 #note NOT java, for Flex.
 		jd-gui #inspect java class files
