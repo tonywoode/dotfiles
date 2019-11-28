@@ -1,3 +1,11 @@
+" ON WINDOWS MAKE SURE YOU MAKE A SYMLINK $HOME/.vim pointing to 
+if has('win32')
+    let $HOMEDIRVIMFOLDER = "$HOME/vimfiles"
+else
+    let $HOMEDIRVIMFOLDER = "$HOME/.vim"
+endif
+
+call plug#begin($MYPLUGDIRECTORY)
 set nocompatible " be iMproved, required
 "don't use escape key. alternative to this mapping:  https://github.com/zhou13/vim-easyescape/
 set mouse=a
@@ -27,9 +35,9 @@ set autoindent
 set smartindent
 
 " Persistent undo  https://stackoverflow.com/a/26702442/3536094
-"  YOU must mkdir ~/.vim/undo
+"  only nix at least, YOU must mkdir $HOME/.vim/undo
 set undofile
-set undodir=$HOME/.vim/undo
+set undodir=$HOMEDIRVIMFOLDER/undo
 set undolevels=1000
 set undoreload=10000
 
@@ -71,7 +79,7 @@ nnoremap <F4> :noh<CR>
 nnoremap <F5> :buffers<CR>:buffer<Space>
 
 "PLUGINS
-call plug#begin('~/.vim/bundle') "plug wanted '~/vim/plugged' but suggested this dir if i didn't want to reinstall vundle plugins
+call plug#begin('$HOMEDIRVIMFOLDER/bundle') "plug wanted '$HOME/vim/plugged' but suggested this dir if i didn't want to reinstall vundle plugins
 Plug 'junegunn/vim-plug' "If you need Vim help for vim-plug itself (e.g. :help plug-options), register vim-plug as a plugin.
 
 " appearance
@@ -88,7 +96,7 @@ Plug 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanu
 Plug 'tpope/vim-repeat' "enables '.' to repeat for vim-surround and others
 Plug 'tpope/vim-unimpaired'  "you need to use things like :cnext or :bprevious all the time, so have shortcut keys for these pairs
 Plug 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. :h surround
-Plug 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --ts-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do' : '$HOMEDIRVIMFOLDER/bundle/YouCompleteMe/./install.py --ts-completer' }
 Plug 'w0rp/ale' "async linting engine
 Plug 'zhou13/vim-easyescape' "better than having to remap escape to jk
 
@@ -102,7 +110,7 @@ Plug 'othree/jspc.vim' "JavaScript Parameter Complete detects when you're inside
 Plug 'othree/yajs.vim', { 'for': 'javascript' } "a fork of jelera/vim-javascript-syntax, neither have custom indent settings, updated very often. The {} makes sure the syntax plugin is loaded in a Vim autocommand based on filetype detection (as opposed to relying on Vim's runtimepath based sourcing mechanism. Then the main Vim syntax plugin will have already run, and this syntax will override it.
 
 " file/window maintainance
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } "also installs fzf for your shell
+Plug 'junegunn/fzf', { 'dir': '$HOME/.fzf', 'do': './install --all' } "also installs fzf for your shell
 Plug 'junegunn/fzf.vim' "by default fzf only installs a minimum vim wrapper
 Plug 'junegunn/gv.vim' "https://github.com/junegunn/gv.vim, visual git repo browser
 Plug 'rizzatti/dash.vim' "enables :Dash lookups
@@ -122,7 +130,7 @@ call plug#end() " All of your Plugs must be added before the following line
 " (though it will still be installed)
 " else :set runtimepath? to show you path then
 " paste it as below. https://stackoverflow.com/a/6706997/3536094 - (note minus, and don't leave off trailing slash)
-"set runtimepath-=~/.vim/bundle/tern_for_vim/
+"set runtimepath-=$HOME/.vim/bundle/tern_for_vim/
 
 "PLUGIN AND PLUGIN-AFFECTED SETTINGS
 "colour settings - from https://github.com/junegunn/vim-plug/wiki/faq: A common 
@@ -314,9 +322,9 @@ autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
 " autoload vimPlug if it isn't loaded
-" if this were neoVim the second line would read `curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs`
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+" if this were neoVim the second line would read `curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs`
+if empty('$HOMEDIRVIMFOLDER/autoload/plug.vim')
+  silent !curl -fLo $HOMEDIRVIMFOLDER/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
@@ -349,5 +357,4 @@ function! g:ToggleNuMode()
      set number relativenumber
   endif
 endfunction
-
 
