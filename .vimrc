@@ -203,8 +203,7 @@ set statusline+=%{ObsessionStatus()}
 " since we're using standard under eslint, the below should be irrelevant now
 "let g:ale_javascript_standard_options = '--env browser --env node --env commonjs --env shared-node-browser --env es6 --env worker --env amd --env mocha --env jasmine --env jest --env phantomjs --env protractor --env qunit --env jquery --env prototypejs --env shelljs --env meteor --env mongo --env applescript --env nashorn --env serviceworker --env atomtest --env embertest --env webextensions --env greasemonkey'
 "i.e.: in particular, don't lint with eslint ('stop this madness'), or tsserver (YCM lints with tsserver, since we interact with YCM for everything else tsserver, lets deal with those issues in that plugin) 
-" i want to maintain a global eslintrc, not per-project atm, some projects
-" have a local install but no rc
+" i want to maintain a global eslintrc, not per-project atm, some projects have a local install but no rc
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_linters = { 'javascript' : ['eslint']}
 let g:ale_fixers = {'javascript': ['eslint', 'prettier_standard'], 'html': ['prettier'], 'css': ['prettier'], '*': ['remove_trailing_lines', 'trim_whitespace']}
@@ -216,6 +215,11 @@ let g:airline#extensions#ale#enabled = 1
 "nmap <leader>d <Plug>(ale_go_to_definition)
 nmap <leader>h <Plug>(ale_hover)
 nmap <leader>f <Plug>(ale_fix)
+" ale and vim use arrow keys for autcomplete, its crazy c'mon, this is vim: arrow keys are distracting
+" lets tab through them instead!  https://stackoverflow.com/a/52615863/3536094
+" (in order to get S-Tab working, iterm2 has to have its ctrl+shift+tab global mapping for its tabs removed)
+inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 "JSContextColor options
 let g:js_context_colors_enabled = 0
@@ -281,7 +285,6 @@ cnoremap kj <ESC>
 "prosession options
 " enable tmux window name updates as per current session
 let g:prosession_tmux_title = 1
-
 
 " end of plugin options
 
