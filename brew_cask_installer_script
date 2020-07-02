@@ -94,6 +94,7 @@ echo "Installing any non-installed Cask Apps"
 apps=(
 		aerial # beautiful screensaver
 		alfred
+        another-redis-desktop-manager
         appcleaner
 		balsamiq-mockups
         betterzip #for the betterzip quick look plugin that shows zip contents in finder
@@ -136,6 +137,7 @@ apps=(
 		teamviewer
         the-unarchiver
 		tiddlywiki
+        tunnelblick
         vagrant
 		virtualbox
 		virtualbox-extension-pack
