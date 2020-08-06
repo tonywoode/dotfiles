@@ -22,9 +22,7 @@ for pin in "${pins[@]}"; do { echo "don't update $pin" && brew pin "$pin"; } don
 echo "upgrading already-installed formula - hold on to your seats!" && brew upgrade
 
 # originally was see here "see https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/El_Capitan_and_Homebrew.md"
-# but that page has been pulled, and see https://github.com/Homebrew/homebrew/issues/45862
-# doesn't seem significant, but lets wait till the problem crops up again to investigate - what does the canned advice in the ruby script say?
-
+# but that page has been pulled, and see https://github.com/Homebrew/homebrew/issues/45862 doesn't seem significant, but lets wait till the problem crops up again to investigate - what does the canned advice in the ruby script say?
 #echo "mmaking sure that those directories haven't lost write access YET again"
 #sudo chown $(whoami):admin /usr/local && sudo chown -R $(whoami):admin /usr/local
 
@@ -32,7 +30,7 @@ echo "calling the doctor to fix issues" && brew doctor
 
 echo "Tapped taps:"
 taps=(
-		caskroom/cask
+		# caskroom/cask - I think homebrew taps this by default now, the readme of cask says "To start using Homebrew Cask, you just need Homebrew installed."
 		# there once existed caskroom/games - retro emulators - i was always to busy to investigate it
 )
 
@@ -47,7 +45,6 @@ bins=(
         ack
         antigen
 		bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
-        caskroom/versions #e.g.: https://stackoverflow.com/a/46468073/3536094
 		cmake #installed to setup YouCompleteMe vim plugin
 		ctags-exuberant
         fswatch #for smoke's nodemon problem
@@ -59,7 +56,7 @@ bins=(
         hub
         jq
         mas #app-store downloader - see https://github.com/mas-cli/mas
-		"macvim --with-override-system-vim" #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion? quoting this doesn't help it install https://github.com/Homebrew/homebrew-core/issues/26583
+		macvim # --with-override-system-vim" #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion? quoting this doesn't help it install https://github.com/Homebrew/homebrew-core/issues/26583
         #mysql - using mamp's copy as my primary for the meanwhile
 		node #tern requires a globally installed node, so better to give it a later one than none at all
         p7zip
@@ -84,97 +81,97 @@ for bin in "${bins[@]}"; do { [[ $brew_list != *"$bin"* ]] && echo "installing $
 # Applications is now cask's default folder to move apps to, no longer ~/Applications
 # echo "let's remember casks go in /Applications" && export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-cask="brew cask"
-install="$cask install"
-
-echo "Installed casks:"
-cask_list=$(brew cask list)
-echo $cask_list
-
-echo "Installing any non-installed Cask Apps"
-apps=(
-		aerial # beautiful screensaver
-		alfred
-        another-redis-desktop-manager
-        appcleaner
-		balsamiq-mockups
-        betterzip #for the betterzip quick look plugin that shows zip contents in finder
-		blueharvest
-        boostnote
-		caffeine
-		cord
-		dash
-		diffmerge
-		disk-inventory-x
-		dropbox
-        filezilla
-		firefox
-        flux
-		freefilesync
-        gitup
-		google-chrome
-		google-drive
-        insomnia
-		iterm2
-		java8 #note NOT java, for Flex.
-		jd-gui #inspect java class files
-		jumpcut
-		mamp
-		moom
-        paintbrush
-		parallels-desktop
-		pgadmin4
-        paintbrush
-		platypus
-        postman
-		regexhibit # regex tester using perl
-		reggy # osx regex tester built in objective c
-        rocket-chat #doesn't work needs to be updated from v1.3 to 2.7
-		skype
-		slack
-		sourcetree
-        spotify
-		sublime-text
-		teamviewer
-        the-unarchiver
-		tiddlywiki
-        tunnelblick
-        vagrant
-		virtualbox
-		virtualbox-extension-pack
-        visual-studio-code
-)
-
-for app in "${apps[@]}"; do { [[ $cask_list != *"$app"* ]] && $install "$app"; } done
-
-echo "running the cask upgrade script (cask cannot upgrade progs automatically"
-# TODO: automatic updating of casks was merged into brew nov 17 https://github.com/Homebrew/brew/pull/3396
-# but bear in mind there will never be a cask pin (you could mod your cask updater to do that) - https://github.com/Homebrew/homebrew-cask/issues/44914
-./cask_upgrade_script
-
-# aren't we running this twice? problem is it used to read 'brew cask cleanup' but that no longer exists
-echo "running cask cleanup" && brew cleanup
-
-echo "Installed Mac App Store apps"
-echo "note: must be logged into app store, and must have downloaded these via the app store ui before"
-mas list
-app_store_apps=(
-  1295203466 #Microsoft Remote Desktop (10.1.8)
-  597419160  #Sleep Pillow (1.0)
-  881415018  #myTuner Radio (2.0.1)
-  568494494  #Pocket (1.7.9)
-  497799835  #Xcode (9.2)
-  409203825  #Numbers (5.1)
-)
-
-echo "reinstalling any uninstalled mas (mac app store) apps"
-for app_store_app in "${app_store_apps[@]}"; do { [[ $cask_list != *"$app_store_app"* ]] && mas install "$app_store_app"; } done
-
-echo "lastly hijack this script to record what npm modules were installed when it was run"
-
-if [ "$(command -v nvm)" == "nvm" ]; then 
-  nvm exec lts/* npm list -g --depth=0 > npm_lts_installed_modules.txt && date >> npm_lts_installed_modules.txt
-fi
-
+#cask="brew cask"
+#install="$cask install"
+#
+#echo "Installed casks:"
+#cask_list=$(brew cask list)
+#echo $cask_list
+#
+#echo "Installing any non-installed Cask Apps"
+#apps=(
+#		aerial # beautiful screensaver
+#		alfred
+#        another-redis-desktop-manager
+#        appcleaner
+#		balsamiq-mockups
+#        betterzip #for the betterzip quick look plugin that shows zip contents in finder
+#		blueharvest
+#        boostnote
+#		caffeine
+#		cord
+#		dash
+#		diffmerge
+#		disk-inventory-x
+#		dropbox
+#        filezilla
+#		firefox
+#        flux
+#		freefilesync
+#        gitup
+#		google-chrome
+#		google-drive
+#        insomnia
+#		iterm2
+#		java8 #note NOT java, for Flex.
+#		jd-gui #inspect java class files
+#		jumpcut
+#		mamp
+#		moom
+#        paintbrush
+#		parallels-desktop
+#		pgadmin4
+#        paintbrush
+#		platypus
+#        postman
+#		regexhibit # regex tester using perl
+#		reggy # osx regex tester built in objective c
+#        rocket-chat #doesn't work needs to be updated from v1.3 to 2.7
+#		skype
+#		slack
+#		sourcetree
+#        spotify
+#		sublime-text
+#		teamviewer
+#        the-unarchiver
+#		tiddlywiki
+#        tunnelblick
+#        vagrant
+#		virtualbox
+#		virtualbox-extension-pack
+#        visual-studio-code
+#)
+#
+#for app in "${apps[@]}"; do { [[ $cask_list != *"$app"* ]] && $install "$app"; } done
+#
+#echo "running the cask upgrade script (cask cannot upgrade progs automatically"
+## TODO: automatic updating of casks was merged into brew nov 17 https://github.com/Homebrew/brew/pull/3396
+## but bear in mind there will never be a cask pin (you could mod your cask updater to do that) - https://github.com/homebrew/homebrew-cask/issues/44914
+#./cask_upgrade_script
+#
+## aren't we running this twice? problem is it used to read 'brew cask cleanup' but that no longer exists
+#echo "running cask cleanup" && brew cleanup
+#
+#echo "Installed Mac App Store apps"
+#echo "note: must be logged into app store, and must have downloaded these via the app store ui before"
+#mas list
+#app_store_apps=(
+#  1295203466 #Microsoft Remote Desktop (10.1.8)
+#  597419160  #Sleep Pillow (1.0)
+#  881415018  #myTuner Radio (2.0.1)
+#  568494494  #Pocket (1.7.9)
+#  497799835  #Xcode (9.2)
+#  409203825  #Numbers (5.1)
+#)
+#
+#echo "reinstalling any uninstalled mas (mac app store) apps"
+#for app_store_app in "${app_store_apps[@]}"; do { [[ $cask_list != *"$app_store_app"* ]] && mas install "$app_store_app"; } done
+#
+#echo "lastly hijack this script to record what npm modules were installed when it was run"
+#
+#if [ "$(command -v nvm)" == "nvm" ]; then 
+#  nvm exec lts/* npm list -g --depth=0 > npm_lts_installed_modules.txt && date >> npm_lts_installed_modules.txt
+#fi
+#
 echo "Im outta yer loop, cya"
  
