@@ -1,76 +1,74 @@
 #! /bin/bash
 # Functions as a Homebrew and Homebrew/Cask setup script, as a running binary or app install script and as a running update/upgrade script for all of those
 
-# echo "Checking for Homebrew and installing if we don't have it"
-# if test ! $(which brew); then
-#   echo "Installing homebrew..."
-#   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-# fi
-# 
-# echo "updating homebrew" && brew update
-# 
-# ####################################################
-# # PINNING - run before upgrading (unused at present)
-# echo "before we update any packages, we may need some pins, to stop things being updated" # YOU HAVE TO `brew unpin x` once you've pinned....
-# pins=(
-# #	node - i use nvm now, not from brew, and that's a long story (nvm authors do not recommend brew)
-# )
-# for pin in "${pins[@]}"; do { echo "don't update $pin" && brew pin "$pin"; } done
-# ####################################################
-# 
-# echo "upgrading already-installed formula - hold on to your seats!" && brew upgrade
-# echo "calling the doctor to fix issues" && brew doctor
-# 
-# ####################################################
-# # TAPPING - run before installing (unusued at present)
-# echo "Tapped taps:"
-# taps=( # caskroom/cask - I think homebrew taps this by default now, the readme of cask says "To start using Homebrew Cask, you just need Homebrew installed."
+echo "Checking for Homebrew and installing if we don't have it"
+if test ! $(which brew); then
+  echo "Installing homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+fi
+
+echo "updating homebrew" && brew update
+
+####################################################
+# PINNING - run before upgrading (unused at present)
+echo "before we update any packages, we may need some pins, to stop things being updated" # YOU HAVE TO `brew unpin x` once you've pinned....
+pins=(
+#	node - i use nvm now, not from brew, and that's a long story (nvm authors do not recommend brew)
+)
+for pin in "${pins[@]}"; do { echo "don't update $pin" && brew pin "$pin"; } done
+####################################################
+
+echo "upgrading already-installed brew AND CASK formula - hold on to your seats!" && brew upgrade
+echo "calling the doctor to fix brew and cask issues" && brew doctor
+
+####################################################
+# TAPPING - run before installing (unusued at present)
+echo "Tapped taps:"
+taps=( # caskroom/cask - I think homebrew taps this by default now, the readme of cask says "To start using Homebrew Cask, you just need Homebrew installed."
   adoptopenjdk/openjdk
-# ) # there once existed caskroom/games - retro emulators - i was always to busy to investigate it
-# tap_list=$(brew tap)
-# echo $tap_list && echo "let's tap any untapped taps..."
-# for tap in "${taps[@]}"; do { [[ $tap_list != *"$tap"* ]] && brew tap "$tap"; } done
-# ####################################################
-# 
-# echo "running brew cleanup" && brew cleanup
-# 
-# echo "Brewed binaries:"
-# bins=(
-#         ack
-#         antigen
-# 		bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
-# 		cmake #installed to setup YouCompleteMe vim plugin
-# 		ctags-exuberant #installs as ctags, so always tries to reinstall, not a problem, just annoying
-#         fswatch #for smoke's nodemon problem
-#         graphviz
-#         git
-#         gpg
-# 		groovy
-# 		httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
-#         hub
-#         jq
-#         mas #app-store downloader - see https://github.com/mas-cli/mas
-# 		macvim # --with-override-system-vim" #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion? quoting this doesn't help it install https://github.com/Homebrew/homebrew-core/issues/26583
-#         #mysql - using mamp's copy as my primary for the meanwhile
-# 		node #tern requires a globally installed node, so better to give it a later one than none at all
-#         p7zip
-# 		postgresql
-#         rmtrash
-#         tidy-html5
-# 		tmate
-#         tmux
-#         tree
-# 		reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
-#         #vim --with-client-server # see https://stackoverflow.com/a/25979565/3536094 would also require adding xquartz to cask (yes cask!)
-#         wget
-# 		zsh
-#         zsh-completions
-#         zsh-syntax-highlighting
-# )
-# 
-# brew_list=$(brew list)
-# echo $brew_list && echo "let's brew any unbrewed bins..." 
-# for bin in "${bins[@]}"; do { [[ $brew_list != *"$bin"* ]] && echo "installing $bin" && brew install "$bin"; } done
+) # there once existed caskroom/games - retro emulators - i was always to busy to investigate it
+tap_list=$(brew tap)
+echo $tap_list && echo "let's tap any untapped taps..."
+for tap in "${taps[@]}"; do { [[ $tap_list != *"$tap"* ]] && brew tap "$tap"; } done
+####################################################
+
+echo "Brewed binaries:"
+bins=(
+        ack
+        antigen
+		bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
+		cmake #installed to setup YouCompleteMe vim plugin
+		ctags-exuberant #installs as ctags, so always tries to reinstall, not a problem, just annoying
+        fswatch #for smoke's nodemon problem
+        graphviz
+        git
+        gpg
+		groovy
+		httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
+        hub
+        jq
+        mas #app-store downloader - see https://github.com/mas-cli/mas
+		macvim # --with-override-system-vim" #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion? quoting this doesn't help it install https://github.com/Homebrew/homebrew-core/issues/26583
+        #mysql - using mamp's copy as my primary for the meanwhile
+		node #tern requires a globally installed node, so better to give it a later one than none at all
+        p7zip
+		postgresql
+        rmtrash
+        tidy-html5
+		tmate
+        tmux
+        tree
+		reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
+        #vim --with-client-server # see https://stackoverflow.com/a/25979565/3536094 would also require adding xquartz to cask (yes cask!)
+        wget
+		zsh
+        zsh-completions
+        zsh-syntax-highlighting
+)
+
+brew_list=$(brew list)
+echo $brew_list && echo "let's brew any unbrewed bins..." 
+for bin in "${bins[@]}"; do { [[ $brew_list != *"$bin"* ]] && echo "installing $bin" && brew install "$bin"; } done
 
 # CASK - From https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md
 # > Homebrew automatically taps and keeps Homebrew Cask updated. brew update is all that is required.
@@ -140,29 +138,28 @@ apps=(
 
 for app in "${apps[@]}"; do { [[ $cask_list != *"$app"* ]] && $install "$app"; } done
 
-# aren't we running this twice? problem is it used to read 'brew cask cleanup' but that no longer exists
-echo "running cask cleanup" && brew cleanup
-#
-#echo "Installed Mac App Store apps"
-#echo "note: must be logged into app store, and must have downloaded these via the app store ui before"
-#mas list
-#app_store_apps=(
-#  1295203466 #Microsoft Remote Desktop (10.1.8)
-#  597419160  #Sleep Pillow (1.0)
-#  881415018  #myTuner Radio (2.0.1)
-#  568494494  #Pocket (1.7.9)
-#  497799835  #Xcode (9.2)
-#  409203825  #Numbers (5.1)
-#)
-#
-#echo "reinstalling any uninstalled mas (mac app store) apps"
-#for app_store_app in "${app_store_apps[@]}"; do { [[ $cask_list != *"$app_store_app"* ]] && mas install "$app_store_app"; } done
-#
-#echo "lastly hijack this script to record what npm modules were installed when it was run"
-#
-#if [ "$(command -v nvm)" == "nvm" ]; then 
-#  nvm exec lts/* npm list -g --depth=0 > npm_lts_installed_modules.txt && date >> npm_lts_installed_modules.txt
-#fi
-#
+echo "running brew and cask cleanup" && brew cleanup
+
+echo "Installed Mac App Store apps"
+echo "note: must be logged into app store, and must have downloaded these via the app store ui before"
+mas list
+app_store_apps=(
+  1295203466 #Microsoft Remote Desktop (10.1.8)
+  597419160  #Sleep Pillow (1.0)
+  881415018  #myTuner Radio (2.0.1)
+  568494494  #Pocket (1.7.9)
+  497799835  #Xcode (9.2)
+  409203825  #Numbers (5.1)
+)
+
+echo "reinstalling any uninstalled mas (mac app store) apps"
+for app_store_app in "${app_store_apps[@]}"; do { [[ $cask_list != *"$app_store_app"* ]] && mas install "$app_store_app"; } done
+
+echo "lastly hijack this script to record what npm modules were installed when it was run"
+
+if [ "$(command -v nvm)" == "nvm" ]; then 
+  nvm exec lts/* npm list -g --depth=0 > npm_lts_installed_modules.txt && date >> npm_lts_installed_modules.txt
+fi
+
 echo "Im outta yer loop, cya"
  
