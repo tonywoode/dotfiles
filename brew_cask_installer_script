@@ -1,42 +1,35 @@
 #! /bin/bash
-
-# Functions as a Homebrew and Homebrew/Cask setup script, as a running binary or app install script
-# and as a running update/upgrade script for all of those
+# Functions as a Homebrew and Homebrew/Cask setup script, as a running binary or app install script and as a running update/upgrade script for all of those
 
 echo "Checking for Homebrew and installing if we don't have it"
 if test ! $(which brew); then
   echo "Installing homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
 fi
 
 echo "updating homebrew" && brew update
 
-echo "before we update any packages, we may need some pins, to stop things being updated"
-# YOU HAVE TO `brew unpin x` once you've pinned....
+####################################################
+# PINNING - run before upgrading (unused at present)
+echo "before we update any packages, we may need some pins, to stop things being updated" # YOU HAVE TO `brew unpin x` once you've pinned....
 pins=(
 #	node - i use nvm now, not from brew, and that's a long story (nvm authors do not recommend brew)
 )
 for pin in "${pins[@]}"; do { echo "don't update $pin" && brew pin "$pin"; } done
+####################################################
 
 echo "upgrading already-installed formula - hold on to your seats!" && brew upgrade
-
-# originally was see here "see https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/El_Capitan_and_Homebrew.md"
-# but that page has been pulled, and see https://github.com/Homebrew/homebrew/issues/45862 doesn't seem significant, but lets wait till the problem crops up again to investigate - what does the canned advice in the ruby script say?
-#echo "mmaking sure that those directories haven't lost write access YET again"
-#sudo chown $(whoami):admin /usr/local && sudo chown -R $(whoami):admin /usr/local
-
 echo "calling the doctor to fix issues" && brew doctor
 
+####################################################
+# TAPPING - run before installing (unusued at present)
 echo "Tapped taps:"
-taps=(
-		# caskroom/cask - I think homebrew taps this by default now, the readme of cask says "To start using Homebrew Cask, you just need Homebrew installed."
-		# there once existed caskroom/games - retro emulators - i was always to busy to investigate it
-)
-
+taps=( # caskroom/cask - I think homebrew taps this by default now, the readme of cask says "To start using Homebrew Cask, you just need Homebrew installed."
+) # there once existed caskroom/games - retro emulators - i was always to busy to investigate it
 tap_list=$(brew tap)
 echo $tap_list && echo "let's tap any untapped taps..."
 for tap in "${taps[@]}"; do { [[ $tap_list != *"$tap"* ]] && brew tap "$tap"; } done
+####################################################
 
 echo "running brew cleanup" && brew cleanup
 
@@ -46,7 +39,7 @@ bins=(
         antigen
 		bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
 		cmake #installed to setup YouCompleteMe vim plugin
-		ctags-exuberant
+		ctags-exuberant #installs as ctags, so always tries to reinstall, not a problem, just annoying
         fswatch #for smoke's nodemon problem
         graphviz
         git
@@ -78,8 +71,9 @@ brew_list=$(brew list)
 echo $brew_list && echo "let's brew any unbrewed bins..." 
 for bin in "${bins[@]}"; do { [[ $brew_list != *"$bin"* ]] && echo "installing $bin" && brew install "$bin"; } done
 
-# Applications is now cask's default folder to move apps to, no longer ~/Applications
-# echo "let's remember casks go in /Applications" && export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+# CASK - From https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md
+# > Homebrew automatically taps and keeps Homebrew Cask updated. brew update is all that is required.
+# > Since the Homebrew Cask repository is a Homebrew Tap, you’ll pull down the latest Casks every time you issue the regular Homebrew command brew update.
 
 #cask="brew cask"
 #install="$cask install"
@@ -140,6 +134,7 @@ for bin in "${bins[@]}"; do { [[ $brew_list != *"$bin"* ]] && echo "installing $
 #		virtualbox
 #		virtualbox-extension-pack
 #        visual-studio-code
+#       wine-stable
 #)
 #
 #for app in "${apps[@]}"; do { [[ $cask_list != *"$app"* ]] && $install "$app"; } done
