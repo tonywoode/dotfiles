@@ -13,7 +13,7 @@ echo "updating homebrew" && brew update
 # PINNING - run before upgrading (unused at present)
 echo "before we update any packages, we may need some pins, to stop things being updated" # YOU HAVE TO `brew unpin x` once you've pinned....
 pins=(
-#	node - i use nvm now, not from brew, and that's a long story (nvm authors do not recommend brew)
+#   node - i use nvm now, not from brew, and that's a long story (nvm authors do not recommend brew)
 )
 for pin in "${pins[@]}"; do { echo "don't update $pin" && brew pin "$pin"; } done
 ####################################################
@@ -36,32 +36,32 @@ echo "Brewed binaries:"
 bins=(
         ack
         antigen
-		bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
-		cmake #installed to setup YouCompleteMe vim plugin
-		ctags-exuberant #installs as ctags, so always tries to reinstall, not a problem, just annoying
+        bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
+        cmake #installed to setup YouCompleteMe vim plugin
+        ctags-exuberant #installs as ctags, so always tries to reinstall, not a problem, just annoying
         fswatch #for smoke's nodemon problem
         graphviz
         git
         gpg
-		groovy
-		httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
+        groovy
+        httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
         hub
         jq
         mas #app-store downloader - see https://github.com/mas-cli/mas
-		macvim # --with-override-system-vim" #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion? quoting this doesn't help it install https://github.com/Homebrew/homebrew-core/issues/26583
+        macvim # --with-override-system-vim" #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion? quoting this doesn't help it install https://github.com/Homebrew/homebrew-core/issues/26583
         #mysql - using mamp's copy as my primary for the meanwhile
-		node #tern requires a globally installed node, so better to give it a later one than none at all
+        node #tern requires a globally installed node, so better to give it a later one than none at all
         p7zip
-		postgresql
+        postgresql
         rmtrash
         tidy-html5
-		tmate
+        tmate
         tmux
         tree
-		reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
+        reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
         #vim --with-client-server # see https://stackoverflow.com/a/25979565/3536094 would also require adding xquartz to cask (yes cask!)
         wget
-		zsh
+        zsh
         zsh-completions
         zsh-syntax-highlighting
 )
@@ -83,57 +83,56 @@ echo $cask_list
 
 echo "Installing any non-installed Cask Apps"
 apps=(
-		aerial # beautiful screensaver
-		alfred
+        aerial # beautiful screensaver
+        alfred
         another-redis-desktop-manager
         appcleaner
-		balsamiq-wireframes
+        balsamiq-wireframes
         betterzip # for the betterzip quick look plugin that shows zip contents in finder
-		blueharvest
+        blueharvest
         boostnote
-		caffeine
-		cord
+        caffeine
+        cord # favoour microsoft remote desktop, but that needs appstore
         cyberduck # coz, believe it or not, filezilla is malware...
-		dash
-		diffmerge
-		disk-inventory-x
-		dropbox
-		firefox
+        dash
+        diffmerge
+        disk-inventory-x
+        dropbox
+        firefox
         flux
-		# freefilesync - not stable enough to brew  cask atm see https://github.com/Homebrew/homebrew-cask/pull/78560
+        # freefilesync - not stable enough to brew  cask atm see https://github.com/Homebrew/homebrew-cask/pull/78560
         gitup
-		google-backup-and-sync
-		google-chrome
+        google-backup-and-sync
+        google-chrome
         insomnia
-		iterm2
-		adoptopenjdk8 #note NOT java, for Flex. needs tap
-		jd-gui #inspect java class files
-		jumpcut
-		mamp
-		moom
+        iterm2
+        adoptopenjdk8 #note NOT java, for Flex. needs tap
+        jd-gui #inspect java class files
+        jumpcut
+        mamp
+        moom
         paintbrush
-		#parallels - you're using a different version per machine
-		pgadmin4
+        #parallels - you're using a different version per machine
+        pgadmin4
         paintbrush
-		platypus
+        platypus
         postman
-		regexhibit # regex tester using perl
-		reggy # osx regex tester built in objective c
+        regexhibit # regex tester using perl
         rocket-chat #doesn't work needs to be updated from v1.3 to 2.7
-		skype
-		slack
-		sourcetree
+        skype
+        slack
+        sourcetree
         spotify
-		sublime-text
-		teamviewer
+        sublime-text
+        teamviewer
         the-unarchiver
-		tiddly
+        tiddly
         tunnelblick
         vagrant
-		virtualbox
-		virtualbox-extension-pack
+        virtualbox
+        virtualbox-extension-pack
         visual-studio-code
-       wine-stable
+        wine-stable
 )
 
 for app in "${apps[@]}"; do { [[ $cask_list != *"$app"* ]] && $install "$app"; } done
