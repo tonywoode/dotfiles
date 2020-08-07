@@ -28,22 +28,19 @@ if ! [[ -d $ZSH ]]; then
 fi
 
 # I installed antigen when looking for a way to make the node version manager NVM work well
-# https://github.com/zsh-users/antigen
-# https://github.com/lukechilds/zsh-nvm
+# https://github.com/zsh-users/antigen and https://github.com/lukechilds/zsh-nvm
 source /usr/local/share/antigen/antigen.zsh
 antigen bundle lukechilds/zsh-nvm
 antigen apply
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+
+# Set name of the theme to load. Look in ~/.oh-my-zsh/themes/
+# I don't know why, but this has to be specified before oh-my-zsh is loaded
 ZSH_THEME="bullet-train"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# see the wiki for plugin info
 # https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins
 plugins=(
   alias-finder # eg: alias-finder "git pull" will tell you gl='git pull' g=git
@@ -78,6 +75,16 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Appli
 
 source $ZSH/oh-my-zsh.sh
 
+# bullet-train theme is not an oh-my-zsh default, so we have to install it, and powerline too (which many themes need), note ZSH_CUSTOM only available after the oh-my-zsh source
+if ! [[ -f $ZSH_CUSTOM/themes/bullet-train.zsh-theme ]]; then
+  echo "Bullet Train zsh theme not installed....installing it and the powerline fonts it needs"
+  curl -fsSL http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme > $ZSH_CUSTOM/themes/bullet-train.zsh-theme 
+  # assume we don't have powerline either - this just copied from powerlines readme
+  git clone https://github.com/powerline/fonts.git --depth=1
+  cd fonts && ./install.sh
+  cd .. && rm -rf fonts
+fi
+
 # update oh-my-zsh without prompting (why did the update prompts stop?)
 DISABLE_UPDATE_PROMPT=true
 # You may need to manually set your language environment
@@ -107,7 +114,7 @@ bindkey -v
 # End of lines configured by zsh-newuser-install
 
 # The following lines were added by compinstall
-zstyle :compinstall filename '/Users/twoode/.zshrc'
+zstyle :compinstall filename ~/.zshrc
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
@@ -119,9 +126,6 @@ autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 # I hate how 'help' is now 'run-help' in zsh, i use it all the time
 alias help=run-help
-
-# we want homebrew cask to install things to /Applications like everything else does now, not ~/Applications
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # extend git with hub https://hub.github.com/
 alias git=hub
