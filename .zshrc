@@ -40,21 +40,29 @@ ZSH_THEME="bullet-train"
 # see the wiki for plugin info
 # https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins
 plugins=(
-  brew 
-  brew-cask 
+  alias-finder # eg: alias-finder "git pull" will tell you gl='git pull' g=git
+  aws
+  brew # its just aliases since homebrew ships with completions now
   colored-man-pages 
+  colorize
   common-aliases 
-  dircycle 
-  dirhistory 
+  dash # open dash with dash or do dash python or dash python:tuple
+  dircycle  # ctrl+shift+left or right will cycle between directory stack like browser back/forward
+  dirhistory # similar to dircycle but with alt+left/right/up/down (inc got to parent dir and first child)
   docker 
   docker-compose 
   git 
+  gitignore # shortcuts for working with gitignore.io which gives you templates for environments/languages etc - gi list or gi java
   httpie 
-  history 
-  history-substring-search 
-  npm 
-  nvm 
-  vi-mode 
+  history # shortcuts like hsi = do a case insensitve grep search of history
+  history-substring-search # type in any part of any command from history, UP/DOWN will cycle through matches
+  jsontools # pp_json pretty prints, is_json tells you if valid, urlencode_json and urldecode_json
+  npm # completion and aliases
+  nvm # adds autocompletions for nvm. Also automatically sources nvm, so you don't need to do it manually in your .zshrc
+  redis-cli # completions
+  vagrant # completions and aliases vup is vagrant up, vh vagrant halt, vssh vagrant ssh
+  vi-mode # This plugin increase vi-like zsh functionality - see list here: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
+  yarn # completions and aliases
 )
 
 # User configuration

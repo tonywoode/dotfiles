@@ -53,6 +53,7 @@ bins=(
         node #tern requires a globally installed node, so better to give it a later one than none at all
         p7zip
         postgresql
+        pygments # syntax highlighter used by the zsh plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
         rmtrash
         tidy-html5
         tmate
