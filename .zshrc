@@ -1,6 +1,7 @@
 # tmux starts by default, $- == *i* says 'if current shell isn't interactive
 # I replaced my own implementation of this with the follwoing as it seemed them most thorough:  https://stackoverflow.com/a/42351698/3536094
-# you might also want to check out the zsh plugin for tmux - which i've already installed https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#tmux
+# if this ever becomes unacceptable you might also want to check out the zsh plugin for tmux - https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#tmux
+# since it has an env var to set that does this and subtelties on it eg: ZSH_TMUX_AUTOSTART
 case $- in
     *i*)
     if command -v tmux>/dev/null; then
@@ -17,9 +18,14 @@ esac
 
 # use additional completions from brews zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
- 
+
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/twoode/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
+
+if ! [[ -d $ZSH ]]; then
+  echo "oh-my-zsh can't be found, installing..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 
 # I installed antigen when looking for a way to make the node version manager NVM work well
 # https://github.com/zsh-users/antigen
@@ -60,6 +66,7 @@ plugins=(
   npm # completion and aliases
   nvm # adds autocompletions for nvm. Also automatically sources nvm, so you don't need to do it manually in your .zshrc
   redis-cli # completions
+  tmux # alias but also very useful looking config variables i've not yet used, see top of this file
   vagrant # completions and aliases vup is vagrant up, vh vagrant halt, vssh vagrant ssh
   vi-mode # This plugin increase vi-like zsh functionality - see list here: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
   yarn # completions and aliases
