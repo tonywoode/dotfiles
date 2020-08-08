@@ -158,9 +158,9 @@ echo "reinstalling any uninstalled mas (mac app store) apps"
 for app_store_app in "${app_store_apps[@]}"; do { [[ $cask_list != *"$app_store_app"* ]] && mas install "$app_store_app"; } done
 
 echo "lastly hijack this script to record what npm modules were installed when it was run"
-
-if [ "$(command -v nvm)" == "nvm" ]; then 
-  nvm exec lts/* npm list -g --depth=0 > npm_lts_installed_modules.txt && date >> npm_lts_installed_modules.txt
+# probably better to just use https://www.npmjs.com/package/npm-modules-sync
+if [ "$(command -v nvm)" = "nvm" ]; then 
+  nvm exec "lts/*" npm list -g --depth=0 > npm_lts_installed_modules_lts_$(hostname).txt && date >> npm_lts_installed_modules_lts_$(hostname).txt
 fi
 
 echo "Im outta yer loop, cya"
