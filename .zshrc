@@ -73,6 +73,9 @@ plugins=(
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/MAMP/Library/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
+# update oh-my-zsh without prompting (I think this stopped auto-updating becuase i had it AFTER the source for ages...)
+DISABLE_UPDATE_PROMPT=true
+
 source $ZSH/oh-my-zsh.sh
 
 # bullet-train theme is not an oh-my-zsh default, so we have to install it, and powerline too (which many themes need), note ZSH_CUSTOM only available after the oh-my-zsh source
@@ -85,8 +88,7 @@ if ! [[ -f $ZSH_CUSTOM/themes/bullet-train.zsh-theme ]]; then
   cd .. && rm -rf fonts
 fi
 
-# update oh-my-zsh without prompting (why did the update prompts stop?)
-DISABLE_UPDATE_PROMPT=true
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
