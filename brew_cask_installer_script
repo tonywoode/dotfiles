@@ -83,6 +83,7 @@ cask_list=$(brew cask list)
 echo $cask_list
 
 echo "Installing any non-installed Cask Apps"
+# for how to download previous versions see https://stackoverflow.com/a/58373705 (and currently dash example below)
 apps=(
         aerial # beautiful screensaver
         alfred
@@ -95,7 +96,8 @@ apps=(
         caffeine
         cord # favoour microsoft remote desktop, but that needs appstore
         cyberduck # coz, believe it or not, filezilla is malware...
-        dash
+        # dash, dash 5 is a paid upgrade, need to stick to dash 4:
+        https://raw.githubusercontent.com/caskroom/homebrew-cask/baf4f35e70c225fe1a8a60ec3b4e22604187238d/Casks/dash.rb
         diffmerge
         disk-inventory-x
         dropbox
