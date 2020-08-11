@@ -1,25 +1,30 @@
 #!/bin/bash
 
-## Run this before making this directory 'live'
-## It will copy out any existing ~ config files and make symlinks
-# note it doesn't change anything in THIS folder, so you can add to it
+# when run, will take any non-excluded dotfiles in this directory and check them against ~. If there's no valid symlink in ~ to a dotfile in this repo, it will make one. If ~ has a real file named the same as the dotfile in here, it will move it to 'olddir' before symlinking
 
-########## Variables
- 
+# what it can't do is remove any symlinks in ~ that are no longer needed/invalid, you'll have to do that by hand.
+
+
 dir=~/CODE/Scripts/Dotfiles/dotfiles # dotfiles directory
 olddir=~/CODE/Scripts/Dotfiles/dotfiles_old # old dotfiles backup directory
 
+if [[ ! -d "$olddir" ]]; then echo "making directory to house old dots, one level up from this script" && mkdir -p "$olddir"; fi
+
+# make sure we're in the dotfiles directory, prob not needed
+echo "Changing to the $dir directory"
+cd "$dir"
+
 # create an array with all the dotfiles in my dots dir
-# [^.] is a negating expression to avoid matching . (current working directory) or .. (parent directory) https://stackoverflow.com/a/31498096/3536094
+# [^.] is a negating expression to avoid matching . or ..  https://stackoverflow.com/a/31498096/3536094
 arr=($dir/.[^.]*)
 
-# some of below from https://koenwoortman.com/bash-script-check-if-file-is-symlink/
+# some of below from https://koenwoortman.com/bash-script-check-if-file-is-symlink/, the multiple ifs because zsh doesn't seem to like any exclusion list-based array comparisons, and other solutions get too bsd vs gnu 
 for dotfilepath in "${arr[@]}"; do
    dotfile="${dotfilepath##*/}" #filename only
    if [[ "$dotfile" = ".git" ]] ||  
       [[ "$dotfile" = ".gitignore" ]] ||
       [[ "$dotfile" = *.swp ]] ||
-      [[ "$dotfile" = ".vim" ]] # I swear we don't need that solarized colourscheme its installed by a package
+      [[ "$dotfile" = ".vim" ]] # I swear we don't need that solarized colourscheme its installed by a package, if we do then curl it in instead
    then echo "$dotfile is excluded"
    elif [[ -f "$HOME/$dotfile" ]] ; then
        #dotfile is already in ~, is it a valid symlink?
@@ -35,60 +40,5 @@ for dotfilepath in "${arr[@]}"; do
    fi 
 done
 
+echo "remember you may need to source/reload some dotfiles before anything will change..."  
 
-
-
-# now lose the first two because they will be . and .. and that would be bad!
-
-
-
-# # list of files to symlink in homedir
-# files=(
-# 				.bash_profile
-# 				.gitconfig #be aware this makes this repos git config file the system git config file!
-# 				.gitignore_global
-# 				.tmux.conf
-# 				.vimrc
-# 				.zshrc
-# )
-# 
-# 
-# # list of folders to symlink in homedir
-# folders=(
-# 					.vim #this gives us my colors files, but annoyingly includes vundledir
-# )
-# ##########
-#  
-# # create dotfiles_old in homedir
-# echo "Creating $olddir for backup of any existing dotfiles in ~"
-# mkdir -p "$olddir"
-# echo "...done"
-#  
-# # change to the dotfiles directory
-# echo "Changing to the $dir directory"
-# cd "$dir"
-# echo "...done"
-#  
-# # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
-# for file in "${files[@]}"; do
-# 	echo "Moving any existing dotfiles from ~ to $olddir"
-# 	mv ~/"$file" "$olddir/"
-# 	echo "Creating symlink to $file in home directory."
-# 	ln -s $dir/$file ~/"$file"
-# 	#source ~/"$file"
-# done
-# 
-# # do the same to folders, but don't source them
-# for folder in "${folders[@]}"; do
-# 	mv ~/"$folder" "$olddir" # todo: getting a recursive .vim inside the source or destination .vim folder
-# 	ln -s "$dir/$folder" ~/"$folder"
-# done
-# 
-# # make symlinks to the automator scripts here in ~/Library/Services
-# find "$dir/automator scripts" -name "*.workflow" | while read file; do ln -s "$file" "$dir/automator scripts/ServicesLink"; done
-# read -p "NOW PLEASE INSTALL EACH SCRIPT BY DOUBLE CLICKING IT"
-# open "$dir/automator scripts/ServicesLink"
-# read -p  "NOW YOU NEED TO DOUBLE CLICK THE VIMINI APP TO INSTALL IT"
-# cp "$dir/automator scripts/open with vim in iterm at folder/vimini-master/vimini.app/*" "/Applications/"
-# open /Applications
-# echo "done"

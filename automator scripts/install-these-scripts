@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# my automator scripts live in ~/Library/Services, there's a symlink to that location in this folder, this script works by using it (not sure why tbh....)
+
+dir=~/CODE/Scripts/Dotfiles/dotfiles # dotfiles directory
+
+echo "making symlinks to the automator scripts here in ~/Library/Services"
+find "$dir/automator scripts" -name "*.workflow" | while read file; do ln -s "$file" "$dir/automator scripts/ServicesLink"; done
+read -p "NOW PLEASE INSTALL EACH SCRIPT BY DOUBLE CLICKING IT"
+open "$dir/automator scripts/ServicesLink"
+read -p  "NOW YOU NEED TO DOUBLE CLICK THE VIMINI APP TO INSTALL IT"
+cp -r "$dir/automator scripts/open with vim in iterm at folder/vimini.app/" "/Applications/Vimini.app"
+open /Applications
+echo "done"
+
+
