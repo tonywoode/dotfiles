@@ -14,3 +14,4 @@ The bash scripts are numbered by suggested order of running on a new machine, so
 4) sync_npm_modules - because (so long as you have nvm) now its time to configure higher-level things and we have the tools we need for that
 5) automator_scripts - can be installed anytime really (there's a bash installer in the automator scripts dir for macos finder helpers)
 
+most of these scripts are not intended to be one-offs - eg: add dotfiles in here and run make_symlinks and the only change will be a new symlink to the dotfile in ~. A todo would be to be able to add brew and cask packages to the baked lists in that script (particularly as brew update will update all packages)
