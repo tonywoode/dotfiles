@@ -142,20 +142,5 @@ for app in "${apps[@]}"; do { [[ $cask_list != *"$app"* ]] && $install "$app"; }
 
 echo "running brew and cask cleanup" && brew cleanup
 
-echo "Installed Mac App Store apps"
-echo "note: must be logged into app store, and must have downloaded these via the app store ui before"
-mas list
-app_store_apps=(
-  1295203466 #Microsoft Remote Desktop (10.1.8)
-  597419160  #Sleep Pillow (1.0)
-  881415018  #myTuner Radio (2.0.1)
-  568494494  #Pocket (1.7.9)
-  497799835  #Xcode (9.2)
-  409203825  #Numbers (5.1)
-)
-
-echo "reinstalling any uninstalled mas (mac app store) apps"
-for app_store_app in "${app_store_apps[@]}"; do { [[ $cask_list != *"$app_store_app"* ]] && mas install "$app_store_app"; } done
-
 echo "Im outta yer loop, cya"
  
