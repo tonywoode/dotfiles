@@ -2,4 +2,4 @@
 **/.netrwhist
 .vim/
 !jsconfig.json
-
+sync-npm-modules-github-token.conf
