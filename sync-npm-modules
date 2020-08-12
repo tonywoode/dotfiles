@@ -1,7 +1,6 @@
 #!/bin/bash
 cat <<"EOF"
-instructions:
-https://github.com/riyadhalnur/npm-modules-sync
+https://github.com/riyadhalnur/npm-modules-sync instructions:
    1. On the machine you want to use as the source of your package list, run `npm-sync init -t <your-github-token>`
    2. Note the ID of the gist returned from the previous step once it completes
    3. On the machine you want to sync using the the gist, run `npm-sync init -t <your-github-token> -i <gist-id>`
@@ -29,9 +28,39 @@ if ! type "npm-sync" > /dev/null 2>&1; then
   npm install -g npm-modules-sync
 fi
  
-# bear in mind I already ran a gist creation from an initial machine which made me a gist id
-read -s -n 1 -p "Press any key to do an INITIAL sync to this machine (for subsequent syncs read instructions above) . . ."
- echo ""
-npm-sync init -t "$token" -i "$gist"
-echo "note a bug if you have installed anything from your own filesystem, you'll have to delete it from the gist manually atm"
-echo "I don't say much I did just finish....bye"
+while true; do
+	echo "What shall we do now?"
+    echo "	1. make a one-off initial pull from the gist to this machine (his step 3)"
+    echo "	2. upload npm module changes to gist (his step 4)"
+    echo "	3. download npm module changes from gist (his step 5)"
+	echo "	4. exit"
+	
+	read -p "-> " response
+	case $response in
+		1) # bear in mind I already ran a gist creation from an initial machine which made me a gist id
+            read -s -n 1 -p "Press any key to do an INITIAL sync to this machine (for subsequent syncs read instructions above) . . ."
+            echo ""
+            npm-sync init -t "$token" -i "$gist"
+            echo "note a bug if you have installed anything from your own filesystem, you'll have to delete it from the gist manually atm"
+            echo "I don't say much I did just finish....bye";;
+		2) echo "Ok, lets upload changes"
+           echo "we have to uninstall your locally installed non-npm modules or this will fail...we can install them again right after"
+           npm uninstall -g replace-slack-text
+           npm-sync up
+           npm install -g /Users/twoode/CODE/Scripts/unslack/
+           echo "saving a copy of the modules installed at this point to /npm-modules-log/"
+           npm list -g --depth=0 > npm-modules-log/npm_installed_modules_$(hostname).txt && date >> npm-modules-log/npm_installed_modules_$(hostname).txt
+          ;;
+		3) echo "Ok, lets download changes"
+           echo "take a copy of the modules installed at this point to /npm-modules-log name *_BEFORE.txt"
+           npm list -g --depth=0 > npm-modules-log/npm_installed_modules_$(hostname)_BEFORE.txt && date >> npm-modules-log/npm_installed_modules_$(hostname)_BEFORE.txt
+           npm-sync dl
+           echo "take a copy of the modules installed after the operation to /npm-modules-log (the one not named *_BEFORE.txt)"
+           npm list -g --depth=0 > npm-modules-log/npm_installed_modules_$(hostname).txt && date >> npm-modules-log/npm_installed_modules_$(hostname).txt
+          ;;
+        4) echo "bye" && exit;;
+		*) echo "Try again";;
+	esac
+done
+
+
