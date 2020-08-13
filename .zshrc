@@ -1,3 +1,6 @@
+# any speed issues with plugins etc see this for profiling (enable last line and next line) https://blog.jonlu.ca/posts/speeding-up-zsh
+# zmodload zsh/zprof
+
 # tmux starts by default, $- == *i* says 'if current shell isn't interactive
 # I replaced my own implementation of this with the follwoing as it seemed them most thorough:  https://stackoverflow.com/a/42351698/3536094
 # if this ever becomes unacceptable you might also want to check out the zsh plugin for tmux - https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#tmux
@@ -43,8 +46,6 @@ ZSH_THEME="bullet-train"
 # Add wisely, as too many plugins slow down shell startup.
 # https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins
 plugins=(
-  alias-finder # eg: alias-finder "git pull" will tell you gl='git pull' g=git
-  aws
   brew # its just aliases since homebrew ships with completions now
   colored-man-pages 
   colorize
@@ -206,3 +207,5 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # tabtab source for npm-sync package
 # uninstall by removing these lines or running `tabtab uninstall npm-sync`
 [[ -f /Users/twoode/.nvm/versions/node/v12.18.3/lib/node_modules/npm-modules-sync/node_modules/tabtab/.completions/npm-sync.zsh ]] && . /Users/twoode/.nvm/versions/node/v12.18.3/lib/node_modules/npm-modules-sync/node_modules/tabtab/.completions/npm-sync.zsh
+
+# zprof #for profiling as and when needed
