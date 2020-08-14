@@ -90,7 +90,7 @@ need_to_install=( $(printf "%s\n" "${bins[@]}" "${brew_installed_from_list[@]}" 
 echo "BREW: IN YOUR LIST BUT NOT INSTALLED (at the list name anyway!): ${need_to_install[@]}" && echo ""
 for to_install in "${need_to_install[@]}"; do { echo "BREW: INSTALLING $to_install" && brew install "$to_install"; } done
 
-echo "" && echo " *** BREW *** " && echo ""
+echo "" && echo " *** CASK *** " && echo ""
 
 # CASK - From https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md
 # > Homebrew automatically taps and keeps Homebrew Cask updated. brew update is all that is required.
