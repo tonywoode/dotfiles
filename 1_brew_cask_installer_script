@@ -39,12 +39,12 @@ bins=(
         antigen
         bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
         cmake #installed to setup YouCompleteMe vim plugin
-        ctags-exuberant #installs as ctags, so always tries to reinstall, not a problem, just annoying
+        ctags #also known as ctags-exuberant, don't install as that as it will call itself ctags in the installed list and therefore always install
         fswatch #for smoke's nodemon problem
         graphviz
         git
         go #ycm said it needed it
-        gpg
+        gnupg # originally installed as gpg but when installed calls itself gnupg, and we don't want to try and reinstall every time
         groovy
         httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
         hub
