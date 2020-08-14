@@ -42,6 +42,7 @@ bins=(
         fswatch #for smoke's nodemon problem
         graphviz
         git
+        go #ycm said it needed it
         gpg
         groovy
         httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
@@ -49,11 +50,13 @@ bins=(
         jq
         mas #app-store downloader - see https://github.com/mas-cli/mas
         macvim # --with-override-system-vim" #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion? quoting this doesn't help it install https://github.com/Homebrew/homebrew-core/issues/26583
+        mono # ycm said it needed it
         #mysql - using mamp's copy as my primary for the meanwhile
         node #tern requires a globally installed node, so better to give it a later one than none at all
         p7zip
         postgresql
         pygments # syntax highlighter used by the zsh plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
+        python #ycm needs it - you might prefer to do it properly in future: https://opensource.com/article/19/5/python-3-default-mac#what-to-do
         rmtrash
         tidy-html5
         tmate
