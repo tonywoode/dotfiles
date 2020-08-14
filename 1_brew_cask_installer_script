@@ -32,7 +32,8 @@ echo $tap_list && echo "let's tap any untapped taps..."
 for tap in "${taps[@]}"; do { [[ $tap_list != *"$tap"* ]] && brew tap "$tap"; } done
 ####################################################
 
-echo "Brewed binaries:"
+echo "" && echo " *** BREW *** " && echo ""
+
 bins=(
         ack
         antigen
@@ -70,23 +71,35 @@ bins=(
         zsh-syntax-highlighting
 )
 
-brew_list=$(brew list)
-echo $brew_list && echo "let's brew any unbrewed bins..." 
-for bin in "${bins[@]}"; do { [[ $brew_list != *"$bin"* ]] && echo "installing $bin" && brew install "$bin"; } done
+# previously i had compared the string list 'brew list' with the above array, this was flawed as matches were substring matches not item matches
+# (used to be #for bin in "${bins[@]}"; do { [[ $brew_list != *"$bin"* ]] && echo "installing $bin" && brew install "$bin"; } done
+
+brew_installed=($(brew list)) # note the lack of " " - that's how we space separate the list into an array
+brew_installed_from_list=()
+
+echo "BREW: ALREADY INSTALLED BINARIES: ${brew_installed[@]}" && echo "let's brew any unbrewed bins..." && echo ""
+
+for bin in "${bins[@]}"; do { 
+  for installed in "${brew_installed[@]}"; do {
+    [[ "$bin" == "$installed" ]] && brew_installed_from_list+=( "$bin" )
+  } done
+} done
+
+echo "BREW: ALREADY INSTALLED FROM YOUR LIST: ${brew_installed_from_list[@]}" && echo ""
+need_to_install=( $(printf "%s\n" "${bins[@]}" "${brew_installed_from_list[@]}" | sort | uniq -u) ) #https://stackoverflow.com/a/57185256/3536094 
+echo "BREW: IN YOUR LIST BUT NOT INSTALLED (at the list name anyway!): ${need_to_install[@]}" && echo ""
+for to_install in "${need_to_install[@]}"; do { echo "BREW: INSTALLING $to_install" && brew install "$to_install"; } done
+
+echo "" && echo " *** BREW *** " && echo ""
 
 # CASK - From https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md
 # > Homebrew automatically taps and keeps Homebrew Cask updated. brew update is all that is required.
 # > Since the Homebrew Cask repository is a Homebrew Tap, you’ll pull down the latest Casks every time you issue the regular Homebrew command brew update.
 
-cask="brew cask"
-install="$cask install"
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# FOR HOW TO DOWNLOAD PREVIOUS VERSIONS OF CASKS see https://stackoverflow.com/a/58373705 (and currently dash example below)
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
-echo "Installed casks:"
-cask_list=$(brew cask list)
-echo $cask_list
-
-echo "Installing any non-installed Cask Apps"
-# for how to download previous versions see https://stackoverflow.com/a/58373705 (and currently dash example below)
 apps=(
         aerial # beautiful screensaver
         alfred
@@ -141,7 +154,26 @@ apps=(
         wine-stable
 )
 
-for app in "${apps[@]}"; do { [[ $cask_list != *"$app"* ]] && $install "$app"; } done
+cask="brew cask"
+install="$cask install"
+cask_installed=($(brew cask list)) # note the lack of " " - that's how we space separate the list into an array
+cask_installed_from_list=()
+
+echo "CASK: ALREADY INSTALLED: ${cask_installed[@]}" && echo "let's install any uninstalled casks..." && echo "" 
+# old was: for app in "${apps[@]}"; do { [[ $cask_list != *"$app"* ]] && $install "$app"; } done
+
+for app in "${apps[@]}"; do { 
+  for installed in "${cask_installed[@]}"; do {
+    [[ "$app" == "$installed" ]] && cask_installed_from_list+=( "$app" )
+  } done
+} done
+
+echo "CASK: ALREADY INSTALLED FROM YOUR LIST: ${cask_installed_from_list[@]}" && echo ""
+cask_need_to_install=( $(printf "%s\n" "${apps[@]}" "${cask_installed_from_list[@]}" | sort | uniq -u) ) #https://stackoverflow.com/a/57185256/3536094 
+
+echo "CASK: IN YOUR LIST BUT NOT INSTALLED (at the list name anyway!): ${cask_need_to_install[@]}" & echo ""
+
+for to_install in "${cask_need_to_install[@]}"; do { echo "CASK: INSTALLING $to_install" && $install "$to_install"; } done
 
 echo "running brew and cask cleanup" && brew cleanup
 
