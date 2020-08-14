@@ -71,7 +71,7 @@ nnoremap <F4> :noh<CR>
 nnoremap <F5> :buffers<CR>:buffer<Space>
 
 "PLUGINS
-call plug#begin('~/.vim/bundle') "plug wanted '~/vim/plugged' but suggested this dir if i didn't want to reinstall vundle plugins
+call plug#begin('~/.vim/plugged') "with vundle this used to be ~/vim/bundle'
 Plug 'junegunn/vim-plug' "If you need Vim help for vim-plug itself (e.g. :help plug-options), register vim-plug as a plugin.
 
 " appearance
@@ -88,7 +88,7 @@ Plug 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanu
 Plug 'tpope/vim-repeat' "enables '.' to repeat for vim-surround and others
 Plug 'tpope/vim-unimpaired'  "you need to use things like :cnext or :bprevious all the time, so have shortcut keys for these pairs
 Plug 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. :h surround
-Plug 'Valloric/YouCompleteMe', { 'do' : '~/.vim/bundle/YouCompleteMe/./install.py --ts-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
 Plug 'w0rp/ale' "async linting engine
 Plug 'zhou13/vim-easyescape' "better than having to remap escape to jk
 
