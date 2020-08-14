@@ -110,7 +110,7 @@ apps=(
         blueharvest
         boostnote
         caffeine
-        cord # favoour microsoft remote desktop, but that needs appstore
+        cord # favour microsoft remote desktop, but that needs appstore
         cyberduck # coz, believe it or not, filezilla is malware...
         # dash, dash 5 is a paid upgrade, need to stick to dash 4:
         https://raw.githubusercontent.com/caskroom/homebrew-cask/baf4f35e70c225fe1a8a60ec3b4e22604187238d/Casks/dash.rb
