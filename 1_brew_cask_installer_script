@@ -105,7 +105,6 @@ apps=(
         alfred
         another-redis-desktop-manager
         appcleaner
-        balenaetcher #Flash OS images to SD cards & USB drives, safely and easily.
         balsamiq-wireframes
         betterzip # for the betterzip quick look plugin that shows zip contents in finder
         blueharvest
