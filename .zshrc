@@ -20,6 +20,12 @@ case $- in
     ;;
 esac
 
+# brew doctor will complain it wants /usr/local/sbin in your path, and suggests putting it before anything else (not that it put very much in there...)
+export PATH="/usr/local/sbin:$PATH"
+
+# brew's groovy installer says to set this, but strangely didn't set it for you
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+
 # use additional completions from brews zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
