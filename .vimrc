@@ -124,6 +124,16 @@ call plug#end() " All of your Plugs must be added before the following line
 " paste it as below. https://stackoverflow.com/a/6706997/3536094 - (note minus, and don't leave off trailing slash)
 "set runtimepath-=~/.vim/bundle/tern_for_vim/
 
+" autoload vimPlug if it isn't loaded - this should be in the functions
+" section at the bottom, but if solarized isnt loaded the whole .vimrc will
+" fail at the colorscheme declaration below this one
+" if this were neoVim the second line would read `curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs`
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 "PLUGIN AND PLUGIN-AFFECTED SETTINGS
 "colour settings - from https://github.com/junegunn/vim-plug/wiki/faq: A common 
 " mistake is to put :colorscheme NAME before call plug#end(). Plugins are not 
@@ -315,14 +325,6 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * redraw! | if mode() != 'c'
 " https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
-
-" autoload vimPlug if it isn't loaded
-" if this were neoVim the second line would read `curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs`
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
 
 " bram's own
 " When editing a file, always jump to the last known cursor position.
