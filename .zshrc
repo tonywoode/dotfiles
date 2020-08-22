@@ -1,5 +1,6 @@
-# any speed issues with plugins etc see this for profiling (enable last line and next line) https://blog.jonlu.ca/posts/speeding-up-zsh
+# any speed issues with plugins etc see this for profiling (enable first line and last line as per https://blog.jonlu.ca/posts/speeding-up-zsh)
 # zmodload zsh/zprof
+ZSH_DISABLE_COMPFIX="true" # because i'm not going to change perms on /usr/local/share - see github.com/ohmyzsh/issues/8205, see also compinit flag below
 
 # tmux starts by default, $- == *i* says 'if current shell isn't interactive
 # I replaced my own implementation of this with the follwoing as it seemed them most thorough:  https://stackoverflow.com/a/42351698/3536094
@@ -119,7 +120,8 @@ bindkey -v
 # The following lines were added by compinstall
 zstyle :compinstall filename ~/.zshrc
 autoload -Uz compinit
-compinit
+compinit -u  # -u flag because i'm not going to change perms on /usr/local/share - see github.com/ohmyzsh/issues/8205
+
 # End of lines added by compinstall
  
  
