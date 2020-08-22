@@ -58,6 +58,7 @@ bins=(
         fswatch #for smoke's nodemon problem
         graphviz
         git
+	git-gui # just to get gitk and git-gui back
         go #ycm said it needed it
         gnupg # originally installed as gpg but when installed calls itself gnupg, and we don't want to try and reinstall every time
         groovy
@@ -163,9 +164,10 @@ apps=(
         tiddly
         tunnelblick
         vagrant
-        virtualbox
+        virtualbox # needs extension allowing in maccos security prefs so will fail first time whilst you manually allow it in prefs
         virtualbox-extension-pack
         visual-studio-code
+	xquartz # required by wine-stable hence before it in the list
         wine-stable
 )
 
