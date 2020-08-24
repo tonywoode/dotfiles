@@ -20,9 +20,6 @@ case $- in
     ;;
 esac
 
-# brew doctor will complain it wants /usr/local/sbin in your path, and suggests putting it before anything else (not that it put very much in there...)
-export PATH="/usr/local/sbin:$PATH"
-
 # brew's groovy installer says to set this, but strangely didn't set it for you
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
@@ -77,8 +74,9 @@ plugins=(
   yarn # completions and aliases
 )
 
-# User configuration
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/MAMP/Library/bin"
+# brew doctor will complain it wants /usr/local/sbin in your path, and suggests putting it before anything else (not that it put very much in there...)
+# User configuration - TODO: i'm overwriting $PATH here, but if I don't I get duplication. What's the safe way? see https://superuser.com/questions/39751/add-directory-to-path-if-its-not-already-there
+export PATH="/usr/local/sbin:$PATH:/Applications/MAMP/Library/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # update oh-my-zsh without prompting (I think this stopped auto-updating becuase i had it AFTER the source for ages...)
