@@ -172,9 +172,6 @@ alias qpnode="cd $qpnode"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export NVM_DIR="/Users/twoode/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # zsh default text
 #
 # Uncomment the following line to use case-sensitive completion.
