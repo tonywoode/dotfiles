@@ -75,7 +75,7 @@ call plug#begin('~/.vim/plugged') "with vundle this used to be ~/vim/bundle'
 Plug 'junegunn/vim-plug' "If you need Vim help for vim-plug itself (e.g. :help plug-options), register vim-plug as a plugin.
 
 " appearance
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bindings, navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
 Plug 'micha/vim-colors-solarized'
 Plug 'vim-airline/vim-airline-themes'
@@ -170,9 +170,8 @@ let g:dash_map = { 'javascript' : 'ramda' }
 " airline options https://github.com/vim-airline/vim-airline
 " by default with 'laststatus' the statusline won't appear until a split is created. Make it appear always
 set laststatus=2
-let g:airline_theme='solarized'
-" for DARK solarized, this extra step is needed
-let g:airline_solarized_bg='dark'
+let g:airline_powerline_fonts = 1
+let g:airline_theme='tomorrow'
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename TODO: work out what the other constituents mean
