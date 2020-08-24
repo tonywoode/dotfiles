@@ -27,9 +27,12 @@ set autoindent
 set smartindent
 
 " Persistent undo  https://stackoverflow.com/a/26702442/3536094
-"  YOU must mkdir ~/.vim/undo
+"  YOU must mkdir ~/.vim/undo, so ensure folder exists NIX ONLY shell. Note use of $ var not a vim set or let var, 
+"  its just easiest see https://vi.stackexchange.com/a/17451 
+let $undoFolder = $HOME.'/.vim/undo'
+silent !  [[ -d $undoFolder ]] || mkdir $undoFolder
 set undofile
-set undodir=$HOME/.vim/undo
+set undodir=$undoFolder
 set undolevels=1000
 set undoreload=10000
 
