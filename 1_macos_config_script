@@ -5,6 +5,8 @@
 #  (in case source is not at default, or macos change the default), however the script is very large and unmanagable, and in principle 
 #  I just  wanted to change settings that need changing
 #  Also beware because this is not a fork, and many contributors are contributing there, this file will now need manually checking against that one
+
+# basic principles of this: https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/
 # an easy way to determine config keys yourself is:
 # defaults read > before
 # then make your change in system preferences etc
@@ -367,6 +369,15 @@ EOD
 
 # Don’t display the annoying prompt when quitting iTerm
 #defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+
+###############################################################################
+# Security                                                                   #
+###############################################################################
+
+# enable the firewall - see https://coderwall.com/p/zt8aqa/disable-mac-osx-firewall-from-command-line
+#  however, SIP prevents us from unloading the firewall service so a restart prob needed here
+sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
+
 
 ###############################################################################
 # Time Machine                                                                #
