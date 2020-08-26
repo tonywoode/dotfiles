@@ -1,15 +1,21 @@
+#!/bin/bash
+
+# note other things mas can do include signing into app store for first time, purchasing apps (otherwise we can only install what's already 'purchased'), and updating apps, but I don't really want to do any of that here
 echo "Installed Mac App Store apps"
 echo "note: must be logged into app store, have brew installed mas, and must have downloaded these via the app store ui before"
-mas list
+mas_list=$(mas list)
 app_store_apps=(
-  1295203466 #Microsoft Remote Desktop (10.1.8)
-  597419160  #Sleep Pillow (1.0)
-  881415018  #myTuner Radio (2.0.1)
-  568494494  #Pocket (1.7.9)
-  497799835  #Xcode (9.2)
-  409203825  #Numbers (5.1)
+  409203825  # Numbers
+  462058435  # Microsoft Excel
+  985367838  # Microsoft Outlook
+  1295203466 # Microsoft Remote Desktop 
+  462054704  # Microsoft Word
+  881415018  # myTuner Radio 
+  597419160  # Sleep Pillow 
+  497799835  # Xcode 
 )
 
 echo "reinstalling any uninstalled mas (mac app store) apps"
-for app_store_app in "${app_store_apps[@]}"; do { [[ $cask_list != *"$app_store_app"* ]] && mas install "$app_store_app"; } done
+# note that whilst substring matching isnt complex enough for the brew script, its fine for this unique-id scheme
+for app_store_app in "${app_store_apps[@]}"; do { [[ $mas_list != *"$app_store_app"* ]] && mas install "$app_store_app"; } done
 
