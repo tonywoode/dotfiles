@@ -29,7 +29,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 echo "MacOS Auto-Configuration script"
 echo ""
 # We will change your computername in lots of places.....
-
+echo "scutil currently says LocalHostName: $(scutil --get LocalHostName) , ComputerName: $(scutil --get ComputerName) , HostName: $(scutil --get HostName)"
 read -p "Enter the computername to use (or nothing to continue with current name):" computername
 if [[ -z "$computername" ]]; then
   echo "you didn't type anything, so keeping current computername and continuing"
@@ -87,7 +87,10 @@ defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 # Disable press-and-hold for keys in favor of key repeat
-# previously I had instructed to do this with boostnote and vscode individually, so let's just do it systemwide
+# this is mathias' default, previously I had instructed to do this with boostnote and vscode individually:
+# defaults write com.electron.boostnote ApplePressAndHoldEnabled -bool false
+# defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+# so let's just do it systemwide
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate

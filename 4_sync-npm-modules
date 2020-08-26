@@ -5,7 +5,7 @@ https://github.com/riyadhalnur/npm-modules-sync instructions:
    2. Note the ID of the gist returned from the previous step once it completes
    3. On the machine you want to sync using the the gist, run `npm-sync init -t <your-github-token> -i <gist-id>`
    4. Run `npm-sync up` subsequently on your main machine to update the list of packages
-   5. Run `npm-sync dl` subsequently on your syned machines to download the current list of global packages
+   5. Run `npm-sync dl` subsequently on your synced machines to download the current list of global packages
 
 
 EOF
@@ -22,7 +22,7 @@ gist=$github_gist_id
 [[ ! -z $gist ]] && echo "github gist can be found at: https://gist.github.com/tonywoode/$gist" || (echo "can't access your github gist from $tokenFile, exiting..." && exit)
 echo "try this in browser console to pretty print the gist from that url: JSON.parse(document.getElementById('file-modules-json-LC1').textContent)"
 echo ""
-# install npm-modules sync if you don't have it (make sure you've installed a version of node first (i think nvm installs lts by default)
+# install npm-modules sync if you don't have it (make sure you've installed a version of node first (try nvm install --lts)
 if ! type "npm-sync" > /dev/null 2>&1; then
   echo "we need to install npm-modules-sync, installing globally..."
   npm install -g npm-modules-sync
