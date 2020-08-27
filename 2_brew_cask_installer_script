@@ -167,8 +167,7 @@ apps=(
         virtualbox # needs extension allowing in maccos security prefs so will fail first time whilst you manually allow it in prefs
         virtualbox-extension-pack
         visual-studio-code
-	xquartz # required by wine-stable hence before it in the list
-        wine-stable
+        vnc-viewer
 )
 
 cask="brew cask"
