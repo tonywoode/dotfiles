@@ -2,6 +2,10 @@
 # zmodload zsh/zprof
 ZSH_DISABLE_COMPFIX="true" # because i'm not going to change perms on /usr/local/share - see github.com/ohmyzsh/issues/8205, see also compinit flag below
 
+# I put all my temp text files here....
+MY_TEMP_DIR="$HOME/temp/"
+[[ -d $MY_TEMP_DIR ]] || mkdir $MY_TEMP_DIR
+
 # tmux starts by default, $- == *i* says 'if current shell isn't interactive
 # I replaced my own implementation of this with the follwoing as it seemed them most thorough:  https://stackoverflow.com/a/42351698/3536094
 # if this ever becomes unacceptable you might also want to check out the zsh plugin for tmux - https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#tmux
