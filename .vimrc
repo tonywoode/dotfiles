@@ -25,7 +25,7 @@ set softtabstop=2
 set expandtab
 set autoindent
 set smartindent
-
+set nojoinspaces "only put one space after a full stop before the new sentence, not two - see https://stackoverflow.com/questions/1578951/why-does-vim-add-spaces-when-joining-lines
 " Persistent undo  https://stackoverflow.com/a/26702442/3536094
 "  YOU must mkdir ~/.vim/undo, so ensure folder exists NIX ONLY shell. Note use of $ var not a vim set or let var, 
 "  its just easiest see https://vi.stackexchange.com/a/17451 
