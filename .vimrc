@@ -109,6 +109,7 @@ Plug 'othree/jspc.vim' "JavaScript Parameter Complete detects when you're inside
 Plug 'othree/yajs.vim', { 'for': 'javascript' } "a fork of jelera/vim-javascript-syntax, neither have custom indent settings, updated very often. The {} makes sure the syntax plugin is loaded in a Vim autocommand based on filetype detection (as opposed to relying on Vim's runtimepath based sourcing mechanism. Then the main Vim syntax plugin will have already run, and this syntax will override it.
 
 " file/window maintainance
+Plug 'justinmk/vim-gtfo' "Opens file manager or terminal at the directory of the current file in Vim - cross platform no less
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } "also installs fzf for your shell
 Plug 'junegunn/fzf.vim' "by default fzf only installs a minimum vim wrapper
 Plug 'junegunn/gv.vim' "https://github.com/junegunn/gv.vim, visual git repo browser
