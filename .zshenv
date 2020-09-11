@@ -25,4 +25,6 @@ quickplay=~/CODE/REPO/Quickplay
 alias quickplay="cd $quickplay"
 qpnode="$scripts/quickPlayNode"
 alias qpnode="cd $qpnode"
+session="$CODE/AppData/vim/session"
+alias session="cd $session"
 
