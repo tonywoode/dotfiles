@@ -304,6 +304,8 @@ cnoremap kj <ESC>
 "prosession options
 " enable tmux window name updates as per current session
 let g:prosession_tmux_title = 1
+" session data can preserve forever, even if our machine dies, if we keep session data with data, not vim code (default is ~/.vim/session)
+let g:prosession_dir = '~/CODE/AppData/vim/session/'
 
 " end of plugin options
 
