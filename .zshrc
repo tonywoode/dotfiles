@@ -117,6 +117,8 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# NOTE MY PERSONAL ALIASES MOVED TO .zshenv SO E.G.: VIM CAN SEE THEM SEE COMMENT IN https://stackoverflow.com/a/4642855
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -132,7 +134,6 @@ compinit -u  # -u flag because i'm not going to change perms on /usr/local/share
 
 # End of lines added by compinstall
  
- 
 #Add the following to your zshrc to access the online help:
 unalias run-help &>/dev/null #https://bugs.launchpad.net/ubuntu/+source/zsh/+bug/305346
 autoload run-help
@@ -142,34 +143,6 @@ alias help=run-help
 
 # extend git with hub https://hub.github.com/
 alias git=hub
-
-# some shortcuts. I like to type cd sometimes.
-CODE=~/CODE
-alias CODE="cd $CODE"
-scripts=$CODE/Scripts
-alias scripts="cd $scripts"
-scratch=$CODE/Scratch
-alias scratch="cd $scratch"
-dots=$scripts/Dotfiles/dotfiles
-alias dots="cd $dots"
-repo=$CODE/Repo
-alias repo="cd $repo"
-smoke=$repo/Smoke/smoke_github
-alias smoke="cd $smoke"
-atlas=$smoke/atlas
-alias atlas="cd $atlas"
-atlasui=$atlas/atlas-ui
-alias atlasui="cd $atlasui"
-atlasdata=$smoke/atlas-data
-alias atlasdata="cd $atlasdata"
-flex=$smoke/flex-services
-alias flex="cd $flex"
-desktop=~/Desktop
-alias desktop="cd $desktop"
-quickplay=~/CODE/REPO/Quickplay
-alias quickplay="cd $quickplay"
-qpnode="$scripts/quickPlayNode"
-alias qpnode="cd $qpnode"
 
 # smoke docker specific vars
 . ~/.smoke-mirrors/.profile
