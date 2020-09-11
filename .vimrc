@@ -151,6 +151,7 @@ colorscheme solarized
 
 " vim-polyglot settings
 " I temporarily disabled polyglot using jsx plugins due to a matchit issue, issue seems resolved now tho and i need jsx highlighting
+" polyglot should now be using this to do jsx highlighting: https://github.com/MaxMEllon/vim-jsx-pretty
 "  https://github.com/chrisbra/matchit/issues/11
 "  https://github.com/mxw/vim-jsx/pull/177
 " atm vim-jsx breaks matchit, and the pr to fix it isn't actioned
