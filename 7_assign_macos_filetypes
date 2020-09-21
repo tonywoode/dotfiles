@@ -3,11 +3,11 @@
 # our story starts here https://superuser.com/questions/273756/how-to-change-default-app-for-all-files-of-particular-file-type-through-terminal
 # in that link note it says to install duti via brew, its added to brew installer script
 # then note in that first link we are told how to get the id of an app
-# > If you haven't already associated an app with something this way but know the name of your the app, 
+# > If you haven't already associated an app with something this way but know the name of your the app,
 # > you can do osascript -e 'id of app "$appName"' to get the id of any app installed on your system
 # so our first example: i want to change all .txt files to open with macvim, to get macvim's id
 # (the app name seems the be case insensitive)
-# 
+#
 # $ osascript -e 'id of app "macvim"'
 # org.vim.MacVim
 #
@@ -18,19 +18,19 @@
 # /System/Applications/TextEdit.app
 # com.apple.TextEdit <----- here is text edits UTI
 #
-# then we just need to say 
+# then we just need to say
 # duti -s io.brackets.appshell .md all
 # although note another posted worked out you can if you dare just do this:
 # duti -s $(osascript -e 'id of app "MacVim"') .md all
 #
-# however, the file extension isn't the only thing duti can act on, see man duti 
+# however, the file extension isn't the only thing duti can act on, see man duti
 # really it wants a file UTI as the thing to act on, it should really be like
 # duti -s com.apple.TextEdit  com.microsoft.word.doc all
 # and with this we learn there's a hierarchy of UTI filetypes
 # see here: https://davlatmirmanov.com/2018/11/17/how-to-get-the-uti-of-any-file-on-macos/
 # we can run mdls /path/to/your/file.txt
 # to get told this
-# 
+#
 # kMDItemContentType                     = "public.plain-text"
 # kMDItemContentTypeTree                 = (
 #     "public.plain-text",
@@ -40,7 +40,7 @@
 #     "public.content"
 # )
 # the latter is the hierarchy. Its probably best though to stick with public.plain-text
-# for our purposes here, this will change all text to macvim 
+# for our purposes here, this will change all text to macvim
 # this seems safe if you look at https://superuser.com/questions/231854/default-editor-for-files-without-file-name-extension-in-mac-os-x
 # and is really what we want, if a file has no registered filetype and is just text, let's
 # always open it with MacVim so:
@@ -50,6 +50,14 @@ bundle_id_of_my_favourite_text_editor=org.vim.MacVim
 duti -s $bundle_id_of_my_favourite_text_editor public.plain-text all
 # and the same for json please, rather than xcode (might as well have said .json)
 duti -s $bundle_id_of_my_favourite_text_editor public.json all
+# now it seems like some files given a filetype don't filter up, .rq files don't open with MacVim, even though
+#  you'd think they'd open with MacVim so we have to:
+duti -s $bundle_id_of_my_favourite_text_editor .rq all
+duti -s $bundle_id_of_my_favourite_text_editor .sparql all
+duti -s $bundle_id_of_my_favourite_text_editor .yml all
+duti -s $bundle_id_of_my_favourite_text_editor .css all # was opening with sublime?!?!
+duti -s $bundle_id_of_my_favourite_text_editor .groovy all # was opening with sublime?!?!
+
 
 # now onto unix executables, the link above that seems safe suggests you can
 # com.macromates.textmate public.unix-executable all
@@ -57,7 +65,7 @@ duti -s $bundle_id_of_my_favourite_text_editor public.json all
 # for instance
 # $ mdls 1_macos_config_script
 # tells me its a public.unix-ececutable
-# and (osascript -e 'id of app "Terminal"') 
+# and (osascript -e 'id of app "Terminal"')
 # tells me Terminal is com.apple.Terminal
 # and my last bit of evidence:
 # $ duti -x .sh
@@ -67,10 +75,9 @@ duti -s $bundle_id_of_my_favourite_text_editor public.json all
 # so you can at least reconstitute Terminal launching if this all fucks up
 # so lets
 duti -s $bundle_id_of_my_favourite_text_editor public.unix-executable all
+# but again its not filtering up, .sh still opens with xcode
+duti -s $bundle_id_of_my_favourite_text_editor .sh all
 
 # a last find was if you're really stuck for a file UTI you can print off the whole database:
 # https://stackoverflow.com/questions/16943819/where-do-uti-come-from
 # $ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -dump
-
-
-
