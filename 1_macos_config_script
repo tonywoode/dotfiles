@@ -314,7 +314,6 @@ echo "trying to download the latest solarized package (then i'll try to open it 
 curl -fLo ~/Downloads/solarized.zip https://github.com/altercation/solarized/archive/master.zip && unzip -oq ~/Downloads/solarized.zip -d ~/Downloads/
 echo "trying to open the solarized terminal theme in terminal (you'll need to close the terminal it opens to continue...."
 themeFile=/Users/twoode/Downloads/solarized-master/osx-terminal.app-colors-solarized/xterm-256color/Solarized\ Dark\ xterm-256color.terminal
-#open /Users/twoode/Downloads/solarized-master/osx-terminal.app-colors-solarized/xterm-256color/Solarized\ Dark\ xterm-256color.terminal
 echo "Tried to download the latest solarized package to ~/Downloads - we'll open to effect a double click on /Users/twoode/Downloads/solarized-master/osx-terminal.app-colors-solarized/xterm-256color/Solarized\ Dark\ xterm-256color.terminal"
 
 osascript <<EOD
