@@ -44,7 +44,29 @@
 # this seems safe if you look at https://superuser.com/questions/231854/default-editor-for-files-without-file-name-extension-in-mac-os-x
 # and is really what we want, if a file has no registered filetype and is just text, let's
 # always open it with MacVim so:
-duti -s org.vim.MacVim public.plain-text all
+
+bundle_id_of_my_favourite_text_editor=org.vim.MacVim
+
+duti -s $bundle_id_of_my_favourite_text_editor public.plain-text all
+# and the same for json please, rather than xcode (might as well have said .json)
+duti -s $bundle_id_of_my_favourite_text_editor public.json all
+
+# now onto unix executables, the link above that seems safe suggests you can
+# com.macromates.textmate public.unix-executable all
+# and this is fine, and although i can't seem to check the default of all unix executables, I can see a shell script without a .sh extension opens with Terminal, and I can see a .sh extension opens with xcode, both rather unstatisfactory
+# for instance
+# $ mdls 1_macos_config_script
+# tells me its a public.unix-ececutable
+# and (osascript -e 'id of app "Terminal"') 
+# tells me Terminal is com.apple.Terminal
+# and my last bit of evidence:
+# $ duti -x .sh
+# Xcode.app
+# /Applications/Xcode.app
+# com.apple.dt.Xcode
+# so you can at least reconstitute Terminal launching if this all fucks up
+# so lets
+duti -s $bundle_id_of_my_favourite_text_editor public.unix-executable all
 
 # a last find was if you're really stuck for a file UTI you can print off the whole database:
 # https://stackoverflow.com/questions/16943819/where-do-uti-come-from
