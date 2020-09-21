@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# our story starts here https://superuser.com/questions/273756/how-to-change-default-app-for-all-files-of-particular-file-type-through-terminal
+# in that link note it says to install duti via brew, its added to brew installer script
+# then note in that first link we are told how to get the id of an app
+# > If you haven't already associated an app with something this way but know the name of your the app, 
+# > you can do osascript -e 'id of app "$appName"' to get the id of any app installed on your system
+# so our first example: i want to change all .txt files to open with macvim, to get macvim's id
+# (the app name seems the be case insensitive)
+# 
+# $ osascript -e 'id of app "macvim"'
+# org.vim.MacVim
+#
+# see # https://github.com/moretension/duti or man duti:
+# another way, from that link again, is to get the app id from a filetype that already has that id set
+# $ duti -x txt
+# TextEdit.app
+# /System/Applications/TextEdit.app
+# com.apple.TextEdit <----- here is text edits UTI
+#
+# then we just need to say 
+# duti -s io.brackets.appshell .md all
+# although note another posted worked out you can if you dare just do this:
+# duti -s $(osascript -e 'id of app "MacVim"') .md all
+#
+# however, the file extension isn't the only thing duti can act on, see man duti 
+# really it wants a file UTI as the thing to act on, it should really be like
+# duti -s com.apple.TextEdit  com.microsoft.word.doc all
+# and with this we learn there's a hierarchy of UTI filetypes
+# see here: https://davlatmirmanov.com/2018/11/17/how-to-get-the-uti-of-any-file-on-macos/
+# we can run mdls /path/to/your/file.txt
+# to get told this
+# 
+# kMDItemContentType                     = "public.plain-text"
+# kMDItemContentTypeTree                 = (
+#     "public.plain-text",
+#     "public.text",
+#     "public.data",
+#     "public.item",
+#     "public.content"
+# )
+# the latter is the hierarchy. Its probably best though to stick with public.plain-text
+# for our purposes here, this will change all text to macvim 
+# this seems safe if you look at https://superuser.com/questions/231854/default-editor-for-files-without-file-name-extension-in-mac-os-x
+# and is really what we want, if a file has no registered filetype and is just text, let's
+# always open it with MacVim so:
+duti -s org.vim.MacVim public.plain-text all
+
+# a last find was if you're really stuck for a file UTI you can print off the whole database:
+# https://stackoverflow.com/questions/16943819/where-do-uti-come-from
+# $ /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -dump
+
+
+
