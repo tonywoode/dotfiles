@@ -5,7 +5,7 @@
 	excludesfile = /Users/twoode/.gitignore_global
 	editor = /usr/local/bin/vim
 	autocrlf = input
-	filemode = false
+	filemode = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
