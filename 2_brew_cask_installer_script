@@ -169,6 +169,7 @@ apps=(
         virtualbox-extension-pack
         visual-studio-code
         vnc-viewer
+        whatsapp
 )
 
 cask="brew cask"
