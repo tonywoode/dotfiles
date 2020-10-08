@@ -5,12 +5,17 @@
     "mocha": true
   },
   "extends": [
-    "standard",
+    "plugin:jest/style",
+    "plugin:jest-dom/recommended"
     "plugin:jsx-a11y/recommended",
     "plugin:node/recommended",
     "plugin:promise/recommended",
     "plugin:react/recommended",
-    "plugin:require-path-exists/recommended"
+    "plugin:react-hooks/recommended",
+    "plugin:require-path-exists/recommended",
+    "plugin:testing-library/recommended",
+    "plugin:testing-library/react",
+    "standard",
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -28,6 +33,8 @@
     "cypress",
     "dependencies",
     "html",
+    "jest",
+    "jest-dom",
     "jquery",
     "jsdoc",
     "json",
@@ -37,10 +44,12 @@
     "node",
     "promise",
     "react",
+    "react-hooks",
     "require-path-exists",
     "requirejs",
     "should-promised",
-    "smells"
+    "smells",
+    "testing-library"
   ],
   "rules": {
     "no-unused-expressions": 0,
