@@ -115,6 +115,7 @@ echo "" && echo " *** CASK *** " && echo ""
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # FOR HOW TO DOWNLOAD PREVIOUS VERSIONS OF CASKS see https://stackoverflow.com/a/58373705 (and currently dash example below)
+# or https://www.jverdeyen.be/mac/downgrade-brew-cask-application/ for perhaps the quickest method
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 apps=(
@@ -154,7 +155,8 @@ apps=(
         platypus
         postman
         regexhibit # regex tester using perl
-        rocket-chat #doesn't work needs to be updated from v1.3 to 2.7
+        # rocket-chat v3 does not like url, need to pin at 2.7.1
+        https://raw.githubusercontent.com/Homebrew/homebrew-cask/f6ae619db3ca758c1b7297e6fce9b372a3b90fff/Casks/rocket-chat.rb
         skype
         slack
         sourcetree
