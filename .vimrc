@@ -115,6 +115,7 @@ Plug 'junegunn/fzf.vim' "by default fzf only installs a minimum vim wrapper
 Plug 'junegunn/gv.vim' "https://github.com/junegunn/gv.vim, visual git repo browser
 Plug 'rizzatti/dash.vim' "enables :Dash lookups
 Plug 'scrooloose/nerdtree'
+Plug 'severin-lemaignan/vim-minimap' "<Leader>mm to display the minimap, <Leader>mc to close it
 Plug 'tpope/vim-fugitive' "A GIT PLUGIN - very powerful, but only installed because gv.vim needed it
 Plug 'tpope/vim-obsession' "make Session.vim files, tmux resurrect can try and restore them
 Plug 'dhruvasagar/vim-prosession' "vim obsession is great, but you have to remember to turn it on and load the session file in each project, see https://github.com/tpope/vim-obsession/issues/11
