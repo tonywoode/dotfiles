@@ -259,12 +259,13 @@ nnoremap <leader>c :JSContextColorToggle<CR>
 "see http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
 " although i can't see any visible effect
 let NERDTreeHijackNetrw=1
-"autocmd VimEnter * NERDTree "start when vim starts
-autocmd VimEnter * wincmd p " Jump to the main window
 " many of these tips from https://medium.com/@victormours/a-better-nerdtree-setup-3d3921abc0b9
 "start when vim starts even if you didn't say a file
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" note also jump to main window in pipeline here - https://stackoverflow.com/a/1448637/3536094
+" however, due to vim Prosession, invoking vim without args will make a session file at starting dir, and will pass args, causing this to flash a nerdTree window which vanishes,
+"   so that's why the below is commented
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | wincmd p | endif
 "close vim if the only window left open is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1 "show hidden files by default
@@ -276,6 +277,12 @@ let NERDTreeAutoDeleteBuffer = 1 "Automatically delete the buffer of the file yo
 "we want ctrl+j/k to navigate tmux on every window, so remap these to option+j/k
 let NERDTreeMapJumpNextSibling='∆'
 let NERDTreeMapJumpPrevSibling='˚'
+" these from NerdTree wiki https://github.com/preservim/nerdtree/wiki
+" don't write over NERDTree's buffer
+" If more than one window and previous buffer was NERDTree, go back to it.
+autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+" for Vim-Plug, avoid crashes when calling vim-plug functions while the cursor is on the NERDTree window:
+let g:plug_window = 'noautocmd vertical topleft new'
 
 "vimux options - see https://blog.bugsnag.com/tmux-and-vim/
 nnoremap <Leader>vp :VimuxPromptCommand<CR>
