@@ -25,3 +25,5 @@
     graph = log --graph --oneline --all --decorate --topo-order
 # https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
 	unstage = reset HEAD --
+[pull]
+	ff = only
