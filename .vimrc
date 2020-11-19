@@ -9,11 +9,9 @@ set showcmd
 set showmode "enables displaying whether to show insert mode in status line. needed if for instance you want to know if paste is on or off
 "but, you have to look down....
 :autocmd InsertEnter,InsertLeave * set cul!
-"set hidden "don't unload buffers that just aren't visible atm, disadvantage
-"is you can swap buffers without saving, and i like the warning
+"set hidden "don't unload buffers that just aren't visible atm, disadvantage is you can swap buffers without saving, and i like the warning
 
-" splits https://stackoverflow.com/a/7912621/3536094
-" these interfere with vim-fugitive, which i'd like to get to know first
+" splits https://stackoverflow.com/a/7912621/3536094 these interfere with vim-fugitive, which i'd like to get to know first
 "set splitright "To make vsplit put the new buffer on the right of the current buffer 
 "set splitbelow "to make split put the new buffer below the current buffer
 
@@ -25,11 +23,10 @@ set softtabstop=2
 set expandtab
 set autoindent
 set smartindent
-set nojoinspaces "only put one space after a full stop before the new sentence, not two - see https://stackoverflow.com/questions/1578951/why-does-vim-add-spaces-when-joining-lines
-" Persistent undo  https://stackoverflow.com/a/26702442/3536094
-"  YOU must mkdir ~/.vim/undo, so ensure folder exists NIX ONLY shell. Note use of $ var not a vim set or let var, 
-"  its just easiest see https://vi.stackexchange.com/a/17451 
-let $undoFolder = $HOME.'/.vim/undo'
+" see https://stackoverflow.com/questions/1578951/why-does-vim-add-spaces-when-joining-lines
+set nojoinspaces "only put one space after a full stop before the new sentence, not two 
+" Persistent undo  https://stackoverflow.com/a/26702442/3536094 YOU must mkdir ~/.vim/undo, so ensure folder exists NIX ONLY shell. 
+let $undoFolder = $HOME.'/.vim/undo' " Note use of $ var not a vim set or let var, its just easiest https://vi.stackexchange.com/a/17451 
 silent !  [[ -d $undoFolder ]] || mkdir $undoFolder
 set undofile
 set undodir=$undoFolder
@@ -64,17 +61,14 @@ endif
 
 "F-KEY MAPPINGS
 " fix paste indenting - see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste  . 
-"First line sets a mapping so that pressing F2 in normal mode will invert.The 'paste' option, and will then show the value of that option.
+"First line sets a mapping so that pressing F2 in normal mode will invert.The 'paste' option, and will then show the value of that option
 nnoremap <F2> :set invpaste paste?<CR>  
 set pastetoggle=<F2> "allows you to press F2 when in insert mode, to toggle 'paste' on and off. 
-
 " F3 switches line numbering mode
 nnoremap <silent><F3> :call g:ToggleNuMode()<cr>
-
-" turn highlighting off for this search (search term stays selected though)
+" F4 to turn highlighting off for this search (search term stays selected though)
 nnoremap <F4> :noh<CR>
-
-" get a buffer menu with f5, http://vim.wikia.com/wiki/Easier_buffer_switching
+" F5 to get a buffer menu, http://vim.wikia.com/wiki/Easier_buffer_switching
 nnoremap <F5> :buffers<CR>:buffer<Space>
 
 "PLUGINS
@@ -193,7 +187,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:ycm_auto_trigger = 1 "if off, invoke with ctrl + space
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_filepath_blacklist = {} "https://github.com/Valloric/YouCompleteMe/issues/3102 - ft comes out as javascript.jsx now for all js files, but there's a bug...
+let g:ycm_filepath_blacklist = {} "https://github.com/Valloric/YouCompleteMe/issues/3102 - ft comes out as javascript.jsx now for js files, but there's a bug...
 let g:ycm_collect_identifiers_from_tags_files = 1 "gutentags configured below with fields+1 as ycm requires. ycm warns if working servers this can be slow
 " disable linting display (which pulls up tsserver issues). let ALE show linting
 let g:ycm_show_diagnostics_ui = 0
@@ -222,7 +216,7 @@ set statusline+=%{ObsessionStatus()}
 " its either this or fight for an eslint.rc
 " since we're using standard under eslint, the below should be irrelevant now
 "let g:ale_javascript_standard_options = '--env browser --env node --env commonjs --env shared-node-browser --env es6 --env worker --env amd --env mocha --env jasmine --env jest --env phantomjs --env protractor --env qunit --env jquery --env prototypejs --env shelljs --env meteor --env mongo --env applescript --env nashorn --env serviceworker --env atomtest --env embertest --env webextensions --env greasemonkey'
-"i.e.: in particular, don't lint with eslint ('stop this madness'), or tsserver (YCM lints with tsserver, since we interact with YCM for everything else tsserver, lets deal with those issues in that plugin) 
+"i.e.: in particular, don't lint with eslint or tsserver (YCM lints with tsserver, since we interact with YCM for everything else tsserver, lets deal with those issues in that plugin) 
 " i want to maintain a global eslintrc, not per-project atm, some projects have a local install but no rc
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_linters = { 'javascript' : ['eslint']}
@@ -235,7 +229,7 @@ let g:airline#extensions#ale#enabled = 1
 "nmap <leader>d <Plug>(ale_go_to_definition)
 nmap <leader>h <Plug>(ale_hover)
 nmap <leader>f <Plug>(ale_fix)
-" ale and vim use arrow keys for autcomplete, its crazy c'mon, this is vim: arrow keys are distracting
+" ale and vim use arrow keys for autcomplete, which is crazy: this is vim: arrow keys are distracting
 " lets tab through them instead!  https://stackoverflow.com/a/52615863/3536094
 " (in order to get S-Tab working, iterm2 has to have its ctrl+shift+tab global mapping for its tabs removed)
 inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -256,14 +250,13 @@ nnoremap <leader>c :JSContextColorToggle<CR>
 "let g:js_context_colors_es5 = 1
 
 "NERDTreeOptions
-"see http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
-" although i can't see any visible effect
-let NERDTreeHijackNetrw=1
+" NERDTree iteslf really doesn't fit in well with the VIM philosophy - see http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
+" but it is convenient, and placates vim-naysayers
+let NERDTreeHijackNetrw=1 " although i can't see the visible effect
 " many of these tips from https://medium.com/@victormours/a-better-nerdtree-setup-3d3921abc0b9
-"start when vim starts even if you didn't say a file
-" note also jump to main window in pipeline here - https://stackoverflow.com/a/1448637/3536094
-" however, due to vim Prosession, invoking vim without args will make a session file at starting dir, and will pass args, causing this to flash a nerdTree window which vanishes,
-"   so that's why the below is commented
+"start when vim starts even if you didn't say a file, note also jump to main window in pipeline here - https://stackoverflow.com/a/1448637/3536094
+" however, due to vim Prosession, invoking vim without args will make a session file at starting dir, and will pass args, causing this to flash a nerdTree 
+" window which vanishes, so that's why the below is commented
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | wincmd p | endif
 "close vim if the only window left open is NERDTree
@@ -281,6 +274,14 @@ let NERDTreeMapJumpPrevSibling='˚'
 " don't write over NERDTree's buffer
 " If more than one window and previous buffer was NERDTree, go back to it.
 autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+" When a file buffer is already open in a different window, often in a different tab, and you tell NERDTree to 'open in previous window' with 'o' 
+"  or double click, it will behave like other editors and not honour your request, it will switch to the previously-open buffer's window. This is not vim-like
+"  and is disorienting. Instead, do as asked: open in previous window (do same for left-click since also 'o') https://github.com/preservim/nerdtree/pull/417
+function NERDTreeMyOpenFile(node)
+    call a:node.activate({'reuse': 'currenttab', 'where': 'p'})
+endfunction
+autocmd VimEnter * :call NERDTreeAddKeyMap({ 'key': 'o', 'callback': 'NERDTreeMyOpenFile', 'scope': 'FileNode', 'override': 1 })
+autocmd VimEnter * :call NERDTreeAddKeyMap({'key': '<2-LeftMouse>', 'callback': 'NERDTreeMyOpenFile', 'scope': 'FileNode', 'override': 1 })
 " for Vim-Plug, avoid crashes when calling vim-plug functions while the cursor is on the NERDTree window:
 let g:plug_window = 'noautocmd vertical topleft new'
 
