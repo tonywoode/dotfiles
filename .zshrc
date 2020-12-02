@@ -100,6 +100,8 @@ fi
 
 
 # You may need to manually set your language environment
+# and one day i did, else git_prompt_info:5: character not in range - https://superuser.com/questions/509950/why-are-unicode-characters-not-rendering-correctly
+export LANG=en_GB.UTF-8
 # export LANG=en_US.UTF-8
 
 # Compilation flags
