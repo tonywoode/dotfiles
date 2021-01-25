@@ -91,7 +91,7 @@ bins=(
 # previously i had compared the string list 'brew list' with the above array, this was flawed as matches were substring matches not item matches
 # (used to be #for bin in "${bins[@]}"; do { [[ $brew_list != *"$bin"* ]] && echo "installing $bin" && brew install "$bin"; } done
 
-brew_installed=($(brew list)) # note the lack of " " - that's how we space separate the list into an array
+brew_installed=($(brew list --formula)) # note the lack of " " - that's how we space separate the list into an array
 brew_installed_from_list=()
 
 echo "BREW: ALREADY INSTALLED BINARIES: ${brew_installed[@]}" && echo "let's brew any unbrewed bins..." && echo ""
@@ -176,9 +176,8 @@ apps=(
         whatsapp
 )
 
-cask="brew cask"
-install="$cask install"
-cask_installed=($(brew cask list)) # note the lack of " " - that's how we space separate the list into an array
+install="brew install --cask"
+cask_installed=($(brew list --cask)) # note the lack of " " - that's how we space separate the list into an array
 cask_installed_from_list=()
 
 echo "CASK: ALREADY INSTALLED: ${cask_installed[@]}" && echo "let's install any uninstalled casks..." && echo "" 
