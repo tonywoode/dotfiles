@@ -6,7 +6,7 @@
   },
   "extends": [
     "plugin:jest/style",
-    "plugin:jest-dom/recommended"
+    "plugin:jest-dom/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:node/recommended",
     "plugin:promise/recommended",
