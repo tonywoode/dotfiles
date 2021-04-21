@@ -27,3 +27,7 @@
 	unstage = reset HEAD --
 [pull]
 	ff = only
+[fetch]
+	prune = true
+[gui]
+	pruneDuringFetch = true
