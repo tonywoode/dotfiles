@@ -7,7 +7,7 @@ MY_TEMP_DIR="$HOME/temp/"
 [[ -d $MY_TEMP_DIR ]] || mkdir $MY_TEMP_DIR
 
 # tmux starts by default, $- == *i* says 'if current shell isn't interactive
-# I replaced my own implementation of this with the follwoing as it seemed them most thorough:  https://stackoverflow.com/a/42351698/3536094
+# I replaced my own implementation of this with the following as it seemed them most thorough:  https://stackoverflow.com/a/42351698/3536094
 # if this ever becomes unacceptable you might also want to check out the zsh plugin for tmux - https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#tmux
 # since it has an env var to set that does this and subtelties on it eg: ZSH_TMUX_AUTOSTART
 case $- in
@@ -74,7 +74,7 @@ plugins=(
   redis-cli # completions
   tmux # alias but also very useful looking config variables i've not yet used, see top of this file
   vagrant # completions and aliases vup is vagrant up, vh vagrant halt, vssh vagrant ssh
-  vi-mode # This plugin increase vi-like zsh functionality - see list here: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
+  vi-mode # This plugin increase vi-like zsh functionality - see list here: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode - in particular vv opens vim to edit console command
   yarn # completions and aliases
 )
 
