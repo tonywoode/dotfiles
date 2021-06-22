@@ -1,5 +1,4 @@
 # general
---ignore-dir=node_modules 
 --ignore-dir=build 
 --ignore-file=ext:sql 
 # see https://github.com/beyondgrep/ack3/issues/43i need ignore-path as other app.js should be searched --ignore-file=is:app.js 
