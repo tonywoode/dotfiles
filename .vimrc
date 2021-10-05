@@ -348,6 +348,12 @@ let g:prosession_dir = '~/CODE/AppData/vim/session/'
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
+" use the mouse in terminal mode  - - see
+" https://github.com/vim/vim/issues/2490a - ctrl+b to enter normal mode in
+" the terminal (i or a to go back to insert mode at cursor), doesn't affect
+" normal ctrl+b to scroll back (why not?)
+tnoremap <c-b> <c-\><c-n>
+
 " bram's own
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid, when inside an event handler
