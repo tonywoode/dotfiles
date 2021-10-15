@@ -107,6 +107,8 @@ Plug 'justinmk/vim-gtfo' "Opens file manager or terminal at the directory of the
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } "also installs fzf for your shell
 Plug 'junegunn/fzf.vim' "by default fzf only installs a minimum vim wrapper
 Plug 'junegunn/gv.vim' "https://github.com/junegunn/gv.vim, visual git repo browser
+Plug 'tpope/vim-fugitive' "A GIT PLUGIN - very powerful, but only installed because gv.vim needed it
+Plug 'tpope/vim-rhubarb' "the github plugin for vim fugitive (to make GBrowse work)
 Plug 'rizzatti/dash.vim' "enables :Dash lookups
 Plug 'scrooloose/nerdtree'
 Plug 'wfxr/minimap.vim', { 'do': 'brew install code-minimap'} "minimap that uses an external rust element (on windows: scoop bucket add extras && scoop install code-minimap. see toggle mapping below
@@ -217,7 +219,7 @@ set statusline+=%{ObsessionStatus()}
 "let g:ale_javascript_standard_options = '--env browser --env node --env commonjs --env shared-node-browser --env es6 --env worker --env amd --env mocha --env jasmine --env jest --env phantomjs --env protractor --env qunit --env jquery --env prototypejs --env shelljs --env meteor --env mongo --env applescript --env nashorn --env serviceworker --env atomtest --env embertest --env webextensions --env greasemonkey'
 "i.e.: in particular, don't lint with eslint or tsserver (YCM lints with tsserver, since we interact with YCM for everything else tsserver, lets deal with those issues in that plugin) 
 " i want to maintain a global eslintrc, not per-project atm, some projects have a local install but no rc
-let g:ale_javascript_eslint_use_global = 1
+let g:ale_javascript_eslint_use_global = 0
 let g:ale_linters = { 'javascript' : ['eslint']}
 let g:ale_fixers = {'javascript': ['eslint', 'prettier_standard'], 'html': ['prettier'], 'css': ['prettier'], '*': ['remove_trailing_lines', 'trim_whitespace']}
 let g:ale_set_balloons = 1 "For Vim 8.1+ terminals, mouse hovering is disabled by default. Enabling |balloonexpr| commands in terminals can cause scrolling issues in terminals
