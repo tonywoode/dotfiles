@@ -26,7 +26,8 @@
         }
   },
   "globals": {
-     "expect": true
+     "expect": true,
+     "sinon": true
   },
   "plugins": [
     "babel",
