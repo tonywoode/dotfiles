@@ -60,6 +60,7 @@ bins=(
         fswatch #for smoke's nodemon problem
         graphviz
         git
+        git-lfs #https://git-lfs.github.com/ - need to run `git lfs install` to set this up for your user after install
 	    git-gui # just to get gitk and git-gui back
         go #ycm said it needed it
         gnupg # originally installed as gpg but when installed calls itself gnupg, and we don't want to try and reinstall every time
