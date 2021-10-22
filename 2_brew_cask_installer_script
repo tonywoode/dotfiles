@@ -136,7 +136,7 @@ apps=(
         flux
         # freefilesync - not stable enough to brew  cask atm see https://github.com/Homebrew/homebrew-cask/pull/78560
         gitup
-        google-backup-and-sync
+        google-drive
         google-chrome
         insomnia
         iterm2
