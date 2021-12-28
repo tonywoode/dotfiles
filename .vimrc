@@ -287,6 +287,13 @@ autocmd VimEnter * :call NERDTreeAddKeyMap({'key': '<2-LeftMouse>', 'callback': 
 let g:plug_window = 'noautocmd vertical topleft new'
 
 "mwinimap.vim options
+"these dont work, dont know why
+:let g:minimmap_auto_start=1
+:let g:minimap_auto_start_win_enter=1
+
+:let g:minimap_highlight_range=1
+:let g:minimap_git_colors=1
+:let g:minimap_highlight_search=1
 nnoremap <Leader>m :MinimapToggle<CR>
 "but don't allow that when in nerdtree's split or something awful happens
 :autocmd FileType nerdtree noremap <buffer> <Leader>m  <nop>
