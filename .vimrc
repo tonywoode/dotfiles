@@ -286,8 +286,10 @@ autocmd VimEnter * :call NERDTreeAddKeyMap({'key': '<2-LeftMouse>', 'callback': 
 " for Vim-Plug, avoid crashes when calling vim-plug functions while the cursor is on the NERDTree window:
 let g:plug_window = 'noautocmd vertical topleft new'
 
-"minimap.vim options
+"mwinimap.vim options
 nnoremap <Leader>m :MinimapToggle<CR>
+"but don't allow that when in nerdtree's split or something awful happens
+:autocmd FileType nerdtree noremap <buffer> <Leader>m  <nop>
 
 "vimux options - see https://blog.bugsnag.com/tmux-and-vim/
 nnoremap <Leader>vp :VimuxPromptCommand<CR>
