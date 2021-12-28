@@ -92,7 +92,6 @@ Plug 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, 
 Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --all --ts-completer' }
 Plug 'w0rp/ale' "async linting engine
 Plug 'zhou13/vim-easyescape' "better than having to remap escape to jk
-
 " js specific - many from  https://davidosomething.com/blog/vim-for-javascript/
 Plug '1995eaton/vim-better-javascript-completion' "somewhat up-to-date JavaScript (HTML5 methods e.g. localStorage and canvas methods). creates new omni-completion function: js#CompleteJS and replaces your current JS omnifunc with it, so you have to use a completion plugin or write some VimL, to use it in conjunction with another omnifunc like TernJS
 Plug 'bigfish/vim-js-context-coloring', { 'do': 'npm install' } "syntax highlighting: picks out function scopes.  may not color your code when incomplete (i.e., syntax not yet valid). can be used in combination with any of the above
@@ -118,6 +117,7 @@ Plug 'benmills/vimux' "run terminal commands in tmux from vim. good for tests
 Plug 'troydm/zoomwintab.vim' "Zoom in/out of windows by making new tab https://github.com/neovim/neovim/issues/997, note this changes <c-w>o keymap from 'only', if you care see https://stackoverflow.com/a/15583640/3536094, think they said this has to be the last line plugin specified
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'qpkorr/vim-bufkill' "let me destroy the buffer without destroying the split window that its in
+Plug 'ryanoasis/vim-devicons' "icons for nerd-tree - requires a nerd-font compatible font (which i think are all powerline compatible - i chose https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Inconsolata/complete/Inconsolata%20Nerd%20Font%20Complete.otf)
 
 call plug#end() " All of your Plugs must be added before the following line
 "You can remove filetype off, filetype plugin indent on and syntax on from your .vimrc as they are automatically handled by plug#begin() and plug#end()
