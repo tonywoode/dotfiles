@@ -50,12 +50,10 @@ else
     set ttymouse=xterm2
 end
 
-" to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font
-" but then a non powerline menlo font was sticking - see https://github.com/vim-airline/vim-airline/issues/719
+" to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font, but then a non powerline menlo font was sticking - see https://github.com/vim-airline/vim-airline/issues/719
 if has('gui_running')
   if has("gui_macvim")
-	"set guifont=Menlo\ Regular:h15
-	set guifont=MesloLGLDZForPowerline-Regular:h15
+	set guifont=InconsolataNerdFontComplete-Medium:h16
   endif
 endif
 
