@@ -52,6 +52,7 @@ duti -s $bundle_id_of_my_favourite_text_editor public.plain-text all
 duti -s $bundle_id_of_my_favourite_text_editor public.json all
 # now it seems like some files given a filetype don't filter up, .rq files don't open with MacVim, even though
 #  you'd think they'd open with MacVim so we have to:
+duti -s $bundle_id_of_my_favourite_text_editor .dat all
 duti -s $bundle_id_of_my_favourite_text_editor .rq all
 duti -s $bundle_id_of_my_favourite_text_editor .sparql all
 duti -s $bundle_id_of_my_favourite_text_editor .yml all
