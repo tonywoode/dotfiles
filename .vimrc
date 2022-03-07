@@ -141,6 +141,7 @@ endif
 " mistake is to put :colorscheme NAME before call plug#end(). Plugins are not 
 " activated before plug#end(), so make sure to load your color scheme after it.
 set background=dark
+let g:solarized_termtrans = 1 " This gets rid of the grey background https://github.com/altercation/vim-colors-solarized/issues/138#issuecomment-336749382
 colorscheme solarized
 
 " vim-polyglot settings
