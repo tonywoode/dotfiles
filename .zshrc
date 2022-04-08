@@ -190,4 +190,9 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # uninstall by removing these lines or running `tabtab uninstall npm-sync`
 [[ -f /Users/twoode/.nvm/versions/node/v12.18.3/lib/node_modules/npm-modules-sync/node_modules/tabtab/.completions/npm-sync.zsh ]] && . /Users/twoode/.nvm/versions/node/v12.18.3/lib/node_modules/npm-modules-sync/node_modules/tabtab/.completions/npm-sync.zsh
 
+# for pyenv, see also .zprofile, it could be that the .zprofile change means we don't need to do this anymore: https://stackoverflow.com/a/69614573/3536094
+eval "$(pyenv init -)"
+# just following https://akrabat.com/creating-virtual-environments-with-pyenv/ because it helps to also use virtualenv to use specific python versions per-project
+eval "$(pyenv virtualenv-init -)"
+
 # zprof #for profiling as and when needed
