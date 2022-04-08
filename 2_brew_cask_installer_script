@@ -163,9 +163,9 @@ apps=(
         the-unarchiver
         tiddly
         tunnelblick
-        vagrant
-        virtualbox # needs extension allowing in maccos security prefs so will fail first time whilst you manually allow it in prefs
-        virtualbox-extension-pack
+        #vagrant - leave this to flex-services script
+        #virtualbox # needs v5, leave this to flex-services script # needs extension allowing in maccos security prefs so will fail first time whilst you manually allow it in prefs
+        #virtualbox-extension-pack - previous versions can be found https://download.virtualbox.org/virtualbox/
         visual-studio-code
         vnc-viewer
         whatsapp
