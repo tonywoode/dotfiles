@@ -122,6 +122,7 @@ echo "" && echo " *** CASK *** " && echo ""
 apps=(
         aerial # beautiful screensaver
         alfred
+        android-file-transfer
         another-redis-desktop-manager
         appcleaner
         balsamiq-wireframes
