@@ -33,6 +33,9 @@ pins=(
 for pin in "${pins[@]}"; do { echo "don't update $pin" && brew pin "$pin"; } done
 ####################################################
 
+# A conceptual problem here - we must update ALL brew and casked packages we ever installed en-masse, and later we individually deal with each of them in isolation,
+#  there's no real operational problem with this, but it would be nice if the same process dealt with installing and updating the individuals. We see exactly the same
+#  issue with chocolatey and doubtless many other package managers. It would be nice also to complain about packages which are installed but aren't in the below lists
 echo "upgrading already-installed brew AND CASK formula - hold on to your seats!" && brew upgrade
 echo "calling the doctor to fix brew and cask issues" && brew doctor
 
