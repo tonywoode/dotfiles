@@ -179,6 +179,11 @@ apps=(
         whatsapp
 )
 
+# note here we can just brew install (without the --cask), that was the whole point of the homebrew maintainers merging brew and cask
+#   commands in 2020, but there were and still are at the time of writing conflicting namespaces: above you don't see docker the brew
+#   (the docker binary) but you do see docker the cask (which is  docker-desktop). This may be my only example, however.
+#   Providing the --cask argument disambiguates, but we could just provide that as part of the docker invocation in the loop. So 
+#   is it still useful / clearer to maintain the distinction between a brew list and a cask list, or should they be merged?
 install="brew install --cask"
 cask_installed=($(brew list --cask)) # note the lack of " " - that's how we space separate the list into an array
 cask_installed_from_list=()
