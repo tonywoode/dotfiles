@@ -95,6 +95,9 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # defaults write com.electron.boostnote ApplePressAndHoldEnabled -bool false
 # defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 # so let's just do it systemwide
+#
+# if you need to go back to individual apps you can work out their identifiers with e.g.: defaults domains | gsed -e 's/, /\n/g' | grep jetbrains
+# (see https://www.lorrin.org/blog/2012/03/02/fixing-key-repeat-in-os-x-lion-and-restoring-sanity-for-vim-keybindings-on-a-per-application-basis/comment-page-1/)
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
