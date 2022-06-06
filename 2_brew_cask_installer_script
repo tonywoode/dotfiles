@@ -222,5 +222,7 @@ curl -L  https://raw.githubusercontent.com/Homebrew/homebrew-cask/f6ae619db3ca75
 
 echo "running brew and cask cleanup" && brew cleanup
 
+# TODO: brew update will update any brews and casks which were previously installed, regardless of whether you removed or commented them here. If we had a good reason to supplant a brew/cask with a manual install, brew will just replace it again. So an uninstall section here
+
 echo "Im outta yer loop, cya"
  
