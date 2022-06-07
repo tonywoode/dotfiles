@@ -176,6 +176,7 @@ apps=(
         #virtualbox-extension-pack - previous versions can be found https://download.virtualbox.org/virtualbox/
         visual-studio-code
         vnc-viewer
+        webtorrent
         whatsapp
 )
 
