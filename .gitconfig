@@ -20,11 +20,12 @@
 [diff]
 	submodule = diff
 [alias]
-	spush = push --recurse-submodules=on-demand
 # https://zwischenzugs.com/2016/06/04/power-git-log-graphing/
     graph = log --graph --oneline --all --decorate --topo-order
 # https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
 	unstage = reset HEAD --
+# what was in merge commit - https://stackoverflow.com/a/23508223/3536094	
+	log-merge = "!f() { git log --stat \"$1^..$1\"; }; f"
 [pull]
 	ff = only
 [fetch]
