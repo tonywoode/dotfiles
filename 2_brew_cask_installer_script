@@ -60,6 +60,7 @@ bins=(
         code-minimap #required for the vim plugin wfxr/minimap.vim - there's a hardcoded Plug brew install in my .vimrc also
         ctags #also known as ctags-exuberant, don't install as that as it will call itself ctags in the installed list and therefore always install
         duti #for script 7 which sets mac filetype defaults see https://superuser.com/questions/273756/how-to-change-default-app-for-all-files-of-particular-file-type-through-terminal
+        opensearch #a community-driven, open source search and analytics suite derived from Elasticsearch 7.10.2 & Kibana 7.10.2
         fswatch #for smoke's nodemon problem
         graphviz
         git
@@ -79,6 +80,7 @@ bins=(
         p7zip
         postgresql
         pygments # syntax highlighter used by the zsh plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
+        redis
         #python #ycm needs it - but  do it properly: https://akrabat.com/creating-virtual-environments-with-pyenv/ and https://opensource.com/article/19/5/python-3-default-mac#what-to-do
         readline #pyenv says it needs it, but brew had installed it anyway..
         xz #pyenv says it needs it, but brew had installed it anyway..
