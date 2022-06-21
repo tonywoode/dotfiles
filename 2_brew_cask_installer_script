@@ -133,7 +133,6 @@ apps=(
         balsamiq-wireframes
         betterzip # for the betterzip quick look plugin that shows zip contents in finder
         blueharvest
-        boostnote
         caffeine
         cord # favour microsoft remote desktop, but that needs appstore
         cyberduck # coz, believe it or not, filezilla is malware...
