@@ -76,6 +76,7 @@ bins=(
         macvim # --with-override-system-vim" #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion? quoting this doesn't help it install https://github.com/Homebrew/homebrew-core/issues/26583
         mono # ycm said it needed it
         #mysql - using mamp's copy as my primary for the meanwhile
+        neovim
         node #tern requires a globally installed node, so better to give it a later one than none at all
         p7zip
         postgresql
