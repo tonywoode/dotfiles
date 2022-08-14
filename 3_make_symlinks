@@ -22,6 +22,7 @@ arr=($dir/.[^.]*)
 for dotfilepath in "${arr[@]}"; do
    dotfile="${dotfilepath##*/}" #filename only
    if [[ "$dotfile" = ".git" ]] ||  
+      [[ "$dotfile" = ".config" ]] || # its a folder anywhay but is the XDG folder, and we'll deal with neovim in it separetly later
       [[ "$dotfile" = ".gitignore" ]] ||
       [[ "$dotfile" = *.swp ]] || # In case we have vim open on this file...
       [[ "$dotfile" = ".vim" ]] # I swear we don't need that solarized colourscheme its installed by a package, if we do then curl it in instead
