@@ -1,56 +1,61 @@
-set nocompatible " be iMproved, required
 "don't use escape key. alternative to this mapping:  https://github.com/zhou13/vim-easyescape/
-set mouse=a
 set number relativenumber "relative number used with vim-numbertoggle plugin
 set clipboard=unnamed " Yank always yanks to osx clipboard https://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
-"set shortmess+=l "you can stop having to press enter on messages, but the text will be obfuscated
-set ruler
-set showcmd
 set showmode "enables displaying whether to show insert mode in status line. needed if for instance you want to know if paste is on or off
 "but, you have to look down....
 :autocmd InsertEnter,InsertLeave * set cul!
-"set hidden "don't unload buffers that just aren't visible atm, disadvantage is you can swap buffers without saving, and i like the warning
-
 " splits https://stackoverflow.com/a/7912621/3536094 these interfere with vim-fugitive, which i'd like to get to know first
 "set splitright "To make vsplit put the new buffer on the right of the current buffer 
 "set splitbelow "to make split put the new buffer below the current buffer
 
 "tabs
-set backspace=2 "to stop terminal vim + plugins disabling backspace. See http://vim.wikia.com/wiki/Backspace_and_delete_problems
 set tabstop=4
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-set autoindent
 set smartindent
 " see https://stackoverflow.com/questions/1578951/why-does-vim-add-spaces-when-joining-lines
-set nojoinspaces "only put one space after a full stop before the new sentence, not two 
-" Persistent undo  https://stackoverflow.com/a/26702442/3536094 YOU must mkdir ~/.vim/undo, so ensure folder exists NIX ONLY shell. 
-let $undoFolder = $HOME.'/.vim/undo' " Note use of $ var not a vim set or let var, its just easiest https://vi.stackexchange.com/a/17451 
-silent !  [[ -d $undoFolder ]] || mkdir $undoFolder
-set undofile
-set undodir=$undoFolder
 set undolevels=1000
 set undoreload=10000
 
 "highlighting
-set incsearch "highlight searchedfor/regexed text
-set hlsearch "http://vim.wikia.com/wiki/Highlight_all_search_pattern_matches - now you have a regular expression tester!
 let @/ = "" "but don't highlight search every time i source this rc file! https://stackoverflow.com/a/42547647/3536094
 
-set wildmenu "https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
 set wildmode=longest:list,full "trial menu (was set wildmode=longest:full,full )
 
-set ttyfast  "not enabled by default, may prove problems with remote terminals
 
 if !has('nvim')
-" for mouse to control panes in tmux - see https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
-" was ttymouse=xterm2 see :h https://github.com/vim/vim/issues/2309
+  set nocompatible " be iMproved, required
+  set autoindent
+  set background=dark
+  set backspace=2 "to stop terminal vim + plugins disabling backspace. See http://vim.wikia.com/wiki/Backspace_and_delete_problems
+  set hlsearch "http://vim.wikia.com/wiki/Highlight_all_search_pattern_matches - now you have a regular expression tester!
+  set incsearch "highlight searchedfor/regexed text
+  set nojoinspaces "only put one space after a full stop before the new sentence, not two 
+  set mouse=a "nvi is neovim default
+  set ruler
+  set showcmd
+  set ttyfast  "not enabled by default, may prove problems with remote terminals
+  " Persistent undo  https://stackoverflow.com/a/26702442/3536094 YOU must mkdir ~/.vim/undo, so ensure folder exists NIX ONLY shell. 
+  " neovim undoes to this: - 'undodir' defaults to ~/.local/state/nvim/undo// (|xdg|), auto-created
+  " and remember neovim's undoes are incompatable with vim's anyway
+  let $undoFolder = $HOME.'/.vim/undo' " Note use of $ var not a vim set or let var, its just easiest https://vi.stackexchange.com/a/17451 
+  silent !  [[ -d $undoFolder ]] || mkdir $undoFolder
+  set undofile
+  set undodir=$undoFolder
+  set wildmenu "https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
+  packadd! matchit " % to jump to matching xml tags etc, not backwards compatible so not enabled by default see: help %
+  " for mouse to control panes in tmux - see https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
+  " was ttymouse=xterm2 see :h https://github.com/vim/vim/issues/2309
   if has("mouse_sgr")
       set ttymouse=sgr
   else
       set ttymouse=xterm2
   endif
+endif
+
+if has('nvim')
+  " I'm waiting to ppopulate you!
 endif
 
 " to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font, but then a non powerline menlo font was sticking - see https://github.com/vim-airline/vim-airline/issues/719
@@ -143,7 +148,6 @@ endif
 "colour settings - from https://github.com/junegunn/vim-plug/wiki/faq: A common 
 " mistake is to put :colorscheme NAME before call plug#end(). Plugins are not 
 " activated before plug#end(), so make sure to load your color scheme after it.
-set background=dark
 let g:solarized_termtrans = 1 " This gets rid of the grey background https://github.com/altercation/vim-colors-solarized/issues/138#issuecomment-336749382
 colorscheme solarized
 
@@ -165,7 +169,6 @@ colorscheme solarized
 autocmd FileType javascript setlocal omnifunc=jspc#omni "see above othree/jspc.vim, its a decorator for javascriptcomplete
 
 " Vim's own plugins see: help plugin-install
-packadd! matchit " % to jump to matching xml tags etc, not backwards compatible so not enabled by default see: help %
 
 " External Plugin config
 
