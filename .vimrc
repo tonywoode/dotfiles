@@ -1,6 +1,6 @@
 "don't use escape key. alternative to this mapping:  https://github.com/zhou13/vim-easyescape/
 set number relativenumber "relative number used with vim-numbertoggle plugin
-set clipboard=unnamed " Yank always yanks to osx clipboard https://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
+set clipboard=unnamedplus " Yank always yanks to osx clipboard https://evertpot.com/osx-tmux-vim-copy-paste-clipboard/ but updated with https://neovim.io/doc/user/options.html#'clipboard' (which isn't neovim specific)
 set showmode "enables displaying whether to show insert mode in status line. needed if for instance you want to know if paste is on or off
 "but, you have to look down....
 :autocmd InsertEnter,InsertLeave * set cul!
