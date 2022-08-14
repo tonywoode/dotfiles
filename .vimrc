@@ -42,13 +42,16 @@ set wildmenu "https://stackoverflow.com/questions/9511253/how-to-effectively-use
 set wildmode=longest:list,full "trial menu (was set wildmode=longest:full,full )
 
 set ttyfast  "not enabled by default, may prove problems with remote terminals
+
+if !has('nvim')
 " for mouse to control panes in tmux - see https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
 " was ttymouse=xterm2 see :h https://github.com/vim/vim/issues/2309
-if has("mouse_sgr")
-    set ttymouse=sgr
-else
-    set ttymouse=xterm2
-end
+  if has("mouse_sgr")
+      set ttymouse=sgr
+  else
+      set ttymouse=xterm2
+  endif
+endif
 
 " to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font, but then a non powerline menlo font was sticking - see https://github.com/vim-airline/vim-airline/issues/719
 if has('gui_running')
