@@ -1,10 +1,18 @@
-"{ Global Variable
 "{{ Custom variables
 let g:is_win = (has('win32') || has('win64')) ? v:true : v:false
 let g:is_linux = (has('unix') && !has('macunix')) ? v:true : v:false
 let g:is_mac = has('macunix') ? v:true : v:false
+let g:is_bram_vim = !has('nvim') ? v:true : v:false
+let g:is_neo_vim = !has('nvim') ? v:true : v:false
 " let g:logging_level = 'info'
 "}} thanks https://github.com/jdhao/nvim-config/blob/master/core/globals.vim
+
+" to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font, but then a non powerline menlo font was sticking - see https://github.com/vim-airline/vim-airline/issues/719
+if has('gui_running')
+  if has("gui_macvim")
+	set guifont=InconsolataNerdFontComplete-Medium:h16
+  endif
+endif
 
 if g:is_linux
   set clipboard=unnamedplus " Yank always yanks to osx clipboard https://evertpot.com/osx-tmux-vim-copy-paste-clipboard/ but updated with https://neovim.io/doc/user/options.html#'clipboard' (which isn't neovim specific)
@@ -12,48 +20,20 @@ else
   set clipboard=unnamed " see https://github.com/vim/vim/issues/1670
 endif
 
-"don't use escape key. alternative to this mapping:  https://github.com/zhou13/vim-easyescape/
-set number relativenumber "relative number used with vim-numbertoggle plugin
-set showmode "enables displaying whether to show insert mode in status line. needed if for instance you want to know if paste is on or off
-"but, you have to look down....
-:autocmd InsertEnter,InsertLeave * set cul!
-" splits https://stackoverflow.com/a/7912621/3536094 these interfere with vim-fugitive, which i'd like to get to know first
-"set splitright "To make vsplit put the new buffer on the right of the current buffer 
-"set splitbelow "to make split put the new buffer below the current buffer
-
-"tabs
-set tabstop=4
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set smartindent
-" see https://stackoverflow.com/questions/1578951/why-does-vim-add-spaces-when-joining-lines
-set undolevels=1000
-set undoreload=10000
-"highlighting
-let @/ = "" "but don't highlight search every time i source this rc file! https://stackoverflow.com/a/42547647/3536094
-
-set wildmode=longest:list,full "trial menu (was set wildmode=longest:full,full )
-
-if !has('nvim')
+if g:is_bram_vim
   set nocompatible " be iMproved, required
   set autoindent
   set background=dark
   set backspace=2 "to stop terminal vim + plugins disabling backspace. See http://vim.wikia.com/wiki/Backspace_and_delete_problems
   set hlsearch "http://vim.wikia.com/wiki/Highlight_all_search_pattern_matches - now you have a regular expression tester!
   set incsearch "highlight searchedfor/regexed text
-  set nojoinspaces "only put one space after a full stop before the new sentence, not two 
-  set mouse=a "nvi is neovim default
+  set nojoinspaces "only put one space after a full stop before the new sentence, not two see https://stackoverflow.com/questions/1578951/why-does-vim-add-spaces-when-joining-lines
+  let $undoFolder = $HOME.'/.vim/undo' " Note use of $ var not a vim set or let var, its just easiest https://vi.stackexchange.com/a/17451 
+  silent !  [[ -d $undoFolder ]] || mkdir $undoFolder "nvim seems to lifecycle its own default folder without any of this
+  set undodir=$undoFolder
   set ruler
   set showcmd
   set ttyfast  "not enabled by default, may prove problems with remote terminals
-  " Persistent undo  https://stackoverflow.com/a/26702442/3536094 YOU must mkdir ~/.vim/undo, so ensure folder exists NIX ONLY shell. 
-  " neovim undoes to this: - 'undodir' defaults to ~/.local/state/nvim/undo// (|xdg|), auto-created
-  " and remember neovim's undoes are incompatable with vim's anyway
-  let $undoFolder = $HOME.'/.vim/undo' " Note use of $ var not a vim set or let var, its just easiest https://vi.stackexchange.com/a/17451 
-  silent !  [[ -d $undoFolder ]] || mkdir $undoFolder
-  set undofile
-  set undodir=$undoFolder
   set wildmenu "https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
   packadd! matchit " % to jump to matching xml tags etc, not backwards compatible so not enabled by default see: help %
   " for mouse to control panes in tmux - see https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
@@ -65,16 +45,37 @@ if !has('nvim')
   endif
 endif
 
-if has('nvim')
-  " I'm waiting to ppopulate you!
+if g:is_neo_vim
+  " I'm waiting to populate you!
 endif
 
-" to stop GUI-vim displaying tiny text on a high-res monitor see http://vim.wikia.com/wiki/Change_font, but then a non powerline menlo font was sticking - see https://github.com/vim-airline/vim-airline/issues/719
-if has('gui_running')
-  if has("gui_macvim")
-	set guifont=InconsolataNerdFontComplete-Medium:h16
-  endif
-endif
+" --------------COMMON OPTIONS-----------------
+set number relativenumber "relative number used with vim-numbertoggle plugin
+set showmode "enables displaying whether to show insert mode in status line. needed if for instance you want to know if paste is on or off, but, you have to look down....
+:autocmd InsertEnter,InsertLeave * set cul!
+" splits https://stackoverflow.com/a/7912621/3536094 these interfere with vim-fugitive, which i'd like to get to know first
+"set splitright "To make vsplit put the new buffer on the right of the current buffer 
+"set splitbelow "to make split put the new buffer below the current buffer
+
+set mouse=a "nvi is neovim default, if you ever can't copy in your terminal, try setting that (https://github.com/tpope/vim-sensible/issues/152)
+"tabs
+set tabstop=4
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set smartindent
+
+set wildmode=longest:list,full "trial menu (was set wildmode=longest:full,full )
+" Persistent undo  https://stackoverflow.com/a/26702442/3536094 YOU must mkdir ~/.vim/undo, so ensure folder exists NIX ONLY shell. 
+" neovim undoes to this: - 'undodir' defaults to ~/.local/state/nvim/undo// (|xdg|), auto-created if you believe the doc or ~/.local/share/nvim/undo if you believe nvim
+" and remember neovim's undoes are incompatable with vim's anyway
+set undofile
+set undolevels=1000
+set undoreload=10000
+
+"highlighting
+let @/ = "" "but don't highlight search every time i source this rc file! https://stackoverflow.com/a/42547647/3536094
+
 
 "F-KEY MAPPINGS
 " fix paste indenting - see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste  . 
