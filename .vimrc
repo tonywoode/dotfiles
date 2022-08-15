@@ -112,7 +112,7 @@ Plug 'sheerun/vim-polyglot' "bundles other language syntax plugins for many lanu
 Plug 'tpope/vim-repeat' "enables '.' to repeat for vim-surround and others
 Plug 'tpope/vim-unimpaired'  "you need to use things like :cnext or :bprevious all the time, so have shortcut keys for these pairs
 Plug 'tpope/vim-surround' "mappings to delete/change/add parentheses, brackets, quotes, XML tags, etc in pairs. :h surround
-Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --all --ts-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python ./install.py --all --ts-completer' }
 Plug 'w0rp/ale' "async linting engine
 Plug 'zhou13/vim-easyescape' "better than having to remap escape to jk
 " js specific - many from  https://davidosomething.com/blog/vim-for-javascript/
