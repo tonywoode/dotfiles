@@ -90,7 +90,12 @@ nnoremap <F4> :noh<CR>
 nnoremap <F5> :buffers<CR>:buffer<Space>
 
 "PLUGINS
-call plug#begin('~/.vim/plugged') "with vundle this used to be ~/vim/bundle'
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged' - so  ~/.local/share/nvim/plugged/
+" You can specify a custom plugin directory by passing it as the argument
 Plug 'junegunn/vim-plug' "If you need Vim help for vim-plug itself (e.g. :help plug-options), register vim-plug as a plugin.
 
 " appearance
@@ -146,13 +151,13 @@ call plug#end() " All of your Plugs must be added before the following line
 " paste it as below. https://stackoverflow.com/a/6706997/3536094 - (note minus, and don't leave off trailing slash)
 "set runtimepath-=~/.vim/bundle/tern_for_vim/
 
-" autoload vimPlug if it isn't loaded - this should be in the functions
-" section at the bottom, but if solarized isnt loaded the whole .vimrc will
-" fail at the colorscheme declaration below this one
-" if this were neoVim the second line would read `curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs`
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" autoload vimPlug if it isn't loaded - this should be in the functions section at the bottom, but if solarized isnt
+" loaded the whole .vimrc will fail at the colorscheme declaration below this one
+" from https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+" if this were neoVim the second line resolves to `curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs`
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
