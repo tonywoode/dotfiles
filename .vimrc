@@ -29,7 +29,7 @@ if g:is_bram_vim
   set incsearch "highlight searchedfor/regexed text
   set nojoinspaces "only put one space after a full stop before the new sentence, not two see https://stackoverflow.com/questions/1578951/why-does-vim-add-spaces-when-joining-lines
   let $undoFolder = $HOME.'/.vim/undo' " Note use of $ var not a vim set or let var, its just easiest https://vi.stackexchange.com/a/17451 
-  silent !  [[ -d $undoFolder ]] || mkdir $undoFolder "nvim seems to lifecycle its own default folder without any of this
+  silent !  [[ -d $undoFolder ]] || mkdir $undoFolder
   set undodir=$undoFolder
   set ruler
   set showcmd
