@@ -1,6 +1,19 @@
+"{ Global Variable
+"{{ Custom variables
+let g:is_win = (has('win32') || has('win64')) ? v:true : v:false
+let g:is_linux = (has('unix') && !has('macunix')) ? v:true : v:false
+let g:is_mac = has('macunix') ? v:true : v:false
+" let g:logging_level = 'info'
+"}} thanks https://github.com/jdhao/nvim-config/blob/master/core/globals.vim
+
+if g:is_linux
+  set clipboard=unnamedplus " Yank always yanks to osx clipboard https://evertpot.com/osx-tmux-vim-copy-paste-clipboard/ but updated with https://neovim.io/doc/user/options.html#'clipboard' (which isn't neovim specific)
+else
+  set clipboard=unnamed " see https://github.com/vim/vim/issues/1670
+endif
+
 "don't use escape key. alternative to this mapping:  https://github.com/zhou13/vim-easyescape/
 set number relativenumber "relative number used with vim-numbertoggle plugin
-set clipboard=unnamedplus " Yank always yanks to osx clipboard https://evertpot.com/osx-tmux-vim-copy-paste-clipboard/ but updated with https://neovim.io/doc/user/options.html#'clipboard' (which isn't neovim specific)
 set showmode "enables displaying whether to show insert mode in status line. needed if for instance you want to know if paste is on or off
 "but, you have to look down....
 :autocmd InsertEnter,InsertLeave * set cul!
@@ -17,12 +30,10 @@ set smartindent
 " see https://stackoverflow.com/questions/1578951/why-does-vim-add-spaces-when-joining-lines
 set undolevels=1000
 set undoreload=10000
-
 "highlighting
 let @/ = "" "but don't highlight search every time i source this rc file! https://stackoverflow.com/a/42547647/3536094
 
 set wildmode=longest:list,full "trial menu (was set wildmode=longest:full,full )
-
 
 if !has('nvim')
   set nocompatible " be iMproved, required
@@ -130,7 +141,7 @@ call plug#end() " All of your Plugs must be added before the following line
 " to disable individual plugins, with Plug you can
 " Plug 'foo/bar', { 'on': [] }
 " (though it will still be installed)
-" else :set runtimepath? to show you path then
+" else :set runtimepath? to show your path then
 " paste it as below. https://stackoverflow.com/a/6706997/3536094 - (note minus, and don't leave off trailing slash)
 "set runtimepath-=~/.vim/bundle/tern_for_vim/
 
@@ -283,7 +294,8 @@ autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | en
 " When a file buffer is already open in a different window, often in a different tab, and you tell NERDTree to 'open in previous window' with 'o' 
 "  or double click, it will behave like other editors and not honour your request, it will switch to the previously-open buffer's window. This is not vim-like
 "  and is disorienting. Instead, do as asked: open in previous window (do same for left-click since also 'o') https://github.com/preservim/nerdtree/pull/417
-function NERDTreeMyOpenFile(node)
+" (exclamation explained here: https://stackoverflow.com/questions/39706615/how-to-fix-this-error-e122-function-mydiff-already-exists-add-to-replace-it)
+function! NERDTreeMyOpenFile(node)
     call a:node.activate({'reuse': 'currenttab', 'where': 'p'})
 endfunction
 autocmd VimEnter * :call NERDTreeAddKeyMap({ 'key': 'o', 'callback': 'NERDTreeMyOpenFile', 'scope': 'FileNode', 'override': 1 })
