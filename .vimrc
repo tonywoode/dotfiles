@@ -142,6 +142,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'qpkorr/vim-bufkill' "let me destroy the buffer without destroying the split window that its in
 Plug 'ryanoasis/vim-devicons' "icons for nerd-tree - requires a nerd-font compatible font (which i think are all powerline compatible - i chose https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Inconsolata/complete/Inconsolata%20Nerd%20Font%20Complete.otf)
 
+"machines
+Plug 'github/copilot.vim' " happy to install on bram vim, no ghost text tho
 call plug#end() " All of your Plugs must be added before the following line
 "You can remove filetype off, filetype plugin indent on and syntax on from your .vimrc as they are automatically handled by plug#begin() and plug#end()
 " to disable individual plugins, with Plug you can
