@@ -3,7 +3,7 @@ let g:is_win = (has('win32') || has('win64')) ? v:true : v:false
 let g:is_linux = (has('unix') && !has('macunix')) ? v:true : v:false
 let g:is_mac = has('macunix') ? v:true : v:false
 let g:is_bram_vim = !has('nvim') ? v:true : v:false
-let g:is_neo_vim = !has('nvim') ? v:true : v:false
+let g:is_neo_vim = has('nvim') ? v:true : v:false
 " let g:logging_level = 'info'
 "}} thanks https://github.com/jdhao/nvim-config/blob/master/core/globals.vim
 
