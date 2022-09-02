@@ -142,6 +142,7 @@ apps=(
         disk-inventory-x
         docker
         dropbox
+        electron-fiddle
         firefox
         flux
         # freefilesync - not stable enough to brew  cask atm see https://github.com/Homebrew/homebrew-cask/pull/78560
