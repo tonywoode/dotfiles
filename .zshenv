@@ -28,3 +28,4 @@ alias qpnode="cd $qpnode"
 session="$CODE/AppData/vim/session"
 alias session="cd $session"
 
+. "$HOME/.cargo/env"

@@ -82,6 +82,7 @@ bins=(
         postgresql
         pygments # syntax highlighter used by the zsh plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
         redis
+        rustup # Rust version manager, manually run rustup-init after installation to install Rust and Cargo https://sourabhbajaj.com/mac-setup/Rust/
         #python #ycm needs it - but  do it properly: https://akrabat.com/creating-virtual-environments-with-pyenv/ and https://opensource.com/article/19/5/python-3-default-mac#what-to-do
         readline #pyenv says it needs it, but brew had installed it anyway..
         xz #pyenv says it needs it, but brew had installed it anyway..
