@@ -82,6 +82,8 @@ plugins=(
 # User configuration - TODO: i'm overwriting $PATH here, but if I don't I get duplication. What's the safe way? see https://superuser.com/questions/39751/add-directory-to-path-if-its-not-already-there
 export PATH="/usr/local/sbin:$PATH:/Applications/MAMP/Library/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
+# add lunarvim to path (that's all for now that's at this path)
+export PATH="$HOME/.local/bin:$PATH"
 
 # update oh-my-zsh without prompting (I think this stopped auto-updating becuase i had it AFTER the source for ages...)
 DISABLE_UPDATE_PROMPT=true
