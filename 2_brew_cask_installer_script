@@ -133,6 +133,7 @@ apps=(
         another-redis-desktop-manager
         appcleaner
         balsamiq-wireframes
+        bat # cat with syntax highlights, git integration, non-printable char printing, auto-paging
         betterzip # for the betterzip quick look plugin that shows zip contents in finder
         blueharvest
         caffeine
