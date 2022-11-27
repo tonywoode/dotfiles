@@ -1,7 +1,7 @@
 # any speed issues with plugins etc see this for profiling (enable first line and last line as per https://blog.jonlu.ca/posts/speeding-up-zsh)
 # zmodload zsh/zprof
 ZSH_DISABLE_COMPFIX="true" # because i'm not going to change perms on /usr/local/share - see github.com/ohmyzsh/issues/8205, see also compinit flag below
-
+DISABLE_AUTO_TITLE="true" # stop zsh renaming my tmux windows https://stackoverflow.com/a/38667859/3536094
 # I put all my temp text files here....
 MY_TEMP_DIR="$HOME/temp/"
 [[ -d $MY_TEMP_DIR ]] || mkdir $MY_TEMP_DIR
