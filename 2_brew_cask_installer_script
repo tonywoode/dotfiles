@@ -89,10 +89,10 @@ bins=(
         xz #pyenv says it needs it, but brew had installed it anyway..
         pyenv
         pyenv-virtualenv
-        rmtrash
         tidy-html5
         tmate
         tmux
+        trash # new rmtrash, I also manually ln -s /usr/local/bin/trash /usr/local/bin/rmtrash in case I forget
         tree
         reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
         #vim --with-client-server # see https://stackoverflow.com/a/25979565/3536094 would also require adding xquartz to cask (yes cask!)
