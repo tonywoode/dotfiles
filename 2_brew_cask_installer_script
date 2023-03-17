@@ -73,7 +73,7 @@ bins=(
         hub
         jq
         mas #app-store downloader - see https://github.com/mas-cli/mas
-        macvim # --with-override-system-vim" #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion? quoting this doesn't help it install https://github.com/Homebrew/homebrew-core/issues/26583
+        #macvim #use the cask instead due to compilation issues on catalina e.g.: https://github.com/macvim-dev/macvim/issues/952 # --with-override-system-vim" #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion? quoting this doesn't help it install https://github.com/Homebrew/homebrew-core/issues/26583
         mono # ycm said it needed it
         #mysql - using mamp's copy as my primary for the meanwhile
         neovim
@@ -156,6 +156,7 @@ apps=(
         adoptopenjdk8 #note NOT java, for Flex. needs tap
         jd-gui #inspect java class files
         jumpcut
+        macvim
         mamp
         microsoft-teams
         moom
