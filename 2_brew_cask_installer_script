@@ -56,6 +56,7 @@ bins=(
         ack
         antigen
         bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
+        bat # cat with syntax highlights, git integration, non-printable char printing, auto-paging
         cmake #installed to setup YouCompleteMe vim plugin
         code-minimap #required for the vim plugin wfxr/minimap.vim - there's a hardcoded Plug brew install in my .vimrc also
         ctags #also known as ctags-exuberant, don't install as that as it will call itself ctags in the installed list and therefore always install
@@ -133,7 +134,6 @@ apps=(
         another-redis-desktop-manager
         appcleaner
         balsamiq-wireframes
-        bat # cat with syntax highlights, git integration, non-printable char printing, auto-paging
         betterzip # for the betterzip quick look plugin that shows zip contents in finder
         blueharvest
         caffeine
