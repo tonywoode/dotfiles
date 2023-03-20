@@ -94,14 +94,36 @@ lvim.builtin.treesitter.auto_install = true
 -- }
 
 -- -- Additional Plugins <https://www.lunarvim.org/docs/plugins#user-plugins>
--- lvim.plugins = {
---     {
---       "folke/trouble.nvim",
---       cmd = "TroubleToggle",
---     },
--- }
+lvim.plugins = {
+  { "zbirenbaum/copilot.lua",
+    event = { "VimEnter" },
+    config = function()
+      vim.defer_fn(function()
+        require("copilot").setup {
+          plugin_manager_path = get_runtime_dir() .. "/site/pack/packer",
+        }
+      end, 100)
+    end,
+  },
 
--- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
+  { "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua", "nvim-cmp" },
+  },
+  ...
+}
+
+-- Can not be placed into the config method of the plugins.
+lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
+table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" }) -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
+-- The keymaps are important, tab won't do it for you..https://github.com/zbirenbaum/copilot.lua#setup-and-configuration
+require('copilot').setup({
+  panel = {
+    auto_refresh = true, --in the panel, prev and next are [[,] and accept is <CR>
+  },
+  suggestion = {
+    auto_trigger = true, --in the main ide, prev and next are opt+[,opt+] and accept is opt+l, dismiss is ctrl+]
+  }
+})
 -- vim.api.nvim_create_autocmd("FileType", {
 --   pattern = "zsh",
 --   callback = function()
