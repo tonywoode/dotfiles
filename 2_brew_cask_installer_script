@@ -45,6 +45,7 @@ echo "calling the doctor to fix brew and cask issues" && brew doctor
 echo "Tapped taps:"
 taps=( # caskroom/cask - I think homebrew taps this by default now, the readme of cask says "To start using Homebrew Cask, you just need Homebrew installed."
   adoptopenjdk/openjdk
+  homebrew/cask-fonts
 ) # there once existed caskroom/games - retro emulators - i was always to busy to investigate it
 tap_list=$(brew tap)
 echo $tap_list && echo "let's tap any untapped taps..."
@@ -149,6 +150,7 @@ apps=(
         electron-fiddle
         firefox
         flux
+        font-inconsolata-nerd-font #use inconsolata nerd font mono in iterm for best lvim experience
         # freefilesync - not stable enough to brew  cask atm see https://github.com/Homebrew/homebrew-cask/pull/78560
         gitup
         google-drive
