@@ -75,7 +75,13 @@ lvim.builtin.treesitter.auto_install = true
 -- end
 
 -- -- linters and formatters <https://www.lunarvim.org/docs/languages#lintingformatting>
--- local formatters = require "lvim.lsp.null-ls.formatters"
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  {
+    command = "prettier",
+    filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+  },
+}
 -- formatters.setup {
 --   { command = "stylua" },
 --   {
@@ -84,7 +90,11 @@ lvim.builtin.treesitter.auto_install = true
 --     filetypes = { "typescript", "typescriptreact" },
 --   },
 -- }
--- local linters = require "lvim.lsp.null-ls.linters"
+--
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  { command = "eslint", filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" } }
+}
 -- linters.setup {
 --   { command = "flake8", filetypes = { "python" } },
 --   {
@@ -124,6 +134,8 @@ require('copilot').setup({
     auto_trigger = true, --in the main ide, prev and next are opt+[,opt+] and accept is opt+l, dismiss is ctrl+]
   }
 })
+
+require("lvim.lsp.manager").setup "tailwindcss"
 -- vim.api.nvim_create_autocmd("FileType", {
 --   pattern = "zsh",
 --   callback = function()
