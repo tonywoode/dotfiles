@@ -29,6 +29,7 @@ echo "updating homebrew" && brew update
 echo "before we update any packages, we may need some pins, to stop things being updated" # YOU HAVE TO `brew unpin x` once you've pinned....
 pins=(
 #   node - i use nvm now, not from brew, and that's a long story (nvm authors do not recommend brew)
+  rust
 )
 for pin in "${pins[@]}"; do { echo "don't update $pin" && brew pin "$pin"; } done
 ####################################################
