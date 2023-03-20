@@ -62,7 +62,6 @@ bins=(
         code-minimap #required for the vim plugin wfxr/minimap.vim - there's a hardcoded Plug brew install in my .vimrc also
         ctags #also known as ctags-exuberant, don't install as that as it will call itself ctags in the installed list and therefore always install
         duti #for script 7 which sets mac filetype defaults see https://superuser.com/questions/273756/how-to-change-default-app-for-all-files-of-particular-file-type-through-terminal
-        discord
         opensearch #a community-driven, open source search and analytics suite derived from Elasticsearch 7.10.2 & Kibana 7.10.2
         fswatch #for smoke's nodemon problem
         graphviz
@@ -143,6 +142,7 @@ apps=(
         cyberduck # coz, believe it or not, filezilla is malware...
         # dash, dash 5 is a paid upgrade, need to stick to dash 4, see previous versions section below
         diffmerge
+        discord
         disk-inventory-x
         docker
         dropbox
