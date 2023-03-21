@@ -69,6 +69,7 @@ bins=(
         git
         git-lfs #https://git-lfs.github.com/ - need to run `git lfs install` to set this up for your user after install
 	      git-gui # just to get gitk and git-gui back
+        gh #github-cli installed for whole org pull originally - https://cli.github.com/manual/gh
         go #ycm said it needed it
         gnupg # originally installed as gpg but when installed calls itself gnupg, and we don't want to try and reinstall every time
         groovy
@@ -234,6 +235,10 @@ curl -L  https://raw.githubusercontent.com/Homebrew/homebrew-cask/f6ae619db3ca75
 echo "running brew and cask cleanup" && brew cleanup
 
 # TODO: brew update will update any brews and casks which were previously installed, regardless of whether you removed or commented them here. If we had a good reason to supplant a brew/cask with a manual install, brew will just replace it again. So an uninstall section here
+
+# install the extension for github-cli that allows us to clone/update an orgs repos, this won't work without first having issued `gh auth login` but it'll warn about that
+echo "Installing gh-clone-org extension for github-cli"
+gh extension install matt-bartel/gh-clone-org
 
 echo "Im outta yer loop, cya"
  
