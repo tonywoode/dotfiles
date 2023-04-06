@@ -1,3 +1,9 @@
 {
-  "semi": false 
+  "semi": false,
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "bracketSpacing": true,
+  "printWidth": 120,
+  "proseWrap": "preserve",
+  "trailingComma": "none"
 }
