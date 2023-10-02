@@ -127,6 +127,8 @@ lvim.plugins = {
   }
 }
 
+-- TO ACCEPT GITHUB SUGGESTIONS ITS OPTION+L - see https://github.com/zbirenbaum/copilot.lua/blob/master/README.md?plain=1#L69
+--
 -- Can not be placed into the config method of the plugins.
 lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
 table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" }) -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
