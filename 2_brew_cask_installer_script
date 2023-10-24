@@ -144,6 +144,7 @@ apps=(
         cord # favour microsoft remote desktop, but that needs appstore
         cyberduck # coz, believe it or not, filezilla is malware...
         # dash, dash 5 is a paid upgrade, need to stick to dash 4, see previous versions section below
+        db-browser-for-sqlite #https://sqlitebrowser.org/
         diffmerge
         discord
         disk-inventory-x
