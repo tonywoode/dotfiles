@@ -158,6 +158,7 @@ apps=(
         gitup
         google-drive
         google-chrome
+        httpie #httpie desktop app (2024)
         insomnia #but pinned! https://github.com/Kong/insomnia/issues/6585#issuecomment-1738784498, turn off auto-updates in prefs (scroll down)
         iterm2
         adoptopenjdk8 #note NOT java, for Flex. needs tap
