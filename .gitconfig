@@ -41,3 +41,5 @@
 	recurse = true
 [init]
 	defaultBranch = main
+[merge]
+	conflictStyle = zdiff3
