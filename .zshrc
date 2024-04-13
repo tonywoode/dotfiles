@@ -27,6 +27,8 @@ esac
 # brew's groovy installer says to set this, but strangely didn't set it for you
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
+# completions for brew https://docs.brew.sh/Shell-Completion (led to from https://cli.github.com/manual/gh_completion[])
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 # use additional completions from brews zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
