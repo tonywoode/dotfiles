@@ -43,3 +43,5 @@
 	defaultBranch = main
 [merge]
 	conflictStyle = zdiff3
+[rebase]
+	autostash = true
