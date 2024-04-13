@@ -89,6 +89,9 @@ export PATH="$HOME/.local/bin:$PATH"
 # update oh-my-zsh without prompting (I think this stopped auto-updating becuase i had it AFTER the source for ages...)
 DISABLE_UPDATE_PROMPT=true
 
+# add zsh-completions to the path - https://github.com/zsh-users/zsh-completions?tab=readme-ov-file#oh-my-zsh
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+
 source $ZSH/oh-my-zsh.sh
 
 # bullet-train theme is not an oh-my-zsh default, so we have to install it, and powerline too (which many themes need), note ZSH_CUSTOM only available after the oh-my-zsh source
