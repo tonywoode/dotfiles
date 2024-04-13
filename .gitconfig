@@ -13,7 +13,8 @@
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [push]
-	default = simple
+	default = current #https://jvns.ca/blog/2024/02/16/popular-git-config-options/ take care a remote with same name doesn't already exist!
+	autoSetupRemote = true
 # the submodule commands here done after reading https://medium.com/@porteneuve/mastering-git-submodules-34c65e940407
 [status]
 	submoduleSummary = true
@@ -42,6 +43,6 @@
 [init]
 	defaultBranch = main
 [merge]
-	conflictStyle = zdiff3
+	conflictStyle = zdiff3 #https://jvns.ca/blog/2024/02/16/popular-git-config-options/
 [rebase]
-	autostash = true
+	autostash = true #https://jvns.ca/blog/2024/02/16/popular-git-config-options/
