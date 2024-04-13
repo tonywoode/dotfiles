@@ -222,5 +222,7 @@ load-nvmrc
 eval "$(pyenv init -)"
 # just following https://akrabat.com/creating-virtual-environments-with-pyenv/ because it helps to also use virtualenv to use specific python versions per-project
 eval "$(pyenv virtualenv-init -)"
+#copilot aliases - https://docs.github.com/en/copilot/github-copilot-in-the-cli/using-github-copilot-in-the-cli
+eval "$(gh copilot alias -- zsh)"
 
 # zprof #for profiling as and when needed
