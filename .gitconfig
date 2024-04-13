@@ -46,3 +46,5 @@
 	conflictStyle = zdiff3 #https://jvns.ca/blog/2024/02/16/popular-git-config-options/
 [rebase]
 	autostash = true #https://jvns.ca/blog/2024/02/16/popular-git-config-options/
+[commit]
+	verbose = true #https://jvns.ca/blog/2024/02/16/popular-git-config-options/
