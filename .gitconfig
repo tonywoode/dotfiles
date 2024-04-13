@@ -48,3 +48,5 @@
 	autostash = true #https://jvns.ca/blog/2024/02/16/popular-git-config-options/
 [commit]
 	verbose = true #https://jvns.ca/blog/2024/02/16/popular-git-config-options/
+[rerere]
+	enabled = true #reuse recovered resolution remembers how you resolved merge commits - https://jvns.ca/blog/2024/02/16/popular-git-config-options/
