@@ -163,11 +163,12 @@ apps=(
         iterm2
         adoptopenjdk8 #note NOT java, for Flex. needs tap
         jd-gui #inspect java class files
-        jumpcut
+        jumpcut #TODO: you prob want flycut now
         macvim
         mamp
         microsoft-teams
         moom
+        numi #macos calculator
         paintbrush
         #parallels - you're using a different version per machine
         pgadmin4
