@@ -53,7 +53,7 @@
 [rerere]
 	enabled = true #reuse recovered resolution remembers how you resolved merge commits - https://jvns.ca/blog/2024/02/16/popular-git-config-options/
 [help]
-	autocorrect = 10 #https://jvns.ca/blog/2024/02/16/popular-git-config-options/
+	autocorrect = prompt #https://jvns.ca/blog/2024/02/16/popular-git-config-options/
 [transfer]
 	fsckobjects = true #avoid data corruption https://jvns.ca/blog/2024/02/16/popular-git-config-options/
 [receive]
