@@ -2,6 +2,8 @@
 # zmodload zsh/zprof
 ZSH_DISABLE_COMPFIX="true" # because i'm not going to change perms on /usr/local/share - see github.com/ohmyzsh/issues/8205, see also compinit flag below
 DISABLE_AUTO_TITLE="true" # stop zsh renaming my tmux windows https://stackoverflow.com/a/38667859/3536094
+# temporary fix for git prompt not showing, remove when fixed - https://github.com/ohmyzsh/ohmyzsh/issues/12328
+zstyle ':omz:alpha:lib:git' async-prompt no 
 # I put all my temp text files here....
 MY_TEMP_DIR="$HOME/temp/"
 [[ -d $MY_TEMP_DIR ]] || mkdir $MY_TEMP_DIR
