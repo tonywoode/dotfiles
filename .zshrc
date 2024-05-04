@@ -221,7 +221,7 @@ load-nvmrc() {
 
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
-
+# if that doesn't speed up vscode non-terminal launch then resort to https://stackoverflow.com/a/66513254/3536094
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
