@@ -30,7 +30,7 @@ echo "before we update any packages, we may need some pins, to stop things being
 pins=(
 #   node - i use nvm now, not from brew, and that's a long story (nvm authors do not recommend brew)
   rust
-  insomnia
+  #you can't pin casks btw
 )
 for pin in "${pins[@]}"; do { echo "don't update $pin" && brew pin "$pin"; } done
 ####################################################
@@ -77,6 +77,7 @@ bins=(
         httpie #CLI HTTP client; user-friendly cURL replacement featuring intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc. http://httpie.org
         hub
         jq
+        libdeflate #a bug in a depencency of aom and openExr required this
         mas #app-store downloader - see https://github.com/mas-cli/mas
         #macvim #use the cask instead due to compilation issues on catalina e.g.: https://github.com/macvim-dev/macvim/issues/952 # --with-override-system-vim" #https://stackoverflow.com/a/8539518/3536094 one reason i'm using macvim is clientserver support, another is some completion? quoting this doesn't help it install https://github.com/Homebrew/homebrew-core/issues/26583
         mono # ycm said it needed it
