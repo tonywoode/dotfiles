@@ -221,7 +221,7 @@ load-nvmrc() {
 
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
-# if that doesn't speed up vscode non-terminal launch then resort to https://stackoverflow.com/a/66513254/3536094
+# if that doesn't speed up vscode non-terminal launch then resort to https://stackoverflow.com/a/66513254/3536094, but may all be a waste of time https://code.visualstudio.com/docs/supporting/FAQ
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -234,6 +234,6 @@ eval "$(pyenv init -)"
 # just following https://akrabat.com/creating-virtual-environments-with-pyenv/ because it helps to also use virtualenv to use specific python versions per-project
 eval "$(pyenv virtualenv-init -)"
 #copilot aliases - https://docs.github.com/en/copilot/github-copilot-in-the-cli/using-github-copilot-in-the-cli
-eval "$(gh copilot alias -- zsh)"
+eval "$(gh copilot alias -- zsh)" #TODO: this won't work if you haven't gh auth login'd first then gh extension install github.com/github/gh-copilot-cli
 
 # zprof #for profiling as and when needed
