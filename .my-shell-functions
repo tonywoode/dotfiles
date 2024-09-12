@@ -1,0 +1,13 @@
+# useful things I use that I don't want to forget
+
+# if we're updating functions that already exist, they won't overwrite, they'll fail and you'll get left with the old fn. So first clear them
+function unset_func_alias_if_exist() { #ignore this: utility fn
+  type $1|grep function &>/dev/null && unset -f $1
+  type $1|grep alias &>/dev/null && unalias $1
+}
+
+unset_func_alias_if_exist node_processes_no_vscode
+function node_processes_no_vscode() {
+  ps aux | grep node | grep -v "Visual Studio Code" | grep -v grep
+}
+

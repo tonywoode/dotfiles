@@ -90,7 +90,7 @@ export PATH="/usr/local/sbin:$PATH:/Applications/MAMP/Library/bin"
 # add lunarvim to path (that's all for now that's at this path)
 export PATH="$HOME/.local/bin:$PATH"
 
-# update oh-my-zsh without prompting (I think this stopped auto-updating becuase i had it AFTER the source for ages...)
+# update oh-my-zsh without prompting (this stopped auto-updating as i had it AFTER the source for ages...)
 DISABLE_UPDATE_PROMPT=true
 
 # add zsh-completions to the path - https://github.com/zsh-users/zsh-completions?tab=readme-ov-file#oh-my-zsh
@@ -129,7 +129,8 @@ export LANG=en_GB.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# NOTE MY PERSONAL ALIASES MOVED TO .zshenv SO E.G.: VIM CAN SEE THEM SEE COMMENT IN https://stackoverflow.com/a/4642855
+# NOTE MY PERSONAL (non-interactive shell) ALIASES MOVED TO .zshenv SO E.G.: VIM CAN SEE THEM SEE COMMENT IN https://stackoverflow.com/a/4642855
+
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -155,6 +156,9 @@ alias help=run-help
 
 # extend git with hub https://hub.github.com/
 alias git=hub
+
+# my personal functions
+. ~/.my-shell-functions
 
 # smoke docker specific vars
 . ~/.smoke-mirrors/.profile
