@@ -27,11 +27,23 @@ echo "updating homebrew" && brew update
 ####################################################
 # PINNING - run before upgrading (unused at present)
 echo "before we update any packages, we may need some pins, to stop things being updated" # YOU HAVE TO `brew unpin x` once you've pinned....
-pins=(
-#   node - i use nvm now, not from brew, and that's a long story (nvm authors do not recommend brew)
-  rust
-  #you can't pin casks btw
-)
+#pins=(
+##   node - i use nvm now, not from brew, and that's a long story (nvm authors do not recommend brew)
+#  rust #TODO: you WANT to pin this on catalina but NOT pin this on sequoia
+#  #you can't pin casks btw
+#)
+
+# We want to pin rust if we're on catalina or less, otherwise no, we don't need to compile it, its fine
+# So get the major macOS version (e.g., 10 for Catalina, 15 for Sequoia), we need to handle the pre-Big Sur numbering scheme (10.x)
+macos_version=$(sw_vers -productVersion)
+major_version=$(echo $macos_version | cut -d'.' -f1) # Cut first part of the version number
+if [[ "$major_version" -lt "11" ]]; then
+  # It's an old 10.x version like Catalina (10.15), Mojave (10.14), etc.
+  pins=(rust)
+else #It's a new major version like Big Sur (11), Monterey (12), or Sequoia (15).
+  pins=()
+fi
+
 for pin in "${pins[@]}"; do { echo "don't update $pin" && brew pin "$pin"; } done
 ####################################################
 
