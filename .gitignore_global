@@ -31,3 +31,5 @@ jsconfig.json
 ## node
 node_modules
 npm-debug.log
+# I commented this long ago - take care on atlas!
+#package-lock.json
