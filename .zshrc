@@ -80,7 +80,6 @@ plugins=(
   vagrant # completions and aliases vup is vagrant up, vh vagrant halt, vssh vagrant ssh
   vi-mode # This plugin increase vi-like zsh functionality - see list here: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode - in particular vv opens vim to edit console command
   yarn # completions and aliases
-  zsh-autosuggestions 
 )
 
 # brew doctor will complain it wants /usr/local/sbin in your path, and suggests putting it before anything else (not that it put very much in there...)
@@ -95,7 +94,9 @@ DISABLE_UPDATE_PROMPT=true
 
 # add zsh-completions to the path - https://github.com/zsh-users/zsh-completions?tab=readme-ov-file#oh-my-zsh
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-
+# and zsh-autosuggestions
+# HOMEBREW_PREFIX isn't available unless you eval brew's shellenv in your .zprofile - see brew cmd output on first run: https://stackoverflow.com/a/78734952   
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH/oh-my-zsh.sh
 
 # bullet-train theme is not an oh-my-zsh default, so we have to install it, and powerline too (which many themes need), note ZSH_CUSTOM only available after the oh-my-zsh source
