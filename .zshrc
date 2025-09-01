@@ -238,7 +238,43 @@ load-nvmrc
 eval "$(pyenv init -)"
 # just following https://akrabat.com/creating-virtual-environments-with-pyenv/ because it helps to also use virtualenv to use specific python versions per-project
 eval "$(pyenv virtualenv-init -)"
-#copilot aliases - https://docs.github.com/en/copilot/github-copilot-in-the-cli/using-github-copilot-in-the-cli
-eval "$(gh copilot alias -- zsh)" #TODO: this won't work if you haven't gh auth login'd first then gh extension install github.com/github/gh-copilot-cli
+#copilot aliases - https://docs.github.com/en/copilot/github-copilot-in-the-cli/using-github-copilot-in-the-cli - automated the install via ai
+# ==========================================================
+# GitHub Copilot CLI Setup - Automated Check and Install
+# ==========================================================
+
+# Check if the shell is interactive by checking for the PS1 variable
+if [ -n "$PS1" ]; then
+    # Check if gh (GitHub CLI) is available
+    if ! command -v gh &> /dev/null; then
+        echo "GitHub CLI 'gh' is not installed. Please install it to use gh copilot."
+        echo "You can install it with Homebrew: 'brew install gh'"
+    else
+        # Check if a user is authenticated with GitHub CLI
+        if ! gh auth status &> /dev/null; then
+            echo ""
+            echo "GitHub CLI is not authenticated. Please log in to use gh copilot."
+            echo "You must log in to set the Copilot aliases"
+            echo ""
+            # The gh copilot extension specifically requires authentication via the GitHub CLI OAuth app, not just a Personal Access Token (PAT) from the GH_TOKEN environment variable - https://github.com/orgs/community/discussions/167158
+            #gh auth login
+            gh auth login --web -h github.com
+        fi
+    
+        # Check if the gh-copilot extension is installed
+        if ! gh extension list | grep -q "copilot"; then
+            echo ""
+            echo "The 'gh-copilot' extension is not installed."
+            echo "You must install it to use gh copilot."
+            echo ""
+            gh extension install github/gh-copilot
+        fi
+        
+        # If everything is configured, then set the aliases.
+        if gh auth status &> /dev/null && gh extension list | grep -q "copilot"; then
+            eval "$(gh copilot alias -- zsh)"
+        fi
+    fi
+fi
 
 # zprof #for profiling as and when needed
