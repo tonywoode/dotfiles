@@ -11,3 +11,9 @@ function node_processes_no_vscode() {
   ps aux | grep node | grep -v "Visual Studio Code" | grep -v grep
 }
 
+#This absurd "one-liner" will show you the name of the command running on each port on MacOS - https://x.com/seldo/status/1823126087423099192?s=48&t=2gkvF6feqpnKKTyk3DR7Wg
+unset_func_alias_if_exist macos_active_ports
+function macos_active_ports() {
+  sudo lsof -iTCP -sTCP:LISTEN -n -P | awk 'NR>1 {print $9, $1, $2}' | sed 's/.*://' | while read port process pid; do echo "Port $port: $(ps -p $pid -o command= | sed 's/^-//') (PID: $pid)"; done | sort -n
+}
+
