@@ -11,6 +11,53 @@ function node_processes_no_vscode() {
   ps aux | grep node | grep -v "Visual Studio Code" | grep -v grep
 }
 
+# GitHub CLI Setup Function
+# ==========================================================
+unset_func_alias_if_exist gh-setup
+function gh-setup() {
+    # Check if the shell is interactive
+    if [[ $- == *i* ]]; then
+        echo "Starting GitHub CLI setup..."
+        echo ""
+
+        # Check for gh and exit if not found
+        if ! command -v gh &> /dev/null; then
+            echo "GitHub CLI 'gh' is not installed. Please install it to continue."
+            return 1
+        fi
+
+        # Check authentication status and prompt for re-authentication if necessary
+        if gh auth status &> /dev/null; then
+            echo "✅ GitHub CLI is already authenticated."
+            # The more robust way to prompt for input
+            echo -n "Do you want to re-authenticate anyway? (y/n) "
+            read choice
+            if [[ "$choice" =~ ^[Yy]$ ]]; then
+                echo "Re-authenticating..."
+                # The gh copilot extension specifically requires authentication via the GitHub CLI OAuth app, not just a Personal Access Token (PAT) from the GH_TOKEN environment variable - https://github.com/orgs/community/discussions/167158
+                gh auth login --web -h github.com
+            fi
+        else
+            echo "GitHub CLI is not authenticated. Running 'gh auth login --web' to authenticate."
+            # The gh copilot extension specifically requires authentication via the GitHub CLI OAuth app, not just a Personal Access Token (PAT) from the GH_TOKEN environment variable - https://github.com/orgs/community/discussions/167158
+            gh auth login --web -h github.com
+        fi
+
+        # Check if Copilot extension is installed
+        if gh extension list | grep -q "copilot"; then
+            echo "✅ GitHub Copilot CLI extension is already installed."
+        else
+            echo "GitHub Copilot CLI extension is not installed. Installing it now."
+            gh extension install github/gh-copilot
+        fi
+
+        echo ""
+        echo "Setup complete. Please run 'source ~/.zshrc' or open a new terminal."
+    else
+        echo "This function must be run in an interactive shell. Exiting."
+    fi
+}
+
 #This absurd "one-liner" will show you the name of the command running on each port on MacOS - https://x.com/seldo/status/1823126087423099192?s=48&t=2gkvF6feqpnKKTyk3DR7Wg
 unset_func_alias_if_exist macos_active_ports
 function macos_active_ports() {
