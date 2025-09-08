@@ -9,11 +9,19 @@ https://github.com/riyadhalnur/npm-modules-sync instructions:
 
 
 EOF
+# NOTE: We download the exact versions of packages, so if migrating macs your packages may be WAY out of date....
+# so:
+# npm outdated -g | tee ~/Desktop/npm_global_initial_versions.txt 
+# and
+# npm update -g
+# and delete the package.json and package-lock it creates by doing that
+# then pray
+# also note you might want to globally uninstall any of your custom local packages you made, the use option 3, else it'll crash the script
 
 # and note there is scant alternative unless you do it yourself https://stackoverflow.com/questions/41583514/npm-how-to-sync-global-packages-between-different-computers
 
 # we'll need a github token. note: As a security precaution, GitHub automatically removes personal access tokens that haven't been used in a year.
-# settings > Developer Settings > Personal Access Tokens > Generate new token, then just tick gist as the scope, note you won't be able to see the token ever again.
+# settings > Developer Settings > Personal Access Tokens > Tokens (classic) > Generate new token (classic), 2fa authorise by opening github typing in code,  then just tick gist as the scope, note you won't be able to see the token ever again.
 tokenFile=./sync-npm-modules-github-token.conf
 source $tokenFile # gives us github-token-for-gist-access and #github_gist_id
 token="$github_token_for_gist_access"
@@ -31,14 +39,14 @@ fi
 while true; do
 	echo "What shall we do now?"
     echo "	1. make a one-off initial push from this machine to a gist (you'll need to manually paste the new gist id into the config file)"
-    echo "	2. make a one-off initial pull from the gist to this machine (his step 3)"
+    echo "	2. make a one-off initial pull from the gist to this machine (his step 3 - you'll need to paste the config file from the initial machine AND add the gist id to it)"
     echo "	3. upload npm module changes to gist (his step 4) This might not work if you've been away awhile: so make a new gist with step 1"
     echo "	4. download npm module changes from gist (his step 5)"
 	echo "	5. exit"
 	
 	read -p "-> " response
 	case $response in
-		1) read -s -n 1 -p "Press any key to do an INITIAL sync to this machine (for subsequent syncs read instructions above) . . ."
+		1) read -s -n 1 -p "Press any key to do an INITIAL sync FROM this machine (for subsequent syncs read instructions above) . . ."
            echo ""
            npm-sync init -t "$token"
            npm uninstall -g replace-slack-text
