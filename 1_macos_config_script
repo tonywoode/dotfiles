@@ -432,6 +432,7 @@ defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 ###############################################################################
 # Mac App Store                                                               #
 ###############################################################################
+# Apple have changed critical software update choices since Ventura, anything related to macos updates won't take, do it manually if necc
 
 # Check for software updates daily, not just once per week
 #defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
