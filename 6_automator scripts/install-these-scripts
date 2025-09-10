@@ -6,11 +6,11 @@ dir=~/CODE/Scripts/Dotfiles/dotfiles # dotfiles directory
 
 echo "making symlinks to the automator scripts here in ~/Library/Services"
 find "$dir/6_automator scripts" -name "*.workflow" | while read file; do ln -s "$file" "$dir/6_automator scripts/ServicesLink"; done
-read -p "NOW PLEASE INSTALL EACH SCRIPT BY DOUBLE CLICKING IT"
 open "$dir/6_automator scripts/ServicesLink"
-read -p  "NOW YOU NEED TO DOUBLE CLICK THE VIMINI APP TO INSTALL IT"
+read -p "NOW PLEASE INSTALL EACH SCRIPT BY DOUBLE CLICKING IT (actually they all report they're installed already if you do click them,  maybe you can skip this!)"
 cp -r "$dir/6_automator scripts/open with vim in iterm at folder/vimini.app/" "/Applications/Vimini.app"
 open /Applications
+read -p  "NOW YOU NEED TO DOUBLE CLICK THE VIMINI APP TO INSTALL IT"
 echo "done"
 
 
