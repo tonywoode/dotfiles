@@ -8,11 +8,11 @@ app_store_apps=(
   409203825  # Numbers
   462058435  # Microsoft Excel
   985367838  # Microsoft Outlook
-  1295203466 # Microsoft Remote Desktop 
+  #1295203466 # Microsoft Remote Desktop 
   462054704  # Microsoft Word
-  881415018  # myTuner Radio 
-  597419160  # Sleep Pillow 
-  497799835  # Xcode 
+  #881415018  # myTuner Radio - the mas script no longer finds this id
+  #597419160  # Sleep Pillow  - the mas script no longer finds this id
+  #497799835  # Xcode 
 )
 
 echo "reinstalling any uninstalled mas (mac app store) apps"
