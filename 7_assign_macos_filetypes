@@ -20,7 +20,7 @@
 #
 # then we just need to say
 # duti -s io.brackets.appshell .md all
-# although note another posted worked out you can if you dare just do this:
+# although note another poster worked out you can if you dare just do this:
 # duti -s $(osascript -e 'id of app "MacVim"') .md all
 #
 # however, the file extension isn't the only thing duti can act on, see man duti
