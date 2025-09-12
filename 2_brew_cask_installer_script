@@ -175,12 +175,13 @@ apps=(
         gitup
         google-drive
         google-chrome
+        haptic-touch-bar
         httpie #httpie desktop app (2024)
         insomnia #but pinned! https://github.com/Kong/insomnia/issues/6585#issuecomment-1738784498, turn off auto-updates in prefs (scroll down)
         iterm2
         adoptopenjdk8 #note NOT java, for Flex. needs tap
         jd-gui #inspect java class files
-        jumpcut #TODO: you prob want flycut now
+        flycut #modern jumpcut
         macvim
         mamp
         microsoft-teams
