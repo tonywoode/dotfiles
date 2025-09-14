@@ -188,7 +188,7 @@ apps=(
         moom
         numi #macos calculator
         paintbrush
-        #parallels - you're using a different version per machine
+        parallels # NEED TO GIVE ITERM FULL DISK ACCESS - + icon in Privacy and Security and add iterm to full disk access BEFORE running this script - you're using a different version per machine so take note this could be a problem!
         pgadmin4
         paintbrush
         platypus
