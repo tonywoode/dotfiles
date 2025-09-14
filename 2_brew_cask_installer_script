@@ -149,7 +149,6 @@ echo "" && echo " *** CASK *** " && echo ""
 # > Since the Homebrew Cask repository is a Homebrew Tap, you’ll pull down the latest Casks every time you issue the regular Homebrew command brew update.
 
 apps=(
-        aerial # beautiful screensaver
         alfred
         android-file-transfer
         another-redis-desktop-manager
