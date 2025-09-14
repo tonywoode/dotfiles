@@ -26,6 +26,7 @@ for dotfilepath in "${arr[@]}"; do
       [[ "$dotfile" = ".gitignore" ]] ||
       [[ "$dotfile" = *.swp ]] || # In case we have vim open on this file...
       [[ "$dotfile" = ".vim" ]] # I swear we don't need that solarized colourscheme its installed by a package, if we do then curl it in instead
+      [[ "$dotfile" = ".vscode" ]] # that got me: its fine at first....until you open this repo with vscode and then re-run this! its a folder as well
    then echo "$dotfile is excluded"
    elif [[ -f "$HOME/$dotfile" ]] ; then
        #dotfile is already in ~, is it a valid symlink?
