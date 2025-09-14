@@ -452,6 +452,13 @@ defaults write com.apple.commerce AutoUpdate -bool true
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
+
+###############################################################################
+# My custom
+###############################################################################
+# Annoying issue with tmux waiting for a fix to be incorporated (so prob fixed by now) https://gitlab.com/gnachman/iterm2/-/issues/8905 If youctrl+c with tmux your selection is copied but iterm hassles you a lot about mouse reporting, disable with a )
+defaults write com.googlecode.iterm2 NoSyncNeverAskAboutMouseReportingFrustration -bool true
+
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
