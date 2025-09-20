@@ -33,7 +33,7 @@ for dotfilepath in "${arr[@]}"; do
        if [[ -L "$HOME/$dotfile" && -e "$HOME/$dotfile" ]]; then # I see no point in second check?!?!
          echo "$dotfile already linked to dots, ignoring..."
        else 
-         echo "$dotfile is not a symlink (or is a broken one)"
+         echo "$dotfile is not a symlink (or is a broken one) - we will move THEN copy to fix that"
          # so we need to move then copy
          mv "$HOME/$dotfile" "$olddir/"
          ln -s "$dotfilepath" "$HOME/$dotfile"
