@@ -3,7 +3,8 @@
 	name = tony woode
 [core]
 	excludesfile = /Users/twoode/.gitignore_global
-	editor = /usr/local/bin/vim
+	#editor = /usr/local/bin/vim - todo: some way to switch this!
+    editor = /opt/homebrew/bin/nvim
 	autocrlf = input
 	filemode = true
 [difftool "sourcetree"]
@@ -58,3 +59,5 @@
 	fsckobjects = true #avoid data corruption https://jvns.ca/blog/2024/02/16/popular-git-config-options/
 [receive]
 	fsckObjects = true #avoid data corruption https://jvns.ca/blog/2024/02/16/popular-git-config-options/
+[safe]
+	directory = /opt/homebrew
