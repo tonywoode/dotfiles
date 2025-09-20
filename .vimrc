@@ -81,7 +81,11 @@ let @/ = "" "but don't highlight search every time i source this rc file! https:
 " fix paste indenting - see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste  . 
 "First line sets a mapping so that pressing F2 in normal mode will invert.The 'paste' option, and will then show the value of that option
 nnoremap <F2> :set invpaste paste?<CR>  
-set pastetoggle=<F2> "allows you to press F2 when in insert mode, to toggle 'paste' on and off. 
+" Check if the editor is NOT Neovim using the variable
+if !g:is_neo_vim
+  " This setting is only for MacVim and older versions of Vim
+  set pastetoggle=<F2>
+endif
 " F3 switches line numbering mode
 nnoremap <silent><F3> :call g:ToggleNuMode()<cr>
 " F4 to turn highlighting off for this search (search term stays selected though)
