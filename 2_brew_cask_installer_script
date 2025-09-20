@@ -7,20 +7,21 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until this script has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# because of something silly,  we need full xcode for macvim build - stackoverflow.com/a/15371967/3536094 - return value will be 2 if NOT exist, 0 if exist
-xcode-select -p 1>/dev/null; if (( $? == 2 )); then 
- echo "Full XCode (with license accepted) recommended (for eg: macvim install). Exiting until its found (otherwise brew will install command line tools). Go install from the app store"
- exit 1
-fi
-# now lets silently accept the xcode license in case its a first run - https://stackoverflow.com/questions/58632629/how-to-check-if-xcode-license-needs-to-be-accepted
-echo "xcode license may need accepting, silently taking care of that..."
-sudo xcodebuild -license accept &>/dev/null
-
-echo "Checking for Homebrew and installing if we don't have it"
-if test ! $(which brew); then
-  echo "Installing homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-fi
+# because of something silly,  we used to need full xcode for macvim build - stackoverflow.com/a/15371967/3536094 - return value will be 2 if NOT exist, 0 if exist
+# but be aware of the below note: if xcode isn't found, brew will install command-line tools? that true?
+#xcode-select -p 1>/dev/null; if (( $? == 2 )); then 
+# echo "Full XCode (with license accepted) recommended (for eg: macvim install). Exiting until its found (otherwise brew will install command line tools). Go install from the app store"
+# exit 1
+#fi
+## now lets silently accept the xcode license in case its a first run - https://stackoverflow.com/questions/58632629/how-to-check-if-xcode-license-needs-to-be-accepted
+#echo "xcode license may need accepting, silently taking care of that..."
+#sudo xcodebuild -license accept &>/dev/null
+#
+#echo "Checking for Homebrew and installing if we don't have it"
+#if test ! $(which brew); then
+#  echo "Installing homebrew..."
+#  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+#fi
 
 echo "updating homebrew" && brew update
 
@@ -59,9 +60,9 @@ echo "calling the doctor to fix brew and cask issues" && brew doctor
 # TAPPING - run before installing (unusued at present)
 echo "Tapped taps:"
 taps=( # caskroom/cask - I think homebrew taps this by default now, the readme of cask says "To start using Homebrew Cask, you just need Homebrew installed."
-  adoptopenjdk/openjdk
-  homebrew/cask-fonts
-) # there once existed caskroom/games - retro emulators - i was always to busy to investigate it
+  #adoptopenjdk/openjdk - THIS caused a lot of fuss with its auto-updates and i don't know why its required, lets try without it (brew says groovy depends on openjdk 24.0.2 aka java, which i presume itll install)
+  #homebrew/cask-fonts - latest info from homebrew issues on github is that this is closed and all fonts migrated to casks, so try without
+) # there once existed caskroom/games - retro emulators - i was always too busy to investigate it
 tap_list=$(brew tap)
 echo $tap_list && echo "let's tap any untapped taps..."
 for tap in "${taps[@]}"; do { [[ $tap_list != *"$tap"* ]] && brew tap "$tap"; } done
@@ -84,7 +85,7 @@ bins=(
         graphviz
         git
         git-lfs #https://git-lfs.github.com/ - need to run `git lfs install` to set this up for your user after install
-	      git-gui # just to get gitk and git-gui back
+	git-gui # just to get gitk and git-gui back
         gh #github-cli installed for whole org pull originally - https://cli.github.com/manual/gh
         go #ycm said it needed it
         gnupg # originally installed as gpg but when installed calls itself gnupg, and we don't want to try and reinstall every time
@@ -100,10 +101,10 @@ bins=(
         neovim
         node #tern requires a globally installed node, so better to give it a later one than none at all
         p7zip
-        postgresql
+        postgresql@14
         pygments # syntax highlighter used by the zsh plugin: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colorize
         redis
-        rustup-init # Rust version manager (pseudonym is just rustup both work), manually run rustup-init after installation to install Rust and Cargo https://sourabhbajaj.com/mac-setup/Rust/
+        rustup # Rust version manager (pseudonym is rustup-init both work), manually run rustup-init after installation to install Rust and Cargo https://sourabhbajaj.com/mac-setup/Rust/
         #python #ycm needs it - but  do it properly: https://akrabat.com/creating-virtual-environments-with-pyenv/ and https://opensource.com/article/19/5/python-3-default-mac#what-to-do
         readline #pyenv says it needs it, but brew had installed it anyway..
         xz #pyenv says it needs it, but brew had installed it anyway..
@@ -114,7 +115,7 @@ bins=(
         tmux
         trash # new rmtrash, I also manually ln -s /usr/local/bin/trash /usr/local/bin/rmtrash in case I forget
         tree
-        reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it
+        #reattach-to-user-namespace #required for pbcopy in tmux, your tmux.conf WILL crash without it - not anymore it wont!! on modern macs system clipboard works in iterm and tmux
         #vim --with-client-server # see https://stackoverflow.com/a/25979565/3536094 would also require adding xquartz to cask (yes cask!)
         wget
         zsh
@@ -150,14 +151,11 @@ echo "" && echo " *** CASK *** " && echo ""
 
 apps=(
         alfred
-        android-file-transfer
+        #android-file-transfer - intel only, use openmtp instead
         another-redis-desktop-manager
         appcleaner
-        balsamiq-wireframes
         betterzip # for the betterzip quick look plugin that shows zip contents in finder
         blueharvest
-        caffeine
-        cord # favour microsoft remote desktop, but that needs appstore
         cyberduck # coz, believe it or not, filezilla is malware...
         # dash, dash 5 is a paid upgrade, need to stick to dash 4, see previous versions section below
         db-browser-for-sqlite #https://sqlitebrowser.org/
@@ -168,38 +166,37 @@ apps=(
         dropbox
         electron-fiddle
         firefox
-        flux
         font-inconsolata-nerd-font #use inconsolata nerd font mono in iterm for best lvim experience
         # freefilesync - not stable enough to brew  cask atm see https://github.com/Homebrew/homebrew-cask/pull/78560
-        gitup
+        gitup-app
         google-drive
         google-chrome
         haptic-touch-bar
-        httpie #httpie desktop app (2024)
+        httpie-desktop #httpie desktop app (2024)
         insomnia #but pinned! https://github.com/Kong/insomnia/issues/6585#issuecomment-1738784498, turn off auto-updates in prefs (scroll down)
         iterm2
-        adoptopenjdk8 #note NOT java, for Flex. needs tap
+        #adoptopenjdk8 #note NOT java, for Flex. needs tap, suceeded by adoptopenjdk, then succeded by temurin, at which point I'm lost....
         jd-gui #inspect java class files
         flycut #modern jumpcut
-        macvim
+        macvim-app
         mamp
-        microsoft-teams
-        moom
+        #microsoft-teams - dont want to install that on work mac
+        #moom
         numi #macos calculator
+        openmtp
         paintbrush
         parallels # NEED TO GIVE ITERM FULL DISK ACCESS - + icon in Privacy and Security and add iterm to full disk access BEFORE running this script - you're using a different version per machine so take note this could be a problem!
         pgadmin4
         paintbrush
         platypus
         postman
-        regexhibit # regex tester using perl
         # rocket-chat v3 does not like url, need to pin at 2.7.1, see previous versions section below
-        skype
-        slack
+        #skype
+        #slack
         sourcetree
         spotify
-        sublime-text
-        teamviewer
+        #sublime-text
+        #teamviewer
         the-unarchiver
         tiddly
         tunnelblick
@@ -208,7 +205,7 @@ apps=(
         #virtualbox-extension-pack - previous versions can be found https://download.virtualbox.org/virtualbox/
         visual-studio-code
         vnc-viewer
-        webtorrent
+        #webtorrent
         whatsapp
 )
 
@@ -250,8 +247,6 @@ for to_install in "${cask_need_to_install[@]}"; do { echo "CASK: INSTALLING $to_
 echo "Installing CASKS which require previous versions"
 
 curl -L  https://raw.githubusercontent.com/caskroom/homebrew-cask/baf4f35e70c225fe1a8a60ec3b4e22604187238d/Casks/dash.rb > dash.rb && brew install dash.rb --cask && rm dash.rb
-
-curl -L  https://raw.githubusercontent.com/Homebrew/homebrew-cask/f6ae619db3ca758c1b7297e6fce9b372a3b90fff/Casks/rocket-chat.rb > rocket-chat.rb && brew install rocket-chat.rb --cask && rm rocket-chat.rb
 
 curl -L  https://raw.githubusercontent.com/Homebrew/homebrew-cask/a649350f567a4ade1b6ee7509d798d6b1ab3a4fb/Casks/i/insomnia.rb > insomnia.rb && brew install insomnia.rb --cask && rm insomnia.rb
 
