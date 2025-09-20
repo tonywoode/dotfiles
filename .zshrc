@@ -8,6 +8,13 @@ zstyle ':omz:alpha:lib:git' async-prompt no
 MY_TEMP_DIR="$HOME/temp/"
 [[ -d $MY_TEMP_DIR ]] || mkdir $MY_TEMP_DIR
 
+# Function to add a directory to the PATH if it exists and isn't already there (ie: used later on in here)
+path_add() {
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    export PATH="${1}:${PATH}"
+  fi
+}
+
 # tmux starts by default, $- == *i* says 'if current shell isn't interactive
 # I replaced my own implementation of this with the following as it seemed them most thorough:  https://stackoverflow.com/a/42351698/3536094
 # if this ever becomes unacceptable you might also want to check out the zsh plugin for tmux - https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#tmux
@@ -27,12 +34,12 @@ case $- in
 esac
 
 # brew's groovy installer says to set this, but strangely didn't set it for you
-export GROOVY_HOME=/usr/local/opt/groovy/libexec
+export GROOVY_HOME="$HOMEBREW_PREFIX/opt/groovy/libexec"
 
 # completions for brew https://docs.brew.sh/Shell-Completion (led to from https://cli.github.com/manual/gh_completion[])
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 # use additional completions from brews zsh-completions
-fpath=(/usr/local/share/zsh-completions $fpath)
+FPATH="$(brew --prefix)/share/zsh-completions:${FPATH}"
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -44,7 +51,8 @@ fi
 
 # I installed antigen when looking for a way to make the node version manager NVM work well
 # https://github.com/zsh-users/antigen and https://github.com/lukechilds/zsh-nvm
-source /usr/local/share/antigen/antigen.zsh
+# Load Antigen based on system architecture
+source "$HOMEBREW_PREFIX/share/antigen/antigen.zsh"
 antigen bundle lukechilds/zsh-nvm
 antigen apply
 
@@ -84,8 +92,15 @@ plugins=(
 
 # brew doctor will complain it wants /usr/local/sbin in your path, and suggests putting it before anything else (not that it put very much in there...)
 # User configuration - TODO: i'm overwriting $PATH here, but if I don't I get duplication. What's the safe way? see https://superuser.com/questions/39751/add-directory-to-path-if-its-not-already-there
-export PATH="/usr/local/sbin:$PATH:/Applications/MAMP/Library/bin"
+# Add Homebrew's sbin directory
+path_add "$(brew --prefix)/sbin"
+# Now, add the MAMP bin directory -  This checks for the two most common Cask installation locations
+path_add "/Applications/MAMP/Library/bin"
+path_add "$HOME/Applications/MAMP/Library/bin"
+
+# export PATH="/usr/local/sbin:$PATH:/Applications/MAMP/Library/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
+#
 # add lunarvim to path (that's all for now that's at this path)
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -96,7 +111,7 @@ DISABLE_UPDATE_PROMPT=true
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 # and zsh-autosuggestions
 # HOMEBREW_PREFIX isn't available unless you eval brew's shellenv in your .zprofile - see brew cmd output on first run: https://stackoverflow.com/a/78734952   
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source $ZSH/oh-my-zsh.sh
 
 # bullet-train theme is not an oh-my-zsh default, so we have to install it, and powerline too (which many themes need), note ZSH_CUSTOM only available after the oh-my-zsh source
@@ -151,7 +166,7 @@ compinit -u  # -u flag because i'm not going to change perms on /usr/local/share
 #Add the following to your zshrc to access the online help:
 unalias run-help &>/dev/null #https://bugs.launchpad.net/ubuntu/+source/zsh/+bug/305346
 autoload run-help
-HELPDIR=/usr/local/share/zsh/help
+HELPDIR="$HOMEBREW_PREFIX/share/zsh/help"
 # I hate how 'help' is now 'run-help' in zsh, i use it all the time
 alias help=run-help
 
@@ -197,7 +212,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # # ZSH_CUSTOM=/path/to/new-custom-folder
 #
 # zsh syntax highlighting plugin (emulates fish shell) must be the last line, must be the last plugin sourced too, who knows why...
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # nvm auto-switching - see also https://stackoverflow.com/questions/23556330/run-nvm-use-automatically-every-time-theres-a-nvmrc-file-on-the-directory
 # https://github.com/nvm-sh/nvm#calling-nvm-use-automatically-in-a-directory-with-a-nvmrc-file but mostly now see:
