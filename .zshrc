@@ -212,7 +212,7 @@ alias git=hub
 # # Would you like to use another custom folder than $ZSH/custom?
 # # ZSH_CUSTOM=/path/to/new-custom-folder
 #
-# zsh syntax highlighting plugin (emulates fish shell) must be the last line, must be the last plugin sourced too, who knows why...
+# zsh syntax highlighting plugin (emulates fish shell) must be the last line, must be the last plugin sourced too, see https://github.com/zsh-users/zsh-syntax-highlighting?tab=readme-ov-file#why-must-zsh-syntax-highlightingzsh-be-sourced-at-the-end-of-the-zshrc-file
 source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # nvm auto-switching - see also https://stackoverflow.com/questions/23556330/run-nvm-use-automatically-every-time-theres-a-nvmrc-file-on-the-directory
