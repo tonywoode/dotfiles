@@ -150,7 +150,7 @@ export LANG=en_GB.UTF-8
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=100000
+HISTSIZE=100000 #COMMAND history - don't leave these at default 1000!
 SAVEHIST=100000
 setopt appendhistory autocd beep extendedglob nomatch notify
 bindkey -v
@@ -179,7 +179,8 @@ alias git=hub
 # smoke docker specific vars
 . ~/.smoke-mirrors/.profile
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# don't try using iterm's shell integration with regular tmux, only works with iterm's tmux control mode
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # zsh default text
 #
