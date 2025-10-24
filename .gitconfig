@@ -4,7 +4,7 @@
 [core]
 	excludesfile = /Users/twoode/.gitignore_global
 	#editor = /usr/local/bin/vim - todo: some way to switch this!
-    editor = nvim
+    editor = vim
 	autocrlf = input
 	filemode = true
 [difftool "sourcetree"]
