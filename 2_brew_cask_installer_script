@@ -204,7 +204,7 @@ apps=(
         tiddly
         tunnelblick
         #vagrant - leave this to flex-services script
-        #virtualbox # needs extension allowing in maccos security prefs so will fail first time whilst you manually allow it in prefs # needs v5 due to flex-services - either its installer will do that or download this https://download.virtualbox.org/virtualbox/5.2.44/VirtualBox-5.2.44-139111-OSX.dmg 
+        virtualbox #just install latest for now -  needs extension allowing in maccos security prefs so will fail first time whilst you manually allow it in prefs # needs v5 due to flex-services - either its installer will do that or download this https://download.virtualbox.org/virtualbox/5.2.44/VirtualBox-5.2.44-139111-OSX.dmg 
         #virtualbox-extension-pack - previous versions can be found https://download.virtualbox.org/virtualbox/
         visual-studio-code
         vnc-viewer
