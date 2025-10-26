@@ -1,12 +1,13 @@
 #! /bin/bash
 # Functions as a Homebrew and Homebrew/Cask setup script, as a running binary or app install script and as a running update/upgrade script for all of those
 
-# Ask for the administrator password upfront
+# Ask for the administrator password upfront (brew is careful about who it runs as and how it deals with sudo, the idea is EVERYTHING is locally you, but it needs sudo for just some careful things)
 sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until this script has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+# Comment out all the below since I seem to be able to cope with just command lines tools now? And I think brew itself will install that if its not installed?
 # because of something silly,  we used to need full xcode for macvim build - stackoverflow.com/a/15371967/3536094 - return value will be 2 if NOT exist, 0 if exist
 # but be aware of the below note: if xcode isn't found, brew will install command-line tools? that true?
 #xcode-select -p 1>/dev/null; if (( $? == 2 )); then 
