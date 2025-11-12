@@ -248,11 +248,11 @@ for to_install in "${cask_need_to_install[@]}"; do { echo "CASK: INSTALLING $to_
 # this literally seems the ONLY way to do this currently: one of the biggest failiures of macos for dev?
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
-echo "Installing CASKS which require previous versions"
+#echo "Installing CASKS which require previous versions"
 
-curl -L  https://raw.githubusercontent.com/caskroom/homebrew-cask/baf4f35e70c225fe1a8a60ec3b4e22604187238d/Casks/dash.rb > dash.rb && brew install dash.rb --cask && rm dash.rb
+#curl -L  https://raw.githubusercontent.com/caskroom/homebrew-cask/baf4f35e70c225fe1a8a60ec3b4e22604187238d/Casks/dash.rb > dash.rb && brew install dash.rb --cask && rm dash.rb
 
-curl -L  https://raw.githubusercontent.com/Homebrew/homebrew-cask/a649350f567a4ade1b6ee7509d798d6b1ab3a4fb/Casks/i/insomnia.rb > insomnia.rb && brew install insomnia.rb --cask && rm insomnia.rb
+#curl -L  https://raw.githubusercontent.com/Homebrew/homebrew-cask/a649350f567a4ade1b6ee7509d798d6b1ab3a4fb/Casks/i/insomnia.rb > insomnia.rb && brew install insomnia.rb --cask && rm insomnia.rb
 
 echo "running brew and cask cleanup" && brew cleanup
 
