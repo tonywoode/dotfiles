@@ -13,6 +13,7 @@ function node_processes_no_vscode() {
 
 # GitHub CLI Setup Function
 # ==========================================================
+# Attempts to unset the function/alias if it already exists before redefining.
 unset_func_alias_if_exist gh-setup
 function gh-setup() {
     # Check if the shell is interactive
@@ -43,13 +44,25 @@ function gh-setup() {
             gh auth login --web -h github.com
         fi
 
-        # Check if Copilot extension is installed
+        # --- EXTENSION INSTALLATION SECTION ---
+
+        # 1. Check if Copilot extension is installed
         if gh extension list | grep -q "copilot"; then
             echo "✅ GitHub Copilot CLI extension is already installed."
         else
             echo "GitHub Copilot CLI extension is not installed. Installing it now."
             gh extension install github/gh-copilot
         fi
+
+        # 2. Check if gh-clone-org extension is installed
+        if gh extension list | grep -q "clone-org"; then
+            echo "✅ GitHub gh-clone-org extension is already installed."
+        else
+            echo "GitHub gh-clone-org extension is not installed. Installing it now."
+            gh extension install matt-bartel/gh-clone-org
+        fi
+        
+        # --- END EXTENSION INSTALLATION SECTION ---
 
         echo ""
         echo "Setup complete. Please run 'source ~/.zshrc' or open a new terminal."
