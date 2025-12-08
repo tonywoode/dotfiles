@@ -27,6 +27,7 @@ for dotfilepath in "${arr[@]}"; do
       [[ "$dotfile" = *.swp ]] || # In case we have vim open on this file...
       [[ "$dotfile" = ".vim" ]] # I swear we don't need that solarized colourscheme its installed by a package, if we do then curl it in instead
       [[ "$dotfile" = ".vscode" ]] # that got me: its fine at first....until you open this repo with vscode and then re-run this! its a folder as well
+      [[ "$dotfile" = ".codex" ]]  # we only symlink my config files from ~/.codex, not the whole folder! see below
    then echo "$dotfile is excluded"
    elif [[ -f "$HOME/$dotfile" ]] ; then
        #dotfile is already in ~, is it a valid symlink?
@@ -100,6 +101,50 @@ if [[ -d "$lvim_config_dir" ]] ; then
 else echo "$lvim_config_dir doesn't exist in ~, linking..." && ln -s "$my_dots_lvim_config_dir" "$lvim_config_dir"
 fi
 
+
+# --- Codex config (to only capture config.toml and AGENTS.md instead of the definitely local-only stuff in ~/.codex) ---
+codex_dir="$HOME/.codex"
+dots_codex_dir="$dir/.codex"
+
+codex_backup_dir="$olddir/.codex"
+
+# Make sure ~/.codex exists
+if [[ ! -d "$codex_dir" ]]; then
+    echo "Creating $codex_dir for Codex data"
+    mkdir -p "$codex_dir"
+fi
+
+# Make sure backup dir exists
+if [[ ! -d "$codex_backup_dir" ]]; then
+    echo "Creating $codex_backup_dir for old Codex config files"
+    mkdir -p "$codex_backup_dir"
+fi
+
+for codex_file in config.toml AGENTS.md; do
+    src="$dots_codex_dir/$codex_file"
+    dest="$codex_dir/$codex_file"
+
+    # Skip if the source file doesn't exist in the repo
+    if [[ ! -f "$src" ]]; then
+        echo "Warning: $src does not exist in dotfiles repo, skipping..."
+        continue
+    fi
+
+    if [[ -L "$dest" ]]; then
+        # already a symlink: ideally to our src
+        echo "$dest already symlinked, leaving as is..."
+    elif [[ -e "$dest" ]]; then
+        # real file (or something else), back it up then replace
+        echo "$dest exists and is not a symlink, backing up then replacing..."
+        mv "$dest" "$codex_backup_dir/"
+        ln -s "$src" "$dest"
+        echo "Linked $src -> $dest"
+    else
+        # doesn't exist at all, just create the link
+        echo "$dest doesn't exist, linking..."
+        ln -s "$src" "$dest"
+    fi
+done
 
 # general message to end
 echo "remember you may need to source/reload some dotfiles before anything will change..."  
