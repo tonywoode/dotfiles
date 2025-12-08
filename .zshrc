@@ -272,4 +272,9 @@ if command -v gh &> /dev/null && [ -n "$PS1" ]; then
     fi
 fi
 
+# chatgpt codex completions for zsh - see https://developers.openai.com/codex/cli/features#shell-completions
+if command -v codex >/dev/null 2>&1; then
+    eval "$(codex completion zsh)"
+fi
+
 # zprof #for profiling as and when needed
