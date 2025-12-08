@@ -4,6 +4,17 @@
 ## Context7
 - Always use context7 when I need code generation, setup or configuration steps, or library/API documentation. This means you should automatically use the Context7 MCP tools to resolve library id and get library docs without me having to explicitly ask.
 
+## Codex-subagents-mcp
+Route work via the orchestrator, but avoid self-recursion.
+- If you are NOT the orchestrator: subagents.delegate(agent="orchestrator", task="<goal>")
+- If you ARE the orchestrator: do NOT delegate to orchestrator again; delegate to specialists (reviewer,
+debugger, security, etc.) or execute directly.
+
+Example security review routed via orchestrator:
+subagents.delegate(agent="orchestrator", task="Audit the repo for secrets and unsafe shell calls")
+
+Prefer tool calls over in-thread analysis to keep the main context clean.
+
 ## Personal preferences
 
 - Suggest solutions that I didn’t think about—anticipate my needs, press me for my wider goals if the implementation suggests different paths you could take
