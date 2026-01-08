@@ -70,3 +70,28 @@ function macos_active_ports() {
   sudo lsof -iTCP -sTCP:LISTEN -n -P | awk 'NR>1 {print $9, $1, $2}' | sed 's/.*://' | while read port process pid; do echo "Port $port: $(ps -p $pid -o command= | sed 's/^-//') (PID: $pid)"; done | sort -n
 }
 
+# cleanai: Cleans and formats AI/Terminal text (primarly from tmux for TiddlyWiki for codex outputs) - copy text, run cleanai in any terminal, paste
+# https://gemini.google.com/app/0d80d993097df8b6
+# 1. Joins 80-char terminal hard-wraps into fluid paragraphs.
+# 2. Restores 'we're' style contractions from terminal mojibake (‚Äô).
+# 3. Strips non-ASCII junk and invisible Non-Breaking Spaces (\u00a0).
+# 4. Forces paragraphs flush-left to prevent Wiki 'code block' formatting.
+# 5. Preserves list indentation for lines starting with -, *, or •.
+# 6. Purges 'ghost spaces' from empty lines to ensure proper paragraph breaks.
+unset_func_alias_if_exist cleanai
+function cleanai() {
+  pbpaste | \
+  nvim -u NONE -es \
+    -c "set nocompatible ff=unix | set formatoptions=tqnj | set textwidth=0" \
+    -c "silent! %s/‚Äô/'/g | silent! %s/[^\x00-\x7F]/ /g" \
+    -c "normal! ggVGgq" \
+    -c "silent! %s/  \+/ /g" \
+    -c "silent! %s/^\s\+\([-*•]\)/  \1/g" \
+    -c "silent! %s/^\s\+\([^-*•]\)/\1/g" \
+    -c "%p | qa!" /dev/stdin | \
+  sed -E 's/^[[:space:]]+$//' | \
+  pbcopy
+
+  echo "✨ text cleaned for pasting"
+}
+
