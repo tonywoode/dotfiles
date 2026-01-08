@@ -6,10 +6,4 @@
 if [ -w "$HOME/.pyenv/shims" ]; then
     # 1. Initialize pyenv
     eval "$(pyenv init --path)"
-    # 2. Initialize Homebrew (Intel vs Apple Silicon)
-    if test -d "/opt/homebrew/bin"; then
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-    elif test -d "/usr/local/Homebrew/bin"; then
-        eval "$(/usr/local/Homebrew/bin/brew shellenv)"
-    fi
 fi

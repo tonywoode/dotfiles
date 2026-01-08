@@ -1,6 +1,11 @@
 # any speed issues with plugins etc see this for profiling (enable first line and last line as per https://blog.jonlu.ca/posts/speeding-up-zsh)
 # zmodload zsh/zprof
 ZSH_DISABLE_COMPFIX="true" # because i'm not going to change perms on /usr/local/share - see github.com/ohmyzsh/issues/8205, see also compinit flag below
+# Fix Problem: Stop the background query 'execute: 3333/3333/3333' on tmux restore (see last line of file also)
+if [[ -n $TMUX ]]; then
+  export COLORFGBG=""
+  unsetopt MONITOR
+fi
 DISABLE_AUTO_TITLE="true" # stop zsh renaming my tmux windows https://stackoverflow.com/a/38667859/3536094
 # temporary fix for git prompt not showing, remove when fixed - https://github.com/ohmyzsh/ohmyzsh/issues/12328
 zstyle ':omz:alpha:lib:git' async-prompt no 
@@ -159,7 +164,15 @@ bindkey -v
 # The following lines were added by compinstall
 zstyle :compinstall filename ~/.zshrc
 autoload -Uz compinit
-compinit -u  # -u flag because i'm not going to change perms on /usr/local/share - see github.com/ohmyzsh/issues/8205
+# tmux guard to stop compinit being saturated on tmux restore - eg: bat issue
+# -u flag because i'm not going to change perms on /usr/local/share - see github.com/ohmyzsh/issues/8205
+if [[ -n $TMUX ]]; then
+  # Inside TMUX: Use the cache (-C) and don't check for new files to avoid corruption
+  compinit -u -C
+else
+  # Outside TMUX: Normal initialization
+  compinit -u
+fi
 
 # End of lines added by compinstall
  
@@ -273,4 +286,6 @@ if command -v codex >/dev/null 2>&1; then
     eval "$(codex completion zsh)"
 fi
 
+# Restore MONITOR option if in tmux to fix 'execute: 3333/3333/3333' issue
+[[ -n $TMUX ]] && setopt MONITOR
 # zprof #for profiling as and when needed

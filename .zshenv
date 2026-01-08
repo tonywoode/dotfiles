@@ -27,4 +27,11 @@ qpnode="$scripts/quickPlayNode"
 alias qpnode="cd $qpnode"
 session="$CODE/AppData/vim/session"
 alias session="cd $session"
+# Initialize Homebrew for ALL shells (not just login) - fixes eval issue eg bat
+if [[ -d "/opt/homebrew/bin" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -d "/usr/local/Homebrew/bin" ]]; then
+  eval "$(/usr/local/Homebrew/bin/brew shellenv)"
+fi
+
 . "$HOME/.cargo/env"
