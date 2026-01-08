@@ -35,24 +35,46 @@ function gh-setup() {
 }
 
 # remake these old and useful shell fns until such time github does (inspiration from https://github.com/github/copilot-cli/issues/53#issuecomment-3602525191, with help from https://gemini.google.com/app/52064e3915f63e47)
-# GH Suggest (ghcs)
+# GH Suggest (ghcs) - Confirm, Amend, or Skip
 unset_func_alias_if_exist ghcs
 function ghcs() {
   if [[ -z "$*" ]]; then echo "Usage: ghcs <prompt>"; return 1; fi
 
-  # 1. Get raw output with stats disabled via --deny-tool
-  local RAW=$(copilot --deny-tool 'shell(*)' -p "Output ONLY the shell command for: $*" 2>/dev/null)
+  # 1. Get raw output and extract command
+  local RAW=$(copilot --deny-tool 'shell(*)' -p "Output ONLY the shell command string for: $*" 2>/dev/null)
+  local CMD=$(echo "$RAW" | awk '/^```/{f=!f;next} f' | head -n 1)
+  [[ -z "$CMD" ]] && CMD=$(echo "$RAW" | head -n 1)
+  CMD="${CMD//\`}" # Remove backticks
 
-  # 2. Extract content between triple backticks using AWK (more portable than sed)
-  # This ignores the line with '```bash' and prints everything until the closing '```'
-  local CMD=$(echo "$RAW" | awk '/^```/{f=!f;next} f')
-
-  # 3. If the model didn't use backticks, fallback to the first line
   if [[ -z "$CMD" ]]; then
-    CMD=$(echo "$RAW" | head -n 1)
+    echo "❌ No command suggested."
+    return 1
   fi
 
-  echo "$CMD"
+  # 2. Display the suggestion
+  echo -e "\n👉 Suggested: \033[1;32m$CMD\033[0m"
+  
+  # 3. Prompt for y/n/a
+  # -k 1: Read exactly one character
+  # -s: Don't echo the character typed
+  echo -n "🚀 Execute? [y]es / [n]o / [a]mend (load to prompt): "
+  read -sk 1 reply
+  echo "" # Move to next line after keypress
+
+  case "$reply" in
+    [yY])
+      echo -e "✅ Executing...\n"
+      print -s "$CMD" # Save to history
+      eval "$CMD"
+      ;;
+    [aA])
+      print -z "$CMD" # Pushes to the next command buffer
+      echo -e "📥 Command loaded to prompt for editing."
+      ;;
+    *)
+      echo -e "✋ Skipped."
+      ;;
+  esac
 }
 
 # GH Explain (ghce)
