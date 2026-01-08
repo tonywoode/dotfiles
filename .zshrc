@@ -256,19 +256,15 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 #copilot aliases - https://docs.github.com/en/copilot/github-copilot-in-the-cli/using-github-copilot-in-the-cli - automated the install via ai
 
-# GitHub Copilot CLI Check & Alias
-# Check if gh is installed and the shell is interactive
-if command -v gh &> /dev/null && [ -n "$PS1" ]; then
-    # Check for authentication and the copilot extension: silent, non-interactive check
-    if ! gh auth status &> /dev/null || ! gh extension list | grep -q "copilot"; then
-        # This message will ONLY appear if the shell is interactive and the required gh components are missing.
-        echo ""
-        echo "🚨  GitHub Copilot CLI is not fully configured."
-        echo "    Run 'gh-setup' to fix (its already sourced from .my-shell-functions)"
-        echo ""
-    else
-        # If everything is configured, then set the aliases.
-        eval "$(gh copilot alias -- zsh)"
+# GitHub Copilot CLI Health Check
+# ==========================================================
+if [[ $- == *i* ]]; then
+    # Check for the binary
+    if ! command -v copilot &> /dev/null; then
+        echo "🚨 GitHub Copilot CLI not found. Run 'gh-setup'."
+    # Check for the config file (where auth lives)
+    elif [[ ! -f "$HOME/.copilot/config.json" ]]; then
+        echo "🔑 GitHub Copilot CLI not authenticated. Run 'gh-setup'."
     fi
 fi
 
