@@ -60,7 +60,10 @@ echo "calling the doctor to fix brew and cask issues" && brew doctor
 ####################################################
 # TAPPING - run before installing (unusued at present)
 echo "Tapped taps:"
-taps=( # caskroom/cask - I think homebrew taps this by default now, the readme of cask says "To start using Homebrew Cask, you just need Homebrew installed."
+taps=( 
+  steveyegge/beads
+  jazzyalex/agent-sessions #https://jazzyalex.github.io/agent-sessions/
+  # caskroom/cask - homebrew taps this by default now, the readme of cask says "To start using Homebrew Cask, you just need Homebrew installed."
   #adoptopenjdk/openjdk - THIS caused a lot of fuss with its auto-updates and i don't know why its required, lets try without it (brew says groovy depends on openjdk 24.0.2 aka java, which i presume itll install)
   #homebrew/cask-fonts - latest info from homebrew issues on github is that this is closed and all fonts migrated to casks, so try without
 ) # there once existed caskroom/games - retro emulators - i was always too busy to investigate it
@@ -76,6 +79,7 @@ bins=(
         antigen
         bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
         bat # cat with syntax highlights, git integration, non-printable char printing, auto-paging
+        beads #Distributed, git-backed graph issue tracker for AI agents
         cmake #installed to setup YouCompleteMe vim plugin
         code-minimap #required for the vim plugin wfxr/minimap.vim - there's a hardcoded Plug brew install in my .vimrc also
         codex #chatgpt cli
@@ -153,6 +157,7 @@ echo "" && echo " *** CASK *** " && echo ""
 # > Since the Homebrew Cask repository is a Homebrew Tap, you’ll pull down the latest Casks every time you issue the regular Homebrew command brew update.
 
 apps=(
+        agent-sessions #Search, browse, and resume any past AI-coding session in a single local-first macOS app
         alfred
         #android-file-transfer - intel only, use openmtp instead
         another-redis-desktop-manager
