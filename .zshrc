@@ -267,6 +267,10 @@ load-nvmrc
 eval "$(pyenv init -)"
 # just following https://akrabat.com/creating-virtual-environments-with-pyenv/ because it helps to also use virtualenv to use specific python versions per-project
 eval "$(pyenv virtualenv-init -)"
+# now on apple silicon we must set macvim to replace the vim command here (because /usr/bin is now off limits)
+# Point 'vim' to MacVim's terminal mode
+alias vim='mvim -v'
+
 #copilot aliases - https://docs.github.com/en/copilot/github-copilot-in-the-cli/using-github-copilot-in-the-cli - automated the install via ai
 
 # GitHub Copilot CLI Health Check
