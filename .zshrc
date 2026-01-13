@@ -293,6 +293,10 @@ if command -v codex >/dev/null 2>&1; then
     eval "$(codex completion zsh)"
 fi
 
+
+# Point 'rm' directly to the Homebrew trash utility (it handles -rf flags nicely) its last here because something else is aliasing it to rm -i
+alias rm='/opt/homebrew/opt/trash/bin/trash'
+
 # Restore MONITOR option if in tmux to fix 'execute: 3333/3333/3333' issue
 [[ -n $TMUX ]] && setopt MONITOR
 # zprof #for profiling as and when needed
