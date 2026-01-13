@@ -105,7 +105,7 @@ Plug 'junegunn/vim-plug' "If you need Vim help for vim-plug itself (e.g. :help p
 " appearance
 Plug 'vim-airline/vim-airline'
 Plug 'christoomey/vim-tmux-navigator' "When combined with a set of tmux key bindings, navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
-Plug 'micha/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jeffkreeftmeijer/vim-numbertoggle' "absolute line numbers where neccessary https://jeffkreeftmeijer.com/vim-number/
 " language tools
@@ -171,8 +171,17 @@ endif
 "colour settings - from https://github.com/junegunn/vim-plug/wiki/faq: A common 
 " mistake is to put :colorscheme NAME before call plug#end(). Plugins are not 
 " activated before plug#end(), so make sure to load your color scheme after it.
-let g:solarized_termtrans = 1 " This gets rid of the grey background https://github.com/altercation/vim-colors-solarized/issues/138#issuecomment-336749382
-colorscheme solarized
+" Check if we are in Neovim before setting transparency
+if has('nvim')
+  set background=dark
+  colorscheme solarized8_flat
+else
+  " For regular Vim/MacVim
+  let g:solarized_termtrans = 1
+  set background=dark
+  " We use the new plugin's name here too
+  colorscheme solarized8
+endif
 
 " vim-polyglot settings
 " I temporarily disabled polyglot using jsx plugins due to a matchit issue, issue seems resolved now tho and i need jsx highlighting
