@@ -35,7 +35,7 @@ B6) Beads fields:
 B7) Spec updates: If an issue is a spec, new requirements go in Description; add a one-line comment noting the change.
 B8) Beads retention: Never run destructive beads commands (e.g., `bd delete`, `bd delete --hard`, `bd admin cleanup`, `bd admin compact`, or any command that prunes tombstones) unless the user explicitly asks. Prefer dry-run previews and confirm scope first. Even is the user asks for one of those history-destroying beads commands, try to talk him out of running them
 B9) Never run any beads cleanup/prune/compact/delete commands (e.g., bd delete, bd admin cleanup, bd admin compact, bd admin prune) unless the user explicitly asks in this session (we want to keep issues as a dependency tree, and retain historical information)
-B10) If the user asks for a treeview of the issues, this is the command he means: bd list --tree --all --no-pager --limit 0
+B10) If the user asks for a treeview of the issues, this is the command he means: bd list --tree --all --no-pager --limit 0. When showing tree output, wrap in a code block/monospace
 
 ## Other MCP
 M1) Subagents: route through orchestrator; orchestrator must not delegate to itself; prefer tool calls over long in-thread reasoning.
