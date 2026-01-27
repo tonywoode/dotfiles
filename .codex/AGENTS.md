@@ -21,6 +21,7 @@ W5) JS/TS types: descriptive names; prefer inference; Array<T>; native fetch; mi
 W6) Stack defaults: Epic Stack, TS, React Router (framework mode), Vite, Tailwind, Vitest, Playwright, Prisma, SQLite.
 W7) Hygiene: small/pure functions; kebab-case files, PascalCase components, camelCase vars; formatter-first; add brief intent comments only when non-obvious; never delete user comments—mark with “TODO: is this comment still valid?” if unsure.
 W8) Commit messages: if the message is multiline, end the first line with ... (to show there's more) and then, after a blank line, use bullet points with * in the body to itemise the changes
+W9) Shell safety: backticks (`...`) are command substitution in zsh. Avoid backticks in terminal commands unless intentionally substituting. For literal backticks in command content, use single quotes or a single-quoted heredoc.
 
 ## Beads
 B1) Create a beads issue only when the user explicitly asks to track work, or when executing a multi-step/non-trivial task after explicit go-ahead. Skip beads for quick one-offs unless the user says "track this". If unclear, ask before creating. When using beads, check `bd ready` and set status when starting. Do not create beads issues during planning-only responses; if tracking is desired, add notes only after execution is approved. Avoid markdown TODOs.
