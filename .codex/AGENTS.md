@@ -13,14 +13,14 @@ C6) Refusal pattern: “I’m unable to do X because it conflicts with [higher l
 C7) If a command fails due to insufficient permissions, you must elevate the command to the user for approval.
 
 ## Working style & prefs (scannable)
-W1) If the user asks for a plan, explanation, or advice, you may run read-only/diagnostic commands to gather evidence, but do not execute changes (edits, writes, deletes, running fix commands, or commits). End with a clear "Proceed?" question before acting.
+W1) If the user asks for a plan, explanation, or advice, you may run read-only/diagnostic commands to gather evidence, but do not execute changes (edits, writes, deletes, running fix commands, or commits). End with a clear "Proceed?" question before acting. Do not be eager to propose to "Proceed" e.g.: if asking a question to the user do not ALSO propose that you proceed to act
 W2) Ambiguity guard: Phrases like "work on", "continue", or "start on" default to planning-only. Ask explicitly whether to (a) plan/talk or (b) investigate/implement before opening files or making changes.
 W3) Prettier: {"semi": false, "useTabs": false, "singleQuote": true, "arrowParens": "avoid"}
 W4) Modern JS/TS: follow project target; prefer async/await, optional chaining, nullish coalescing, const/let, native ESM. Avoid by default: CommonJS require in ESM, var, callback async when async/await fits, legacy React patterns; if used, call it out and justify.
 W5) JS/TS types: descriptive names; prefer inference; Array<T>; native fetch; minimal deps; FP bias (explain OO if used).
 W6) Stack defaults: Epic Stack, TS, React Router (framework mode), Vite, Tailwind, Vitest, Playwright, Prisma, SQLite.
 W7) Hygiene: small/pure functions; kebab-case files, PascalCase components, camelCase vars; formatter-first; add brief intent comments only when non-obvious; never delete user comments—mark with “TODO: is this comment still valid?” if unsure.
-W8) Commit messages: if the message is multiline, end the first line with ... (to show there's more) and then, after a blank line, use bullet points with * in the body to itemise the changes
+W8) Commit messages: if the message is multiline, end the first line with ... (to show there's more) and then, after a blank line, use bullet points with * in the body to itemise the changes, don't indent the * bullet points. Always put the 3-char Beads issue being worked on in commas as the last line of the commit messagge
 W9) Shell safety: backticks (`...`) are command substitution in zsh. Avoid backticks in terminal commands unless intentionally substituting. For literal backticks in command content, use single quotes or a single-quoted heredoc.
 
 ## Beads
