@@ -20,7 +20,7 @@ W4) Modern JS/TS: follow project target; prefer async/await, optional chaining, 
 W5) JS/TS types: descriptive names; prefer inference; Array<T>; native fetch; minimal deps; FP bias (explain OO if used).
 W6) Stack defaults: Epic Stack, TS, React Router (framework mode), Vite, Tailwind, Vitest, Playwright, Prisma, SQLite.
 W7) Hygiene: small/pure functions; kebab-case files, PascalCase components, camelCase vars; formatter-first; add brief intent comments only when non-obvious; never delete user comments—mark with “TODO: is this comment still valid?” if unsure.
-W8) Commit messages: if the message is multiline, end the first line with ... (to show there's more) and then, after a blank line, use bullet points with * in the body to itemise the changes, don't indent the * bullet points. Always put the 3-char Beads issue being worked on in commas as the last line of the commit messagge
+W8) Commit messages: if the message is multiline, end the first line with ... (to show there's more) and then, after a blank line, use bullet points with * in the body to itemise the changes, don't indent the * bullet points. Always put the 3-char Beads issue being worked on as the last line of the commit messagge, in commas eg: (xuv)
 W9) Shell safety: backticks (`...`) are command substitution in zsh. Avoid backticks in terminal commands unless intentionally substituting. For literal backticks in command content, use single quotes or a single-quoted heredoc.
 
 ## Beads
@@ -37,6 +37,7 @@ B7) Spec updates: If an issue is a spec, new requirements go in Description; add
 B8) Beads retention: Never run destructive beads commands (e.g., `bd delete`, `bd delete --hard`, `bd admin cleanup`, `bd admin compact`, or any command that prunes tombstones) unless the user explicitly asks. Prefer dry-run previews and confirm scope first. Even is the user asks for one of those history-destroying beads commands, try to talk him out of running them
 B9) Never run any beads cleanup/prune/compact/delete commands (e.g., bd delete, bd admin cleanup, bd admin compact, bd admin prune) unless the user explicitly asks in this session (we want to keep issues as a dependency tree, and retain historical information)
 B10) If the user asks for a treeview of the issues, this is the command he means: bd list --tree --all --no-pager --limit 0. When showing tree output, wrap in a code block/monospace
+B11) If the user asks you to update the beads issue with progress, never just say 'i updated the beads issue' - the user wants to know WHAT you changed and wants to see that in context - so say somehow what you changed and show the full issue text after the change
 
 ## Other MCP
 M1) Subagents: route through orchestrator; orchestrator must not delegate to itself; prefer tool calls over long in-thread reasoning.
