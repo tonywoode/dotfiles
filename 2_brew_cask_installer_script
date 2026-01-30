@@ -163,6 +163,7 @@ apps=(
         another-redis-desktop-manager
         appcleaner
         betterzip # for the betterzip quick look plugin that shows zip contents in finder
+        blankie #white noise
         blueharvest
         brave-browser
         caddy
