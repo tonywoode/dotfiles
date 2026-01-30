@@ -165,6 +165,7 @@ apps=(
         betterzip # for the betterzip quick look plugin that shows zip contents in finder
         blueharvest
         brave-browser
+        caddy
         cyberduck # coz, believe it or not, filezilla is malware...
         # dash, dash 5 is a paid upgrade, need to stick to dash 4, see previous versions section below
         db-browser-for-sqlite #https://sqlitebrowser.org/
