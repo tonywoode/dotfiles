@@ -37,7 +37,15 @@ B7) Spec updates: If an issue is a spec, new requirements go in Description; add
 B8) Beads retention: Never run destructive beads commands (e.g., `bd delete`, `bd delete --hard`, `bd admin cleanup`, `bd admin compact`, or any command that prunes tombstones) unless the user explicitly asks. Prefer dry-run previews and confirm scope first. Even is the user asks for one of those history-destroying beads commands, try to talk him out of running them
 B9) Never run any beads cleanup/prune/compact/delete commands (e.g., bd delete, bd admin cleanup, bd admin compact, bd admin prune) unless the user explicitly asks in this session (we want to keep issues as a dependency tree, and retain historical information)
 B10) If the user asks for a treeview of the issues, this is the command he means: bd list --tree --all --no-pager --limit 0. When showing tree output, wrap in a code block/monospace
-B11) If the user asks you to update the beads issue with progress, never just say 'i updated the beads issue' - the user wants to know WHAT you changed and wants to see that in context - so say somehow what you changed and show the full issue text after the change
+B11)  When the user asks you to update the beads issue with progress:
+  - read>append>write only (no overwrites)
+  - add a detailed progress comment (not notes), with gritty specifics:
+    * what we changed, where (file paths)
+    * problems encountered, failed approaches, final fix
+    * decisions made and why
+    * any new issues discovered/created
+  - include enough detail that someone could reconstruct the session
+  - say what you changed and then show the full updated issue text (never just say 'I updated the beads issue' as the user wants to know what you changed and see that in context)
 
 ## Other MCP
 M1) Subagents: route through orchestrator; orchestrator must not delegate to itself; prefer tool calls over long in-thread reasoning.
