@@ -211,6 +211,7 @@ apps=(
         spotify
         #sublime-text
         #teamviewer
+        temurin@8 #java 8 for fuseki, yes its a cask
         the-unarchiver
         tiddly
         tunnelblick
