@@ -62,6 +62,7 @@ echo "calling the doctor to fix brew and cask issues" && brew doctor
 echo "Tapped taps:"
 taps=( 
   steveyegge/beads
+  dicklesworthstone/tap
   jazzyalex/agent-sessions #https://jazzyalex.github.io/agent-sessions/
   # caskroom/cask - homebrew taps this by default now, the readme of cask says "To start using Homebrew Cask, you just need Homebrew installed."
   #adoptopenjdk/openjdk - THIS caused a lot of fuss with its auto-updates and i don't know why its required, lets try without it (brew says groovy depends on openjdk 24.0.2 aka java, which i presume itll install)
@@ -79,7 +80,8 @@ bins=(
         antigen
         bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
         bat # cat with syntax highlights, git integration, non-printable char printing, auto-paging
-        beads #Distributed, git-backed graph issue tracker for AI agents
+        bd #beads - Distributed, git-backed graph issue tracker for AI agents, depends on yegge tap above
+        bv #beads viewer - depends on dickelswortstone tap above
         cmake #installed to setup YouCompleteMe vim plugin
         code-minimap #required for the vim plugin wfxr/minimap.vim - there's a hardcoded Plug brew install in my .vimrc also
         codex #chatgpt cli
