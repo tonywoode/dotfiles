@@ -84,7 +84,6 @@ bins=(
         bv #beads viewer - depends on dickelswortstone tap above
         cmake #installed to setup YouCompleteMe vim plugin
         code-minimap #required for the vim plugin wfxr/minimap.vim - there's a hardcoded Plug brew install in my .vimrc also
-        codex #chatgpt cli
         colima #minimal docker
         ctags #also known as ctags-exuberant, don't install as that as it will call itself ctags in the installed list and therefore always install
         duti #for script 7 which sets mac filetype defaults see https://superuser.com/questions/273756/how-to-change-default-app-for-all-files-of-particular-file-type-through-terminal
@@ -169,6 +168,8 @@ apps=(
         blueharvest
         brave-browser
         caddy
+        codex #chatgpt cli, a cask due to the sandboxing
+        codex-app #codex desktop app
         cyberduck # coz, believe it or not, filezilla is malware...
         # dash, dash 5 is a paid upgrade, need to stick to dash 4, see previous versions section below
         db-browser-for-sqlite #https://sqlitebrowser.org/
