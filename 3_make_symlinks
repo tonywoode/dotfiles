@@ -25,8 +25,8 @@ for dotfilepath in "${arr[@]}"; do
       [[ "$dotfile" = ".config" ]] || # its a folder anywhay but is the XDG folder, and we'll deal with neovim in it separetly later
       [[ "$dotfile" = ".gitignore" ]] ||
       [[ "$dotfile" = *.swp ]] || # In case we have vim open on this file...
-      [[ "$dotfile" = ".vim" ]] # I swear we don't need that solarized colourscheme its installed by a package, if we do then curl it in instead
-      [[ "$dotfile" = ".vscode" ]] # that got me: its fine at first....until you open this repo with vscode and then re-run this! its a folder as well
+      [[ "$dotfile" = ".vim" ]] || # I swear we don't need that solarized colourscheme its installed by a package, if we do then curl it in instead
+      [[ "$dotfile" = ".vscode" ]] || # that got me: its fine at first....until you open this repo with vscode and then re-run this! its a folder as well
       [[ "$dotfile" = ".codex" ]]  # we only symlink my config files from ~/.codex, not the whole folder! see below
    then echo "$dotfile is excluded"
    elif [[ -f "$HOME/$dotfile" ]] ; then
