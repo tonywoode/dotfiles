@@ -24,18 +24,27 @@ path_add() {
 # I replaced my own implementation of this with the following as it seemed them most thorough:  https://stackoverflow.com/a/42351698/3536094
 # if this ever becomes unacceptable you might also want to check out the zsh plugin for tmux - https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#tmux
 # since it has an env var to set that does this and subtelties on it eg: ZSH_TMUX_AUTOSTART
+# NOTE: auto-start disabled; use `tm` to attach/start tmux
 case $- in
-    *i*)
-    if command -v tmux>/dev/null; then
-        if [[ ! $TERM =~ screen ]] && [[ -z $TMUX ]]; then
-          if tmux ls 2> /dev/null | grep -q -v attached; then
-            exec tmux attach -t $(tmux ls 2> /dev/null | grep -v attached | head -1 | cut -d : -f 1) 
-          else
-            exec tmux 
-          fi
-        fi
-    fi
-    ;;
+  *i*)
+    tm() {
+      if ! command -v tmux >/dev/null; then
+        echo "tmux not found"
+        return 127
+      fi
+
+      if [[ -n $TMUX ]] || [[ $TERM =~ screen ]]; then
+        echo "Already in tmux or screen; not nesting a tmux session here. Run 'tmux' if this is your intention."
+        return 0
+      fi
+
+      if tmux ls 2> /dev/null | grep -q -v attached; then
+        tmux attach -t "$(tmux ls 2> /dev/null | grep -v attached | head -1 | cut -d : -f 1)"
+      else
+        tmux
+      fi
+    }
+  ;;
 esac
 
 # brew's groovy installer says to set this, but strangely didn't set it for you
