@@ -22,3 +22,8 @@
   prefix_rule(pattern=["git", "log"], decision="allow")
 
 
+prefix_rule(pattern=["npx", "playwright", "test"], decision="allow")
+prefix_rule(pattern=["node", "--loader", "tsx"], decision="allow")
+prefix_rule(pattern=["node", "--import", "tsx"], decision="allow")
+prefix_rule(pattern=["npx", "pm2", "logs"], decision="allow")
+prefix_rule(pattern=["ps"], decision="allow")
