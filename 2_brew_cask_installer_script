@@ -77,7 +77,6 @@ echo "" && echo " *** BREW *** " && echo ""
 
 bins=(
         ack
-        antigen
         bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
         bat # cat with syntax highlights, git integration, non-printable char printing, auto-paging
         bd #beads - Distributed, git-backed graph issue tracker for AI agents, depends on yegge tap above

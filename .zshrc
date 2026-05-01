@@ -1,6 +1,6 @@
 # any speed issues with plugins etc see this for profiling (enable first line and last line as per https://blog.jonlu.ca/posts/speeding-up-zsh)
 # zmodload zsh/zprof
-ZSH_DISABLE_COMPFIX="true" # because i'm not going to change perms on /usr/local/share - see github.com/ohmyzsh/issues/8205, see also compinit flag below
+ZSH_DISABLE_COMPFIX="true" # because i'm not going to change perms on /usr/local/share - see github.com/ohmyzsh/issues/8205
 # Fix Problem: Stop the background query 'execute: 3333/3333/3333' on tmux restore (see last line of file also)
 if [[ -n $TMUX ]]; then
   export COLORFGBG=""
@@ -18,6 +18,12 @@ path_add() {
   if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
     export PATH="${1}:${PATH}"
   fi
+}
+
+fpath_add() {
+  local dir="$1"
+  [[ -n "$dir" && -d "$dir" ]] || return
+  fpath=("$dir" "${fpath[@]:#$dir}")
 }
 
 # tmux starts by default, $- == *i* says 'if current shell isn't interactive
@@ -51,9 +57,11 @@ esac
 export GROOVY_HOME="$HOMEBREW_PREFIX/opt/groovy/libexec"
 
 # completions for brew https://docs.brew.sh/Shell-Completion (led to from https://cli.github.com/manual/gh_completion[])
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 # use additional completions from brews zsh-completions
-FPATH="$(brew --prefix)/share/zsh-completions:${FPATH}"
+if [[ -n "${HOMEBREW_PREFIX:-}" ]]; then
+  fpath_add "$HOMEBREW_PREFIX/share/zsh-completions"
+  fpath_add "$HOMEBREW_PREFIX/share/zsh/site-functions"
+fi
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -62,13 +70,6 @@ if ! [[ -d $ZSH ]]; then
   echo "oh-my-zsh can't be found, installing..."
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
-
-# I installed antigen when looking for a way to make the node version manager NVM work well
-# https://github.com/zsh-users/antigen and https://github.com/lukechilds/zsh-nvm
-# Load Antigen based on system architecture
-source "$HOMEBREW_PREFIX/share/antigen/antigen.zsh"
-antigen bundle lukechilds/zsh-nvm
-antigen apply
 
 # Set name of the theme to load. Look in ~/.oh-my-zsh/themes/
 # I don't know why, but this has to be specified before oh-my-zsh is loaded
@@ -107,7 +108,9 @@ plugins=(
 # brew doctor will complain it wants /usr/local/sbin in your path, and suggests putting it before anything else (not that it put very much in there...)
 # User configuration - TODO: i'm overwriting $PATH here, but if I don't I get duplication. What's the safe way? see https://superuser.com/questions/39751/add-directory-to-path-if-its-not-already-there
 # Add Homebrew's sbin directory
-path_add "$(brew --prefix)/sbin"
+if [[ -n "${HOMEBREW_PREFIX:-}" ]]; then
+  path_add "$HOMEBREW_PREFIX/sbin"
+fi
 # Now, add the MAMP bin directory -  This checks for the two most common Cask installation locations
 path_add "/Applications/MAMP/Library/bin"
 path_add "$HOME/Applications/MAMP/Library/bin"
@@ -122,9 +125,9 @@ export PATH="$HOME/.local/bin:$PATH"
 DISABLE_UPDATE_PROMPT=true
 
 # add zsh-completions to the path - https://github.com/zsh-users/zsh-completions?tab=readme-ov-file#oh-my-zsh
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+fpath_add "${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}/plugins/zsh-completions/src"
 # and zsh-autosuggestions
-# HOMEBREW_PREFIX isn't available unless you eval brew's shellenv in your .zprofile - see brew cmd output on first run: https://stackoverflow.com/a/78734952   
+# HOMEBREW_PREFIX is set in .zshenv so tmux-restored shells see it too.
 source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source $ZSH/oh-my-zsh.sh
 
@@ -172,17 +175,12 @@ bindkey -v
 
 # The following lines were added by compinstall
 zstyle :compinstall filename ~/.zshrc
-autoload -Uz compinit
-# tmux guard to stop compinit being saturated on tmux restore - eg: bat issue
-# -u flag because i'm not going to change perms on /usr/local/share - see github.com/ohmyzsh/issues/8205
-if [[ -n $TMUX ]]; then
-  # Inside TMUX: Use the cache (-C) and don't check for new files to avoid corruption
-  compinit -u -C
-else
-  # Outside TMUX: Normal initialization
-  compinit -u
-fi
-
+# Oh My Zsh initializes compinit when oh-my-zsh.sh is sourced above. Keep it
+# single-pass: a second compinit, especially compinit -C in restored tmux panes,
+# can trust stale .zcompdump entries such as _bat before fpath is verified.
+# Historical note: this used to autoload compinit here and use a tmux guard to
+# stop compinit being saturated on tmux restore, with -u for insecure
+# /usr/local/share permissions and -C inside tmux to trust the cache.
 # End of lines added by compinstall
  
 #Add the following to your zshrc to access the online help:
