@@ -1,0 +1,156 @@
+#!/usr/bin/env bash
+
+# Back up the current machine's Codex state into a local-only git repo.
+# This isn't an on install script, its a maintainance script, its here for visibility
+#
+# Default layout:
+#   Source:      ~/.codex
+#   Destination: ~/CODE/CodexBackups/<hostname>/.codex
+#
+# Optional overrides:
+#   CODEX_HOME=/path/to/.codex
+#   CODEX_BACKUP_ROOT=/path/to/CodexBackups
+#   CODEX_BACKUP_MACHINE=stable-machine-name
+
+set -euo pipefail
+
+codex_home="${CODEX_HOME:-$HOME/.codex}"
+backup_root="${CODEX_BACKUP_ROOT:-$HOME/CODE/CodexBackups}"
+
+need_command() {
+    if ! command -v "$1" >/dev/null 2>&1; then
+        echo "Missing required command: $1"
+        exit 1
+    fi
+}
+
+sanitize_machine_name() {
+    printf '%s' "$1" | tr '[:upper:]' '[:lower:]' | tr -cd '[:alnum:]_.-'
+}
+
+detect_machine_name() {
+    if [[ -n "${CODEX_BACKUP_MACHINE:-}" ]]; then
+        sanitize_machine_name "$CODEX_BACKUP_MACHINE"
+        return
+    fi
+
+    local detected=""
+    detected="$(hostname -s 2>/dev/null || hostname 2>/dev/null || uname -n 2>/dev/null || true)"
+    sanitize_machine_name "$detected"
+}
+
+codex_processes() {
+    ps -axo pid=,command= 2>/dev/null \
+        | grep -i '[c]odex' \
+        | grep -vi '9_backup_codex' \
+        | grep -vi 'CodexBackups' \
+        || true
+}
+
+warn_if_codex_running() {
+    local running
+    running="$(codex_processes)"
+
+    if [[ -z "$running" ]]; then
+        return
+    fi
+
+    echo "Codex appears to be running:"
+    echo "$running"
+    echo ""
+    echo "This warm backup is useful for config and conversation recovery,"
+    echo "but SQLite/app-state files may not be a clean full restore snapshot."
+    echo ""
+    echo "For a cleaner cold backup:"
+    echo "  1. Finish or pause active Codex work."
+    echo "  2. Quit Codex Desktop, VS Code Codex integrations, and Codex CLI sessions."
+
+    if [[ "$(uname -s)" == "Darwin" ]]; then
+        echo "  3. Optional macOS helper: osascript -e 'quit app \"Codex\"'"
+    fi
+
+    echo "  4. Check remaining processes with: ps -axo pid=,command= | grep -i '[c]odex'"
+    echo "  5. Re-run this script."
+    echo ""
+    echo "Blunt last resort, only if you are sure: pkill -f codex"
+    echo ""
+
+    if [[ -t 0 ]]; then
+        local answer
+        read -r -p "Continue with warm backup? [Y/n] " answer
+        answer="${answer:-Y}"
+        case "$answer" in
+            [Yy]*)
+                ;;
+            *)
+                echo "Backup cancelled."
+                exit 0
+                ;;
+        esac
+    else
+        echo "Non-interactive shell: continuing with warm backup."
+    fi
+}
+
+main() {
+    need_command git
+    need_command rsync
+
+    if [[ ! -d "$codex_home" ]]; then
+        echo "Codex home does not exist: $codex_home"
+        exit 1
+    fi
+
+    machine="$(detect_machine_name)"
+    if [[ -z "$machine" ]]; then
+        echo "Could not determine a machine name."
+        echo "Set CODEX_BACKUP_MACHINE and run again."
+        exit 1
+    fi
+
+    case "$backup_root/" in
+        "$codex_home"/*)
+            echo "Backup root must not be inside Codex home."
+            echo "Codex home:  $codex_home"
+            echo "Backup root: $backup_root"
+            exit 1
+            ;;
+    esac
+
+    target="$backup_root/$machine/.codex"
+
+    echo "Codex backup"
+    echo "  machine: $machine"
+    echo "  source:  $codex_home"
+    echo "  target:  $target"
+    echo ""
+
+    warn_if_codex_running
+
+    mkdir -p "$backup_root" "$target"
+
+    if [[ ! -d "$backup_root/.git" ]]; then
+        echo "Initializing local git repo at $backup_root"
+        git -C "$backup_root" init
+    fi
+
+    echo "Mirroring Codex files..."
+    rsync -a --delete "$codex_home/" "$target/"
+
+    echo "Staging changes for $machine..."
+    git -C "$backup_root" add -A -- "$machine"
+
+    if git -C "$backup_root" diff --cached --quiet -- "$machine"; then
+        echo "No Codex backup changes to commit for $machine."
+    else
+        git -C "$backup_root" commit -m "Codex backup: $machine $(date '+%Y-%m-%d %H:%M:%S %z')"
+        echo "Committed Codex backup:"
+        git -C "$backup_root" log -1 --oneline
+    fi
+
+    echo ""
+    echo "Backup repo: $backup_root"
+    echo "Machine backup: $target"
+}
+
+main "$@"
