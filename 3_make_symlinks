@@ -146,6 +146,31 @@ for codex_file in config.toml AGENTS.md; do
     fi
 done
 
+for codex_folder in rules skills; do
+    src="$dots_codex_dir/$codex_folder"
+    dest="$codex_dir/$codex_folder"
+
+    # Skip if the source folder doesn't exist in the repo
+    if [[ ! -d "$src" ]]; then
+        echo "Warning: $src does not exist in dotfiles repo, skipping..."
+        continue
+    fi
+
+    if [[ -L "$dest" ]]; then
+        # already a symlink: ideally to our src
+        echo "$dest already symlinked, leaving as is..."
+    elif [[ -e "$dest" ]]; then
+        # real folder (or something else), back it up then replace
+        echo "$dest exists and is not a symlink, backing up then replacing..."
+        mv "$dest" "$codex_backup_dir/"
+        ln -s "$src" "$dest"
+        echo "Linked $src -> $dest"
+    else
+        # doesn't exist at all, just create the link
+        echo "$dest doesn't exist, linking..."
+        ln -s "$src" "$dest"
+    fi
+done
+
 # general message to end
 echo "remember you may need to source/reload some dotfiles before anything will change..."  
-
