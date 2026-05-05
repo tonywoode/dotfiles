@@ -43,63 +43,42 @@ for dotfilepath in "${arr[@]}"; do
    fi 
 done
 
-# now do a similar operation for neovim, which uses the XDG standard ie: ~/.config/nvim/*
-#   symlink the whole nvim folder (note this may not be a wise idea for other programs that use
-#   the standard, for their config may contain secrets)
-
-# macos doesn't do XDG_CONFIG_HOME, so in case there's no XDG_CONFIG_HOME yet
+# now do a similar operation for editor configs that use XDG, e.g. ~/.config/nvim
+# symlink whole config folders from dotfiles into ~/.config
 should_be_xdg_config_home=$HOME/.config
 
-# first neovim...link the folder in this repo tothe ~/.config/nvim dir
-nvim_config_dir=$should_be_xdg_config_home/nvim
-my_dots_nvim_config_dir=$dir/.config/nvim
+link_xdg_config_folder() {
+    local config_name="$1"
+    local source_config_dir="$dir/.config/$config_name"
+    local target_config_dir="$should_be_xdg_config_home/$config_name"
 
-if [[ ! -d $should_be_xdg_config_home ]] ; then
-    echo "Wanted to symlink your neovim folder from dots, but there's no ~/.config, making one..."
-    mkdir -p $should_be_xdg_config_home
-fi
+    if [[ ! -d "$source_config_dir" ]]; then
+        echo "Warning: $source_config_dir does not exist in dotfiles repo, skipping..."
+        return
+    fi
 
-if [[ -d "$nvim_config_dir" ]] ; then
-    #dotfile is already in ~, is it a valid symlink?
-    if [[ -L "$nvim_config_dir" ]]; then
-        echo "$nvim_config_dir already linked to dots, ignoring..."
-    else 
-        echo "$nvim_config_dir is not a symlink (or is a broken one), its prob a real file, replace it..."
-        # so we need to move then copy
-        # first check if we have a .config dir in our backup folder already
-        [[ -d "$olddir/.config" ]] || (echo "making a .config folder in $olddir to backup neovim config folder"; mkdir "$olddir/.config")
-        echo "moving $nvim_config_dir to $olddir/.config"
-        mv "$nvim_config_dir" "$olddir/.config"
-        echo "linking $my_dots_nvim_config_dir to $nvim_config_dir"
-        ln -s "$my_dots_nvim_config_dir" "$nvim_config_dir"
-    fi 
-else echo "$nvim_config_dir doesn't exist in ~, linking..." && ln -s "$my_dots_nvim_config_dir" "$nvim_config_dir"
-fi
+    if [[ ! -d "$should_be_xdg_config_home" ]] ; then
+        echo "Wanted to symlink $config_name from dots, but there's no ~/.config, making one..."
+        mkdir -p "$should_be_xdg_config_home"
+    fi
 
-# that same loop again but for lvim
-lvim_config_dir=$should_be_xdg_config_home/lvim
-my_dots_lvim_config_dir=$dir/.config/lvim
-if [[ ! -d $should_be_xdg_config_home ]] ; then
-    echo "Wanted to symlink your neovim folder from dots, but there's no ~/.config, making one..."
-    mkdir -p $should_be_xdg_config_home
-fi
+    if [[ -L "$target_config_dir" ]]; then
+        echo "$target_config_dir already linked to dots, ignoring..."
+    elif [[ -e "$target_config_dir" ]]; then
+        echo "$target_config_dir is not a symlink, moving then linking..."
+        [[ -d "$olddir/.config" ]] || (echo "making a .config folder in $olddir to backup XDG config folders"; mkdir "$olddir/.config")
+        echo "moving $target_config_dir to $olddir/.config"
+        mv "$target_config_dir" "$olddir/.config"
+        echo "linking $source_config_dir to $target_config_dir"
+        ln -s "$source_config_dir" "$target_config_dir"
+    else
+        echo "$target_config_dir doesn't exist in ~, linking..."
+        ln -s "$source_config_dir" "$target_config_dir"
+    fi
+}
 
-if [[ -d "$lvim_config_dir" ]] ; then
-    #dotfile is already in ~, is it a valid symlink?
-    if [[ -L "$lvim_config_dir" ]]; then
-        echo "$lvim_config_dir already linked to dots, ignoring..."
-    else 
-        echo "$lvim_config_dir is not a symlink (or is a broken one), its prob a real file, replace it..."
-        # so we need to move then copy
-        # first check if we have a .config dir in our backup folder already
-        [[ -d "$olddir/.config" ]] || (echo "making a .config folder in $olddir to backup neovim config folder"; mkdir "$olddir/.config")
-        echo "moving $lvim_config_dir to $olddir/.config"
-        mv "$lvim_config_dir" "$olddir/.config"
-        echo "linking $my_dots_lvim_config_dir to $lvim_config_dir"
-        ln -s "$my_dots_lvim_config_dir" "$lvim_config_dir"
-    fi 
-else echo "$lvim_config_dir doesn't exist in ~, linking..." && ln -s "$my_dots_lvim_config_dir" "$lvim_config_dir"
-fi
+link_xdg_config_folder nvim
+link_xdg_config_folder lvim
 
 
 # --- Codex config (to only capture config.toml and AGENTS.md instead of the definitely local-only stuff in ~/.codex) ---
