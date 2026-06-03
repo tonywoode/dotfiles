@@ -167,6 +167,7 @@ apps=(
         blankie #white noise
         blueharvest
         brave-browser
+        bruno #what postman once was!
         caddy
         codex #chatgpt cli, a cask due to the sandboxing
         codex-app #codex desktop app
