@@ -6,3 +6,4 @@ npm-modules-log/
 .codex/config.toml
 .codex/skills/.system/
 .codex/skills/codex-primary-runtime/
+.codex/rules/default.rules
