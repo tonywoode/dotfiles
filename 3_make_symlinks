@@ -8,6 +8,30 @@
 dir=~/CODE/Scripts/Dotfiles/dotfiles # dotfiles directory
 olddir=~/CODE/Scripts/Dotfiles/dotfiles_old # old dotfiles backup directory
 
+validate_symlink() {
+    local dest="$1"
+    local expected_src="$2"
+
+    if [[ ! -L "$dest" ]]; then
+        echo "ERROR: $dest is not a symlink; expected it to point to $expected_src" >&2
+        return 1
+    fi
+
+    local actual_src
+    actual_src="$(readlink "$dest")"
+    if [[ "$actual_src" != "$expected_src" ]]; then
+        echo "ERROR: $dest points to $actual_src; expected $expected_src" >&2
+        return 1
+    fi
+
+    echo "Validated $dest -> $expected_src"
+}
+
+if [[ "${1:-}" == "--check-codex-agents-link" ]]; then
+    validate_symlink "$HOME/.codex/AGENTS.md" "$dir/.codex/AGENTS.md"
+    exit $?
+fi
+
 if [[ ! -d "$olddir" ]]; then echo "making directory to house old dots, one level up from this script" && mkdir -p "$olddir"; fi
 
 # make sure we're in the dotfiles directory, prob not needed
@@ -136,6 +160,7 @@ link_codex_path file config.toml
 link_codex_path file AGENTS.md
 link_codex_path folder rules
 link_codex_path folder skills
+validate_symlink "$codex_dir/AGENTS.md" "$dots_codex_dir/AGENTS.md" || exit 1
 
 # general message to end
 echo "remember you may need to source/reload some dotfiles before anything will change..."  
