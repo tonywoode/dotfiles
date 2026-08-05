@@ -135,7 +135,7 @@ main() {
     fi
 
     echo "Mirroring Codex files..."
-    rsync -a --delete "$codex_home/" "$target/"
+    rsync -rlptgo --delete "$codex_home/" "$target/"
 
     echo "Staging changes for $machine..."
     git -C "$backup_root" add -A -- "$machine"
