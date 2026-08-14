@@ -4,6 +4,8 @@
 sync-npm-modules-github-token.conf
 npm-modules-log/
 .codex/config.toml
-.codex/skills/.system/
-.codex/skills/codex-primary-runtime/
+# Codex skills: keep private/business skills local by default.
+.codex/skills/*
+!.codex/skills/tiddlywiki-wikitext/
+!.codex/skills/tiddlywiki-wikitext/**
 .codex/rules/default.rules
