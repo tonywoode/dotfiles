@@ -1,3 +1,7 @@
+# macOS runs path_helper after .zshenv, putting system tools first again.
+# Restore Homebrew priority for login shells before .zshrc initializes NVM.
+initialize_homebrew
+
 # GUARD: ChatGPT Codex / Sandboxed Shells
 # these eval lines are the real content of .zprofile, but the Codex CLI runs in a restricted sandbox where the 
 # filesystem is Read-Only and process inspection (ps) is blocked. So check if the pyenv directory is writable before 
