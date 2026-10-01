@@ -36,7 +36,7 @@ W4) Modern JS/TS: follow project target; prefer async/await, optional chaining, 
 W5) JS/TS types: descriptive names; prefer inference; Array<T>; native fetch; minimal deps; FP bias (explain OO if used).
 W6) Stack defaults: Epic Stack, TS, React Router (framework mode), Vite, Tailwind, Vitest, Playwright, Prisma, SQLite.
 W7) Hygiene: small/pure functions; kebab-case files, PascalCase components, camelCase vars; formatter-first; add brief intent comments only when non-obvious; never delete user comments—mark with “TODO: is this comment still valid?” if unsure.
-W8) Commit messages: if the message is multiline, end the first line with ... (to show there's more) and then, after a blank line, use bullet points with * in the body to itemise the changes, don't indent the * bullet points. Always put the 3-char Beads issue being worked on as the last line of the commit messagge, in commas eg: (xuv)
+W8) Commit messages: if the message is multiline, end the first line with ... (to show there's more) and then, after a blank line, use bullet points with * in the body to itemise the changes, don't indent the * bullet points.
 W9) Shell safety: backticks (`...`) are command substitution in zsh. Avoid backticks in terminal commands unless intentionally substituting. For literal backticks in command content, use single quotes or a single-quoted heredoc.
 W10) Node/npm execution:
   - For Node projects, do not trust Codex’s default `node` on `PATH`. Before running `node`/`npm` commands, inspect the project’s requested Node version from `.nvmrc`, `package.json`, or local docs.
@@ -45,29 +45,14 @@ W10) Node/npm execution:
 W11) Remote diagnostic loop: when I need the user to run commands and paste output, give only one command or one tightly coupled command group at a time, then wait for the result before giving dependent next steps. Keep the transcript readable by briefly saying what that command is meant to determine. Do not give multi-step command batches that assume earlier outputs unless the user explicitly asks for a full checklist.
 W12) Symlink-managed configuration: before editing files under `~/.codex`, inspect the target with `readlink`. If it is a symlink into the dotfiles repository, edit the resolved source path directly. Never use replacement-style in-place editing against the symlink path, and verify afterward that the path remains a symlink.
 
-## Beads
-B1) Create a beads issue only when the user explicitly asks to track work, or when executing a multi-step/non-trivial task after explicit go-ahead. Skip beads for quick one-offs unless the user says "track this". If unclear, ask before creating. When using beads, check `bd ready` and set status when starting. Do not create beads issues during planning-only responses; if tracking is desired, add notes only after execution is approved. Avoid markdown TODOs.
-B2) Beads intent signals: "track this" -> create a beads issue; "quick fix" / "one-off" -> do not create a beads issue.
-B3) If a request could be either tracked or untracked, ask which they prefer before creating a beads issue.
-B4) Issue closure: Do not close issues unless the user explicitly confirms the fix is accepted. Before closing, add full implementation notes to the issue describing what changed and where.
-B5) Beads tooling: use the `bd` CLI only; do not use beads MCP servers/tools (beads-mcp/mcp-beads).
-B6) Beads fields:
-  - Description is the living spec/problem statement. When asked to add/edit requirements, always read-modify-write the existing description (insert/append in the right section); never replace the description with only the new sentence.
-  - Notes are a short curated summary (current state + decisions + next steps). Only overwrite notes if the user explicitly asks to rewrite the summary; otherwise append.
-  - Comments are the append-only session log. Use `bd comments add` for per-session updates and history.
-B7) Spec updates: If an issue is a spec, new requirements go in Description; add a one-line comment noting the change.
-B8) Beads retention: Never run destructive beads commands (e.g., `bd delete`, `bd delete --hard`, `bd admin cleanup`, `bd admin compact`, or any command that prunes tombstones) unless the user explicitly asks. Prefer dry-run previews and confirm scope first. Even is the user asks for one of those history-destroying beads commands, try to talk him out of running them
-B9) Never run any beads cleanup/prune/compact/delete commands (e.g., bd delete, bd admin cleanup, bd admin compact, bd admin prune) unless the user explicitly asks in this session (we want to keep issues as a dependency tree, and retain historical information)
-B10) If the user asks for a treeview of the issues, this is the command he means: bd list --tree --all --no-pager --limit 0. When showing tree output, wrap in a code block/monospace
-B11)  When the user asks you to update the beads issue with progress:
-  - read>append>write only (no overwrites)
-  - add a detailed progress comment (not notes), with gritty specifics:
-    * what we changed, where (file paths)
-    * problems encountered, failed approaches, final fix
-    * decisions made and why
-    * any new issues discovered/created
-  - include enough detail that someone could reconstruct the session
-  - say what you changed and then show the full updated issue text (never just say 'I updated the beads issue' as the user wants to know what you changed and see that in context)
+## Project documentation and work history
+D1) Use the project's agreed planning system; do not introduce a tracker without agreement.
+D2) Maintain one authoritative record for each specification. Read existing content before updating it, integrate new requirements, and avoid competing copies.
+D3) Keep current requirements and status distinct from the chronological work log. Mark superseded material clearly and link to its replacement.
+D4) Preserve decisions, dependencies, and historical context. Do not delete or compact work history without explicit approval.
+D5) When recording progress, include changed files, validation, problems encountered, unsuccessful approaches, decisions and reasons, and remaining work.
+D6) Distinguish implementation completion from user acceptance. Do not mark work accepted or close tracked work without confirmation.
+D7) When asked to update a record, explain the changes and show the updated record in context.
 
 ## Other MCP
 M1) Subagents: route through orchestrator; orchestrator must not delegate to itself; prefer tool calls over long in-thread reasoning.
