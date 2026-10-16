@@ -1,6 +1,7 @@
 #! /bin/bash
 # Functions as a Homebrew and Homebrew/Cask setup script, as a running binary or app install script and as a running update/upgrade script for all of those
 
+main() {
 # Ask for the administrator password upfront (brew is careful about who it runs as and how it deals with sudo, the idea is EVERYTHING is locally you, but it needs sudo for just some careful things)
 sudo -v
 
@@ -245,7 +246,24 @@ cask_need_to_install=( $(printf "%s\n" "${apps[@]}" "${cask_installed_from_list[
 
 echo "CASK: IN YOUR LIST BUT NOT INSTALLED (at the list name anyway!): ${cask_need_to_install[@]}" & echo ""
 
-for to_install in "${cask_need_to_install[@]}"; do { echo "CASK: INSTALLING $to_install" && $install "$to_install"; } done
+for to_install in "${cask_need_to_install[@]}"; do
+    case "$to_install" in
+        mamp)
+            if is_work_mac; then
+                echo "CASK: SKIPPING $to_install on work Mac"
+                continue
+            fi
+            ;;
+        haptic-touch-bar)
+            if ! has_touch_bar; then
+                echo "CASK: SKIPPING $to_install: no Touch Bar"
+                continue
+            fi
+            ;;
+    esac
+
+    echo "CASK: INSTALLING $to_install" && $install "$to_install"
+done
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # PREVIOUS VERSIONS OF CASKS 
@@ -268,4 +286,28 @@ echo "running brew and cask cleanup" && brew cleanup
 # TODO: brew update will update any brews and casks which were previously installed, regardless of whether you removed or commented them here. If we had a good reason to supplant a brew/cask with a manual install, brew will just replace it again. So an uninstall section here
 
 echo "Im outta yer loop, cya"
- 
+}
+
+is_work_mac() {
+    local computer_name
+    computer_name=$(/usr/sbin/scutil --get ComputerName) || exit 1
+    [[ "$computer_name" == 'GBLONml80275056' ]]
+}
+
+has_touch_bar() {
+    local hardware_model
+    hardware_model=$(/usr/sbin/sysctl -n hw.model) || exit 1
+
+    # Touch Bar models: Intel 2016–2020, plus the 13-inch M1 and M2.
+    # https://support.apple.com/en-us/108052
+    case "$hardware_model" in
+        MacBookPro13,[23]|MacBookPro14,[23]|MacBookPro15,[1-4]|MacBookPro16,[1-4]|MacBookPro17,1|Mac14,7)
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+main "$@"
