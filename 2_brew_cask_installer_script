@@ -77,6 +77,7 @@ bins=(
         ack
         bash-completion #https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
         bat # cat with syntax highlights, git integration, non-printable char printing, auto-paging
+        caddy
         cmake #installed to setup YouCompleteMe vim plugin
         code-minimap #required for the vim plugin wfxr/minimap.vim - there's a hardcoded Plug brew install in my .vimrc also
         colima #minimal docker
@@ -164,7 +165,6 @@ apps=(
         blueharvest
         brave-browser
         bruno #what postman once was!
-        caddy
         codex #chatgpt cli, a cask due to the sandboxing
         codex-app #codex desktop app
         cyberduck # coz, believe it or not, filezilla is malware...
